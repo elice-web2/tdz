@@ -6,4 +6,11 @@ export const theme: DefaultTheme = {
     lighter: '#c0cfff',
     darker: '#5870cb',
   },
+
+  flexbox: (direction = 'row', align = 'center', justify = 'center') => `
+    display: flex;
+    flex-direction: ${direction};
+    align-items: ${align};
+    justify-content: ${justify};
+  `,
 };

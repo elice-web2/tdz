@@ -1,5 +1,4 @@
 import 'styled-components';
-
 declare module 'styled-components' {
   export interface DefaultTheme {
     mainColor: {
@@ -7,5 +6,7 @@ declare module 'styled-components' {
       lighter: string;
       darker: string;
     };
+
+    flexbox: (...args) => string;
   }
 }
