@@ -1,13 +1,20 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import styled from 'styled-components';
+import Navbar from './pages/Navbar';
+import TopNav from './pages/TopNav';
 import Home from './pages/Home';
+
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={null} />
+
+        <Route path="/nav" element={<Navbar />} />
+        <Route path="/top" element={<TopNav />} />
         <Route path="/home" element={<Home />} />
+
       </Routes>
     </BrowserRouter>
   );
