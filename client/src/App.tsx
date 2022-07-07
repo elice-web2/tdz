@@ -5,7 +5,7 @@ import Main from './pages/Main';
 import Navbar from './pages/Navbar';
 import TopNav from './pages/TopNav';
 import Home from './pages/Home';
-
+import Signin from './pages/Signin';
 
 
 function App() {
@@ -17,6 +17,7 @@ function App() {
         <Route path="/nav" element={<Navbar />} />
         <Route path="/top" element={<TopNav />} />
         <Route path="/home" element={<Home />} />
+        <Route path="/signin" element={<Signin />} />
 
 
       </Routes>
