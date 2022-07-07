@@ -15,11 +15,12 @@ const GoalCalories = () => {
       </CircleContainer>
       <Step>STEP 2</Step>
       <Title>하루 섭취 열량 입력하기</Title>
-      목표 섭취 열량
-      <FlexContainer>
-        <InputTag placeholder="성별을 입력해주세요." value="1200"></InputTag>
-      </FlexContainer>
-
+      <Title className='subTitle'>목표 섭취 열량</Title>
+      <InputTag defaultValue="1200"></InputTag>
+      
+      <Title className='subCalorie'>철수님의 일일 건장 섭취량은</Title>
+      <Title className='calorie'>1200 kcal</Title>
+      <Title className='subCalorie'>입니다.</Title>
 
       <Button status="next" onClick={()=> navigate("/mypage/user_info")} >다음</Button>
     </MyGoalWrapper>
@@ -39,24 +40,16 @@ const Button = styled.button<{status: string}>`
   border-radius: 8px;
   border-style: none;
   font-style:none;
+  margin-top: 80px;
  
 `
 
-
-const FlexContainer = styled.div`
-  width:90%;
-  margin: 15px auto;
-  display:flex;
-  justify-content: space-between;
-  font-size: 14px;
-  font-weight: 600;
-  &.mode {
-    margin-top: 30px;
-  }
-`
 const InputTag = styled.input`
   width: 60%;
-  margin-left: 30px;
+  margin: 0 0 80px 0;
+  width: 100%;
+  height: 30px;
+  background-color: lightgrey;
 `
 const CircleContainer = styled.div`
   display:flex;
@@ -77,12 +70,25 @@ const Title = styled.div`
   font-size: 20px;
   font-weight: 700;
   margin-bottom: 20px;
-  `
-  const Step = styled.div`
-  text-align:start;
-  font-size: 12px;
-  font-weight: 600;
-  margin: 10px 0;
+  &.subTitle {
+    font-weight: 500;
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  &.subCalorie {
+    font-weight:400;
+    text-align: center;
+  }
+  &.calorie {
+    font-size: 50px;
+    text-align: center;
+  }
+`
+const Step = styled.div`
+text-align:start;
+font-size: 12px;
+font-weight: 600;
+margin: 10px 0;
 `
 
 export default GoalCalories;
