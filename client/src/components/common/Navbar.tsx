@@ -7,7 +7,7 @@ import {
   faChartColumn,
   faUser,
 } from '@fortawesome/free-solid-svg-icons';
-import Container from '../components/styles/Container';
+import Container from '../styles/Container';
 
 const Navbar: React.FC = () => {
   return (
