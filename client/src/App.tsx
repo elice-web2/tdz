@@ -6,6 +6,9 @@ import Home from './pages/Home';
 import MealsDetail from './pages/Meals/MealsDetail';
 import Signin from './pages/Signin';
 import Signup from './pages/Signup';
+import UserInfo from './pages/mygoal/UserInfo';
+import GoalCalories from './pages/mygoal/GoalCalories';
+
 
 function App() {
   return (
@@ -16,6 +19,8 @@ function App() {
         <Route path="/meals/detail" element={<MealsDetail />} />
         <Route path="/signin" element={<Signin />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="mypage/user_info" element={<UserInfo />} />
+        <Route path="mypage/goal_step1" element={<GoalCalories />} />
       </Routes>
     </BrowserRouter>
   );
