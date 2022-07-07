@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Request, Response } from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 
@@ -8,14 +8,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 app.use(bodyParser.json());
 
-app.get('/', (req, res) => {
+app.get('/', (req: Request, res: Response) => {
   res.send('Hello World!');
-});
-
-app.post('/text', (req, res) => {
-  //데이터 받는 곳
-  const text1 = req.body.inText;
-  console.log(text1);
 });
 
 app.listen(port, () => {
