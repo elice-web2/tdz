@@ -1,17 +1,8 @@
-import express, { Request, Response } from 'express';
-import cors from 'cors';
-import bodyParser from 'body-parser';
+import 'dotenv/config';
+import { app } from './src/app';
 
-const app = express();
-const port = 3001;
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cors());
-app.use(bodyParser.json());
+const PORT = process.env.PORT || 5000;
 
-app.get('/', (req: Request, res: Response) => {
-  res.send('Hello World!');
-});
-
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
+app.listen(PORT, () => {
+  console.log(`정상적으로 서버를 시작하였습니다.  http://localhost:${PORT}`);
 });
