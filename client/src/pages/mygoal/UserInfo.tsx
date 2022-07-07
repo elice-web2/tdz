@@ -6,7 +6,7 @@ const UserInfo:React.FC = () => {
   const navigate = useNavigate();
   return (
     <Container>
-        <Wrapper>
+        <MyGoalWrapper>
           <CircleContainer>
             <StepCircle active={true}></StepCircle>
             <StepCircle active={false}></StepCircle>
@@ -40,11 +40,11 @@ const UserInfo:React.FC = () => {
             활동량 
           </FlexContainer>
           <Button status="next" onClick={()=> navigate("/mypage/goal_step1")} >다음</Button>
-        </Wrapper>
+        </MyGoalWrapper>
     </Container>
   );
 };
-const Wrapper = styled.div`
+const MyGoalWrapper = styled.div`
   padding: 25px;
   text-align: center;
 `
