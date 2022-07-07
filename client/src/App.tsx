@@ -5,6 +5,8 @@ import Main from './pages/Main';
 import Navbar from './pages/Navbar';
 import TopNav from './pages/TopNav';
 import Home from './pages/Home';
+import UserInfo from './pages/mygoal/UserInfo';
+import GoalCalories from './pages/mygoal/GoalCalories';
 
 
 
@@ -17,7 +19,8 @@ function App() {
         <Route path="/nav" element={<Navbar />} />
         <Route path="/top" element={<TopNav />} />
         <Route path="/home" element={<Home />} />
-
+        <Route path="mypage/user_info" element={<UserInfo />} />
+        <Route path="mypage/goal_step1" element={<GoalCalories />} />
 
       </Routes>
     </BrowserRouter>
