@@ -4,6 +4,13 @@ import Container from '../../components/styles/Container';
 
 const UserInfo:React.FC = () => {
   const navigate = useNavigate();
+  const submitHandler = (e: React.FormEvent<HTMLFormElement>)=> {
+    e.preventDefault();
+   console.log("test", e.currentTarget.gender.value);
+   navigate("/mypage/goal_step1")
+  }
+
+  
   return (
     <Container>
         <MyGoalWrapper>
@@ -14,32 +21,39 @@ const UserInfo:React.FC = () => {
           </CircleContainer>
           <Step>STEP 1</Step>
           <Title>필수 정보 입력하기</Title>
+          <form onSubmit={submitHandler}>
+            <FlexContainer>
+              성별 <input name="gender" type="text" placeholder="성별을 입력해주세요." defaultValue={""}></input>
+            </FlexContainer>
+            <FlexContainer>
+              나이 <input type="number" placeholder="나이를 입력해주세요." defaultValue={""}></input>
+            </FlexContainer>
+            <FlexContainer>
+              키 <input type="number" placeholder="키를 입력해주세요." defaultValue={""}></input>
+            </FlexContainer>
+            <FlexContainer>
+              시작 체중 <input  type="number" placeholder="현재 체중을 입력해주세요." defaultValue={""}></input>
+            </FlexContainer>
+            <FlexContainer>
+              목표 체중 <input type="number" placeholder="목표 체중을 입력해주세요." defaultValue={""}></input>
+            </FlexContainer>
+            
+            <FlexContainer className="mode">
+              <Mode>다이어트 식단</Mode>
+              <Mode>증량 식단</Mode>
+            </FlexContainer>
 
-          <FlexContainer>
-            성별 <InputTag placeholder="성별을 입력해주세요."></InputTag>
-          </FlexContainer>
-          <FlexContainer>
-            나이 <InputTag placeholder="성별을 입력해주세요."></InputTag>
-          </FlexContainer>
-          <FlexContainer>
-            키 <InputTag placeholder="성별을 입력해주세요."></InputTag>
-          </FlexContainer>
-          <FlexContainer>
-            시작 체중 <InputTag placeholder="성별을 입력해주세요."></InputTag>
-          </FlexContainer>
-          <FlexContainer>
-            목표 체중 <InputTag placeholder="성별을 입력해주세요."></InputTag>
-          </FlexContainer>
-          
-          <FlexContainer className="mode">
-            <Mode>다이어트 식단</Mode>
-            <Mode>증량 식단</Mode>
-          </FlexContainer>
-
-          <FlexContainer>
-            활동량 
-          </FlexContainer>
-          <Button status="next" onClick={()=> navigate("/mypage/goal_step1")} >다음</Button>
+            <FlexContainer>
+              활동량 
+              <StepCircle className='activity'></StepCircle>
+              <StepCircle className='activity'></StepCircle>
+              <StepCircle className='activity'></StepCircle>
+            </FlexContainer>
+            <Button 
+                type="submit"
+                value="다음"
+            ></Button>
+          </form>
         </MyGoalWrapper>
     </Container>
   );
@@ -48,7 +62,7 @@ const MyGoalWrapper = styled.div`
   padding: 25px;
   text-align: center;
 `
-const Button = styled.button<{status: string}>`
+const Button = styled.input`
   width: 220px;
   height: 30px;
   
@@ -60,6 +74,8 @@ const Button = styled.button<{status: string}>`
  
 `
 const Mode = styled.div`
+  border-style: none;
+  font-style:none;
   width: 50%; 
   height 100px;
   font-size: 16px;
@@ -70,6 +86,7 @@ const Mode = styled.div`
   & + & {
     margin-left: 20px;
   }
+  
 `
 
 const FlexContainer = styled.div`
@@ -77,28 +94,30 @@ const FlexContainer = styled.div`
   margin: 15px auto;
   display:flex;
   justify-content: space-between;
+  align-items : center;
   font-size: 14px;
   font-weight: 600;
   &.mode {
     margin-top: 30px;
   }
 `
-const InputTag = styled.input`
-  width: 60%;
-  margin-left: 30px;
-`
 const CircleContainer = styled.div`
   display:flex;
   margin : 20px 0;
   align-items: center;
 `
-const StepCircle = styled.div<{active : boolean}>`
+const StepCircle = styled.div<{active ?: boolean}>`
   width:${props => props.active ? "40px":"30px"};
   height:${props => props.active ? "40px":"30px"};
   border-radius: 50%;
   background-color: ${props => props.active ? "grey":"lightgrey"};
 
   margin-right: 10px;
+  &.activity {
+    width: 50px;
+    height: 50px;
+    margin: 20px auto;
+  }
 
 `
 const Title = styled.div`
