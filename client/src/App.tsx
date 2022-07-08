@@ -8,6 +8,8 @@ import MealsCart from './pages/Meals/MealsCart';
 import Signin from './pages/Signin';
 import Signup from './pages/Signup';
 import ChartPage from './pages/ChartPage';
+import Mypage from './pages/Mypage/Mypage';
+import UserInfo from './pages/Mypage/UserInfo';
 import GoalUserInfo from './pages/mygoal/GoalUserInfo';
 import GoalCalories from './pages/mygoal/GoalCalories';
 
@@ -23,6 +25,8 @@ function App() {
         <Route path="/signin" element={<Signin />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/chart" element={<ChartPage />} />
+        <Route path="/mypage" element={<Mypage />} />
+        <Route path="/mypage/user_info" element={<UserInfo />} />
         <Route path="/mypage/goal_step1" element={<GoalUserInfo />} />
         <Route path="/mypage/goal_step2" element={<GoalCalories />} />
       </Routes>
