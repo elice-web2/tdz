@@ -7,7 +7,7 @@ import MealsDetail from './pages/Meals/MealsDetail';
 import MealsCart from './pages/Meals/MealsCart';
 import Signin from './pages/Signin';
 import Signup from './pages/Signup';
-import UserInfo from './pages/mygoal/UserInfo';
+import GoalUserInfo from './pages/mygoal/GoalUserInfo';
 import GoalCalories from './pages/mygoal/GoalCalories';
 
 
@@ -21,8 +21,8 @@ function App() {
         <Route path="/meals/detail" element={<MealsDetail />} />
         <Route path="/signin" element={<Signin />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="mypage/user_info" element={<UserInfo />} />
-        <Route path="mypage/goal_step1" element={<GoalCalories />} />
+        <Route path="/mypage/goal_step1" element={<GoalUserInfo />} />
+        <Route path="/mypage/goal_step2" element={<GoalCalories />} />
       </Routes>
     </BrowserRouter>
   );

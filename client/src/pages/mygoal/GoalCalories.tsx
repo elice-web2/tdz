@@ -22,7 +22,7 @@ const GoalCalories = () => {
       <Title className='calorie'>1200 kcal</Title>
       <Title className='subCalorie'>입니다.</Title>
 
-      <Button status="next" onClick={()=> navigate("/mypage/user_info")} >다음</Button>
+      <Button status="next" onClick={()=> navigate("/mypage/goal_step3")} >다음</Button>
     </MyGoalWrapper>
 </Container>
   )
