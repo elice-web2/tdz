@@ -15,11 +15,11 @@ const Logo: React.FC = () => {
 const TopLogo = styled.div`
   width: 420px;
   height: 60px;
+  background-color: ${({ theme }) => theme.mainColor.lighter};
   font-size: 28px;
   font-weight: bold;
   text-align: center;
   line-height: 60px;
-  background-color: ${({ theme }) => theme.mainColor.lighter};
 `;
 
 const StyledLink = styled(Link)`

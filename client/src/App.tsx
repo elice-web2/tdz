@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Main from './pages/Main';
 import Home from './pages/Home';
 import MealsDetail from './pages/Meals/MealsDetail';
+import MealsCart from './pages/Meals/MealsCart';
 import Signin from './pages/Signin';
 import Signup from './pages/Signup';
 import UserInfo from './pages/mygoal/UserInfo';
@@ -16,6 +17,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/home" element={<Home />} />
+        <Route path="/meals/cart" element={<MealsCart />} />
         <Route path="/meals/detail" element={<MealsDetail />} />
         <Route path="/signin" element={<Signin />} />
         <Route path="/signup" element={<Signup />} />

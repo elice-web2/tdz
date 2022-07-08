@@ -45,21 +45,21 @@ const Navbar: React.FC = () => {
 };
 
 const NavContainer = styled.div`
+  display: flex;
   width: 420px;
   height: 60px;
-  display: flex;
   background-color: ${({ theme }) => theme.mainColor.lighter};
 `;
 
 const LinkWrapper = styled(Link)`
-  width: 105px;
   display: flex;
   flex-direction: column;
-  text-decoration: none;
-  color: black;
   align-items: center;
   justify-content: center;
+  width: 105px;
   margin: 0 5px;
+  text-decoration: none;
+  color: black;
 
   .icon {
     padding: 5px;
