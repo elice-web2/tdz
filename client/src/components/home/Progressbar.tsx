@@ -5,6 +5,7 @@ interface ProgressbarProps {
   percent: number;
   currentValue: string;
   goalValue: string;
+  color: string;
 }
 
 export default function Progressbar({
@@ -12,12 +13,13 @@ export default function Progressbar({
   percent,
   currentValue,
   goalValue,
+  color,
 }: ProgressbarProps) {
   return (
     <Wrapper>
       <Title>{title}</Title>
       <ProgressContainer>
-        <Progress value={percent} max={100} />
+        <Progress value={percent} max={100} progressColor={color} />
         <p>
           {currentValue} / {goalValue}
         </p>
@@ -35,7 +37,7 @@ const Title = styled.h2`
   font-weight: 700;
 `;
 
-const Progress = styled.progress`
+const Progress = styled.progress<{ progressColor: string }>`
   width: 60%;
   height: 10px;
   margin: 10px;
@@ -49,9 +51,7 @@ const Progress = styled.progress`
   }
   &::-webkit-progress-value {
     border-radius: 10px;
-    background: #1d976c;
-    background: -webkit-linear-gradient(to right, #93f9b9, #1d976c);
-    background: linear-gradient(to right, #93f9b9, #1d976c);
+    background: ${({ progressColor }) => progressColor};
   }
 `;
 
