@@ -76,7 +76,9 @@ export class UserModel {
     const filter = { _id: userId };
     const option = { returnOriginal: false };
 
-    return await User.findOneAndUpdate(filter, update, option);
+    const updateData = await User.findOneAndUpdate(filter, update, option);
+    console.log(updateData);
+    return updateData;
   }
   //userId(ObjectId)를 찾아 삭제
   async deleteOneUser(userId: string): Promise<{ deletedCount?: number }> {

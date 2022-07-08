@@ -1,4 +1,4 @@
 export * from './login-required';
-export * from './admin-only';
+export * from './admin-required';
 export * from './error-handler';
 export * from './error-logger';

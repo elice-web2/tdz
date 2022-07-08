@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt, { JwtPayload } from 'jsonwebtoken';
 
-function adminOnly(req: Request, res: Response, next: NextFunction) {
+function adminRequired(req: Request, res: Response, next: NextFunction) {
   //쿠키로부터 httponly 옵션으로 토큰 받음
   const userToken = req.signedCookies.token;
 
@@ -42,4 +42,4 @@ function adminOnly(req: Request, res: Response, next: NextFunction) {
   }
 }
 
-export { adminOnly };
+export { adminRequired };

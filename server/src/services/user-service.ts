@@ -23,7 +23,7 @@ class UserService {
   }
 
   // 회원가입
-  async addUser(userInfo: any): Promise<UserData> {
+  async addUser(userInfo: UserInfo): Promise<UserData> {
     // 객체 destructuring
     const {
       email,
@@ -120,7 +120,7 @@ class UserService {
   }
 
   //사용자 하나를 받음
-  async getUser(userId: string): Promise<UserData> {
+  async getUserData(userId: string): Promise<UserData> {
     return await this.userModel.findById(userId);
   }
 
@@ -172,7 +172,7 @@ class UserService {
     });
   }
 
-  async deleteUser(userId: string): Promise<{ deletedCount?: number }> {
+  async deleteUserData(userId: string): Promise<{ deletedCount?: number }> {
     // 우선 해당 id의 유저가 db에 있는지 확인
     let user = await this.userModel.findById(userId);
 

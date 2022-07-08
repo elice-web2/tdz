@@ -66,7 +66,7 @@ const UserSchema = new Schema(
     },
     profile_image: {
       type: String,
-      default: 'url',
+      default: 'http://assets.stickpng.com/images/585e4bf3cb11b227491c339a.png',
       required: true,
     },
     nickname: {
