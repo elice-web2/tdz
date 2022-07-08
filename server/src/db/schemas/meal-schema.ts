@@ -2,28 +2,52 @@ import { Schema } from 'mongoose';
 
 const MealSchema = new Schema(
   {
-    user_id: { type: Schema.Types.ObjectId, ref: 'users', required: true },
-    date: {
-      type: Date,
-      required: true,
-    },
-    meal_category: {
+    meal_code: {
       type: String,
       required: true,
     },
-    meal: {
-      type: new Schema({
-        meal_name: String,
-        meal_kacl: Number,
-        meal_carb: Number,
-        meal_protein: Number,
-        meal_fat: Number,
-        meal_sugars: Number,
-        meal_natruim: Number,
-        meal_cholesterol: Number,
-        meal_saturatedfatty: Number,
-        meal_transfat: Number,
-      }),
+    meal_name: {
+      type: String,
+      required: true,
+    },
+    meal_kcal: {
+      type: Number,
+      required: true,
+    },
+    meal_carb: {
+      type: Number,
+      required: true,
+    },
+    meal_protein: {
+      type: Number,
+      required: true,
+    },
+    meal_fat: {
+      type: Number,
+      required: true,
+    },
+    meal_sugars: {
+      type: Number,
+      required: true,
+    },
+    meal_natruim: {
+      type: Number,
+      required: true,
+    },
+    meal_cholesterol: {
+      type: Number,
+      required: true,
+    },
+    meal_saturatedfatty: {
+      type: Number,
+      required: true,
+    },
+    meal_transfat: {
+      type: Number,
+      required: true,
+    },
+    updated_date: {
+      type: Date,
       required: true,
     },
   },
