@@ -1,32 +1,45 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
+import { faCommentDots } from '@fortawesome/free-solid-svg-icons';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
 import Container from '../components/styles/Container';
 
 const Main: React.FC = () => {
+  const navigate = useNavigate();
   return (
     <Container>
       <LogoText>TDZ</LogoText>
       <IntroText>오늘 하루, 무엇을 드셨나요?</IntroText>
       <IntroText>매일의 식단을 기록해보세요!</IntroText>
       <IntroText>당신의 건강이 달라집니다!</IntroText>
-      <StartText>지금 시작하세요</StartText>
+
       <LoginContainer>
-        <div>
-          <img src={require('../assets/kakao.png')}></img>
-        </div>
-        <div>
-          <FontAwesomeIcon icon={faGoogle} className="google" />
-        </div>
-        <Link to="/signin">
-          <div>
-            {' '}
+        <LoginBox brand={'카카오'}>
+          <span className="icon">
+            <FontAwesomeIcon icon={faCommentDots} />
+          </span>
+          <p>카카오로 시작하기</p>
+        </LoginBox>
+        <LoginBox brand={'구글'}>
+          <span className="icon">
+            <FontAwesomeIcon icon={faGoogle} />
+          </span>
+          <p>구글로 시작하기</p>
+        </LoginBox>
+        <LoginBox
+          brand="TDZ"
+          onClick={() => {
+            navigate('/signin');
+          }}
+        >
+          <span className="icon">
             <FontAwesomeIcon icon={faEnvelope} className="email" />
-          </div>
-        </Link>
+          </span>
+          <p>TDZ로 시작하기</p>
+        </LoginBox>
       </LoginContainer>
 
       <MainBackground></MainBackground>
@@ -60,49 +73,46 @@ const IntroText = styled.p`
   text-align: center;
 `;
 
-const StartText = styled.h2`
-  margin-top: 160px;
-  margin-bottom: 40px;
-  padding: 10px;
-  font-size: 30px;
-  font-weight: bold;
-  text-align: center;
-`;
-
 const LoginContainer = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  gap: 25px;
-  margin-bottom: 20px;
+  align-items: center;
+  gap: 10px;
+  margin-top: 70px;
   cursor: pointer;
+`;
 
-  div {
-    position: relative;
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    border: 1px solid gray;
-    background-color: beige;
+const LoginBox = styled.div<{ brand: string }>`
+  position: relative;
+  width: 250px;
+  height: 60px;
+  padding: 5px;
+  background-color: ${(props) => {
+    if (props.brand === '카카오') {
+      return '#FAE100';
+    } else if (props.brand === '구글') {
+      return '#4285F4';
+    } else {
+      return 'white';
+    }
+  }};
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
 
-    img {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      width: 60px;
-      height: 60px;
-    }
+  .icon {
+    position: absolute;
+    left: 15px;
+  }
 
-    .google,
-    .email {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      width: 40px;
-      height: 40px;
-    }
-    .email {
-      color: black;
-    }
+  p {
+    position: absolute;
+    left: 60px;
+    font-size: 21px;
+    font-weight: bold;
   }
 `;
 export default Main;
