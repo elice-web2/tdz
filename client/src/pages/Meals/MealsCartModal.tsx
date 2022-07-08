@@ -5,6 +5,10 @@ interface MealsCartModalProps {
   setModal: (value: boolean) => void;
 }
 const MealsCartModal: React.FC<MealsCartModalProps> = (props) => {
+  const Container = styled.div`
+    width: 100%;
+    height: 100%;
+  `;
   const OutsideModal = styled.div`
     position: absolute;
     top: 0;
@@ -78,11 +82,6 @@ const MealsCartModal: React.FC<MealsCartModalProps> = (props) => {
   const StyledLink = styled(Link)`
     text-decoration: none;
     color: white;
-  `;
-
-  const Container = styled.div`
-    width: 100%;
-    height: 100%;
   `;
 
   return (
