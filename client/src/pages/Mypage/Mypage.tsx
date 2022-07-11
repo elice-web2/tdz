@@ -66,7 +66,7 @@ const MypageItemBox = styled.div`
 
     box-shadow: 2px 2px 6px 0px gray;
     border-radius: 16px;
-    background-color: lightgrey;
+    background-color: ${({ theme }) => theme.mainColor.lighter};
 `;
 
 const LogoutButton = styled.button`

@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import Main from './pages/Main';
 import Home from './pages/Home';
+import MealsList from './pages/Meals/MealsList';
 import MealsSearch from './pages/Meals/MealsSearch';
 import MealsDetail from './pages/Meals/MealsDetail';
 import MealsCart from './pages/Meals/MealsCart';
@@ -21,6 +22,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/home" element={<Home />} />
+        <Route path="/meals" element={<MealsList />} />
         <Route path="/meals/search" element={<MealsSearch />} />
         <Route path="/meals/cart" element={<MealsCart />} />
         <Route path="/meals/detail" element={<MealsDetail />} />
