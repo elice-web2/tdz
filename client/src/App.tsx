@@ -10,8 +10,10 @@ import Signup from './pages/Signup';
 import ChartPage from './pages/ChartPage';
 import Mypage from './pages/Mypage/Mypage';
 import UserInfo from './pages/Mypage/UserInfo';
-import GoalUserInfo from './pages/mygoal/GoalUserInfo';
-import GoalCalories from './pages/mygoal/GoalCalories';
+import GoalUserInfo from './pages/Mygoal/GoalUserInfo';
+import GoalCalories from './pages/Mygoal/GoalCalories';
+import GoalNutrient from './pages/Mygoal/GoalNutrient';
+import CalendarStamp from './pages/CalendarStamp';
 
 function App() {
   return (
@@ -29,6 +31,8 @@ function App() {
         <Route path="/mypage/user_info" element={<UserInfo />} />
         <Route path="/mypage/goal_step1" element={<GoalUserInfo />} />
         <Route path="/mypage/goal_step2" element={<GoalCalories />} />
+        <Route path="/mypage/goal_step3" element={<GoalNutrient />} />
+        <Route path="/calendar" element={<CalendarStamp />} />
       </Routes>
     </BrowserRouter>
   );
