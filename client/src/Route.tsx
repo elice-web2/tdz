@@ -3,13 +3,13 @@ import Home from './pages/Home';
 import Main from './pages/Main';
 import MealsCart from './pages/MealsCart';
 import MealsDetail from './pages/MealsDetail';
-import MealsList from './pages/Meals/MealsList';
+import MealsList from './pages/MealsList';
 import MealsSearch from './pages/MealsSearch';
 import GoalCalories from './pages/Mygoal/GoalCalories';
 import GoalNutrient from './pages/Mygoal/GoalNutrient';
 import GoalUserInfo from './pages/Mygoal/GoalUserInfo';
-import Mypage from './pages/Mypage/Mypage';
-import UserInfo from './pages/Mypage/UserInfo';
+import Mypage from './pages/Mypage';
+import UserInfo from './pages/UserInfo';
 import Signin from './pages/Signin';
 import Signup from './pages/Signup';
 
