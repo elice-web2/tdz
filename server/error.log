@@ -1,0 +1,355 @@
+<<<<<<< HEAD
+[2022-7-8 14:41:51] POST:/api/auth/signup
+MongoError: cannot do raw queries on admin in atlas
+    at Connection.<anonymous> (/Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/mongodb/lib/core/connection/pool.js:453:61)
+    at Connection.emit (node:events:527:28)
+    at Connection.emit (node:domain:475:12)
+    at processMessage (/Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/mongodb/lib/core/connection/connection.js:456:10)
+    at TLSSocket.<anonymous> (/Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/mongodb/lib/core/connection/connection.js:625:15)
+    at TLSSocket.emit (node:events:527:28)
+    at TLSSocket.emit (node:domain:475:12)
+    at addChunk (node:internal/streams/readable:315:12)
+    at readableAddChunk (node:internal/streams/readable:289:9)
+    at TLSSocket.Readable.push (node:internal/streams/readable:228:10)
+    at TLSWrap.onStreamRead (node:internal/stream_base_commons:190:23)
+
+[2022-7-8 14:43:13] POST:/api/auth/signup
+MongoError: cannot do raw queries on admin in atlas
+    at Connection.<anonymous> (/Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/mongodb/lib/core/connection/pool.js:453:61)
+    at Connection.emit (node:events:527:28)
+    at Connection.emit (node:domain:475:12)
+    at processMessage (/Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/mongodb/lib/core/connection/connection.js:456:10)
+    at TLSSocket.<anonymous> (/Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/mongodb/lib/core/connection/connection.js:625:15)
+    at TLSSocket.emit (node:events:527:28)
+    at TLSSocket.emit (node:domain:475:12)
+    at addChunk (node:internal/streams/readable:315:12)
+    at readableAddChunk (node:internal/streams/readable:289:9)
+    at TLSSocket.Readable.push (node:internal/streams/readable:228:10)
+    at TLSWrap.onStreamRead (node:internal/stream_base_commons:190:23)
+
+[2022-7-8 14:43:18] POST:/api/auth/signup
+MongoError: cannot do raw queries on admin in atlas
+    at Connection.<anonymous> (/Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/mongodb/lib/core/connection/pool.js:453:61)
+    at Connection.emit (node:events:527:28)
+    at Connection.emit (node:domain:475:12)
+    at processMessage (/Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/mongodb/lib/core/connection/connection.js:456:10)
+    at TLSSocket.<anonymous> (/Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/mongodb/lib/core/connection/connection.js:625:15)
+    at TLSSocket.emit (node:events:527:28)
+    at TLSSocket.emit (node:domain:475:12)
+    at addChunk (node:internal/streams/readable:315:12)
+    at readableAddChunk (node:internal/streams/readable:289:9)
+    at TLSSocket.Readable.push (node:internal/streams/readable:228:10)
+    at TLSWrap.onStreamRead (node:internal/stream_base_commons:190:23)
+
+[2022-7-8 14:49:9] POST:/api/auth/signup
+MongoError: cannot do raw queries on admin in atlas
+    at Connection.<anonymous> (/Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/mongodb/lib/core/connection/pool.js:453:61)
+    at Connection.emit (node:events:527:28)
+    at Connection.emit (node:domain:475:12)
+    at processMessage (/Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/mongodb/lib/core/connection/connection.js:456:10)
+    at TLSSocket.<anonymous> (/Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/mongodb/lib/core/connection/connection.js:625:15)
+    at TLSSocket.emit (node:events:527:28)
+    at TLSSocket.emit (node:domain:475:12)
+    at addChunk (node:internal/streams/readable:315:12)
+    at readableAddChunk (node:internal/streams/readable:289:9)
+    at TLSSocket.Readable.push (node:internal/streams/readable:228:10)
+    at TLSWrap.onStreamRead (node:internal/stream_base_commons:190:23)
+
+[2022-7-8 14:54:7] POST:/api/auth/signup
+MongoError: cannot do raw queries on admin in atlas
+    at Connection.<anonymous> (/Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/mongodb/lib/core/connection/pool.js:453:61)
+    at Connection.emit (node:events:527:28)
+    at Connection.emit (node:domain:475:12)
+    at processMessage (/Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/mongodb/lib/core/connection/connection.js:456:10)
+    at TLSSocket.<anonymous> (/Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/mongodb/lib/core/connection/connection.js:625:15)
+    at TLSSocket.emit (node:events:527:28)
+    at TLSSocket.emit (node:domain:475:12)
+    at addChunk (node:internal/streams/readable:315:12)
+    at readableAddChunk (node:internal/streams/readable:289:9)
+    at TLSSocket.Readable.push (node:internal/streams/readable:228:10)
+    at TLSWrap.onStreamRead (node:internal/stream_base_commons:190:23)
+
+[2022-7-8 16:16:47] POST:/api/auth/signup
+ValidationError: users validation failed: login_path: Path `login_path` is required., role: Path `role` is required., profile_image: Path `profile_image` is required., comment: Path `comment` is required.
+    at model.Document.invalidate (/Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/mongoose/lib/document.js:2782:32)
+    at /Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/mongoose/lib/document.js:2574:17
+    at /Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/mongoose/lib/schematype.js:1273:9
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+
+[2022-7-8 16:21:58] POST:/api/auth/signup
+ValidationError: users validation failed: login_path: Path `login_path` is required., role: Path `role` is required., profile_image: Path `profile_image` is required., comment: Path `comment` is required.
+    at model.Document.invalidate (/Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/mongoose/lib/document.js:2782:32)
+    at /Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/mongoose/lib/document.js:2574:17
+    at /Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/mongoose/lib/schematype.js:1273:9
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+
+[2022-7-8 16:52:9] POST:/api/auth/signup
+ValidationError: users validation failed: login_path: Path `login_path` is required., role: Path `role` is required., profile_image: Path `profile_image` is required., comment: Path `comment` is required.
+    at model.Document.invalidate (/Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/mongoose/lib/document.js:2782:32)
+    at /Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/mongoose/lib/document.js:2574:17
+    at /Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/mongoose/lib/schematype.js:1273:9
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+
+[2022-7-8 16:57:25] POST:/api/auth/signup
+ValidationError: users validation failed: login_path: Path `login_path` is required., role: Path `role` is required., profile_image: Path `profile_image` is required., comment: Path `comment` is required.
+    at model.Document.invalidate (/Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/mongoose/lib/document.js:2782:32)
+    at /Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/mongoose/lib/document.js:2574:17
+    at /Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/mongoose/lib/schematype.js:1273:9
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+
+[2022-7-8 16:58:9] POST:/api/auth/signup
+ValidationError: users validation failed: login_path: Path `login_path` is required., role: Path `role` is required., profile_image: Path `profile_image` is required., comment: Path `comment` is required.
+    at model.Document.invalidate (/Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/mongoose/lib/document.js:2782:32)
+    at /Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/mongoose/lib/document.js:2574:17
+    at /Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/mongoose/lib/schematype.js:1273:9
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+
+[2022-7-8 16:59:5] POST:/api/auth/signup
+ValidationError: users validation failed: login_path: Path `login_path` is required., role: Path `role` is required., profile_image: Path `profile_image` is required., comment: Path `comment` is required.
+    at model.Document.invalidate (/Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/mongoose/lib/document.js:2782:32)
+    at /Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/mongoose/lib/document.js:2574:17
+    at /Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/mongoose/lib/schematype.js:1273:9
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+
+[2022-7-8 17:4:14] POST:/api/auth/signup
+ValidationError: users validation failed: login_path: Path `login_path` is required., role: Path `role` is required., profile_image: Path `profile_image` is required., comment: Path `comment` is required.
+    at model.Document.invalidate (/Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/mongoose/lib/document.js:2782:32)
+    at /Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/mongoose/lib/document.js:2574:17
+    at /Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/mongoose/lib/schematype.js:1273:9
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+
+[2022-7-8 17:5:47] POST:/api/auth/signup
+ValidationError: users validation failed: login_path: Path `login_path` is required., role: Path `role` is required., profile_image: Path `profile_image` is required., comment: Path `comment` is required.
+    at model.Document.invalidate (/Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/mongoose/lib/document.js:2782:32)
+    at /Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/mongoose/lib/document.js:2574:17
+    at /Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/mongoose/lib/schematype.js:1273:9
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+
+[2022-7-8 17:6:17] POST:/api/auth/signup
+ValidationError: users validation failed: login_path: Path `login_path` is required., role: Path `role` is required., profile_image: Path `profile_image` is required., comment: Path `comment` is required.
+    at model.Document.invalidate (/Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/mongoose/lib/document.js:2782:32)
+    at /Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/mongoose/lib/document.js:2574:17
+    at /Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/mongoose/lib/schematype.js:1273:9
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+
+[2022-7-8 17:6:58] POST:/api/auth/signup
+ValidationError: users validation failed: login_path: Path `login_path` is required., role: Path `role` is required., profile_image: Path `profile_image` is required., comment: Path `comment` is required.
+    at model.Document.invalidate (/Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/mongoose/lib/document.js:2782:32)
+    at /Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/mongoose/lib/document.js:2574:17
+    at /Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/mongoose/lib/schematype.js:1273:9
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+
+[2022-7-8 17:19:48] POST:/api/auth/signup
+ValidationError: users validation failed: login_path: Path `login_path` is required., role: Path `role` is required., profile_image: Path `profile_image` is required., comment: Path `comment` is required.
+    at model.Document.invalidate (/Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/mongoose/lib/document.js:2782:32)
+    at /Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/mongoose/lib/document.js:2574:17
+    at /Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/mongoose/lib/schematype.js:1273:9
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+
+[2022-7-8 17:38:26] POST:/api/auth/login
+Error: cookieParser("secret") required for signed cookies
+    at ServerResponse.res.cookie (/Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/express/lib/response.js:860:11)
+    at /Users/kai/Documents/Workspace/Web/TDZ/server/src/controllers/user-controller.ts:48:8
+    at Generator.next (<anonymous>)
+    at fulfilled (/Users/kai/Documents/Workspace/Web/TDZ/server/src/controllers/user-controller.ts:5:58)
+
+[2022-7-8 17:39:51] POST:/api/auth/login
+Error: cookieParser("secret") required for signed cookies
+    at ServerResponse.res.cookie (/Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/express/lib/response.js:860:11)
+    at /Users/kai/Documents/Workspace/Web/TDZ/server/src/controllers/user-controller.ts:48:8
+    at Generator.next (<anonymous>)
+    at fulfilled (/Users/kai/Documents/Workspace/Web/TDZ/server/src/controllers/user-controller.ts:5:58)
+
+[2022-7-8 17:40:43] POST:/api/auth/login
+Error: 비밀번호가 일치하지 않습니다. 다시 한 번 확인해 주세요.
+    at UserService.<anonymous> (/Users/kai/Documents/Workspace/Web/TDZ/server/src/services/user-service.ts:105:13)
+    at Generator.next (<anonymous>)
+    at fulfilled (/Users/kai/Documents/Workspace/Web/TDZ/server/src/services/user-service.ts:5:58)
+
+[2022-7-8 17:41:18] POST:/api/auth/login
+Error: 해당 이메일은 가입 내역이 없습니다. 다시 한 번 확인해 주세요.
+    at UserService.<anonymous> (/Users/kai/Documents/Workspace/Web/TDZ/server/src/services/user-service.ts:88:13)
+    at Generator.next (<anonymous>)
+    at fulfilled (/Users/kai/Documents/Workspace/Web/TDZ/server/src/services/user-service.ts:5:58)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+
+[2022-7-8 17:51:40] POST:/api/auth/signup
+Error: 이 이메일은 현재 사용중입니다. 다른 이메일을 입력해 주세요.
+    at UserService.<anonymous> (/Users/kai/Documents/Workspace/Web/TDZ/server/src/services/user-service.ts:50:13)
+    at Generator.next (<anonymous>)
+    at fulfilled (/Users/kai/Documents/Workspace/Web/TDZ/server/src/services/user-service.ts:5:58)
+=======
+[2022-7-8 0:17:28] GET:/meals/1/2022-1-1
+Error: headers의 Content-Type을 application/json으로 설정해주세요
+    at C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\src\controllers\mealhistory-controller.ts:10:15
+    at Generator.next (<anonymous>)
+    at C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\src\controllers\mealhistory-controller.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\src\controllers\mealhistory-controller.ts:4:12)
+    at getMealList (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\src\controllers\mealhistory-controller.ts:20:16)
+    at Layer.handle [as handle_request] (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\express\lib\router\route.js:144:13)
+    at Route.dispatch (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\express\lib\router\route.js:114:3)
+    at Layer.handle [as handle_request] (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\express\lib\router\index.js:284:15
+    at param (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\express\lib\router\index.js:365:14)
+    at param (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\express\lib\router\index.js:376:14)
+    at param (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\express\lib\router\index.js:376:14)
+    at Function.process_params (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\express\lib\router\index.js:421:3)
+    at next (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\express\lib\router\index.js:280:10)
+
+[2022-7-8 0:17:59] GET:/meals/1/2022-1-1
+CastError: Cast to ObjectId failed for value "1" (type string) at path "user_id" for model "mealhistory"
+    at model.Query.exec (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\mongoose\lib\query.js:4498:21)
+    at model.Query.Query.then (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\mongoose\lib\query.js:4592:15)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+
+[2022-7-8 0:18:10] GET:/meals/1213/2022-1-1
+CastError: Cast to ObjectId failed for value "1213" (type string) at path "user_id" for model "mealhistory"
+    at model.Query.exec (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\mongoose\lib\query.js:4498:21)
+    at model.Query.Query.then (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\mongoose\lib\query.js:4592:15)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+
+[2022-7-8 13:37:48] POST:/mealhistory/1
+ValidationError: mealhistory validation failed: user_id: Cast to ObjectId failed for value "1" (type string) at path "user_id", meals.0.meal_kacl: Path `meal_kacl` is required.
+    at model.Document.invalidate (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\mongoose\lib\document.js:2782:32)
+    at model.$set (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\mongoose\lib\document.js:1349:12)
+    at model.$set (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\mongoose\lib\document.js:1058:16)
+    at model.Document (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\mongoose\lib\document.js:148:12)
+    at model.Model (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\mongoose\lib\model.js:106:12)
+    at new model (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\mongoose\lib\model.js:4911:15)
+    at C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\mongoose\lib\model.js:3157:22
+    at C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\mongoose\lib\model.js:3193:7
+    at Array.forEach (<anonymous>)
+    at C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\mongoose\lib\model.js:3192:15
+    at C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\mongoose\lib\helpers\promiseOrCallback.js:32:5
+    at new Promise (<anonymous>)
+    at promiseOrCallback (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\mongoose\lib\helpers\promiseOrCallback.js:31:10)
+    at Mongoose._promiseOrCallback (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\mongoose\lib\index.js:1149:10)
+    at Function.create (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\mongoose\lib\model.js:3127:23)
+    at MealHistoryModel.<anonymous> (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\src\db\models\mealhistory-model.ts:44:36)
+
+[2022-7-8 15:29:17] POST:/meals/1/62c7c6e8c268a684760c0fa3
+SyntaxError: Unexpected token s in JSON at position 112
+    at JSON.parse (<anonymous>)
+    at parse (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\body-parser\lib\types\json.js:89:19)
+    at C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\body-parser\lib\read.js:128:18
+    at AsyncResource.runInAsyncScope (node:async_hooks:199:9)
+    at invokeCallback (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\raw-body\index.js:231:16)
+    at done (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\raw-body\index.js:220:7)
+    at IncomingMessage.onEnd (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\raw-body\index.js:280:7)
+    at IncomingMessage.emit (node:events:402:35)
+    at IncomingMessage.emit (node:domain:475:12)
+    at endReadableNT (node:internal/streams/readable:1343:12)
+    at processTicksAndRejections (node:internal/process/task_queues:83:21)
+
+[2022-7-8 15:29:27] POST:/meals/62c7c6e8c268a684760c0fa3
+SyntaxError: Unexpected token s in JSON at position 112
+    at JSON.parse (<anonymous>)
+    at parse (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\body-parser\lib\types\json.js:89:19)
+    at C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\body-parser\lib\read.js:128:18
+    at AsyncResource.runInAsyncScope (node:async_hooks:199:9)
+    at invokeCallback (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\raw-body\index.js:231:16)
+    at done (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\raw-body\index.js:220:7)
+    at IncomingMessage.onEnd (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\raw-body\index.js:280:7)
+    at IncomingMessage.emit (node:events:402:35)
+    at IncomingMessage.emit (node:domain:475:12)
+    at endReadableNT (node:internal/streams/readable:1343:12)
+    at processTicksAndRejections (node:internal/process/task_queues:83:21)
+
+[2022-7-8 15:37:2] POST:/mealhistory/62c7c6e8c268a684760c0fa3
+ValidationError: mealhistory validation failed: meals.0.meal_kacl: Path `meal_kacl` is required.
+    at model.Document.invalidate (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\mongoose\lib\document.js:2782:32)
+    at EmbeddedDocument.invalidate (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\mongoose\lib\types\embedded.js:298:29)
+    at C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\mongoose\lib\document.js:2574:17
+    at C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\mongoose\lib\schematype.js:1273:9
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+
+[2022-7-8 15:37:58] POST:/mealhistory/62c7c6e8c268a684760c0fa3
+ValidationError: mealhistory validation failed: meals.0.meal_kacl: Path `meal_kacl` is required.
+    at model.Document.invalidate (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\mongoose\lib\document.js:2782:32)
+    at EmbeddedDocument.invalidate (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\mongoose\lib\types\embedded.js:298:29)
+    at C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\mongoose\lib\document.js:2574:17
+    at C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\mongoose\lib\schematype.js:1273:9
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+
+[2022-7-8 15:39:58] POST:/mealhistory/62c7c6e8c268a684760c0fa3
+ValidationError: mealhistory validation failed: meals.0.meal_kacl: Path `meal_kacl` is required.
+    at model.Document.invalidate (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\mongoose\lib\document.js:2782:32)
+    at EmbeddedDocument.invalidate (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\mongoose\lib\types\embedded.js:298:29)
+    at C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\mongoose\lib\document.js:2574:17
+    at C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\mongoose\lib\schematype.js:1273:9
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+
+[2022-7-8 15:41:29] POST:/mealhistory/62c7c6e8c268a684760c0fa3
+ValidationError: mealhistory validation failed: meals.0.meal_kacl: Path `meal_kacl` is required.
+    at model.Document.invalidate (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\mongoose\lib\document.js:2782:32)
+    at EmbeddedDocument.invalidate (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\mongoose\lib\types\embedded.js:298:29)
+    at C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\mongoose\lib\document.js:2574:17
+    at C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\mongoose\lib\schematype.js:1273:9
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+
+[2022-7-8 16:17:1] DELETE:/mealhistory/62c7d4244768be1508ad1dc4
+Error: 해당 식단은 존재하지 않습니다.
+    at MealHistoryService.<anonymous> (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\src\services\mealhistory-service.ts:33:13)
+    at Generator.next (<anonymous>)
+    at fulfilled (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\src\services\mealhistory-service.ts:5:58)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+
+[2022-7-8 16:17:14] DELETE:/mealhistory/62c7d4244768be1508ad1dc4
+Error: 해당 식단은 존재하지 않습니다.
+    at MealHistoryService.<anonymous> (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\src\services\mealhistory-service.ts:33:13)
+    at Generator.next (<anonymous>)
+    at fulfilled (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\src\services\mealhistory-service.ts:5:58)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+
+[2022-7-8 16:17:45] DELETE:/mealhistory/62c7d3fa4768be1508ad1dc1
+Error: 해당 식단은 존재하지 않습니다.
+    at MealHistoryService.<anonymous> (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\src\services\mealhistory-service.ts:33:13)
+    at Generator.next (<anonymous>)
+    at fulfilled (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\src\services\mealhistory-service.ts:5:58)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+
+[2022-7-8 16:19:4] DELETE:/mealhistory/62c7d3fa4768be1508ad1dc1
+Error: 해당 식단은 존재하지 않습니다.
+    at MealHistoryService.<anonymous> (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\src\services\mealhistory-service.ts:33:13)
+    at Generator.next (<anonymous>)
+    at fulfilled (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\src\services\mealhistory-service.ts:5:58)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+
+[2022-7-8 16:23:4] DELETE:/mealhistory/62c7d3fa4768be1508ad1dc1
+Error: 해당 식단은 존재하지 않습니다.
+    at MealHistoryService.<anonymous> (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\src\services\mealhistory-service.ts:34:13)
+    at Generator.next (<anonymous>)
+    at fulfilled (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\src\services\mealhistory-service.ts:5:58)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+
+[2022-7-8 16:28:37] DELETE:/mealhistory/62c7d3fa4768be1508ad1dc1
+TypeError: Cannot destructure property 'deletedCount' of '(intermediate value)' as it is undefined.
+    at MealHistoryService.<anonymous> (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\src\services\mealhistory-service.ts:37:13)
+    at Generator.next (<anonymous>)
+    at fulfilled (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\src\services\mealhistory-service.ts:5:58)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+
+[2022-7-8 16:33:55] DELETE:/mealhistory/62c7d4244768be1508ad1dc4
+TypeError: Cannot destructure property 'deletedCount' of '(intermediate value)' as it is undefined.
+    at MealHistoryService.<anonymous> (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\src\services\mealhistory-service.ts:36:13)
+    at Generator.next (<anonymous>)
+    at fulfilled (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\src\services\mealhistory-service.ts:5:58)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+
+[2022-7-8 17:3:43] DELETE:/mealhistory/62c7e4cf8923155590f836b1
+TypeError: Cannot destructure property 'deletedCount' of '(intermediate value)' as it is undefined.
+    at MealHistoryService.<anonymous> (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\src\services\mealhistory-service.ts:36:13)
+    at Generator.next (<anonymous>)
+    at fulfilled (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\src\services\mealhistory-service.ts:5:58)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+
+[2022-7-8 17:5:31] DELETE:/mealhistory/62c7e530bc4f548390e4f812
+TypeError: Cannot destructure property 'deletedCount' of '(intermediate value)' as it is undefined.
+    at MealHistoryService.<anonymous> (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\src\services\mealhistory-service.ts:36:13)
+    at Generator.next (<anonymous>)
+    at fulfilled (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\src\services\mealhistory-service.ts:5:58)
+>>>>>>> origin/dev
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+

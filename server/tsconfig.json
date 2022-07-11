@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "typeRoots": ["./node_modules/@types", "./src/customType"]
+  },
+  "include": ["lib/**/*.ts"],
+  "exclude": ["node_modules"],
+  "files": ["./src/customType/express.d.ts"]
+}
