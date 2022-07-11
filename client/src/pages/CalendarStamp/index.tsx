@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 import { useState } from 'react';
 import Calendar from 'react-calendar';
-import '../assets/CalendarStamp.css';
+import '../../assets/CalendarStamp.css';
 import dayjs from 'dayjs';
-import Container from '../components/styles/Container';
-import Logo from '../components/common/Logo';
-import Navbar from '../components/common/Navbar';
+import Container from '../../components/styles/Container';
+import Logo from '../../components/common/Logo';
+import Navbar from '../../components/common/Navbar';
 
 //성공한 날짜 더미데이터
 const marks = [
