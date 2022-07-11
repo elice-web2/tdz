@@ -4,10 +4,12 @@ import {
   buildStyles,
   CircularProgressbarWithChildren,
 } from 'react-circular-progressbar';
-import styled from 'styled-components';
 
 // components
-import ProgressProvider from './ProgressProvider';
+import ProgressProvider from '../ProgressProvider';
+
+// styles
+import * as S from './style';
 
 interface IDonutProgressbar {
   percentage: number;
@@ -16,15 +18,11 @@ interface IDonutProgressbar {
 
 // 0 ~ 100 사이의 퍼센테이지를 받고 도넛을 그려주는 컴포넌트
 // children 은 도넛 안에 들어갈 텍스트를 받는다.
-
-export default function DonutProgressbar({
-  children,
-  percentage,
-}: IDonutProgressbar) {
+function DonutProgressbar({ children, percentage }: IDonutProgressbar) {
   return (
     <ProgressProvider valueStart={0} valueEnd={percentage}>
       {(value: number) => (
-        <DonutContainer>
+        <S.DonutContainer>
           <CircularProgressbarWithChildren
             value={value}
             styles={buildStyles({
@@ -37,12 +35,10 @@ export default function DonutProgressbar({
           >
             {children}
           </CircularProgressbarWithChildren>
-        </DonutContainer>
+        </S.DonutContainer>
       )}
     </ProgressProvider>
   );
 }
 
-const DonutContainer = styled.div`
-  width: 50%;
-`;
+export default DonutProgressbar;

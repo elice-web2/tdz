@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 import dayjs from 'dayjs';
-import styled from 'styled-components';
+import * as S from './style';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -15,13 +15,13 @@ import {
 } from 'chart.js';
 
 // components
-import Logo from '../components/common/Logo';
-import Navbar from '../components/common/Navbar';
-import Container from '../components/styles/Container';
-import NutrientDetail from '../components/chart/NutrientDetail';
-import WeightChart from '../components/chart/WeightChart';
-import CalorieChart from '../components/chart/CalorieChart';
-import NutrientAverage from '../components/chart/NutrientAverage';
+import Logo from '../../components/common/Logo';
+import Navbar from '../../components/common/Navbar';
+import Container from '../../components/styles/Container';
+import NutrientDetail from '../../components/chart/NutrientDetail';
+import WeightChart from '../../components/chart/WeightChart';
+import CalorieChart from '../../components/chart/CalorieChart';
+import NutrientAverage from '../../components/chart/NutrientAverage';
 
 // ChartJS를 react 에서 쓸 수 있도록 하는 코드
 ChartJS.register(
@@ -59,7 +59,7 @@ const DUMMY_DATA_DAILY = {
   나트륨합: 100,
 };
 
-export default function ChartPage() {
+function ChartPage() {
   const [filter, setFilter] = useState<'DAILY' | 'WEEKLY' | 'MONTHLY'>('DAILY');
 
   const onClickFilter = (filter: 'DAILY' | 'WEEKLY' | 'MONTHLY') => {
@@ -70,30 +70,30 @@ export default function ChartPage() {
     <Container>
       <Logo />
 
-      <Wrapper>
+      <S.Wrapper>
         {/* 일간,월간,주간 필터 UI */}
-        <FilterContainer>
-          <Filter
+        <S.FilterContainer>
+          <S.Filter
             onClick={() => onClickFilter('DAILY')}
             isSelected={filter === 'DAILY'}
           >
             일간
-          </Filter>
-          <Filter
+          </S.Filter>
+          <S.Filter
             onClick={() => onClickFilter('WEEKLY')}
             isSelected={filter === 'WEEKLY'}
           >
             주간
-          </Filter>
-          <Filter
+          </S.Filter>
+          <S.Filter
             onClick={() => onClickFilter('MONTHLY')}
             isSelected={filter === 'MONTHLY'}
           >
             월간
-          </Filter>
-        </FilterContainer>
+          </S.Filter>
+        </S.FilterContainer>
         {/* 날짜 변경 UI */}
-        <PeriodContainer>
+        <S.PeriodContainer>
           <FontAwesomeIcon icon={faAngleLeft} />
           <p>
             {/* 필터에 따라 날짜를 보여주고 왼쪽 오른쪽 버튼 클릭 시 날짜를 변경 가능하게 해야함 */}
@@ -101,12 +101,12 @@ export default function ChartPage() {
             {dayjs().add(-1, 'day').format('YY-MM-DD')}
           </p>
           <FontAwesomeIcon icon={faAngleRight} />
-        </PeriodContainer>
+        </S.PeriodContainer>
 
         <WeightChart data={DUMMY_DATA_DAILY} />
         <CalorieChart data={DUMMY_DATA_DAILY} />
         <NutrientAverage data={DUMMY_DATA_DAILY} />
-      </Wrapper>
+      </S.Wrapper>
 
       <NutrientDetail data={DUMMY_DATA_DAILY} />
 
@@ -115,42 +115,4 @@ export default function ChartPage() {
   );
 }
 
-const FilterContainer = styled.div`
-  ${({ theme }) => theme.flexbox()}
-
-  padding: 20px;
-
-  font-size: 20px;
-  font-weight: 700;
-
-  h2 {
-    margin: 0 10px;
-
-    cursor: pointer;
-  }
-`;
-
-const Filter = styled.h2<{ isSelected: boolean }>`
-  color: ${({ isSelected }) => (isSelected ? 'black' : 'rgba(0, 0, 0, 0.4)')};
-  margin: 0 10px;
-
-  cursor: pointer;
-`;
-
-const PeriodContainer = styled.div`
-  ${({ theme }) => theme.flexbox()}
-
-  font-weight: bold;
-
-  svg {
-    width: 20px;
-    height: 20px;
-    padding: 0 10px;
-
-    cursor: pointer;
-  }
-`;
-
-const Wrapper = styled.div`
-  background-color: rgba(0, 0, 0, 0.05);
-`;
+export default ChartPage;
