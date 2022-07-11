@@ -5,17 +5,23 @@ import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { faCommentDots } from '@fortawesome/free-solid-svg-icons';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
-import Container from '../components/styles/Container';
-
 const Main: React.FC = () => {
   const navigate = useNavigate();
   return (
     <Container>
+      <VideoContainer>
+        <Video
+          src={require('../assets/coffee.mp4')}
+          autoPlay
+          loop
+          muted
+        ></Video>
+      </VideoContainer>
+
       <LogoText>TDZ</LogoText>
       <IntroText>오늘 하루, 무엇을 드셨나요?</IntroText>
       <IntroText>매일의 식단을 기록해보세요!</IntroText>
       <IntroText>당신의 건강이 달라집니다!</IntroText>
-
       <LoginContainer>
         <LoginBox brand={'카카오'}>
           <span className="icon">
@@ -41,25 +47,30 @@ const Main: React.FC = () => {
           <p>TDZ로 시작하기</p>
         </LoginBox>
       </LoginContainer>
-
-      <MainBackground></MainBackground>
     </Container>
   );
 };
 
-const MainBackground = styled.div`
+const Container = styled.div`
+  position: relative;
+  max-width: 420px;
+  margin: 0 auto;
+`;
+
+const VideoContainer = styled.div`
   position: absolute;
   top: 0;
-  width: 420px;
-  height: 840px;
-  background-image: url('https://cdn.pixabay.com/photo/2016/12/10/21/26/food-1898194_960_720.jpg');
-  z-index: -1;
-  opacity: 0.5;
+`;
+
+const Video = styled.video`
+  width: 100%;
+  z-index: -100;
 `;
 
 const LogoText = styled.h1`
   position: relative;
-  margin: 130px 0 80px 0;
+  margin-bottom: 80px;
+  padding-top: 100px;
   color: black;
   font-size: 60px;
   font-weight: bold;
@@ -67,6 +78,7 @@ const LogoText = styled.h1`
 `;
 
 const IntroText = styled.p`
+  position: relative;
   margin: 10px 0;
   font-size: 21px;
   font-weight: 500;
@@ -79,12 +91,15 @@ const LoginContainer = styled.div`
   justify-content: center;
   align-items: center;
   gap: 10px;
-  margin-top: 70px;
+  margin-top: 100px;
   cursor: pointer;
 `;
 
 const LoginBox = styled.div<{ brand: string }>`
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 250px;
   height: 60px;
   padding: 5px;
@@ -98,9 +113,6 @@ const LoginBox = styled.div<{ brand: string }>`
     }
   }};
   font-size: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   box-sizing: border-box;
 
   .icon {
@@ -115,4 +127,5 @@ const LoginBox = styled.div<{ brand: string }>`
     font-weight: bold;
   }
 `;
+
 export default Main;

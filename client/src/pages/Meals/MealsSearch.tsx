@@ -4,7 +4,7 @@ import Container from '../../components/styles/Container';
 import Navbar from '../../components/common/Navbar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-import { SearchUlWrapper } from './SearchUlWrapper';
+import SearchUlWrapper from '../../components/MealsSearch/SearchUlWrapper';
 
 const MealsSearch: React.FC = () => {
   const [isSearch, setIsSearch] = useState(true);
@@ -99,10 +99,10 @@ const SearchBox = styled.div`
 
   .XBtn {
     position: absolute;
-    background-color: white;
-    border: none;
     top: 9px;
     right: 13px;
+    background-color: white;
+    border: none;
     font-size: 16px;
     color: gray;
     cursor: pointer;
@@ -112,8 +112,8 @@ const SearchBox = styled.div`
 const SearchInput = styled.input`
   width: 300px;
   height: 30px;
-  border-radius: 20px;
   padding-left: 35px;
+  border-radius: 20px;
   font-size: 16px;
 `;
 
@@ -127,17 +127,14 @@ const SearchBtn = styled.button`
 `;
 
 const ButtonContainer = styled.div`
-  width: 420px;
-  box-sizing: border-box;
   display: flex;
   justify-content: center;
+  width: 420px;
   margin: 20px 0 15px 0;
+  box-sizing: border-box;
 `;
-interface SearchingBtn {
-  isSearch: boolean;
-}
 
-const SearchTabBtn = styled.button<SearchingBtn>`
+const SearchTabBtn = styled.button<{ isSearch: boolean }>`
   position: relative;
   width: 180px;
   height: 40px;
@@ -158,16 +155,6 @@ const BookMarkTabBtn = styled(SearchTabBtn)`
   border-bottom-right-radius: 5px;
   background-color: ${(props) =>
     props.isSearch === true ? '#f7f7f7' : props.theme.mainColor.lighter};
-`;
-
-export const SearchListContainer = styled.ul`
-  width: 100%;
-  list-style: none;
-  padding-left: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 200px;
 `;
 
 export default MealsSearch;

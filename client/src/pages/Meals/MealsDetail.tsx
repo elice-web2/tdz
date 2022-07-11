@@ -4,7 +4,7 @@ import Container from '../../components/styles/Container';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faStar } from '@fortawesome/free-solid-svg-icons';
 import Navbar from '../../components/common/Navbar';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 interface testType {
   name: string;
@@ -20,7 +20,8 @@ interface testType {
 }
 
 const MealsDetail: React.FC = () => {
-  const [count, setCount] = useState<number>(0);
+  const [count, setCount] = useState(0);
+  const navigate = useNavigate();
 
   const plusHandler = () => {
     setCount((cur) => cur + 1);
@@ -48,11 +49,15 @@ const MealsDetail: React.FC = () => {
       <MealsContainer>
         <MealsInfoBox>
           <IconBox>
-            <StyledLink to="/meals/search">
-              <div className="arrow-icon">
-                <FontAwesomeIcon icon={faArrowLeft} />
-              </div>
-            </StyledLink>
+            <div
+              className="arrow-icon"
+              onClick={() => {
+                navigate('/meals/search');
+              }}
+            >
+              <FontAwesomeIcon icon={faArrowLeft} />
+            </div>
+
             <div className="star-icon">
               <FontAwesomeIcon icon={faStar} />
             </div>
@@ -114,20 +119,14 @@ const MealsDetail: React.FC = () => {
   );
 };
 
-const StyledLink = styled(Link)`
-  color: black;
-  text-decoration: none;
-`;
-
 const MealsContainer = styled.div`
-  width: 420px;
-  height: 840px;
+  min-height: 800px;
 `;
 
 const MealsInfoBox = styled.div`
   position: relative;
   width: 100%;
-  height: 650px;
+  height: 600px;
   background-color: ${({ theme }) => theme.mainColor.lighter};
 `;
 
@@ -151,18 +150,15 @@ const IconBox = styled.div`
   }
 `;
 const Title = styled.h1`
-  width: 100%;
   margin-bottom: 15px;
-  padding: 20px 0;
-  padding-left: 30px;
+  padding: 20px 0 20px 30px;
   font-size: 28px;
   font-weight: bold;
-  box-sizing: border-box;
 `;
+
 const MainNutrientBox = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
 
   .info-text {
     display: flex;
@@ -176,11 +172,9 @@ const SubNutrientBox = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 180px);
   gap: 10px 30px;
-  width: 100%;
   margin: 30px 0;
-  padding-left: 30px;
+  padding: 10px 0 10px 30px;
   font-size: 13px;
-  box-sizing: border-box;
 
   .sub-content {
     display: flex;
@@ -199,7 +193,7 @@ const SelectBox = styled.div`
 
   select {
     width: 100px;
-    height: 30px;
+    height: 40px;
     border-radius: 5px;
     cursor: pointer;
   }
@@ -208,8 +202,8 @@ const SelectBox = styled.div`
     align-items: center;
 
     input {
-      width: 30px;
-      height: 30px;
+      width: 40px;
+      height: 40px;
       padding: 0;
       border: none;
       text-align: center;
@@ -224,8 +218,8 @@ const SelectBox = styled.div`
     }
 
     button {
-      width: 30px;
-      height: 30px;
+      width: 40px;
+      height: 40px;
       border: none;
       font-size: 20px;
       font-weight: bold;

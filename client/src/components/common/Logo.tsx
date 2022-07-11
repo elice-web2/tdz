@@ -1,29 +1,38 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Container from '../styles/Container';
 
 const Logo: React.FC = () => {
+  const navigate = useNavigate();
   return (
     <Container>
-      <TopLogo>
-        <StyledLink to="/home">TDZ</StyledLink>
-      </TopLogo>
+      <LogoContainer>
+        <LogoText
+          onClick={() => {
+            navigate('/home');
+          }}
+        >
+          TDZ
+        </LogoText>
+      </LogoContainer>
     </Container>
   );
 };
 
-const TopLogo = styled.div`
-  width: 420px;
+const LogoContainer = styled.div`
+  display: flex;
+  justify-content: center;
   height: 60px;
   background-color: ${({ theme }) => theme.mainColor.lighter};
-  font-size: 28px;
-  font-weight: bold;
-  text-align: center;
-  line-height: 60px;
 `;
 
-const StyledLink = styled(Link)`
-  text-decoration: none;
-  color: black;
+const LogoText = styled.h1`
+  width: 100px;
+  font-weight: bold;
+  font-size: 28px;
+  text-align: center;
+  line-height: 60px;
+  cursor: pointer;
 `;
+
 export default Logo;

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faHouseChimney,
@@ -10,35 +10,52 @@ import {
 import Container from '../styles/Container';
 
 const Navbar: React.FC = () => {
+  const navigate = useNavigate();
   return (
     <Container>
       <NavContainer>
-        <LinkWrapper to="/home">
+        <MenuBox
+          onClick={() => {
+            navigate('/home');
+          }}
+        >
           <div className="icon">
             <FontAwesomeIcon icon={faHouseChimney} />
           </div>
           <div>Home</div>
-        </LinkWrapper>
+        </MenuBox>
 
-        <LinkWrapper to="/meals">
+        <MenuBox
+          onClick={() => {
+            navigate('/meals');
+          }}
+        >
           <div className="icon">
             <FontAwesomeIcon icon={faUtensils} />
           </div>
           <div>식단</div>
-        </LinkWrapper>
-        <LinkWrapper to="/chart">
+        </MenuBox>
+        <MenuBox
+          onClick={() => {
+            navigate('/chart');
+          }}
+        >
           <div className="icon">
             <FontAwesomeIcon icon={faChartColumn} />
           </div>
           <div>Chart</div>
-        </LinkWrapper>
+        </MenuBox>
 
-        <LinkWrapper to="/mypage">
+        <MenuBox
+          onClick={() => {
+            navigate('/mypage');
+          }}
+        >
           <div className="icon">
             <FontAwesomeIcon icon={faUser} />
           </div>
           <div>MyPage</div>
-        </LinkWrapper>
+        </MenuBox>
       </NavContainer>
     </Container>
   );
@@ -46,20 +63,18 @@ const Navbar: React.FC = () => {
 
 const NavContainer = styled.div`
   display: flex;
-  width: 420px;
   height: 60px;
   background-color: ${({ theme }) => theme.mainColor.lighter};
 `;
 
-const LinkWrapper = styled(Link)`
+const MenuBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 105px;
   margin: 0 5px;
-  text-decoration: none;
-  color: black;
+  cursor: pointer;
 
   .icon {
     padding: 5px;
