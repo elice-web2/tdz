@@ -1,51 +1,10 @@
 import styled from 'styled-components';
 
-import { useNavigate } from 'react-router-dom';
-
-const MealsCartModal: React.FC<{
-  setModal: (value: boolean) => void;
-}> = (props) => {
-  const navigate = useNavigate();
-  const modalCloseHandler = () => {
-    props.setModal(false);
-  };
-
-  return (
-    <Container>
-      <OutsideModal onClick={modalCloseHandler}></OutsideModal>
-      <ModalContainer>
-        <XBtn
-          onClick={() => {
-            props.setModal(false);
-          }}
-        >
-          X
-        </XBtn>
-        <Title>식사 종류</Title>
-        <BtnContainer>
-          <button>아침</button>
-          <button>점심</button>
-          <button>저녁</button>
-          <button>간식</button>
-        </BtnContainer>
-
-        <CompleteBtn
-          onClick={() => {
-            navigate('/meals');
-          }}
-        >
-          완료
-        </CompleteBtn>
-      </ModalContainer>
-    </Container>
-  );
-};
-
-const Container = styled.div`
+export const Container = styled.div`
   width: 100%;
   height: 100%;
 `;
-const OutsideModal = styled.div`
+export const OutsideModal = styled.div`
   position: absolute;
   top: 0;
   left: 0;
@@ -54,7 +13,7 @@ const OutsideModal = styled.div`
   background-color: rgb(0, 0, 0, 0.4);
   z-index: 1;
 `;
-const ModalContainer = styled.div`
+export const ModalContainer = styled.div`
   position: absolute;
   top: 220px;
   display: flex;
@@ -69,7 +28,7 @@ const ModalContainer = styled.div`
   z-index: 2;
 `;
 
-const XBtn = styled.button`
+export const XBtn = styled.button`
   position: absolute;
   top: 10px;
   right: 10px;
@@ -79,14 +38,14 @@ const XBtn = styled.button`
   color: gray;
   cursor: pointer;
 `;
-const Title = styled.h1`
+export const Title = styled.h1`
   margin-bottom: 15px;
   padding: 30px 10px 10px 10px;
   font-size: 25px;
   font-weight: bold;
   text-align: center;
 `;
-const BtnContainer = styled.div`
+export const BtnContainer = styled.div`
   display: flex;
   justify-content: center;
   gap: 15px;
@@ -104,7 +63,7 @@ const BtnContainer = styled.div`
     cursor: pointer;
   }
 `;
-const CompleteBtn = styled.button`
+export const CompleteBtn = styled.button`
   width: 120px;
   height: 40px;
   background-color: ${({ theme }) => theme.mainColor.darker};
@@ -114,5 +73,3 @@ const CompleteBtn = styled.button`
   color: white;
   cursor: pointer;
 `;
-
-export default MealsCartModal;

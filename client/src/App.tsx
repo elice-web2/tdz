@@ -1,5 +1,4 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-
 import CalendarStamp from './pages/CalendarStamp';
 import { ROUTES } from './Route';
 

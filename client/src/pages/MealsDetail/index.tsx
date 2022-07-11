@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import styled from 'styled-components';
+import * as S from './style';
 import Container from '../../components/styles/Container';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faStar } from '@fortawesome/free-solid-svg-icons';
@@ -19,7 +19,7 @@ interface testType {
   gramPerQuantity: number;
 }
 
-const MealsDetail: React.FC = () => {
+function MealsDetail() {
   const [count, setCount] = useState(0);
   const navigate = useNavigate();
 
@@ -46,9 +46,9 @@ const MealsDetail: React.FC = () => {
 
   return (
     <Container>
-      <MealsContainer>
-        <MealsInfoBox>
-          <IconBox>
+      <S.MealsContainer>
+        <S.MealsInfoBox>
+          <S.IconBox>
             <div
               className="arrow-icon"
               onClick={() => {
@@ -61,9 +61,9 @@ const MealsDetail: React.FC = () => {
             <div className="star-icon">
               <FontAwesomeIcon icon={faStar} />
             </div>
-          </IconBox>
-          <Title>{obj.name}</Title>
-          <MainNutrientBox>
+          </S.IconBox>
+          <S.Title>{obj.name}</S.Title>
+          <S.MainNutrientBox>
             <div className="info-text">
               <p>칼로리</p>
               <p>{obj.kcal}kcal</p>
@@ -80,8 +80,8 @@ const MealsDetail: React.FC = () => {
               <p>지방</p>
               <p>{obj.fat}g</p>
             </div>
-          </MainNutrientBox>
-          <SubNutrientBox>
+          </S.MainNutrientBox>
+          <S.SubNutrientBox>
             <div className="sub-content">
               <p>나트륨</p>
               <p>{obj.natrium}mg</p>
@@ -99,8 +99,8 @@ const MealsDetail: React.FC = () => {
               <p>포화지방</p>
               <p>{obj.saturatedFat}g</p>
             </div>
-          </SubNutrientBox>
-          <SelectBox>
+          </S.SubNutrientBox>
+          <S.SelectBox>
             <select>
               <option value="quantity">1개({obj.gramPerQuantity}g)</option>
               <option value="gram">g</option>
@@ -110,135 +110,13 @@ const MealsDetail: React.FC = () => {
               <input type="number" value={count}></input>
               <button onClick={plusHandler}>+</button>
             </div>
-          </SelectBox>
-          <AddBtn>식단 추가</AddBtn>
-        </MealsInfoBox>
-      </MealsContainer>
+          </S.SelectBox>
+          <S.AddBtn>식단 추가</S.AddBtn>
+        </S.MealsInfoBox>
+      </S.MealsContainer>
       <Navbar />
     </Container>
   );
-};
-
-const MealsContainer = styled.div`
-  min-height: 800px;
-`;
-
-const MealsInfoBox = styled.div`
-  position: relative;
-  width: 100%;
-  height: 600px;
-  background-color: ${({ theme }) => theme.mainColor.lighter};
-`;
-
-const IconBox = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  padding: 10px;
-  font-size: 25px;
-  box-sizing: border-box;
-
-  .arrow-icon {
-    margin-left: 5px;
-    cursor: pointer;
-  }
-
-  .star-icon {
-    margin-right: 5px;
-    color: yellow;
-    cursor: pointer;
-  }
-`;
-const Title = styled.h1`
-  margin-bottom: 15px;
-  padding: 20px 0 20px 30px;
-  font-size: 28px;
-  font-weight: bold;
-`;
-
-const MainNutrientBox = styled.div`
-  display: flex;
-  flex-direction: column;
-
-  .info-text {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 30px;
-    font-weight: bold;
-    font-size: 18px;
-  }
-`;
-const SubNutrientBox = styled.div`
-  display: grid;
-  grid-template-columns: repeat(2, 180px);
-  gap: 10px 30px;
-  margin: 30px 0;
-  padding: 10px 0 10px 30px;
-  font-size: 13px;
-
-  .sub-content {
-    display: flex;
-    justify-content: space-between;
-    width: 150px;
-
-    p {
-      padding: 3px;
-    }
-  }
-`;
-const SelectBox = styled.div`
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-
-  select {
-    width: 100px;
-    height: 40px;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  .countBtnBox {
-    display: flex;
-    align-items: center;
-
-    input {
-      width: 40px;
-      height: 40px;
-      padding: 0;
-      border: none;
-      text-align: center;
-      font-size: 18px;
-      font-weight: bold;
-    }
-
-    input::-webkit-outer-spin-button,
-    input::-webkit-inner-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
-    }
-
-    button {
-      width: 40px;
-      height: 40px;
-      border: none;
-      font-size: 20px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-  }
-`;
-const AddBtn = styled.button`
-  position: absolute;
-  bottom: 30px;
-  left: 150px;
-  width: 120px;
-  height: 40px;
-  background-color: white;
-  border: none;
-  border-radius: 10px;
-  font-weight: bold;
-  font-size: 14px;
-  cursor: pointer;
-`;
+}
 
 export default MealsDetail;

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import * as S from './style';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -7,14 +7,14 @@ import {
   faChartColumn,
   faUser,
 } from '@fortawesome/free-solid-svg-icons';
-import Container from '../styles/Container';
+import Container from '../../styles/Container';
 
-const Navbar: React.FC = () => {
+function Navbar() {
   const navigate = useNavigate();
   return (
     <Container>
-      <NavContainer>
-        <MenuBox
+      <S.NavContainer>
+        <S.MenuBox
           onClick={() => {
             navigate('/home');
           }}
@@ -23,9 +23,9 @@ const Navbar: React.FC = () => {
             <FontAwesomeIcon icon={faHouseChimney} />
           </div>
           <div>Home</div>
-        </MenuBox>
+        </S.MenuBox>
 
-        <MenuBox
+        <S.MenuBox
           onClick={() => {
             navigate('/meals');
           }}
@@ -34,8 +34,8 @@ const Navbar: React.FC = () => {
             <FontAwesomeIcon icon={faUtensils} />
           </div>
           <div>식단</div>
-        </MenuBox>
-        <MenuBox
+        </S.MenuBox>
+        <S.MenuBox
           onClick={() => {
             navigate('/chart');
           }}
@@ -44,9 +44,9 @@ const Navbar: React.FC = () => {
             <FontAwesomeIcon icon={faChartColumn} />
           </div>
           <div>Chart</div>
-        </MenuBox>
+        </S.MenuBox>
 
-        <MenuBox
+        <S.MenuBox
           onClick={() => {
             navigate('/mypage');
           }}
@@ -55,29 +55,10 @@ const Navbar: React.FC = () => {
             <FontAwesomeIcon icon={faUser} />
           </div>
           <div>MyPage</div>
-        </MenuBox>
-      </NavContainer>
+        </S.MenuBox>
+      </S.NavContainer>
     </Container>
   );
-};
+}
 
-const NavContainer = styled.div`
-  display: flex;
-  height: 60px;
-  background-color: ${({ theme }) => theme.mainColor.lighter};
-`;
-
-const MenuBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 105px;
-  margin: 0 5px;
-  cursor: pointer;
-
-  .icon {
-    padding: 5px;
-  }
-`;
 export default Navbar;
