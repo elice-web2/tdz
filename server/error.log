@@ -353,3 +353,10 @@ TypeError: Cannot destructure property 'deletedCount' of '(intermediate value)' 
 >>>>>>> origin/dev
     at processTicksAndRejections (node:internal/process/task_queues:96:5)
 
+[2022-7-11 19:13:23] POST:/api/auth/login
+Error: 해당 이메일은 가입 내역이 없습니다. 다시 한 번 확인해 주세요.
+    at UserService.<anonymous> (/Users/kai/Documents/Workspace/Web/TDZ/server/src/services/user-service.ts:88:13)
+    at Generator.next (<anonymous>)
+    at fulfilled (/Users/kai/Documents/Workspace/Web/TDZ/server/src/services/user-service.ts:5:58)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+
