@@ -36,7 +36,7 @@ export interface MealData {
 
 export class MealModel {
   // 음식 이름 찾기
-  async findByMealName(meal_name: string): Promise<MealData> {
+  async findByMealName(meal_name: string): Promise<MealData | null> {
     const meal = await Meal.findOne({ meal_name });
     return meal;
   }
@@ -46,12 +46,12 @@ export class MealModel {
     return meal;
   }
 
-  async update(currentMeal: MealInfo, updateMeal: MealInfo): Promise<MealData> {
+  async update(currentMeal: MealInfo, updateMeal: MealInfo) {
     await Meal.findOneAndUpdate({ currentMeal }, { updateMeal });
     return;
   }
 
-  async deleteByName(meal_name: string): Promise<{ deletedCount: number }> {
+  async deleteByName(meal_name: string) {
     await Meal.findOneAndDelete({ meal_name });
     return;
   }

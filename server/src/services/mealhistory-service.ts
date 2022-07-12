@@ -27,7 +27,7 @@ class MealHistoryService {
   async setHistory(
     mealhistory_id: string,
     toUpdate: Partial<MealHistoryInfo>,
-  ): Promise<MealHistoryData> {
+  ): Promise<MealHistoryData | null> {
     const updatedMeal = await this.mealhistoryModel.update({
       mealhistory_id,
       update: toUpdate,

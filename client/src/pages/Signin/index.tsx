@@ -1,9 +1,23 @@
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Container from '../../components/styles/Container';
+import { useAppDispatch } from '../../hooks';
+import { postLoginAsync, getUsersInfoAsync } from '../../slices/usersInfoSlice';
 import * as S from './style';
 
 function Signin() {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    new Promise((resolve) => {
+      resolve(
+        dispatch(postLoginAsync({ email: 'tdz@gmail.com', password: '1234' })),
+      );
+    }).then(() => {
+      dispatch(getUsersInfoAsync());
+    });
+  }, []);
 
   return (
     <Container>

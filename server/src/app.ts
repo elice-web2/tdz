@@ -7,7 +7,13 @@ import { errorLogger, errorHandler } from './middlewares';
 const app = express();
 
 // CORS 에러 방지
-app.use(cors());
+app.use(
+  cors({
+    origin: true,
+    credentials: true, // 크로스 도메인 허용
+    methods: ['POST', 'PUT', 'GET', 'OPTIONS', 'HEAD'],
+  }),
+);
 
 //Cookie 사용
 app.use(cookieParser('my-secret'));

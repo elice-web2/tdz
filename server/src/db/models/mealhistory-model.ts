@@ -47,7 +47,9 @@ export class MealHistoryModel {
     return meals;
   }
 
-  async findByMealHistoryId(mealhistory_id: string): Promise<MealHistoryData> {
+  async findByMealHistoryId(
+    mealhistory_id: string,
+  ): Promise<MealHistoryData | null> {
     const mealhistory = await MealHistory.findOne({ _id: mealhistory_id });
     return mealhistory;
   }
@@ -57,7 +59,10 @@ export class MealHistoryModel {
     return mealhistory;
   }
 
-  async update({ mealhistory_id, update }: ToUpdate): Promise<MealHistoryData> {
+  async update({
+    mealhistory_id,
+    update,
+  }: ToUpdate): Promise<MealHistoryData | null> {
     const filter = { _id: mealhistory_id };
     const option = { returnOriginal: false };
     const updatedmealhistory = await MealHistory.findOneAndUpdate(
