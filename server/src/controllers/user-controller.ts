@@ -1,7 +1,7 @@
 import is from '@sindresorhus/is';
 import { Request, Response, NextFunction } from 'express';
 import { userService } from '../services';
-import { UserInfo, Nutrient, UserData } from '../db';
+import { UserInfo, Nutrient, UserData } from '../customType/user.type';
 
 //회원 가입을 위한 function
 const signUp = async (req: Request, res: Response, next: NextFunction) => {
@@ -13,6 +13,7 @@ const signUp = async (req: Request, res: Response, next: NextFunction) => {
       );
     }
     // req (request) 에서 데이터 가져오기
+
     const userInfo: UserInfo = req.body;
 
     // 위 데이터를 유저 db에 추가하기
@@ -57,6 +58,22 @@ const login = async function (req: Request, res: Response, next: NextFunction) {
   }
 };
 
+const logout = async function (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) {
+  //쿠키에 있는 jwt 토큰이 들어 있는 쿠키를 비워줌
+  try {
+    res.clearCookie('token').json({
+      success: true,
+      data: '성공적으로 로그아웃 되었습니다.',
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 //전체 유저 목록 조회
 const userList = async function (
   req: Request,
@@ -76,7 +93,7 @@ const userList = async function (
 // 사용자 정보 조회
 const user = async function (req: Request, res: Response, next: NextFunction) {
   try {
-    const userId = req.currentUserId;
+    const userId: string = req.currentUserId!;
     const currentUserInfo = await userService.getUserData(userId);
 
     res.status(200).json(currentUserInfo);
@@ -86,6 +103,8 @@ const user = async function (req: Request, res: Response, next: NextFunction) {
 };
 
 // 사용자 정보 수정
+// 닉네임, 사진, 각오
+// 영양소, 모드, 활동량
 const userUpdate = async function (
   req: Request,
   res: Response,
@@ -101,7 +120,7 @@ const userUpdate = async function (
     }
 
     // params로부터 id를 가져옴
-    const userId = req.currentUserId;
+    const userId: string = req.currentUserId!;
 
     // body data 로부터 업데이트할 사용자 정보를 추출함.
     const email: string = req.body.email;
@@ -170,11 +189,17 @@ const deleteUser = async function (
 ) {
   try {
     // params로부터 id를 가져옴
-    const userId = req.currentUserId;
+    const userId: string = req.currentUserId!;
 
-    const deleteResult = await userService.deleteUserData(userId);
+    const deletedResult = await userService.deleteUserData(userId);
 
-    res.status(200).json(deleteResult);
+    if (!deletedResult) {
+      throw new Error('삭제가 실패하였습니다.');
+    }
+    res.clearCookie('token').status(200).json({
+      success: true,
+      data: '성공적으로 탈퇴되었습니다.',
+    });
   } catch (error) {
     next(error);
   }
@@ -338,4 +363,4 @@ const deleteUser = async function (
 //   }
 // });
 
-export { signUp, login, userList, user, userUpdate, deleteUser };
+export { signUp, login, logout, userList, user, userUpdate, deleteUser };
