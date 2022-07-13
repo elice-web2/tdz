@@ -94,6 +94,17 @@ class UserService {
     return userInfo;
   }
 
+  //이메일 중복 확인
+  async checkEmail(email: string) {
+    const user = await this.userModel.findByEmail(email);
+    if (user) {
+      throw new Error(
+        '이 이메일은 현재 사용중입니다. 다른 이메일을 입력해 주세요.',
+      );
+    }
+    return;
+  }
+
   // 유저정보 수정, 현재 비밀번호가 있어야 수정 가능함.
   async setUser(
     userInfoRequired: UserInfoRequired,
