@@ -793,3 +793,35 @@ ValidationError: mealhistory validation failed: meals.0.servingSize: Path `servi
     at C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\mongoose\lib\schematype.js:1273:9
     at processTicksAndRejections (node:internal/process/task_queues:78:11)
 
+[2022-7-13 23:31:55] PATCH:/api/calendar/62cecfe60031a49e685ec4a7
+SyntaxError: Unexpected token ] in JSON at position 3
+    at JSON.parse (<anonymous>)
+    at parse (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\body-parser\lib\types\json.js:89:19)
+    at C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\body-parser\lib\read.js:128:18
+    at AsyncResource.runInAsyncScope (node:async_hooks:199:9)
+    at invokeCallback (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\raw-body\index.js:231:16)
+    at done (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\raw-body\index.js:220:7)
+    at IncomingMessage.onEnd (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\raw-body\index.js:280:7)
+    at IncomingMessage.emit (node:events:402:35)
+    at IncomingMessage.emit (node:domain:475:12)
+    at endReadableNT (node:internal/streams/readable:1343:12)
+    at processTicksAndRejections (node:internal/process/task_queues:83:21)
+
+[2022-7-13 23:32:0] PATCH:/api/calendar/62cecfe60031a49e685ec4a7
+CastError: Cast to date failed for value "Invalid Date" (type Date) at path "date"
+    at model.Query.exec (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\mongoose\lib\query.js:4498:21)
+    at model.Query.Query.then (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\mongoose\lib\query.js:4592:15)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+
+[2022-7-14 1:23:27] DELETE:/api/mealhistory/62ceeec5b78baa7d9028f57f
+Error: 해당 식단은 존재하지 않습니다.
+    at MealHistoryService.deleteMealHistoryByMealHistoryId (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\src\services\mealhistory-service.ts:117:13)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async deleteHistoryByMealHistoryId (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\src\controllers\mealhistory-controller.ts:110:9)
+
+[2022-7-14 1:25:31] DELETE:/api/mealhistory
+Error: 식단 삭제에 실패하였습니다
+    at MealHistoryService.deleteMealHistoryByUserId (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\src\services\mealhistory-service.ts:139:13)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async deleteHistoryByUserId (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\src\controllers\mealhistory-controller.ts:122:28)
+

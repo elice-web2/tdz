@@ -7,7 +7,7 @@ const mealRouter = Router();
 // 음식 이름으로 정보 조회
 mealRouter.get('/:mealName', loginRequired, mealController.getMeal);
 
-// 음식 이름으로 정보 조회
+// 음식 등록
 mealRouter.post('/', loginRequired, mealController.addMealByUSer);
 
 export { mealRouter };

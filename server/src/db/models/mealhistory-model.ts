@@ -43,8 +43,14 @@ export class MealHistoryModel {
     return updatedmealhistory;
   }
 
-  async delete(mealhistoryId: string): Promise<{ deletedCount?: number }> {
+  async deleteByMealHistoryId(
+    mealhistoryId: string,
+  ): Promise<{ deletedCount?: number }> {
     return await MealHistory.deleteOne({ _id: mealhistoryId });
+  }
+
+  async deleteByUserId(userId: string): Promise<{ deletedCount?: number }> {
+    return await MealHistory.deleteMany({ userId });
   }
 }
 

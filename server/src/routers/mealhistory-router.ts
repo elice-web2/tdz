@@ -23,11 +23,18 @@ mealhistoryRouter.patch(
   mealhistoryController.updateHistory,
 );
 
-// 식단 삭제
+// 식단 아이디로 삭제
 mealhistoryRouter.delete(
   '/:mealhistoryId',
   loginRequired,
-  mealhistoryController.deletHistory,
+  mealhistoryController.deleteHistoryByMealHistoryId,
+);
+
+// 유저별 식단 삭제
+mealhistoryRouter.delete(
+  '/',
+  loginRequired,
+  mealhistoryController.deleteHistoryByUserId,
 );
 
 export { mealhistoryRouter };
