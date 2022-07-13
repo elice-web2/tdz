@@ -55,6 +55,7 @@ class MealService {
       const cholesterol = Number(meal.NUTR_CONT7);
       const saturatedfatty = Number(meal.NUTR_CONT8);
       const transfat = Number(meal.NUTR_CONT9);
+      const servingSize = Number(meal.SERVING_SIZE);
       const updated_date = new Date();
 
       const mealInfo = {
@@ -69,6 +70,7 @@ class MealService {
         cholesterol,
         saturatedfatty,
         transfat,
+        servingSize,
         updated_date,
       };
 

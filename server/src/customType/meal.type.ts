@@ -10,6 +10,7 @@ export interface MealInfo {
   cholesterol: Number;
   saturatedfatty: Number;
   transfat: Number;
+  servingSize: Number;
   updated_date: Date;
 }
 
@@ -26,5 +27,6 @@ export interface MealData {
   cholesterol: Number;
   saturatedfatty: Number;
   transfat: Number;
+  servingSize: Number;
   updated_date: Date;
 }

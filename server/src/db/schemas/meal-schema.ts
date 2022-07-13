@@ -46,6 +46,10 @@ const MealSchema = new Schema(
       type: Number,
       required: true,
     },
+    servingSize: {
+      type: Number,
+      required: true,
+    },
     updated_date: {
       type: Date,
       required: true,
