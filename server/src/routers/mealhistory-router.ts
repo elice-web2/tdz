@@ -1,22 +1,29 @@
 import { Router } from 'express';
 import { mealhistoryController } from '../controllers';
+import { errorHandler, loginRequired } from '../middlewares';
 const mealhistoryRouter = Router();
 
 // 날짜별 식단 조회
-mealhistoryRouter.get('/:id/:date', mealhistoryController.getHistory);
+mealhistoryRouter.get(
+  '/:date',
+  loginRequired,
+  mealhistoryController.getHistory,
+);
 
 // 식단 등록
-mealhistoryRouter.post('/:id', mealhistoryController.createHistory);
+mealhistoryRouter.post('/', loginRequired, mealhistoryController.createHistory);
 
 // 식단 수정
 mealhistoryRouter.patch(
-  '/:mealhistory_id',
+  '/:mealhistoryId',
+  loginRequired,
   mealhistoryController.updateHistory,
 );
 
 // 식단 삭제
 mealhistoryRouter.delete(
-  '/:mealhistory_id',
+  '/:mealhistoryId',
+  loginRequired,
   mealhistoryController.deletHistory,
 );
 

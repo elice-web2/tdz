@@ -1,21 +1,14 @@
-import { UserModel, userModel, UserData, UserInfo, Nutrient } from '../db';
+import { UserModel, userModel } from '../db';
+import {
+  UserData,
+  LoginInfo,
+  UserInfoRequired,
+  InfoToUpdate,
+} from '../customType/user.type';
+import { getRandomNickname } from '../middlewares';
 
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-
-export interface LoginInfo {
-  email: string;
-  password: string;
-}
-
-export interface UserInfoRequired {
-  userId: string;
-  currentPassword: string;
-}
-
-interface ToUpdate {
-  [key: string]: string | number | Nutrient;
-}
 
 class UserService {
   constructor(private userModel: UserModel) {
@@ -23,26 +16,9 @@ class UserService {
   }
 
   // 회원가입
-  async addUser(userInfo: UserInfo): Promise<UserData> {
+  async addUser(userInfo: LoginInfo): Promise<UserData> {
     // 객체 destructuring
-    const {
-      email,
-      password,
-      login_path,
-      role,
-      gender,
-      age,
-      height,
-      current_weight,
-      goal_weight,
-      bmi,
-      mode,
-      activity,
-      nutrient,
-      profile_image,
-      nickname,
-      comment,
-    } = userInfo;
+    const { email, password } = userInfo;
 
     // 이메일 중복 확인
     const user = await this.userModel.findByEmail(email);
@@ -53,24 +29,12 @@ class UserService {
     }
     // 우선 비밀번호 해쉬화(암호화)
     const hashedPassword = await bcrypt.hash(password, 10);
+    const nickname: string = getRandomNickname();
 
     const newUserInfo = {
       email,
       password: hashedPassword,
-      login_path,
-      role,
-      gender,
-      age,
-      height,
-      current_weight,
-      goal_weight,
-      bmi,
-      mode,
-      activity,
-      nutrient,
-      profile_image,
       nickname,
-      comment,
     };
 
     // db에 저장
@@ -78,7 +42,7 @@ class UserService {
   }
 
   // 로그인
-  async getUserToken(loginInfo: LoginInfo): Promise<UserData> {
+  async getUserToken(loginInfo: LoginInfo): Promise<string> {
     // 객체 destructuring
     const { email, password } = loginInfo;
 
@@ -121,19 +85,25 @@ class UserService {
 
   //사용자 하나를 받음
   async getUserData(userId: string): Promise<UserData> {
-    return await this.userModel.findById(userId);
+    const userInfo = await this.userModel.findById(userId);
+
+    if (!userInfo) {
+      return {} as Promise<UserData>;
+    }
+
+    return userInfo;
   }
 
   // 유저정보 수정, 현재 비밀번호가 있어야 수정 가능함.
   async setUser(
     userInfoRequired: UserInfoRequired,
-    toUpdate: ToUpdate,
+    toUpdate: InfoToUpdate,
   ): Promise<UserData> {
     // 객체 destructuring
     const { userId, currentPassword } = userInfoRequired;
 
     // 우선 해당 id의 유저가 db에 있는지 확인
-    let user = await this.userModel.findById(userId);
+    const user = await this.userModel.findById(userId);
 
     // db에서 찾지 못한 경우, 에러 메시지 반환
     if (!user) {
@@ -158,7 +128,7 @@ class UserService {
     // 이제 드디어 업데이트 시작
 
     // 비밀번호도 변경하는 경우에는, 회원가입 때처럼 해쉬화 해주어야 함.
-    const { password } = toUpdate;
+    const password = toUpdate.password;
 
     if (password) {
       const newPasswordHash = await bcrypt.hash(password, 10);
@@ -166,15 +136,24 @@ class UserService {
     }
 
     // 업데이트 진행
-    return await this.userModel.update({
+    let updatedUser = await this.userModel.update({
       userId,
       update: toUpdate,
     });
+
+    if (!updatedUser) {
+      updatedUser = {} as UserData;
+    }
+
+    return updatedUser;
   }
 
+  //영양정보 등 운동 관련 정보 업데이트
+
+  //사용자삭제
   async deleteUserData(userId: string): Promise<{ deletedCount?: number }> {
     // 우선 해당 id의 유저가 db에 있는지 확인
-    let user = await this.userModel.findById(userId);
+    const user = await this.userModel.findById(userId);
 
     // db에서 찾지 못한 경우, 에러 메시지 반환
     if (!user) {
