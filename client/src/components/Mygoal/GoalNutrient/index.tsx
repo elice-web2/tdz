@@ -1,11 +1,41 @@
 import { useNavigate } from 'react-router-dom';
+import { useAppDispatch } from '../../../hooks';
+import { patchActivityAsync } from '../../../slices/usersInfoSlice';
 import * as S from '../style';
 
+const dummyData = {
+  login_path: 'googole',
+  profile_image: 'adsf.png',
+  comment: '화이팅',
+  gender: 'FEMALE',
+  age: 20,
+  height: 180,
+  current_weight: 60,
+  goal_weight: 60,
+  bmi: 51,
+  mode: 'DEC',
+  activity: 'LESS',
+  nutrient: {
+    kcal: 1200,
+    carb: 400,
+    protein: 400,
+    fat: 400,
+  },
+  nickname: '너구리',
+};
+
 function GoalNutrientForm() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
   const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    navigate('/home');
+    new Promise((resolve) => {
+      resolve(dispatch(patchActivityAsync(dummyData)));
+    }).then(() => {
+      console.log('제발');
+    });
+    // navigate('/home');
   };
   return (
     <S.MyGoalWrapper>

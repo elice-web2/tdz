@@ -65,9 +65,9 @@ interface postLoginSignup {
 }
 // 회원가입 정보입력 타입지정
 interface patchActivityParam {
-  login_path: string;
-  profile_image: string;
-  comment: string;
+  login_path?: string;
+  profile_image?: string;
+  comment?: string;
   gender: string;
   age: number;
   height: number;
@@ -82,7 +82,7 @@ interface patchActivityParam {
     protein: number;
     fat: number;
   };
-  nickname: string;
+  nickname?: string;
 }
 // 회원가입 post API 통신 함수
 async function postSignupData(usersInfo: postLoginSignup) {
