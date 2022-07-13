@@ -1,8 +1,9 @@
-import { mealhistoryModel, MealHistoryModel } from '../db';
 import {
+  mealhistoryModel,
+  MealHistoryModel,
   MealHistoryInfo,
   MealHistoryData,
-} from '../customType/mealhistory.type';
+} from '../db';
 
 class MealHistoryService {
   constructor(private mealhistoryModel: MealHistoryModel) {}
@@ -10,54 +11,41 @@ class MealHistoryService {
   async addMealHistory(
     mealhistoryInfo: MealHistoryInfo,
   ): Promise<MealHistoryData> {
+    console.log(mealhistoryInfo);
     const createNewMeal = await this.mealhistoryModel.create(mealhistoryInfo);
     return createNewMeal;
   }
 
-  async getMealHistory(userId: string, date: Date): Promise<MealHistoryData[]> {
-    const meals = await this.mealhistoryModel.findByDate(userId, date);
-
-    if (!meals) {
-      throw new Error('조회된 식단이 없습니다.');
-    }
-
+  async getMealHistory(
+    user_id: string,
+    date: Date,
+  ): Promise<MealHistoryData[]> {
+    const meals = await this.mealhistoryModel.findByDate(user_id, date);
     return meals;
   }
 
   async setHistory(
-    mealhistoryId: string,
+    mealhistory_id: string,
     toUpdate: Partial<MealHistoryInfo>,
   ): Promise<MealHistoryData> {
-    const mealhistory = await this.mealhistoryModel.findByMealHistoryId(
-      mealhistoryId,
-    );
-
-    if (!mealhistory) {
-      throw new Error('해당 식단은 존재하지 않습니다.');
-    }
-
     const updatedMeal = await this.mealhistoryModel.update({
-      mealhistoryId,
+      mealhistory_id,
       update: toUpdate,
     });
-
-    if (updatedMeal === null) {
-      throw new Error('식단이 수정되지 않았습니다.');
-    }
 
     return updatedMeal;
   }
 
-  async deleteMealHistory(mealhistoryId: string): Promise<{ result: string }> {
+  async deleteMealHistory(mealhistory_id: string): Promise<{ result: string }> {
     const mealhistory = await this.mealhistoryModel.findByMealHistoryId(
-      mealhistoryId,
+      mealhistory_id,
     );
 
     if (!mealhistory) {
       throw new Error('해당 식단은 존재하지 않습니다.');
     }
 
-    const { deletedCount } = await this.mealhistoryModel.delete(mealhistoryId);
+    const { deletedCount } = await this.mealhistoryModel.delete(mealhistory_id);
 
     // 삭제에 실패한 경우, 에러 메시지 반환
     if (deletedCount === 0) {

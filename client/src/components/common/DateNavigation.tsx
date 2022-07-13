@@ -10,8 +10,8 @@ import { useNavigate } from 'react-router-dom';
 function DateNavigation() {
   const navigate = useNavigate();
   const clickCalendarHandler = () => {
-    navigate('/calendar');
-  };
+    navigate("/calendar");
+  }
   return (
     <Wrapper>
       <FontAwesomeIcon icon={faAngleLeft} />
@@ -50,7 +50,7 @@ const DateContainer = styled.div`
   align-items: center;
 
   cursor: pointer;
-
+  
   svg {
     padding: 0;
     width: 12px;

@@ -1,6 +1,6 @@
 import { Bar } from 'react-chartjs-2';
 
-function CalorieChart({ data }: any) {
+export default function CalorieChart({ data }: any) {
   const CalorieData = {
     labels: ['6/30', '7/1', '7/2', '7/3', '7/4', '7/5', '7/6'],
     datasets: [
@@ -33,5 +33,3 @@ function CalorieChart({ data }: any) {
 
   return <Bar data={CalorieData} options={options} />;
 }
-
-export default CalorieChart;
