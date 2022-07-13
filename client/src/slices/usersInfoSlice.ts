@@ -5,23 +5,23 @@ import * as api from '../api';
 interface UsersInfo {
   // 유저 정보
   email: string;
-  loginPath: string;
+  login_path: string;
   gender: string;
   role: string;
   age: number;
   height: number;
-  currentWeight: number;
-  goalWeight: number;
+  current_weight: number;
+  goal_weight: number;
   bmi: number;
   mode: string;
   activity: string;
   nutrient: {
-    nutrientKcal: number;
-    nutrientCarb: number;
-    nutrientProtein: number;
-    nutrientFat: number;
+    kcal: number;
+    carb: number;
+    protein: number;
+    fat: number;
   };
-  profileImage: string;
+  profile_image: string;
   nickname: string;
   comment: string;
   // 로그인 여부
@@ -34,30 +34,30 @@ export interface UsersInfoState {
 const initialState: UsersInfoState = {
   value: {
     email: '',
-    loginPath: '',
+    login_path: '',
     gender: '',
     role: '',
     age: 0,
     height: 0,
-    currentWeight: 0,
-    goalWeight: 0,
+    current_weight: 0,
+    goal_weight: 0,
     bmi: 0,
     mode: '',
     activity: '',
     nutrient: {
-      nutrientKcal: 0,
-      nutrientCarb: 0,
-      nutrientProtein: 0,
-      nutrientFat: 0,
+      kcal: 0,
+      carb: 0,
+      protein: 0,
+      fat: 0,
     },
-    profileImage: '',
+    profile_image: '',
     nickname: '',
     comment: '',
     isLogin: false,
   },
 };
 // Slice 작성 예시
-// 회원가입 post 요청 데이터 매개변수
+
 // 로그인 요청 데이터 타입지정
 interface postLoginSignup {
   email: string;
@@ -103,7 +103,11 @@ export const getUsersInfoAsync = createAsyncThunk(
 export const UsersInfoSlice = createSlice({
   name: 'usersInfo',
   initialState,
-  reducers: {},
+  reducers: {
+    loggedIn: (state) => {
+      state.value.isLogin = true;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(postSignUpAsync.fulfilled, (state, action) => {
@@ -117,5 +121,7 @@ export const UsersInfoSlice = createSlice({
       });
   },
 });
+
+export const { loggedIn } = UsersInfoSlice.actions;
 
 export default UsersInfoSlice.reducer;
