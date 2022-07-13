@@ -19,9 +19,6 @@ const signUp = async (req: Request, res: Response, next: NextFunction) => {
     // 위 데이터를 유저 db에 추가하기
     const newUser = await userService.addUser(userInfo);
 
-    //login_path
-    //role
-    //email -> response 나머지는 다 비운값
     res.status(201).json(newUser);
   } catch (error) {
     next(error);
