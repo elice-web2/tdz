@@ -14,6 +14,7 @@ userRouter.post(
   userController.signUp,
 );
 userRouter.post('/auth/login', userController.login);
+userRouter.get('/auth/logout', loginRequired, userController.logout);
 userRouter.get('/users/list', adminRequired, userController.userList);
 userRouter.get('/users', loginRequired, userController.user);
 userRouter.patch('/users', loginRequired, userController.userUpdate);

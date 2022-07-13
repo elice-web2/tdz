@@ -58,6 +58,22 @@ const login = async function (req: Request, res: Response, next: NextFunction) {
   }
 };
 
+const logout = async function (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) {
+  //쿠키에 있는 jwt 토큰이 들어 있는 쿠키를 비워줌
+  try {
+    res.clearCookie('token').json({
+      success: true,
+      data: '성공적으로 로그아웃 되었습니다.',
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 //전체 유저 목록 조회
 const userList = async function (
   req: Request,
@@ -178,6 +194,15 @@ const deleteUser = async function (
     const deleteResult = await userService.deleteUserData(userId);
 
     res.status(200).json(deleteResult);
+    const deletedResult = await userService.deleteUserData(userId);
+
+    if (!deletedResult) {
+      throw new Error('삭제가 실패하였습니다.');
+    }
+    res.clearCookie('token').status(200).json({
+      success: true,
+      data: '성공적으로 탈퇴되었습니다.',
+    });
   } catch (error) {
     next(error);
   }
@@ -341,4 +366,4 @@ const deleteUser = async function (
 //   }
 // });
 
-export { signUp, login, userList, user, userUpdate, deleteUser };
+export { signUp, login, logout, userList, user, userUpdate, deleteUser };
