@@ -18,6 +18,7 @@ userRouter.get('/auth/logout', loginRequired, userController.logout);
 userRouter.get('/users/list', adminRequired, userController.userList);
 userRouter.get('/users', loginRequired, userController.user);
 userRouter.patch('/users', loginRequired, userController.userUpdate);
+userRouter.patch('/users/activity', loginRequired, userController.goalUpdate);
 userRouter.delete('/users', loginRequired, userController.deleteUser);
 
 export { userRouter };

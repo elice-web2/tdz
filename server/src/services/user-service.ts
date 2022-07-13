@@ -160,6 +160,27 @@ class UserService {
   }
 
   //영양정보 등 운동 관련 정보 업데이트
+  async setGoal(userId: string, toUpdate: InfoToUpdate): Promise<UserData> {
+    // 우선 해당 id의 유저가 db에 있는지 확인
+    const user = await this.userModel.findById(userId);
+
+    // db에서 찾지 못한 경우, 에러 메시지 반환
+    if (!user) {
+      throw new Error('가입 내역이 없습니다. 다시 한 번 확인해 주세요.');
+    }
+
+    // 업데이트 진행
+    let updatedUser = await this.userModel.update({
+      userId,
+      update: toUpdate,
+    });
+
+    if (!updatedUser) {
+      updatedUser = {} as UserData;
+    }
+
+    return updatedUser;
+  }
 
   //사용자삭제
   async deleteUserData(userId: string): Promise<{ deletedCount?: number }> {
