@@ -58,36 +58,18 @@ const initialState: UsersInfoState = {
 };
 // Slice 작성 예시
 // 회원가입 post 요청 데이터 매개변수
-interface postSignupParam {
-  email: string;
-  password: string;
-  gender: string;
-  age: number;
-  height: number;
-  current_weight: number;
-  goal_weight: number;
-  bmi: number;
-  mode: string;
-  activity: string;
-  nutrient: {
-    kcal: number;
-    carb: number;
-    protein: number;
-    fat: number;
-  };
-}
 // 로그인 요청 데이터 타입지정
-interface postLoginParam {
+interface postLoginSignup {
   email: string;
   password: string;
 }
 // 회원가입 post API 통신 함수
-async function postSignupData(usersInfo: postSignupParam) {
+async function postSignupData(usersInfo: postLoginSignup) {
   const resp = await api.post('/auth/signup ', usersInfo);
   return resp.data;
 }
 // 로그인 post API 통신 함수
-async function postLoginData(loginInfo: postLoginParam) {
+async function postLoginData(loginInfo: postLoginSignup) {
   await api.post('/api/auth/login', loginInfo);
 }
 // 회원정보 get API 통신 함수
@@ -99,14 +81,14 @@ async function getUsersInfoData() {
 // 비동기로 데이터를 불러와 액션을 생성하고 싶을 경우 예시
 export const postSignUpAsync = createAsyncThunk(
   'usersInfo/postSignupData',
-  async (usersInfo: postSignupParam) => {
+  async (usersInfo: postLoginSignup) => {
     return await postSignupData(usersInfo);
   },
 );
 //
 export const postLoginAsync = createAsyncThunk(
   'usersInfo/postLoginData',
-  async (loginInfo: postLoginParam) => {
+  async (loginInfo: postLoginSignup) => {
     await postLoginData(loginInfo);
   },
 );
