@@ -11,7 +11,7 @@ app.use(
   cors({
     origin: true,
     credentials: true, // 크로스 도메인 허용
-    methods: ['POST', 'PUT', 'GET', 'OPTIONS', 'HEAD'],
+    methods: ['POST', 'PATCH', 'GET', 'OPTIONS', 'HEAD'],
   }),
 );
 
