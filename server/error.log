@@ -688,3 +688,50 @@ Error: 바나을 조회할 수 없습니다.
     at async getMeal (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\src\controllers\meal-controller.ts:9:24)
 >>>>>>> origin/dev
 
+[2022-7-13 10:51:52] POST:/api/mealhistory
+ValidationError: mealhistory validation failed: meals.0.carb: Path `carb` is required., meals.0.kcal: Path `kcal` is required., meals.0.name: Path `name` is required.
+    at model.Document.invalidate (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\mongoose\lib\document.js:2782:32)
+    at EmbeddedDocument.invalidate (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\mongoose\lib\types\embedded.js:298:29)
+    at C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\mongoose\lib\document.js:2574:17
+    at C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\mongoose\lib\schematype.js:1273:9
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+
+[2022-7-13 10:52:5] POST:/api/mealhistory
+SyntaxError: Unexpected string in JSON at position 34
+    at JSON.parse (<anonymous>)
+    at parse (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\body-parser\lib\types\json.js:89:19)
+    at C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\body-parser\lib\read.js:128:18
+    at AsyncResource.runInAsyncScope (node:async_hooks:199:9)
+    at invokeCallback (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\raw-body\index.js:231:16)
+    at done (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\raw-body\index.js:220:7)
+    at IncomingMessage.onEnd (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\raw-body\index.js:280:7)
+    at IncomingMessage.emit (node:events:402:35)
+    at IncomingMessage.emit (node:domain:475:12)
+    at endReadableNT (node:internal/streams/readable:1343:12)
+    at processTicksAndRejections (node:internal/process/task_queues:83:21)
+
+[2022-7-13 10:52:12] POST:/api/mealhistory
+ValidationError: mealhistory validation failed: category: Path `category` is required.
+    at model.Document.invalidate (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\mongoose\lib\document.js:2782:32)
+    at C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\mongoose\lib\document.js:2574:17
+    at C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\mongoose\lib\schematype.js:1273:9
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+
+[2022-7-13 10:52:31] PATCH:/api/mealhistory/62cdb289f5d48d20385da3c3
+Error: 해당 식단은 존재하지 않습니다.
+    at MealHistoryService.setHistory (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\src\services\mealhistory-service.ts:49:13)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async updateHistory (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\src\controllers\mealhistory-controller.ts:87:30)
+
+[2022-7-13 10:53:57] DELETE:/api/mealhistory/62cdb289f5d48d20385da3c3
+Error: 해당 식단은 존재하지 않습니다.
+    at MealHistoryService.deleteMealHistory (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\src\services\mealhistory-service.ts:70:13)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async deletHistory (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\src\controllers\mealhistory-controller.ts:101:28)
+
+[2022-7-13 10:54:46] GET:/api/meal/%EB%A9%9C%EB%A1%A0
+Error: 멜론을 조회할 수 없습니다.
+    at MealService.findMeal (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\src\services\meal-service.ts:17:15)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async getMeal (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\src\controllers\meal-controller.ts:9:24)
+

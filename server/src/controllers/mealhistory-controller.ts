@@ -4,14 +4,29 @@ import { mealhistoryService } from '../services';
 import { mealInfo } from '../customType/mealhistory.type';
 
 class MealHistoryController {
-  async getHistory(req: Request, res: Response, next: NextFunction) {
+  async getHistoryById(req: Request, res: Response, next: NextFunction) {
+    try {
+      const userId: string = req.currentUserId!;
+
+      const MealData = await mealhistoryService.getMealHistoryById(userId);
+
+      res.status(200).json(MealData);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async getHistoryByDate(req: Request, res: Response, next: NextFunction) {
     try {
       const userId: string = req.currentUserId!;
       const date: Date = new Date(req.params.date);
 
-      const newMealData = await mealhistoryService.getMealHistory(userId, date);
+      const MealData = await mealhistoryService.getMealHistoryByDate(
+        userId,
+        date,
+      );
 
-      res.status(200).json(newMealData);
+      res.status(200).json(MealData);
     } catch (error) {
       next(error);
     }

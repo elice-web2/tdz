@@ -14,7 +14,20 @@ class MealHistoryService {
     return createNewMeal;
   }
 
-  async getMealHistory(userId: string, date: Date): Promise<MealHistoryData[]> {
+  async getMealHistoryById(userId: string): Promise<MealHistoryData[]> {
+    const meals = await this.mealhistoryModel.findById(userId);
+
+    if (!meals) {
+      throw new Error('조회된 식단이 없습니다.');
+    }
+
+    return meals;
+  }
+
+  async getMealHistoryByDate(
+    userId: string,
+    date: Date,
+  ): Promise<MealHistoryData[]> {
     const meals = await this.mealhistoryModel.findByDate(userId, date);
 
     if (!meals) {

@@ -8,6 +8,10 @@ import {
 const MealHistory = model<MealHistoryData>('mealhistory', MealHistorySchema);
 
 export class MealHistoryModel {
+  async findById(userId: string): Promise<MealHistoryData[] | null> {
+    return await MealHistory.find({ userId }).lean();
+  }
+
   async findByDate(
     userId: string,
     date: Date,

@@ -3,11 +3,14 @@ import { mealhistoryController } from '../controllers';
 import { errorHandler, loginRequired } from '../middlewares';
 const mealhistoryRouter = Router();
 
+// 유저별 식단 조회
+mealhistoryRouter.get('/', loginRequired, mealhistoryController.getHistoryById);
+
 // 날짜별 식단 조회
 mealhistoryRouter.get(
   '/:date',
   loginRequired,
-  mealhistoryController.getHistory,
+  mealhistoryController.getHistoryByDate,
 );
 
 // 식단 등록
