@@ -1,6 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGear, faAngleRight } from '@fortawesome/free-solid-svg-icons';
+import { useAppDispatch } from '../../hooks';
+import { getLogOutAsync } from '../../slices/usersInfoSlice';
 import Container from '../../components/styles/Container';
 import Logo from '../../components/common/Logo';
 import Navbar from '../../components/common/Navbar';
@@ -8,6 +10,18 @@ import * as S from './style';
 
 function Mypage() {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
+  const logoutHandler = (event: any) => {
+    try {
+      event.preventDefault();
+      dispatch(getLogOutAsync());
+      localStorage.clear();
+      navigate('/');
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <Container>
@@ -34,7 +48,7 @@ function Mypage() {
             </S.UserPofileInfoContainer>
           </S.UserProfileInfoContainer>
         </S.MypageItemBox>
-        <S.LogoutButton>로그아웃</S.LogoutButton>
+        <S.LogoutButton onClick={logoutHandler}>로그아웃</S.LogoutButton>
         <S.MygoalSettingContainer>
           <S.Mygoal>나의 목표</S.Mygoal>
           <div
