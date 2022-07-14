@@ -12,6 +12,7 @@ import Mypage from './pages/Mypage';
 import UserInfo from './pages/UserInfo';
 import Signin from './pages/Signin';
 import Signup from './pages/Signup';
+import { Navigate } from 'react-router-dom';
 
 export const ROUTES = {
   Main: {
@@ -69,5 +70,66 @@ export const ROUTES = {
   MypageGoalStep_3: {
     path: '/mypage/goal_step3',
     element: <GoalNutrient />,
+  },
+};
+
+const aaa = <Navigate replace to="/signin" />;
+
+export const ROUTES_NOT_LOGIN = {
+  Main: {
+    path: '/',
+    element: aaa,
+  },
+  Home: {
+    path: '/home',
+    element: aaa,
+  },
+  Meals: {
+    path: '/meals',
+    element: aaa,
+  },
+  MealsSearch: {
+    path: '/meals/search',
+    element: aaa,
+  },
+  MealsCart: {
+    path: '/meals/cart',
+    element: aaa,
+  },
+  MealsDetail: {
+    path: '/meals/detail',
+    element: aaa,
+  },
+  Signin: {
+    path: '/signin',
+    element: <Signin />,
+  },
+  Signup: {
+    path: '/signup',
+    element: <Signup />,
+  },
+  ChartPage: {
+    path: '/chart',
+    element: aaa,
+  },
+  Mypage: {
+    path: '/mypage',
+    element: aaa,
+  },
+  UserInfo: {
+    path: '/mypage/user_info',
+    element: aaa,
+  },
+  MypageGoalStep_1: {
+    path: '/mypage/goal_step1',
+    element: aaa,
+  },
+  MypageGoalStep_2: {
+    path: '/mypage/goal_step2',
+    element: aaa,
+  },
+  MypageGoalStep_3: {
+    path: '/mypage/goal_step3',
+    element: aaa,
   },
 };

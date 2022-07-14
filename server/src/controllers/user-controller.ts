@@ -48,7 +48,7 @@ const login = async function (req: Request, res: Response, next: NextFunction) {
     res
       .cookie('token', userToken, {
         expires: expiryDate,
-        httpOnly: true,
+        // httpOnly: true,
         signed: true,
       })
       .status(200)

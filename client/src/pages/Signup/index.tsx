@@ -1,9 +1,11 @@
 import { useNavigate } from 'react-router-dom';
 import Container from '../../components/styles/Container';
+import { useAppDispatch } from '../../hooks';
 import * as S from './style';
 
 function Signup() {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   return (
     <Container>
