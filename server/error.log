@@ -906,3 +906,92 @@ Error: 식단 삭제에 실패하였습니다
     at processTicksAndRejections (node:internal/process/task_queues:96:5)
     at async deleteHistoryByUserId (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\src\controllers\mealhistory-controller.ts:122:28)
 
+[2022-7-14 17:21:16] PATCH:/api/mealhistory/62cef366118bf34414f7ce7d
+Error: 해당 식단은 존재하지 않습니다.
+    at MealHistoryService.setHistory (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\src\services\mealhistory-service.ts:94:13)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async updateHistory (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\src\controllers\mealhistory-controller.ts:91:30)
+
+[2022-7-14 17:22:9] GET:/api/meal/%EC%BB%A4
+Error: 커을 조회할 수 없습니다.
+    at MealService.findMeal (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\src\services\meal-service.ts:17:15)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async getMeal (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\src\controllers\meal-controller.ts:9:24)
+
+[2022-7-14 17:22:19] GET:/api/meal/%EC%BB%A4%ED%94%BC
+Error: 커피을 조회할 수 없습니다.
+    at MealService.findMeal (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\src\services\meal-service.ts:17:15)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async getMeal (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\src\controllers\meal-controller.ts:9:24)
+
+[2022-7-14 17:39:50] POST:/api/meal
+ValidationError: meals validation failed: totalGram: Path `totalGram` is required.
+    at model.Document.invalidate (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\mongoose\lib\document.js:2782:32)
+    at C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\mongoose\lib\document.js:2574:17
+    at C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\mongoose\lib\schematype.js:1273:9
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+
+[2022-7-14 17:40:56] POST:/api/mealhistory
+ValidationError: mealhistory validation failed: meals.0.totalGram: Path `totalGram` is required.
+    at model.Document.invalidate (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\mongoose\lib\document.js:2782:32)
+    at EmbeddedDocument.invalidate (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\mongoose\lib\types\embedded.js:298:29)
+    at C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\mongoose\lib\document.js:2574:17
+    at C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\mongoose\lib\schematype.js:1273:9
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+
+[2022-7-14 17:45:8] POST:/api/mealhistory
+ValidationError: mealhistory validation failed: meals.0.totalGram: Path `totalGram` is required.
+    at model.Document.invalidate (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\mongoose\lib\document.js:2782:32)
+    at EmbeddedDocument.invalidate (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\mongoose\lib\types\embedded.js:298:29)
+    at C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\mongoose\lib\document.js:2574:17
+    at C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\mongoose\lib\schematype.js:1273:9
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+
+[2022-7-14 17:48:6] PATCH:/api/mealhistory/62cfd1abe7e16a5c389b4846
+Error: 해당 식단은 존재하지 않습니다.
+    at MealHistoryService.setHistory (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\src\services\mealhistory-service.ts:94:13)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async updateHistory (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\src\controllers\mealhistory-controller.ts:91:30)
+
+[2022-7-14 17:50:44] POST:/api/mealhistory
+ValidationError: mealhistory validation failed: meals.0.totalGram: Path `totalGram` is required.
+    at model.Document.invalidate (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\mongoose\lib\document.js:2782:32)
+    at EmbeddedDocument.invalidate (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\mongoose\lib\types\embedded.js:298:29)
+    at C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\mongoose\lib\document.js:2574:17
+    at C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\mongoose\lib\schematype.js:1273:9
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+
+[2022-7-14 17:51:38] PATCH:/api/mealhistory/62cfd7a2a293c089ec859b9d
+Error: 해당 식단은 존재하지 않습니다.
+    at MealHistoryService.setHistory (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\src\services\mealhistory-service.ts:94:13)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async updateHistory (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\src\controllers\mealhistory-controller.ts:91:30)
+
+[2022-7-14 17:52:26] PATCH:/api/mealhistory/62cfd8eda293c089ec859bad
+SyntaxError: Unexpected token } in JSON at position 97
+    at JSON.parse (<anonymous>)
+    at parse (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\body-parser\lib\types\json.js:89:19)
+    at C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\body-parser\lib\read.js:128:18
+    at AsyncResource.runInAsyncScope (node:async_hooks:199:9)
+    at invokeCallback (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\raw-body\index.js:231:16)
+    at done (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\raw-body\index.js:220:7)
+    at IncomingMessage.onEnd (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\raw-body\index.js:280:7)
+    at IncomingMessage.emit (node:events:402:35)
+    at IncomingMessage.emit (node:domain:475:12)
+    at endReadableNT (node:internal/streams/readable:1343:12)
+    at processTicksAndRejections (node:internal/process/task_queues:83:21)
+
+[2022-7-14 17:52:48] DELETE:/api/mealhistory/62ceeec5b78baa7d9028f57f
+Error: 해당 식단은 존재하지 않습니다.
+    at MealHistoryService.deleteMealHistoryByMealHistoryId (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\src\services\mealhistory-service.ts:117:13)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async deleteHistoryByMealHistoryId (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\src\controllers\mealhistory-controller.ts:110:9)
+
+[2022-7-14 17:58:36] POST:/api/mealhistory
+ValidationError: mealhistory validation failed: meals.0.carb: Path `carb` is required., meals.0.kcal: Path `kcal` is required., meals.0.name: Path `name` is required.
+    at model.Document.invalidate (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\mongoose\lib\document.js:2782:32)
+    at EmbeddedDocument.invalidate (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\mongoose\lib\types\embedded.js:298:29)
+    at C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\mongoose\lib\document.js:2574:17
+    at C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\mongoose\lib\schematype.js:1273:9
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+

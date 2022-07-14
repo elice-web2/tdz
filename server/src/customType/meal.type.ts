@@ -11,6 +11,8 @@ export interface MealInfo {
   saturatedfatty: Number;
   transfat: Number;
   servingSize: Number;
+  totalGram: Number;
+  quantity: Number;
   updated_date: Date;
 }
 
@@ -28,5 +30,7 @@ export interface MealData {
   saturatedfatty: Number;
   transfat: Number;
   servingSize: Number;
+  totalGram: Number;
+  quantity: Number;
   updated_date: Date;
 }
