@@ -11,12 +11,12 @@ const dummyData = {
   bmi: 51,
   mode: 'DEC',
   activity: 'LESS',
-  // nutrient: {
-  //   kcal: 1200,
-  //   carb: 400,
-  //   protein: 400,
-  //   fat: 400,
-  // },
+  nutrient: {
+    kcal: 1200,
+    carb: 400,
+    protein: 400,
+    fat: 400,
+  },
 };
 
 function GoalNutrientForm() {
