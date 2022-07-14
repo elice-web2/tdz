@@ -149,8 +149,6 @@ const userUpdate = async function (
       toUpdate,
     );
 
-    console.log(updatedUserInfo);
-
     res.status(200).json(updatedUserInfo);
   } catch (error) {
     next(error);
@@ -213,8 +211,6 @@ const goalUpdate = async function (
       userId,
       toUpdate,
     );
-
-    console.log(updatedUserInfo);
 
     res.status(200).json(updatedUserInfo);
   } catch (error) {
