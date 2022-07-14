@@ -76,7 +76,7 @@ interface patchActivityParam {
   bmi: number;
   mode: string;
   activity: string;
-  nutrient: {
+  nutrient?: {
     kcal: number;
     carb: number;
     protein: number;
@@ -86,7 +86,7 @@ interface patchActivityParam {
 }
 // 회원가입 post API 통신 함수
 async function postSignupData(usersInfo: postLoginSignup) {
-  const resp = await api.post('/auth/signup ', usersInfo);
+  const resp = await api.post('/api/auth/signup ', usersInfo);
   return resp.data;
 }
 // 로그인 post API 통신 함수

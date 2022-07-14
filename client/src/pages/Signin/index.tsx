@@ -12,7 +12,7 @@ function Signin() {
   useEffect(() => {
     new Promise((resolve) => {
       resolve(
-        dispatch(postLoginAsync({ email: 'tdz@gmail.com', password: '1234' })),
+        dispatch(postLoginAsync({ email: 'test@gmail.com', password: '1234' })),
       );
     }).then(() => {
       dispatch(getUsersInfoAsync());

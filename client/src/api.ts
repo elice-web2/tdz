@@ -38,6 +38,7 @@ async function patch<T>(apiUrl: string, data: T) {
       headers: {
         'Content-Type': 'application/json',
       },
+      withCredentials: true,
     });
     return result;
   } catch (error: any) {
