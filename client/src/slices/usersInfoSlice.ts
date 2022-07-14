@@ -76,7 +76,7 @@ interface patchActivityParam {
   bmi: number;
   mode: string;
   activity: string;
-  nutrient: {
+  nutrient?: {
     kcal: number;
     carb: number;
     protein: number;
