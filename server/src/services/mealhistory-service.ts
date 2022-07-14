@@ -32,8 +32,20 @@ class MealHistoryService {
       isSuccess : 모드와 골 칼로리와 현재 총 칼로리를 보고 성공과 실패 여부 나누기
       todayWeight : 현재 유저에 등록된 몸무게 정보
       */
+
+      const mealData = meals[0].meals[0];
+
       const goalKcal = userInfo!.nutrient.kcal;
-      const currentKcal = meals[0].meals[0].kcal;
+      const currentKcal = mealData.kcal;
+      const carbSum = mealData.carb;
+      const proteinSum = mealData.protein;
+      const fatSum = mealData.fat;
+      const sugarsSum = mealData.sugars;
+      const natriumSum = mealData.natruim;
+      const cholesterolSum = mealData.cholesterol;
+      const saturatedfattySum = mealData.saturatedfatty;
+      const transfatSum = mealData.transfat;
+
       const mode = userInfo!.mode;
       let isSuccess;
       if (mode === 'INC') {
@@ -45,6 +57,8 @@ class MealHistoryService {
       }
       const todayWeight = userInfo!.current_weight;
 
+      console.log(meals[0].meals[0]);
+
       await calendarService.addCalendarStamp({
         userId,
         date,
@@ -53,6 +67,14 @@ class MealHistoryService {
         mode,
         isSuccess,
         todayWeight,
+        carbSum,
+        proteinSum,
+        fatSum,
+        sugarsSum,
+        natriumSum,
+        cholesterolSum,
+        saturatedfattySum,
+        transfatSum,
       });
     }
 

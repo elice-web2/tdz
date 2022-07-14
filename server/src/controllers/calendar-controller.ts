@@ -40,6 +40,14 @@ class CalendarController {
       const mode: string = req.body.mode;
       const isSuccess: boolean = req.body.isSuccess;
       const todayWeight: Number = req.body.todayWeight;
+      const carbSum: Number = req.body.carbSum;
+      const proteinSum: Number = req.body.proteinSum;
+      const fatSum: Number = req.body.fatSum;
+      const sugarsSum: Number = req.body.sugarsSum;
+      const natriumSum: Number = req.body.natriumSum;
+      const cholesterolSum: Number = req.body.cholesterolSum;
+      const saturatedfattySum: Number = req.body.saturatedfattySum;
+      const transfatSum: Number = req.body.transfatSum;
 
       const newStamp = await calendarService.addCalendarStamp({
         userId,
@@ -49,6 +57,14 @@ class CalendarController {
         mode,
         isSuccess,
         todayWeight,
+        carbSum,
+        proteinSum,
+        fatSum,
+        sugarsSum,
+        natriumSum,
+        cholesterolSum,
+        saturatedfattySum,
+        transfatSum,
       });
 
       res.status(201).json(newStamp);
@@ -74,6 +90,14 @@ class CalendarController {
       const mode: string = req.body.mode;
       const isSuccess: boolean = req.body.isSuccess;
       const todayWeight: Number = req.body.todayWeight;
+      const carbSum: Number = req.body.carbSum;
+      const proteinSum: Number = req.body.proteinSum;
+      const fatSum: Number = req.body.fatSum;
+      const sugarsSum: Number = req.body.sugarsSum;
+      const natriumSum: Number = req.body.natriumSum;
+      const cholesterolSum: Number = req.body.cholesterolSum;
+      const saturatedfattySum: Number = req.body.saturatedfattySum;
+      const transfatSum: Number = req.body.transfatSum;
 
       const toUpdate = {
         ...(calendarId && { calendarId }),
@@ -83,6 +107,14 @@ class CalendarController {
         ...(mode && { mode }),
         ...(isSuccess && { isSuccess }),
         ...(todayWeight && { todayWeight }),
+        ...(carbSum && { carbSum }),
+        ...(proteinSum && { proteinSum }),
+        ...(fatSum && { fatSum }),
+        ...(sugarsSum && { sugarsSum }),
+        ...(natriumSum && { natriumSum }),
+        ...(cholesterolSum && { cholesterolSum }),
+        ...(saturatedfattySum && { saturatedfattySum }),
+        ...(transfatSum && { transfatSum }),
       };
 
       const updatedStamp = await calendarService.setCalendarStamp(

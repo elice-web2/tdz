@@ -995,3 +995,27 @@ ValidationError: mealhistory validation failed: meals.0.carb: Path `carb` is req
     at C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\mongoose\lib\schematype.js:1273:9
     at processTicksAndRejections (node:internal/process/task_queues:78:11)
 
+[2022-7-14 19:7:54] PATCH:/api/calendar/62cefb4119b79d472c6bee37
+Error: 도장이 수정되지 않았습니다.
+    at CalendarService.setCalendarStamp (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\src\services\calendar-service.ts:45:13)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async updateStamp (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\src\controllers\calendar-controller.ts:120:28)
+
+[2022-7-14 19:8:2] PATCH:/api/calendar/62cefb4119b79d472c6bee37
+Error: 도장이 수정되지 않았습니다.
+    at CalendarService.setCalendarStamp (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\src\services\calendar-service.ts:45:13)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async updateStamp (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\src\controllers\calendar-controller.ts:120:28)
+
+[2022-7-14 22:5:18] GET:/api/meal/%EB%8F%84%ED%86%A0%EB%A6%AC
+Error: 도토리을 조회할 수 없습니다.
+    at MealService.findMeal (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\src\services\meal-service.ts:17:15)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async getMeal (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\src\controllers\meal-controller.ts:9:24)
+
+[2022-7-14 22:5:27] GET:/api/meal/%EB%8F%84%ED%86%A0%EB%A6%AC
+Error: 도토리을 조회할 수 없습니다.
+    at MealService.findMeal (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\src\services\meal-service.ts:17:15)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async getMeal (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\src\controllers\meal-controller.ts:9:24)
+
