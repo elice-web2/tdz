@@ -1,7 +1,13 @@
 import is from '@sindresorhus/is';
 import { Request, Response, NextFunction } from 'express';
-import { userService } from '../services';
+import {
+  calendarService,
+  favoriteService,
+  mealhistoryService,
+  userService,
+} from '../services';
 import { UserInfo, Nutrient, UserData } from '../customType/user.type';
+import { deleteFavorite } from './favorite-controller';
 
 //회원 가입을 위한 function
 const signUp = async (req: Request, res: Response, next: NextFunction) => {
@@ -228,14 +234,20 @@ const deleteUser = async function (
     // params로부터 id를 가져옴
     const userId: string = req.currentUserId!;
 
-    const deleteResult = await userService.deleteUserData(userId);
-
-    res.status(200).json(deleteResult);
+    //탈퇴를 위해 유저와 관련된 정보 전체 삭제
+    //유저별 즐겨찾기 삭제
+    await favoriteService.deleteAllFavorites(userId);
+    //유저별 캘린더 도장 정보 삭제
+    await calendarService.deleteAllCalendarStamp(userId);
+    //유저별 식단 정보 삭제
+    await mealhistoryService.deleteMealHistoryByUserId(userId);
+    //유저 삭제
     const deletedResult = await userService.deleteUserData(userId);
 
     if (!deletedResult) {
       throw new Error('삭제가 실패하였습니다.');
     }
+
     res.clearCookie('token').status(200).json({
       success: true,
       data: '성공적으로 탈퇴되었습니다.',
