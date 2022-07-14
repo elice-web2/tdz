@@ -36,7 +36,7 @@ export const ROUTES = {
     element: <MealsCart />,
   },
   MealsDetail: {
-    path: '/meals/detail',
+    path: '/meals/detail/:name',
     element: <MealsDetail />,
   },
   Signin: {
@@ -97,7 +97,7 @@ export const ROUTES_NOT_LOGIN = {
     element: loginPage,
   },
   MealsDetail: {
-    path: '/meals/detail',
+    path: '/meals/detail/:name',
     element: loginPage,
   },
   Signin: {

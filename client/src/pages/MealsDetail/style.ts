@@ -77,13 +77,16 @@ export const SelectBox = styled.div`
     height: 40px;
     border-radius: 5px;
     cursor: pointer;
+    option {
+      text-align: center;
+    }
   }
   .countBtnBox {
     display: flex;
     align-items: center;
 
     input {
-      width: 40px;
+      width: 50px;
       height: 40px;
       padding: 0;
       border: none;
@@ -108,7 +111,8 @@ export const SelectBox = styled.div`
     }
   }
 `;
-export const AddBtn = styled.button`
+
+export const AddBtn = styled.button<any>`
   position: absolute;
   bottom: 30px;
   left: 150px;

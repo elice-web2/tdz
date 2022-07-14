@@ -28,7 +28,10 @@ export const IconBox = styled.div`
   }
 `;
 
-export const TotalKcalBox = styled.div`
+interface ChildrenProps {
+  children: any;
+}
+export const TotalKcalBox = styled.div<ChildrenProps>`
   display: flex;
   justify-content: space-around;
   width: 100%;

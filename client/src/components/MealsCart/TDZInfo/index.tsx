@@ -2,7 +2,7 @@ import * as S from './style';
 
 interface TDZInfoProps {
   nutrient: string;
-  gram: number;
+  gram: number | undefined;
 }
 
 function TDZInfo({ nutrient, gram }: TDZInfoProps) {

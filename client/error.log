@@ -1,0 +1,271 @@
+[2022-7-13 11:31:2] GET:/api/meal/f
+TypeError: Cannot read properties of undefined (reading 'row')
+    at MealService.addMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:42:37)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async MealService.findMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:13:24)
+    at async getMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\meal-controller.ts:9:24)
+
+[2022-7-13 11:31:2] GET:/api/meal/fk
+TypeError: Cannot read properties of undefined (reading 'row')
+    at MealService.addMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:42:37)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async MealService.findMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:13:24)
+    at async getMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\meal-controller.ts:9:24)
+
+[2022-7-13 11:31:3] GET:/api/meal/f
+TypeError: Cannot read properties of undefined (reading 'row')
+    at MealService.addMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:42:37)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async MealService.findMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:13:24)
+    at async getMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\meal-controller.ts:9:24)
+
+[2022-7-13 11:31:3] GET:/api/meal/%E3%84%B9
+TypeError: Cannot read properties of undefined (reading 'row')
+    at MealService.addMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:42:37)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async MealService.findMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:13:24)
+    at async getMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\meal-controller.ts:9:24)
+
+[2022-7-13 11:31:3] GET:/api/meal/%EB%9D%BC
+TypeError: Cannot read properties of undefined (reading 'row')
+    at MealService.addMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:42:37)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async MealService.findMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:13:24)
+    at async getMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\meal-controller.ts:9:24)
+
+[2022-7-13 11:32:23] GET:/api/meal/%E3%85%87
+TypeError: Cannot read properties of undefined (reading 'row')
+    at MealService.addMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:42:37)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async MealService.findMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:13:24)
+    at async getMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\meal-controller.ts:9:24)
+
+[2022-7-13 11:32:23] GET:/api/meal/%EC%95%84
+TypeError: Cannot read properties of undefined (reading 'row')
+    at MealService.addMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:42:37)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async MealService.findMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:13:24)
+    at async getMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\meal-controller.ts:9:24)
+
+[2022-7-13 11:35:7] GET:/api/meal/%E3%84%B9
+TypeError: Cannot read properties of undefined (reading 'row')
+    at MealService.addMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:42:37)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async MealService.findMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:13:24)
+    at async getMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\meal-controller.ts:9:24)
+
+[2022-7-13 11:35:46] GET:/api/meal/%E3%85%87
+TypeError: Cannot read properties of undefined (reading 'row')
+    at MealService.addMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:42:37)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async MealService.findMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:13:24)
+    at async getMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\meal-controller.ts:9:24)
+
+[2022-7-13 11:35:49] GET:/api/meal/%E3%84%B9
+TypeError: Cannot read properties of undefined (reading 'row')
+    at MealService.addMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:42:37)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async MealService.findMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:13:24)
+    at async getMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\meal-controller.ts:9:24)
+
+[2022-7-13 11:35:49] GET:/api/meal/%EB%9D%BC
+TypeError: Cannot read properties of undefined (reading 'row')
+    at MealService.addMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:42:37)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async MealService.findMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:13:24)
+    at async getMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\meal-controller.ts:9:24)
+
+[2022-7-13 11:35:49] GET:/api/meal/%EB%9E%8C
+TypeError: Cannot read properties of undefined (reading 'row')
+    at MealService.addMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:42:37)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async MealService.findMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:13:24)
+    at async getMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\meal-controller.ts:9:24)
+
+[2022-7-13 11:35:49] GET:/api/meal/%EB%9D%BC
+TypeError: Cannot read properties of undefined (reading 'row')
+    at MealService.addMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:42:37)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async MealService.findMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:13:24)
+    at async getMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\meal-controller.ts:9:24)
+
+[2022-7-13 11:35:49] GET:/api/meal/%EB%9D%BC%EB%A9%B0
+TypeError: Cannot read properties of undefined (reading 'row')
+    at MealService.addMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:42:37)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async MealService.findMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:13:24)
+    at async getMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\meal-controller.ts:9:24)
+
+[2022-7-13 12:2:10] GET:/api/meal/fk
+TypeError: Cannot read properties of undefined (reading 'row')
+    at MealService.addMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:42:37)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async MealService.findMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:13:24)
+    at async getMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\meal-controller.ts:9:24)
+
+[2022-7-13 12:2:17] GET:/api/meal/%E3%84%B9
+TypeError: Cannot read properties of undefined (reading 'row')
+    at MealService.addMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:42:37)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async MealService.findMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:13:24)
+    at async getMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\meal-controller.ts:9:24)
+
+[2022-7-13 12:2:17] GET:/api/meal/%EB%9D%BC
+TypeError: Cannot read properties of undefined (reading 'row')
+    at MealService.addMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:42:37)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async MealService.findMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:13:24)
+    at async getMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\meal-controller.ts:9:24)
+
+[2022-7-13 12:3:48] GET:/api/meal/:%EB%9D%BC
+TypeError: Cannot read properties of undefined (reading 'row')
+    at MealService.addMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:42:37)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async MealService.findMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:13:24)
+    at async getMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\meal-controller.ts:9:24)
+
+[2022-7-13 12:3:53] GET:/api/meal/:%E3%84%B9
+TypeError: Cannot read properties of undefined (reading 'row')
+    at MealService.addMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:42:37)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async MealService.findMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:13:24)
+    at async getMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\meal-controller.ts:9:24)
+
+[2022-7-13 12:3:55] GET:/api/meal/:%EB%9D%BC
+TypeError: Cannot read properties of undefined (reading 'row')
+    at MealService.addMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:42:37)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async MealService.findMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:13:24)
+    at async getMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\meal-controller.ts:9:24)
+
+[2022-7-13 12:3:59] GET:/api/meal/:%EB%9E%8C
+TypeError: Cannot read properties of undefined (reading 'row')
+    at MealService.addMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:42:37)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async MealService.findMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:13:24)
+    at async getMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\meal-controller.ts:9:24)
+
+[2022-7-13 12:3:59] GET:/api/meal/:%EB%9D%BC
+TypeError: Cannot read properties of undefined (reading 'row')
+    at MealService.addMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:42:37)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async MealService.findMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:13:24)
+    at async getMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\meal-controller.ts:9:24)
+
+[2022-7-13 12:3:59] GET:/api/meal/:%EB%9D%BC%EB%A9%B0
+TypeError: Cannot read properties of undefined (reading 'row')
+    at MealService.addMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:42:37)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async MealService.findMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:13:24)
+    at async getMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\meal-controller.ts:9:24)
+
+[2022-7-13 12:8:35] GET:/api/meal/:d
+TypeError: Cannot read properties of undefined (reading 'row')
+    at MealService.addMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:42:37)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async MealService.findMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:13:24)
+    at async getMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\meal-controller.ts:9:24)
+
+[2022-7-13 12:8:35] GET:/api/meal/:ds
+TypeError: Cannot read properties of undefined (reading 'row')
+    at MealService.addMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:42:37)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async MealService.findMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:13:24)
+    at async getMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\meal-controller.ts:9:24)
+
+[2022-7-13 12:10:52] GET:/api/meal/:%E3%84%B9
+TypeError: Cannot read properties of undefined (reading 'length')
+    at MealService.addMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:44:38)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async MealService.findMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:13:24)
+    at async getMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\meal-controller.ts:9:24)
+
+[2022-7-13 12:11:6] GET:/api/meal/:%EB%9D%BC
+Error: :라을 조회할 수 없습니다.
+    at MealService.findMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:17:15)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async getMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\meal-controller.ts:9:24)
+
+[2022-7-13 12:11:14] GET:/api/meal/:%EB%9D%BC%EB%A9%B4
+TypeError: Cannot read properties of undefined (reading 'row')
+    at MealService.addMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:42:37)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async MealService.findMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:13:24)
+    at async getMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\meal-controller.ts:9:24)
+
+[2022-7-13 12:11:15] GET:/api/meal/:%EB%9D%BC%E3%85%81
+TypeError: Cannot read properties of undefined (reading 'length')
+    at MealService.addMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:44:38)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async MealService.findMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:13:24)
+    at async getMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\meal-controller.ts:9:24)
+
+[2022-7-13 12:11:15] GET:/api/meal/:%EB%9D%BC%EB%A9%B0
+TypeError: Cannot read properties of undefined (reading 'length')
+    at MealService.addMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:44:38)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async MealService.findMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:13:24)
+    at async getMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\meal-controller.ts:9:24)
+
+[2022-7-13 12:16:51] GET:/api/meal/%EB%B0%A5
+Error: 밥을 조회할 수 없습니다.
+    at MealService.findMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:17:15)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async getMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\meal-controller.ts:9:24)
+
+[2022-7-13 12:17:17] GET:/api/meal/%EC%8C%80%EB%B0%A5
+Error: 쌀밥을 조회할 수 없습니다.
+    at MealService.findMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:17:15)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async getMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\meal-controller.ts:9:24)
+
+[2022-7-13 15:15:22] GET:/api/meal/%ED%94%BC%EC%9E%90
+Error: 피자을 조회할 수 없습니다.
+    at MealService.findMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:17:15)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async getMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\meal-controller.ts:9:24)
+
+[2022-7-13 15:15:36] GET:/api/meal/%EC%A7%84%EB%9D%BC%EB%A9%B4
+Error: 진라면을 조회할 수 없습니다.
+    at MealService.findMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:17:15)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async getMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\meal-controller.ts:9:24)
+
+[2022-7-13 19:56:7] GET:/api/meal/search
+TypeError: Cannot read properties of undefined (reading 'length')
+    at MealService.addMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:44:38)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async MealService.findMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:13:24)
+    at async getMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\meal-controller.ts:9:24)
+
+[2022-7-13 23:31:21] POST:/api/auth/login
+Error: 해당 이메일은 가입 내역이 없습니다. 다시 한 번 확인해 주세요.
+    at UserService.getUserToken (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\user-service.ts:52:13)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async login (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\user-controller.ts:43:23)
+
+[2022-7-13 23:31:31] POST:/api/auth/login
+Error: 해당 이메일은 가입 내역이 없습니다. 다시 한 번 확인해 주세요.
+    at UserService.getUserToken (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\user-service.ts:52:13)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async login (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\user-controller.ts:43:23)
+
+[2022-7-13 23:32:10] POST:/api/auth/login
+Error: 해당 이메일은 가입 내역이 없습니다. 다시 한 번 확인해 주세요.
+    at UserService.getUserToken (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\user-service.ts:52:13)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async login (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\user-controller.ts:43:23)
+
+[2022-7-13 23:34:21] POST:/api/auth/login
+Error: 해당 이메일은 가입 내역이 없습니다. 다시 한 번 확인해 주세요.
+    at UserService.getUserToken (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\user-service.ts:52:13)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async login (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\user-controller.ts:43:23)
+
+[2022-7-14 0:23:36] GET:/api/meal/%ED%94%BC%EC%9E%90
+Error: 피자을 조회할 수 없습니다.
+    at MealService.findMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:17:15)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async getMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\meal-controller.ts:9:24)
+

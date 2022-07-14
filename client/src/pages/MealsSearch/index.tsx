@@ -1,18 +1,40 @@
 import * as S from './style';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Container from '../../components/styles/Container';
 import Navbar from '../../components/common/Navbar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-import SearchUlWrapper from '../../components/MealsSearch/SearchUlWrapper';
+import MealsSearchedList from '../../components/MealsSearch/MealsSearchedList';
+import MealsBookMarkList from '../../components/MealsSearch/MealsBookMarkList';
+import * as api from '../../api';
 
-const searchedArr: string[] = ['진라면', '비빔면', '신라면'];
-const bookMarkArr: string[] = ['밥', '된장찌개'];
+interface MealsSearchProps {
+  name: string;
+  code: string;
+  kcal: number;
+  carb: number;
+  protein: number;
+  fat: number;
+  natruim: number;
+  cholesterol: number;
+  transfat: number;
+  saturatedfatty: number;
+  servingSize: number;
+  quantity: number;
+  totalGram: number;
+}
 
 function MealsSearch() {
   const [isSearch, setIsSearch] = useState(true);
   const [inputValue, setInputValue] = useState('');
+  const [searchedResult, setSearchedResult] = useState<MealsSearchProps[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (!inputValue) {
+      setSearchedResult([]);
+    }
+  }, [inputValue]);
 
   return (
     <Container>
@@ -44,7 +66,18 @@ function MealsSearch() {
             }}
           ></S.SearchInput>
         </S.SearchBox>
-        <S.SearchBtn type="submit">검색</S.SearchBtn>
+        <S.SearchBtn
+          onClick={() => {
+            if (inputRef.current) {
+              setInputValue(inputRef.current.value);
+              api.get(`/api/meal/${inputValue}`).then((res: any) => {
+                setSearchedResult(res.data);
+              });
+            }
+          }}
+        >
+          검색
+        </S.SearchBtn>
       </S.SearchContainer>
       <S.ButtonContainer>
         <S.SearchTabBtn
@@ -68,11 +101,13 @@ function MealsSearch() {
         </S.BookMarkTabBtn>
       </S.ButtonContainer>
       {isSearch ? (
-        <SearchUlWrapper food={searchedArr}></SearchUlWrapper>
+        <MealsSearchedList
+          inputValue={inputValue}
+          result={searchedResult}
+        ></MealsSearchedList>
       ) : (
-        <SearchUlWrapper food={bookMarkArr}></SearchUlWrapper>
+        <MealsBookMarkList></MealsBookMarkList>
       )}
-
       <Navbar />
     </Container>
   );

@@ -5,6 +5,7 @@ const Meal = model<MealData>('meals', MealSchema);
 
 export class MealModel {
   // 음식 이름 찾기
+
   async findByMealName(mealName: string): Promise<MealData[]> {
     const regex = new RegExp(`.*${mealName}.*`);
     // return await Meal.find({ name: { $regex: regex } }).lean();

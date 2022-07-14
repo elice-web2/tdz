@@ -1,48 +1,168 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import * as S from './style';
 import Container from '../../components/styles/Container';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faStar } from '@fortawesome/free-solid-svg-icons';
 import Navbar from '../../components/common/Navbar';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import * as api from '../../api';
+import { addMeals } from '../../slices/mealsSlice';
+import { useAppDispatch } from '../../hooks';
 
-interface testType {
+interface GetMealDataObj {
+  code: string;
   name: string;
   kcal: number;
-  carbon: number;
+  carb: number;
   protein: number;
   fat: number;
-  natrium: number;
-  transFat: number;
-  col: number;
-  saturatedFat: number;
-  gramPerQuantity: number;
+  natruim: number;
+  cholesterol: number;
+  transfat: number;
+  saturatedfatty: number;
+  servingSize: number;
+  quantity: number;
+  totalGram: number;
 }
 
 function MealsDetail() {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(1);
+  const [selected, setSelected] = useState('quantity');
+  const [foodInfo, setFoodInfo] = useState<GetMealDataObj>();
+  const [firstInfo, setFirstInfo] = useState<GetMealDataObj>();
+
   const navigate = useNavigate();
+  const params = useParams();
+  const selectRef = useRef<HTMLSelectElement>(null);
+  const dispatch = useAppDispatch();
 
-  const plusHandler = () => {
+  //DB에서 음식 정보 받아오기
+  useEffect(() => {
+    api.get(`/api/meal/${params.name}`).then((res: any) => {
+      const {
+        code,
+        name,
+        kcal,
+        carb,
+        protein,
+        fat,
+        natruim,
+        cholesterol,
+        transfat,
+        saturatedfatty,
+        servingSize,
+      } = res.data[0];
+
+      const nutrient = {
+        code,
+        name,
+        kcal,
+        carb,
+        protein,
+        fat,
+        natruim,
+        cholesterol,
+        transfat,
+        saturatedfatty,
+        servingSize,
+        quantity: 1,
+        totalGram: servingSize,
+      };
+      console.log(nutrient);
+      setFoodInfo(nutrient);
+      setFirstInfo(nutrient);
+    });
+  }, []);
+
+  function calcInfo(info: GetMealDataObj) {
+    if (firstInfo) {
+      info.kcal = Number((firstInfo?.kcal * count).toFixed(2));
+      info.carb = Number((firstInfo?.carb * count).toFixed(2));
+      info.protein = Number((firstInfo?.protein * count).toFixed(2));
+      info.fat = Number((firstInfo?.fat * count).toFixed(2));
+      info.natruim = Number((firstInfo?.natruim * count).toFixed(2));
+      info.cholesterol = Number((firstInfo?.cholesterol * count).toFixed(2));
+      info.transfat = Number((firstInfo?.transfat * count).toFixed(2));
+      info.saturatedfatty = Number(
+        (firstInfo?.saturatedfatty * count).toFixed(2),
+      );
+      info.quantity = count;
+      info.totalGram = Math.floor(firstInfo?.servingSize * count);
+    }
+    return info;
+  }
+
+  function calcInfoByGram(info: GetMealDataObj) {
+    if (firstInfo) {
+      const nutrientInfoPerGram = { ...firstInfo };
+      nutrientInfoPerGram.kcal = Number(
+        firstInfo?.kcal / firstInfo?.servingSize,
+      );
+      nutrientInfoPerGram.carb = Number(
+        firstInfo?.carb / firstInfo?.servingSize,
+      );
+      nutrientInfoPerGram.protein = Number(
+        firstInfo?.protein / firstInfo?.servingSize,
+      );
+      nutrientInfoPerGram.fat = Number(firstInfo?.fat / firstInfo?.servingSize);
+      nutrientInfoPerGram.natruim = Number(
+        firstInfo?.natruim / firstInfo?.servingSize,
+      );
+      nutrientInfoPerGram.transfat = Number(
+        firstInfo?.transfat / firstInfo?.servingSize,
+      );
+      nutrientInfoPerGram.saturatedfatty = Number(
+        firstInfo?.saturatedfatty / firstInfo?.servingSize,
+      );
+
+      info.kcal = Number((nutrientInfoPerGram.kcal * count).toFixed(2));
+      info.carb = Number((nutrientInfoPerGram.carb * count).toFixed(2));
+      info.protein = Number((nutrientInfoPerGram.protein * count).toFixed(2));
+      info.fat = Number((nutrientInfoPerGram.fat * count).toFixed(2));
+      info.natruim = Number((nutrientInfoPerGram.natruim * count).toFixed(2));
+      info.transfat = Number((nutrientInfoPerGram.transfat * count).toFixed(2));
+      info.saturatedfatty = Number(
+        (nutrientInfoPerGram.saturatedfatty * count).toFixed(2),
+      );
+      info.quantity = Number((count / firstInfo?.servingSize).toFixed(1));
+      info.totalGram = count;
+      return info;
+    }
+  }
+
+  useEffect(() => {
+    if (selected === 'quantity') {
+      setFoodInfo((cur: any) => {
+        const newObj = { ...cur };
+        return calcInfo(newObj);
+      });
+    } else {
+      setFoodInfo((cur: any) => {
+        const newObj = { ...cur };
+        return calcInfoByGram(newObj);
+      });
+    }
+  }, [count]);
+
+  useEffect(() => {
+    if (selected === 'quantity') {
+      setCount(1);
+    } else {
+      if (firstInfo) {
+        setCount(firstInfo?.servingSize);
+      }
+    }
+  }, [selected]);
+
+  function plusHandler() {
     setCount((cur) => cur + 1);
-  };
+  }
 
-  const minusHandler = () => {
-    setCount((cur) => cur - 1);
-  };
-
-  const obj: testType = {
-    name: '진라면',
-    kcal: 700,
-    carbon: 100,
-    protein: 20,
-    fat: 20,
-    natrium: 100,
-    transFat: 100,
-    col: 5,
-    saturatedFat: 10,
-    gramPerQuantity: 200,
-  };
+  function minusHandler() {
+    if (count !== 1) {
+      setCount((cur) => cur - 1);
+    }
+  }
 
   return (
     <Container>
@@ -62,56 +182,76 @@ function MealsDetail() {
               <FontAwesomeIcon icon={faStar} />
             </div>
           </S.IconBox>
-          <S.Title>{obj.name}</S.Title>
+          <S.Title>{foodInfo?.name}</S.Title>
           <S.MainNutrientBox>
             <div className="info-text">
               <p>칼로리</p>
-              <p>{obj.kcal}kcal</p>
+              <p>{foodInfo?.kcal}kcal</p>
             </div>
             <div className="info-text">
               <p>탄수화물</p>
-              <p>{obj.carbon}g</p>
+              <p>{foodInfo?.carb}g</p>
             </div>
             <div className="info-text">
               <p>단백질</p>
-              <p>{obj.protein}g</p>
+              <p>{foodInfo?.protein}g</p>
             </div>
             <div className="info-text">
               <p>지방</p>
-              <p>{obj.fat}g</p>
+              <p>{foodInfo?.fat}g</p>
             </div>
           </S.MainNutrientBox>
           <S.SubNutrientBox>
             <div className="sub-content">
               <p>나트륨</p>
-              <p>{obj.natrium}mg</p>
+              <p>{foodInfo?.natruim}mg</p>
             </div>
             <div className="sub-content">
               <p>콜레스테롤</p>
-              <p>{obj.col}mg</p>
+              <p>{foodInfo?.cholesterol}mg</p>
             </div>
 
             <div className="sub-content">
               <p>트랜스지방</p>
-              <p>{obj.transFat}g</p>
+              <p>{foodInfo?.transfat}g</p>
             </div>
             <div className="sub-content">
               <p>포화지방</p>
-              <p>{obj.saturatedFat}g</p>
+              <p>{foodInfo?.saturatedfatty}g</p>
             </div>
           </S.SubNutrientBox>
           <S.SelectBox>
-            <select>
-              <option value="quantity">1개({obj.gramPerQuantity}g)</option>
+            <select
+              ref={selectRef}
+              onChange={() => {
+                if (selectRef.current) {
+                  setSelected(selectRef.current.value);
+                }
+              }}
+            >
+              <option value="quantity">1개 ({foodInfo?.servingSize}g)</option>
               <option value="gram">g</option>
             </select>
             <div className="countBtnBox">
               <button onClick={minusHandler}>-</button>
-              <input type="number" value={count}></input>
+              <input
+                type="number"
+                value={count}
+                onChange={(e) => {
+                  setCount(parseInt(e.target.value));
+                }}
+              ></input>
               <button onClick={plusHandler}>+</button>
             </div>
           </S.SelectBox>
-          <S.AddBtn>식단 추가</S.AddBtn>
+          <S.AddBtn
+            onClick={() => {
+              foodInfo && dispatch(addMeals(foodInfo));
+              navigate('/meals/cart');
+            }}
+          >
+            식단 추가
+          </S.AddBtn>
         </S.MealsInfoBox>
       </S.MealsContainer>
       <Navbar />

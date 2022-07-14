@@ -1,33 +1,90 @@
 import * as S from './style';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faArrowRight,
-  faPlus,
-  faStar,
-} from '@fortawesome/free-solid-svg-icons';
+import { faArrowRight, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { useAppDispatch } from '../../../hooks';
+import NoSearched from '../NoSearched';
+import { useNavigate } from 'react-router-dom';
+import { addMeals } from '../../../slices/mealsSlice';
+import { addBookMark } from '../../../slices/bookMarkSlice';
+
+interface GetMealDataObj {
+  name: string;
+  code: string;
+  kcal: number;
+  carb: number;
+  protein: number;
+  fat: number;
+  natruim: number;
+  cholesterol: number;
+  transfat: number;
+  saturatedfatty: number;
+  servingSize: number;
+  quantity: number;
+  totalGram: number;
+}
 
 interface MealsSearchedListProps {
-  name: string;
+  result: GetMealDataObj[];
+  inputValue: string;
 }
 
-function MealsSearchedList({ name }: MealsSearchedListProps) {
+function MealsSearchedList({ inputValue, result }: MealsSearchedListProps) {
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
   return (
-    <S.List>
-      <S.NamedInfo>
-        <div className="title">{name}</div>
-        <span className="arrowIcon">
-          <FontAwesomeIcon icon={faArrowRight} />
-        </span>
-        <span className="plusIcon">
-          <FontAwesomeIcon icon={faPlus} />
-        </span>
-        <span className="starIcon">
-          <FontAwesomeIcon icon={faStar} />
-        </span>
-      </S.NamedInfo>
-      <S.QuanInfo>1인분</S.QuanInfo>
-    </S.List>
+    <S.SearchListContainer>
+      {result.length === 0 || !inputValue ? (
+        <NoSearched></NoSearched>
+      ) : (
+        result.map((food: GetMealDataObj) => {
+          return (
+            <S.List key={food.code}>
+              <S.NamedInfo>
+                <div
+                  className="title"
+                  onClick={() => {
+                    navigate(`/meals/detail/${food.name}`);
+                  }}
+                >
+                  {food.name}
+                </div>
+                <span
+                  className="arrowIcon"
+                  onClick={() => {
+                    navigate(`/meals/detail/${food.name}`);
+                  }}
+                >
+                  <FontAwesomeIcon icon={faArrowRight} />
+                </span>
+                <span
+                  className="plusIcon"
+                  onClick={() => {
+                    dispatch(addMeals(food));
+                    navigate('/meals/cart');
+                  }}
+                >
+                  <FontAwesomeIcon icon={faPlus} />
+                </span>
+                <span
+                  className="starIcon"
+                  onClick={() => {
+                    dispatch(
+                      addBookMark({
+                        meal_id: food.code,
+                      }),
+                    );
+                  }}
+                >
+                  <img src={require('../../../assets/blackStar.png')}></img>
+                </span>
+              </S.NamedInfo>
+              <S.QuanInfo>1인분</S.QuanInfo>
+            </S.List>
+          );
+        })
+      )}
+    </S.SearchListContainer>
   );
 }
-
 export default MealsSearchedList;

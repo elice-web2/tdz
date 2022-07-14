@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  width: 100%;
+  max-width: 420px;
   height: 100%;
 `;
 export const OutsideModal = styled.div`
@@ -45,7 +45,14 @@ export const Title = styled.h1`
   font-weight: bold;
   text-align: center;
 `;
-export const BtnContainer = styled.div`
+
+interface ButtonProps {
+  morning: boolean;
+  lunch: boolean;
+  dinner: boolean;
+  snacks: boolean;
+}
+export const BtnContainer = styled.div<ButtonProps>`
   display: flex;
   justify-content: center;
   gap: 15px;
@@ -58,9 +65,36 @@ export const BtnContainer = styled.div`
     height: 40px;
     border-radius: 10px;
     border: none;
-    background-color: ${({ theme }) => theme.mainColor.lighter};
     font-size: 16px;
     cursor: pointer;
+  }
+  .morning {
+    background-color: ${(props) =>
+      props.morning
+        ? props.theme.mainColor.normal
+        : props.theme.mainColor.lighter};
+    color: ${(props) => (props.morning ? 'white' : 'black')};
+  }
+  .lunch {
+    background-color: ${(props) =>
+      props.lunch
+        ? props.theme.mainColor.normal
+        : props.theme.mainColor.lighter};
+    color: ${(props) => (props.lunch ? 'white' : 'black')};
+  }
+  .dinner {
+    background-color: ${(props) =>
+      props.dinner
+        ? props.theme.mainColor.normal
+        : props.theme.mainColor.lighter};
+    color: ${(props) => (props.dinner ? 'white' : 'black')};
+  }
+  .snacks {
+    background-color: ${(props) =>
+      props.snacks
+        ? props.theme.mainColor.normal
+        : props.theme.mainColor.lighter};
+    color: ${(props) => (props.snacks ? 'white' : 'black')};
   }
 `;
 export const CompleteBtn = styled.button`
