@@ -26,13 +26,16 @@ function GoalUserInfoForm() {
       setMode('INC');
     }
   };
-  const activityHandler = (e: React.MouseEvent<HTMLDivElement>) => {
+  const activityHandler = (
+    e: React.MouseEvent<HTMLDivElement>,
+    activityMode: string,
+  ) => {
     const activeSelect = document.querySelector('.activeSelect');
-    if (e.currentTarget.childNodes[1].textContent === '많음') {
+    if (activityMode === 'MORE') {
       activeSelect?.classList.remove('activeSelect');
       e.currentTarget.classList.add('activeSelect');
       setActivity('MORE');
-    } else if (e.currentTarget.childNodes[1].textContent === '보통') {
+    } else if (activityMode === 'NORMAL') {
       activeSelect?.classList.remove('activeSelect');
       e.currentTarget.classList.add('activeSelect');
       setActivity('NORMAL');
@@ -41,14 +44,11 @@ function GoalUserInfoForm() {
       e.currentTarget.classList.add('activeSelect');
       setActivity('LESS');
     }
-    // console.log(e.currentTarget);
-    // console.log(e.currentTarget.getAttribute('activityMode'));
   };
   const genderHandler = (e: any) => {
     setGender(e.target.value);
   };
   const onSubmit = (data: any) => {
-    console.log(data);
     const usersEntry = {
       gender,
       age: data.age,
@@ -186,18 +186,27 @@ function GoalUserInfoForm() {
 
         <S.FlexContainer>
           활동량
-          <S.Activity onClick={activityHandler} activityMode="LESS">
+          <S.Activity
+            onClick={(e) => {
+              activityHandler(e, 'LESS');
+            }}
+          >
             <div className="emoji">{/* div태그 img로 바꾸기 나중에 */}</div>
             적음
           </S.Activity>
           <S.Activity
-            onClick={activityHandler}
+            onClick={(e) => {
+              activityHandler(e, 'NORMAL');
+            }}
             className="activeSelect"
-            activityMode="NORMAL"
           >
             <div className="emoji"></div>보통
           </S.Activity>
-          <S.Activity onClick={activityHandler} activityMode="MORE">
+          <S.Activity
+            onClick={(e) => {
+              activityHandler(e, 'MORE');
+            }}
+          >
             <div className="emoji"></div>많음
           </S.Activity>
         </S.FlexContainer>

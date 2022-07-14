@@ -87,7 +87,7 @@ export const StepCircle = styled.div<{ active?: boolean }>`
   background-color: ${(props) => (props.active ? 'grey' : 'lightgrey')};
   border-radius: 50%;
 `;
-export const Activity = styled.div<{ activityMode: string }>`
+export const Activity = styled.div`
   font-size: 12px;
   font-weight: 400;
 
