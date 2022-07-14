@@ -1,16 +1,15 @@
+import { calculatePercentage } from '../../../utils';
 import * as S from './style';
 
 interface ProgressbarProps {
   title: string;
-  percent: number;
-  currentValue: string;
-  goalValue: string;
+  currentValue: number;
+  goalValue: number;
   color: string;
 }
 
 function Progressbar({
   title,
-  percent,
   currentValue,
   goalValue,
   color,
@@ -19,9 +18,13 @@ function Progressbar({
     <S.Wrapper>
       <S.Title>{title}</S.Title>
       <S.ProgressContainer>
-        <S.Progress value={percent} max={100} progressColor={color} />
+        <S.Progress
+          value={calculatePercentage(currentValue, goalValue)}
+          max={100}
+          progressColor={color}
+        />
         <p>
-          {currentValue} / {goalValue}
+          {currentValue}g / {goalValue}g
         </p>
       </S.ProgressContainer>
     </S.Wrapper>

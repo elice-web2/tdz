@@ -53,7 +53,7 @@ const initialState: UsersInfoState = {
     profile_image: '',
     nickname: '',
     comment: '',
-    isLogin: false,
+    isLogin: Boolean(localStorage.getItem('login')),
   },
 };
 // Slice 작성 예시
@@ -125,10 +125,10 @@ export const UsersInfoSlice = createSlice({
       .addCase(postSignUpAsync.fulfilled, (state, action) => {
         state.value = { ...state.value, ...action.payload };
       })
-      .addCase(postLoginAsync.fulfilled, (state, action) => {
+      .addCase(postLoginAsync.fulfilled, (state) => {
         state.value.isLogin = true;
       })
-      .addCase(getLogOutAsync.fulfilled, (state, action) => {
+      .addCase(getLogOutAsync.fulfilled, (state) => {
         state.value.isLogin = false;
       })
       .addCase(getUsersInfoAsync.fulfilled, (state, action) => {
