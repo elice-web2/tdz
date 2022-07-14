@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import * as S from '../style';
+import { userCalories } from '../../../utils';
 
 function GoalUserInfoForm() {
   const {
@@ -49,14 +50,26 @@ function GoalUserInfoForm() {
     setGender(e.target.value);
   };
   const onSubmit = (data: any) => {
+    const age = data.age;
+    const height = data.height;
+    const current_weight = data.current_weight;
+    const kcalParam = { gender, age, current_weight, height, activity };
+    const kcal = userCalories(kcalParam);
+
     const usersEntry = {
       gender,
-      age: data.age,
-      height: data.height,
-      current_weight: data.current_weight,
+      age,
+      height,
+      current_weight,
       goal_weight: data.gaol_weight,
       mode,
       activity,
+      nutrient: {
+        kcal,
+        carb: 0,
+        protein: 0,
+        fat: 0,
+      },
     };
     localStorage.setItem('usersInfo', JSON.stringify(usersEntry));
     navigate('/mypage/goal_step2');
