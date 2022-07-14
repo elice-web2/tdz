@@ -26,7 +26,7 @@ export const Button = styled.input`
 
   cursor: pointer;
 `;
-export const Mode = styled.div<{ mode: string }>`
+export const Mode = styled.div`
   width: 50%;
   height: 100px;
 

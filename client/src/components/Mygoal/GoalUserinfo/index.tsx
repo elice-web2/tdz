@@ -14,10 +14,9 @@ function GoalUserInfoForm() {
   const [activity, setActivity] = useState('NORMAL');
   const [gender, setGender] = useState('MALE');
 
-  const selectHandler = (e: React.MouseEvent<HTMLDivElement>) => {
-    const getName = (name: string) => e.currentTarget.getAttribute(name);
+  const selectHandler = (e: React.MouseEvent<HTMLDivElement>, mode: string) => {
     const activeMode = document.querySelector('.acitveMode');
-    if (getName('mode') === 'DEC') {
+    if (mode === 'DEC') {
       activeMode?.classList.remove('acitveMode');
       e.currentTarget.classList.add('acitveMode');
       setMode('DEC');
@@ -168,10 +167,19 @@ function GoalUserInfoForm() {
           {errors.goal_weight && '올바른 체중 입력해주세요.'}
         </S.ErrorMessage>
         <S.FlexContainer className="mode">
-          <S.Mode onClick={selectHandler} className="acitveMode" mode="DEC">
+          <S.Mode
+            onClick={(e) => {
+              selectHandler(e, 'DEC');
+            }}
+            className="acitveMode"
+          >
             다이어트 식단
           </S.Mode>
-          <S.Mode onClick={selectHandler} mode="INC">
+          <S.Mode
+            onClick={(e) => {
+              selectHandler(e, 'INC');
+            }}
+          >
             증량 식단
           </S.Mode>
         </S.FlexContainer>
