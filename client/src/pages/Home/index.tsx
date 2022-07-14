@@ -22,6 +22,7 @@ interface mealsData {
 
 function Home() {
   const navigate = useNavigate();
+  const date = useAppSelector(({ date }) => date.value);
   const { nutrient } = useAppSelector(({ usersInfo }) => usersInfo.value);
   const [nutrientsSum, setNutrientsSum] = useState({
     kcal: 0,
@@ -56,8 +57,8 @@ function Home() {
   };
 
   useEffect(() => {
-    setNutrientsSumByDate('2022-07-13');
-  }, []);
+    setNutrientsSumByDate(date);
+  }, [date]);
 
   return (
     <Container>
