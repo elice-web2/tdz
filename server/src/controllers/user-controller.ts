@@ -149,8 +149,6 @@ const userUpdate = async function (
       toUpdate,
     );
 
-    console.log(updatedUserInfo);
-
     res.status(200).json(updatedUserInfo);
   } catch (error) {
     next(error);
@@ -188,6 +186,7 @@ const goalUpdate = async function (
     const profile_image: string = req.body.profile_image;
     const nickname: string = req.body.nickname;
     const comment: string = req.body.comment;
+    const is_login_first: string = req.body.is_login_first;
 
     // 위 데이터가 undefined가 아니라면, 즉, 프론트에서 업데이트를 위해
     // 보내주었다면, 업데이트용 객체에 삽입함.
@@ -204,6 +203,7 @@ const goalUpdate = async function (
       ...(profile_image && { profile_image }),
       ...(nickname && { nickname }),
       ...(comment && { comment }),
+      ...(is_login_first && { is_login_first }),
     };
 
     // 사용자 정보를 업데이트함.
@@ -211,8 +211,6 @@ const goalUpdate = async function (
       userId,
       toUpdate,
     );
-
-    console.log(updatedUserInfo);
 
     res.status(200).json(updatedUserInfo);
   } catch (error) {

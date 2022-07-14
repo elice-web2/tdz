@@ -50,6 +50,15 @@ const MealSchema = new Schema(
       type: Number,
       required: true,
     },
+    quantity: {
+      type: Number,
+      default: 1,
+      required: true,
+    },
+    totalGram: {
+      type: Number,
+      required: true,
+    },
     updated_date: {
       type: Date,
       required: true,

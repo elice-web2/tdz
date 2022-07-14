@@ -10,6 +10,9 @@ export interface mealInfo {
   cholesterol: Number;
   saturatedfatty: Number;
   transfat: Number;
+  servingSize: Number;
+  totalGram: Number;
+  quantity: Number;
   updated_date: Date;
 }
 

@@ -43,18 +43,22 @@ class MealHistoryController {
 
       // req (request) 에서 데이터 가져오기
 
-      const userId = req.currentUserId;
+      const userId = req.currentUserId!;
       const date: Date = new Date(req.body.date);
       const category: string = req.body.category;
       const meals: [mealInfo] = req.body.meals;
 
       // db에 저장
-      const newMealHistory = await mealhistoryService.addMealHistory({
-        userId,
+      const newMealHistory = await mealhistoryService.addMealHistory(
         date,
-        category,
-        meals,
-      });
+        userId,
+        {
+          userId,
+          date,
+          category,
+          meals,
+        },
+      );
 
       res.status(201).json(newMealHistory);
     } catch (error) {
@@ -95,11 +99,28 @@ class MealHistoryController {
     }
   }
 
-  async deletHistory(req: Request, res: Response, next: NextFunction) {
+  async deleteHistoryByMealHistoryId(
+    req: Request,
+    res: Response,
+    next: NextFunction,
+  ) {
     try {
       const mealhistoryId = req.params.mealhistoryId;
-      const deleteResult = await mealhistoryService.deleteMealHistory(
-        mealhistoryId,
+      const deleteResult =
+        await mealhistoryService.deleteMealHistoryByMealHistoryId(
+          mealhistoryId,
+        );
+      res.status(200).json(deleteResult);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async deleteHistoryByUserId(req: Request, res: Response, next: NextFunction) {
+    try {
+      const userId = req.currentUserId!;
+      const deleteResult = await mealhistoryService.deleteMealHistoryByUserId(
+        userId,
       );
       res.status(200).json(deleteResult);
     } catch (error) {

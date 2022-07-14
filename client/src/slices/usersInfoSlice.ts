@@ -53,7 +53,7 @@ const initialState: UsersInfoState = {
     profile_image: '',
     nickname: '',
     comment: '',
-    isLogin: false,
+    isLogin: Boolean(localStorage.getItem('login')),
   },
 };
 // Slice 작성 예시
@@ -93,6 +93,11 @@ async function postSignupData(usersInfo: postLoginSignup) {
 async function postLoginData(loginInfo: postLoginSignup) {
   await api.post('/api/auth/login', loginInfo);
 }
+// 로그아웃 get API 통신 함수
+async function getLogOut() {
+  const resp = await api.get('/api/auth/logout');
+  return resp;
+}
 // 회원정보 get API 통신 함수
 async function getUsersInfoData() {
   const resp = await api.get('/api/users');
@@ -123,6 +128,13 @@ export const postLoginAsync = createAsyncThunk(
     await postLoginData(loginInfo);
   },
 );
+export const getLogOutAsync = createAsyncThunk(
+  'usersInfo/getLogOut',
+  async () => {
+    const usersInfo = await getLogOut();
+    return usersInfo?.data;
+  },
+);
 export const getUsersInfoAsync = createAsyncThunk(
   'usersInfo/getUsersInfoData',
   async () => {
@@ -144,8 +156,11 @@ export const UsersInfoSlice = createSlice({
       .addCase(postSignUpAsync.fulfilled, (state, action) => {
         state.value = { ...state.value, ...action.payload };
       })
-      .addCase(postLoginAsync.fulfilled, (state, action) => {
+      .addCase(postLoginAsync.fulfilled, (state) => {
         state.value.isLogin = true;
+      })
+      .addCase(getLogOutAsync.fulfilled, (state) => {
+        state.value.isLogin = false;
       })
       .addCase(getUsersInfoAsync.fulfilled, (state, action) => {
         state.value = { ...state.value, ...action.payload };
