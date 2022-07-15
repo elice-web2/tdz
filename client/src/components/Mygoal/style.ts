@@ -1,6 +1,11 @@
 import styled, { css } from 'styled-components';
-export const ErrorMessage = styled.div`
-  margin-left: 60px;
+
+export const ErrorMessage = styled.div<{ page?: string }>`
+  margin-left: ${(props) => {
+    if (props.page === 'step2') return '0';
+    else if (props.page === 'step3') return '200px';
+    else return '60px';
+  }};
   font-size: 12px;
   color: red;
 `;
@@ -127,6 +132,9 @@ export const Title = styled.div<{ align?: string }>`
     font-weight: 400;
     text-align: center;
   }
+  &.marginTop {
+    margin-top: 80px;
+  }
   &.subCalorie:last-of-type {
     margin-bottom: 100px;
   }
@@ -150,7 +158,7 @@ export const InputTag = styled.input<{ widthSize: string }>`
       return css`
         width: 100%;
         height: 45px;
-        margin: 0 0 80px 0;
+        margin: 0 0 10px 0;
 
         font-size: 20px;
       `;

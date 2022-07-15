@@ -41,10 +41,7 @@ function GoalCaloriesForm() {
           {...register('kcal', {
             required: true,
             minLength: 2,
-            maxLength: {
-              value: 4,
-              message: '올바른 칼로리를 입력해주세요',
-            },
+            maxLength: 4,
           })}
           onChange={(e) => setKcal(Number(e.currentTarget.value))}
           name="kcal"

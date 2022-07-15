@@ -34,16 +34,16 @@ interface calculateTDZgramParam {
 export const calculateTDZgram = ({ kcal, mode }: calculateTDZgramParam) => {
   if (mode === 'INC') {
     const TDZ = {
-      protien: Math.floor((kcal * 0.4) / 4),
-      carb: Math.floor((kcal * 0.4) / 4),
-      fat: Math.floor((kcal * 0.2) / 9),
+      protien: Math.round((kcal * 0.4) / 4),
+      carb: Math.round((kcal * 0.4) / 4),
+      fat: Math.round((kcal * 0.2) / 9),
     };
     return TDZ;
   } else {
     const TDZ = {
-      protien: Math.floor((kcal * 0.5) / 4),
-      carb: Math.floor((kcal * 0.3) / 4),
-      fat: Math.floor((kcal * 0.2) / 9),
+      protien: Math.round((kcal * 0.5) / 4),
+      carb: Math.round((kcal * 0.3) / 4),
+      fat: Math.round((kcal * 0.2) / 9),
     };
     return TDZ;
   }

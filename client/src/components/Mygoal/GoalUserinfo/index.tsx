@@ -61,7 +61,7 @@ function GoalUserInfoForm() {
       age,
       height,
       current_weight,
-      goal_weight: data.gaol_weight,
+      goal_weight: data.goal_weight,
       mode,
       activity,
       nutrient: {
