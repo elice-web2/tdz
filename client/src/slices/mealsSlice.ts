@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import * as api from '../api';
-import { MealData } from '../customType/meal.type';
+import { MealInfo, MealData } from '../customType/meal.type';
 
 export interface MealsState {
   value: MealData[];

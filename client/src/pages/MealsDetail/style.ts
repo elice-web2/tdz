@@ -24,7 +24,9 @@ export const IconBox = styled.div`
     cursor: pointer;
   }
 
-  .star-icon {
+  .star-icon img {
+    width: 25px;
+    height: 25px;
     margin-right: 5px;
     color: yellow;
     cursor: pointer;

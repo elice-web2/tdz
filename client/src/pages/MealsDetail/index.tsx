@@ -15,20 +15,53 @@ function MealsDetail() {
   const [selected, setSelected] = useState('quantity');
   const [foodInfo, setFoodInfo] = useState<MealData>();
   const [firstInfo, setFirstInfo] = useState<MealData>();
+  const [isBookMark, setIsBookMark] = useState<boolean>();
 
   const navigate = useNavigate();
   const params = useParams();
   const selectRef = useRef<HTMLSelectElement>(null);
   const dispatch = useAppDispatch();
+  const responseRef = useRef<MealData>();
 
   //DB에서 음식 정보 받아오기
   useEffect(() => {
-    api.get(`/api/meal/${params.name}`).then((res: any) => {
-      console.log(res.data[0]);
-      setFoodInfo(res.data[0]);
-      setFirstInfo(res.data[0]);
-    });
+    (async () => {
+      const res = await api.get(`/api/meal/${params.name}`);
+      console.log(res?.data[0]);
+      setFoodInfo(res?.data[0]);
+      setFirstInfo(res?.data[0]);
+      responseRef.current = res?.data[0];
+      if (responseRef.current) {
+        const bookMark = await api.get(
+          `/api/favorites/${responseRef.current._id}`,
+        );
+        if (!bookMark) {
+          setIsBookMark(false);
+          console.log('마킹상태F');
+        } else {
+          setIsBookMark(true);
+          console.log('마킹상태T');
+        }
+      }
+    })();
   }, []);
+
+  useEffect(() => {
+    (async () => {
+      if (responseRef.current) {
+        const bookMark = await api.get(
+          `/api/favorites/${responseRef.current._id}`,
+        );
+        if (!bookMark) {
+          setIsBookMark(false);
+          console.log('마킹상태F');
+        } else {
+          setIsBookMark(true);
+          console.log('마킹상태T');
+        }
+      }
+    })();
+  }, [isBookMark]);
 
   function calcInfo(info: MealInfo) {
     if (firstInfo) {
@@ -107,6 +140,20 @@ function MealsDetail() {
     }
   }
 
+  function markingHandler(id: string) {
+    if (isBookMark) {
+      //즐겨찾기 delete요청
+      api.delete(`/api/favorites/${id}`).then((res) => {
+        setIsBookMark(false);
+      });
+    } else {
+      //즐겨찾기 post 요청
+      api
+        .post('/api/favorites', { meal_id: id })
+        .then((res) => setIsBookMark(true));
+    }
+  }
+
   return (
     <Container>
       <S.MealsContainer>
@@ -121,8 +168,17 @@ function MealsDetail() {
               <FontAwesomeIcon icon={faArrowLeft} />
             </div>
 
-            <div className="star-icon">
-              <FontAwesomeIcon icon={faStar} />
+            <div
+              className="star-icon"
+              onClick={() => {
+                if (foodInfo) markingHandler(foodInfo?._id);
+              }}
+            >
+              {isBookMark ? (
+                <img src={require('../../assets/YellowStar.png')}></img>
+              ) : (
+                <img src={require('../../assets/blackStar.png')}></img>
+              )}
             </div>
           </S.IconBox>
           <S.Title>{foodInfo?.name}</S.Title>

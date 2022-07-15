@@ -6,7 +6,10 @@ import NoSearched from '../NoSearched';
 import { useNavigate } from 'react-router-dom';
 import { addMeals } from '../../../slices/mealsSlice';
 import { addBookMark } from '../../../slices/bookMarkSlice';
-import { MealData } from '../../../customType/meal.type';
+import * as api from '../../../api';
+import { MealInfo, MealData } from '../../../customType/meal.type';
+import { useEffect, useState } from 'react';
+import { set } from 'immer/dist/internal';
 
 interface MealsSearchedListProps {
   result: MealData[];
@@ -14,8 +17,35 @@ interface MealsSearchedListProps {
 }
 
 function MealsSearchedList({ inputValue, result }: MealsSearchedListProps) {
+  const [isBookMarked, setIsBookMarked] = useState(false);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    (async () => {
+      result.map((meal) => {
+        api.get(`/api/favorites/${meal._id}`).then((res) => {
+          if (!res) {
+            setIsBookMarked(false);
+          } else {
+            setIsBookMarked(true);
+          }
+        });
+      });
+    })();
+  }, [result]);
+
+  function bookmarkHandler(id: string) {
+    if (isBookMarked) {
+      api.delete(`/api/favorites/${id}`).then((res) => {
+        setIsBookMarked(false);
+      });
+    } else {
+      api.post('/api/favorites', { meal_id: id }).then((res) => {
+        setIsBookMarked(true);
+      });
+    }
+  }
 
   return (
     <S.SearchListContainer>
@@ -54,14 +84,16 @@ function MealsSearchedList({ inputValue, result }: MealsSearchedListProps) {
                 <span
                   className="starIcon"
                   onClick={() => {
-                    dispatch(
-                      addBookMark({
-                        meal_id: food.code,
-                      }),
-                    );
+                    bookmarkHandler(food._id);
                   }}
                 >
-                  <img src={require('../../../assets/blackStar.png')}></img>
+                  <img
+                    src={
+                      isBookMarked
+                        ? require('../../../assets/YellowStar.png')
+                        : require('../../../assets/blackStar.png')
+                    }
+                  ></img>
                 </span>
               </S.NamedInfo>
               <S.QuanInfo>1인분</S.QuanInfo>

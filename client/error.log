@@ -374,3 +374,445 @@ TypeError: Cannot read properties of undefined (reading 'length')
     at async MealService.findMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:13:24)
     at async getMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\meal-controller.ts:9:24)
 
+[2022-7-15 15:32:8] POST:/api/favorites
+Error: 이미 즐겨찾기에 등록된 식단입니다
+    at add (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\favorite-controller.ts:26:13)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+
+[2022-7-15 16:2:1] GET:/api/favorites/undefined
+CastError: Cast to ObjectId failed for value "undefined" (type string) at path "meal_id" for model "favorites"
+    at model.Query.exec (C:\Users\Administrator\Desktop\project\TDZ\server\node_modules\mongoose\lib\query.js:4498:21)
+    at model.Query.Query.then (C:\Users\Administrator\Desktop\project\TDZ\server\node_modules\mongoose\lib\query.js:4592:15)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+
+[2022-7-15 16:2:27] GET:/api/favorites/undefined
+CastError: Cast to ObjectId failed for value "undefined" (type string) at path "meal_id" for model "favorites"
+    at model.Query.exec (C:\Users\Administrator\Desktop\project\TDZ\server\node_modules\mongoose\lib\query.js:4498:21)
+    at model.Query.Query.then (C:\Users\Administrator\Desktop\project\TDZ\server\node_modules\mongoose\lib\query.js:4592:15)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+
+[2022-7-15 16:2:32] GET:/api/favorites/undefined
+CastError: Cast to ObjectId failed for value "undefined" (type string) at path "meal_id" for model "favorites"
+    at model.Query.exec (C:\Users\Administrator\Desktop\project\TDZ\server\node_modules\mongoose\lib\query.js:4498:21)
+    at model.Query.Query.then (C:\Users\Administrator\Desktop\project\TDZ\server\node_modules\mongoose\lib\query.js:4592:15)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+
+[2022-7-15 16:4:51] GET:/api/favorites/undefined
+CastError: Cast to ObjectId failed for value "undefined" (type string) at path "meal_id" for model "favorites"
+    at model.Query.exec (C:\Users\Administrator\Desktop\project\TDZ\server\node_modules\mongoose\lib\query.js:4498:21)
+    at model.Query.Query.then (C:\Users\Administrator\Desktop\project\TDZ\server\node_modules\mongoose\lib\query.js:4592:15)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+
+[2022-7-15 16:6:58] GET:/api/favorites/62d03cdcac2e4a4928ad2386
+Error: 해당 식단에 관련한 즐겨찾기 정보가 없습니다.
+    at favorite (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\favorite-controller.ts:82:13)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+
+[2022-7-15 16:9:21] GET:/api/favorites/62d03cdcac2e4a4928ad2386
+Error: 해당 식단에 관련한 즐겨찾기 정보가 없습니다.
+    at favorite (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\favorite-controller.ts:82:13)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+
+[2022-7-15 16:10:6] GET:/api/favorites/62d03cdcac2e4a4928ad2386
+Error: 해당 식단에 관련한 즐겨찾기 정보가 없습니다.
+    at favorite (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\favorite-controller.ts:82:13)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+
+[2022-7-15 16:10:43] GET:/api/favorites/62d015dbd5875f76f8dea840
+Error: 해당 식단에 관련한 즐겨찾기 정보가 없습니다.
+    at favorite (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\favorite-controller.ts:82:13)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+
+[2022-7-15 16:15:48] GET:/api/favorites/undefined
+CastError: Cast to ObjectId failed for value "undefined" (type string) at path "meal_id" for model "favorites"
+    at model.Query.exec (C:\Users\Administrator\Desktop\project\TDZ\server\node_modules\mongoose\lib\query.js:4498:21)
+    at model.Query.Query.then (C:\Users\Administrator\Desktop\project\TDZ\server\node_modules\mongoose\lib\query.js:4592:15)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+
+[2022-7-15 16:15:49] GET:/api/favorites/undefined
+CastError: Cast to ObjectId failed for value "undefined" (type string) at path "meal_id" for model "favorites"
+    at model.Query.exec (C:\Users\Administrator\Desktop\project\TDZ\server\node_modules\mongoose\lib\query.js:4498:21)
+    at model.Query.Query.then (C:\Users\Administrator\Desktop\project\TDZ\server\node_modules\mongoose\lib\query.js:4592:15)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+
+[2022-7-15 16:15:59] GET:/api/favorites/undefined
+CastError: Cast to ObjectId failed for value "undefined" (type string) at path "meal_id" for model "favorites"
+    at model.Query.exec (C:\Users\Administrator\Desktop\project\TDZ\server\node_modules\mongoose\lib\query.js:4498:21)
+    at model.Query.Query.then (C:\Users\Administrator\Desktop\project\TDZ\server\node_modules\mongoose\lib\query.js:4592:15)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+
+[2022-7-15 16:26:10] POST:/api/favorites
+Error: 이미 즐겨찾기에 등록된 식단입니다
+    at add (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\favorite-controller.ts:26:13)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+
+[2022-7-15 16:47:31] GET:/api/favorites/62d03cdcac2e4a4928ad2372
+Error: 해당 식단에 관련한 즐겨찾기 정보가 없습니다.
+    at favorite (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\favorite-controller.ts:82:13)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+
+[2022-7-15 16:47:31] GET:/api/favorites/62d03cdcac2e4a4928ad2372
+Error: 해당 식단에 관련한 즐겨찾기 정보가 없습니다.
+    at favorite (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\favorite-controller.ts:82:13)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+
+[2022-7-15 16:48:32] GET:/api/favorites/62d03cdcac2e4a4928ad2372
+Error: 해당 식단에 관련한 즐겨찾기 정보가 없습니다.
+    at favorite (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\favorite-controller.ts:82:13)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+
+[2022-7-15 16:48:32] GET:/api/favorites/62d03cdcac2e4a4928ad2372
+Error: 해당 식단에 관련한 즐겨찾기 정보가 없습니다.
+    at favorite (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\favorite-controller.ts:82:13)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+
+[2022-7-15 16:48:36] GET:/api/favorites/62d03cdcac2e4a4928ad2372
+Error: 해당 식단에 관련한 즐겨찾기 정보가 없습니다.
+    at favorite (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\favorite-controller.ts:82:13)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+
+[2022-7-15 16:48:37] GET:/api/favorites/62d03cdcac2e4a4928ad2372
+Error: 해당 식단에 관련한 즐겨찾기 정보가 없습니다.
+    at favorite (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\favorite-controller.ts:82:13)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+
+[2022-7-15 16:50:39] GET:/api/favorites/62d03cdcac2e4a4928ad2372
+Error: 해당 식단에 관련한 즐겨찾기 정보가 없습니다.
+    at favorite (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\favorite-controller.ts:82:13)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+
+[2022-7-15 16:50:39] GET:/api/favorites/62d03cdcac2e4a4928ad2372
+Error: 해당 식단에 관련한 즐겨찾기 정보가 없습니다.
+    at favorite (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\favorite-controller.ts:82:13)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+
+[2022-7-15 16:51:11] GET:/api/favorites/62d03cdcac2e4a4928ad2372
+Error: 해당 식단에 관련한 즐겨찾기 정보가 없습니다.
+    at favorite (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\favorite-controller.ts:82:13)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+
+[2022-7-15 16:52:46] GET:/api/favorites/62d015f10496613e9cfe7e7f
+Error: 해당 식단에 관련한 즐겨찾기 정보가 없습니다.
+    at favorite (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\favorite-controller.ts:82:13)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+
+[2022-7-15 16:52:59] GET:/api/favorites/62d015f10496613e9cfe7e7f
+Error: 해당 식단에 관련한 즐겨찾기 정보가 없습니다.
+    at favorite (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\favorite-controller.ts:82:13)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+
+[2022-7-15 16:52:59] GET:/api/favorites/62d015f10496613e9cfe7e7f
+Error: 해당 식단에 관련한 즐겨찾기 정보가 없습니다.
+    at favorite (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\favorite-controller.ts:82:13)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+
+[2022-7-15 17:10:43] GET:/api/favorites/62d015dbd5875f76f8dea842
+Error: 해당 식단에 관련한 즐겨찾기 정보가 없습니다.
+    at favorite (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\favorite-controller.ts:82:13)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+
+[2022-7-15 17:10:43] GET:/api/favorites/62d015dbd5875f76f8dea842
+Error: 해당 식단에 관련한 즐겨찾기 정보가 없습니다.
+    at favorite (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\favorite-controller.ts:82:13)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+
+[2022-7-15 17:14:57] GET:/api/favorites/62d015dad5875f76f8dea838
+Error: 해당 식단에 관련한 즐겨찾기 정보가 없습니다.
+    at favorite (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\favorite-controller.ts:82:13)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+
+[2022-7-15 17:14:57] GET:/api/favorites/62d015dad5875f76f8dea838
+Error: 해당 식단에 관련한 즐겨찾기 정보가 없습니다.
+    at favorite (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\favorite-controller.ts:82:13)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+
+[2022-7-15 17:15:34] GET:/api/favorites/62d015dbd5875f76f8dea842
+Error: 해당 식단에 관련한 즐겨찾기 정보가 없습니다.
+    at favorite (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\favorite-controller.ts:82:13)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+
+[2022-7-15 17:15:34] GET:/api/favorites/62d015dbd5875f76f8dea842
+Error: 해당 식단에 관련한 즐겨찾기 정보가 없습니다.
+    at favorite (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\favorite-controller.ts:82:13)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+
+[2022-7-15 17:15:41] GET:/api/favorites/62d015f10496613e9cfe7e7f
+Error: 해당 식단에 관련한 즐겨찾기 정보가 없습니다.
+    at favorite (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\favorite-controller.ts:82:13)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+
+[2022-7-15 17:15:41] GET:/api/favorites/62d015f10496613e9cfe7e7f
+Error: 해당 식단에 관련한 즐겨찾기 정보가 없습니다.
+    at favorite (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\favorite-controller.ts:82:13)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+
+[2022-7-15 17:25:9] GET:/api/favorites/undefined
+CastError: Cast to ObjectId failed for value "undefined" (type string) at path "meal_id" for model "favorites"
+    at model.Query.exec (C:\Users\Administrator\Desktop\project\TDZ\server\node_modules\mongoose\lib\query.js:4498:21)
+    at model.Query.Query.then (C:\Users\Administrator\Desktop\project\TDZ\server\node_modules\mongoose\lib\query.js:4592:15)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+
+[2022-7-15 17:25:32] GET:/api/favorites/62d03cdcac2e4a4928ad2372
+Error: 해당 식단에 관련한 즐겨찾기 정보가 없습니다.
+    at favorite (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\favorite-controller.ts:82:13)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+
+[2022-7-15 17:26:40] GET:/api/favorites/62d03cdcac2e4a4928ad2372
+Error: 해당 식단에 관련한 즐겨찾기 정보가 없습니다.
+    at favorite (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\favorite-controller.ts:82:13)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+
+[2022-7-15 17:28:2] GET:/api/favorites/62d03cdcac2e4a4928ad2372
+Error: 해당 식단에 관련한 즐겨찾기 정보가 없습니다.
+    at favorite (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\favorite-controller.ts:82:13)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+
+[2022-7-15 17:32:5] GET:/api/favorites/62d03cdcac2e4a4928ad2372
+Error: 해당 식단에 관련한 즐겨찾기 정보가 없습니다.
+    at favorite (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\favorite-controller.ts:82:13)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+
+[2022-7-15 17:33:49] GET:/api/favorites/62d03cdcac2e4a4928ad2372
+Error: 해당 식단에 관련한 즐겨찾기 정보가 없습니다.
+    at favorite (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\favorite-controller.ts:82:13)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+
+[2022-7-15 17:33:59] GET:/api/favorites/62d057e7f3262756f4b24d02
+Error: 해당 식단에 관련한 즐겨찾기 정보가 없습니다.
+    at favorite (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\favorite-controller.ts:82:13)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+
+[2022-7-15 17:33:59] GET:/api/favorites/62d057e7f3262756f4b24d16
+Error: 해당 식단에 관련한 즐겨찾기 정보가 없습니다.
+    at favorite (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\favorite-controller.ts:82:13)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+
+[2022-7-15 17:34:12] GET:/api/favorites/62d02a99199fd052e4071338
+Error: 해당 식단에 관련한 즐겨찾기 정보가 없습니다.
+    at favorite (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\favorite-controller.ts:82:13)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+
+[2022-7-15 17:34:13] GET:/api/favorites/62d02a99199fd052e4071338
+Error: 해당 식단에 관련한 즐겨찾기 정보가 없습니다.
+    at favorite (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\favorite-controller.ts:82:13)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+
+[2022-7-15 17:34:13] GET:/api/favorites/62d02a99199fd052e4071338
+Error: 해당 식단에 관련한 즐겨찾기 정보가 없습니다.
+    at favorite (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\favorite-controller.ts:82:13)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+
+[2022-7-15 17:39:30] GET:/api/favorites/62d03cdcac2e4a4928ad2372
+Error: 해당 식단에 관련한 즐겨찾기 정보가 없습니다.
+    at favorite (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\favorite-controller.ts:82:13)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+
+[2022-7-15 18:0:8] GET:/api/meal/%EB%9D%BC%E3%85%81
+TypeError: Cannot read properties of undefined (reading 'row')
+    at MealService.addMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:42:37)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async MealService.findMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:13:24)
+    at async getMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\meal-controller.ts:9:24)
+
+[2022-7-15 18:0:10] GET:/api/meal/%EB%9D%BC%EB%A9%B0
+TypeError: Cannot read properties of undefined (reading 'length')
+    at MealService.addMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:44:38)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async MealService.findMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:13:24)
+    at async getMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\meal-controller.ts:9:24)
+
+[2022-7-15 18:0:10] GET:/api/meal/%EB%9D%BC%EB%A9%B0
+TypeError: Cannot read properties of undefined (reading 'row')
+    at MealService.addMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:42:37)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async MealService.findMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:13:24)
+    at async getMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\meal-controller.ts:9:24)
+
+[2022-7-15 18:0:10] GET:/api/meal/%EB%9D%BC%EB%A9%B0
+TypeError: Cannot read properties of undefined (reading 'row')
+    at MealService.addMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:42:37)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async MealService.findMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:13:24)
+    at async getMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\meal-controller.ts:9:24)
+
+[2022-7-15 18:0:12] GET:/api/meal/%EB%9D%BC%EB%A9%B0
+TypeError: Cannot read properties of undefined (reading 'length')
+    at MealService.addMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:44:38)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async MealService.findMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:13:24)
+    at async getMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\meal-controller.ts:9:24)
+
+[2022-7-15 18:0:16] GET:/api/meal/%EB%9D%BC
+Error: 라을 조회할 수 없습니다.
+    at MealService.findMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:17:15)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async getMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\meal-controller.ts:9:24)
+
+[2022-7-15 18:0:17] GET:/api/meal/%EB%9D%BC%EB%A9%B0
+TypeError: Cannot read properties of undefined (reading 'row')
+    at MealService.addMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:42:37)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async MealService.findMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:13:24)
+    at async getMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\meal-controller.ts:9:24)
+
+[2022-7-15 18:0:17] GET:/api/meal/%EB%9D%BC%E3%85%81
+TypeError: Cannot read properties of undefined (reading 'row')
+    at MealService.addMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:42:37)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async MealService.findMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:13:24)
+    at async getMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\meal-controller.ts:9:24)
+
+[2022-7-15 18:0:29] GET:/api/meal/%EB%9D%BC
+TypeError: Cannot read properties of undefined (reading 'row')
+    at MealService.addMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:42:37)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async MealService.findMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:13:24)
+    at async getMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\meal-controller.ts:9:24)
+
+[2022-7-15 18:0:29] GET:/api/meal/%EB%9D%BC
+TypeError: Cannot read properties of undefined (reading 'row')
+    at MealService.addMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:42:37)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async MealService.findMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:13:24)
+    at async getMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\meal-controller.ts:9:24)
+
+[2022-7-15 18:0:29] GET:/api/meal/%EB%9D%BC
+TypeError: Cannot read properties of undefined (reading 'row')
+    at MealService.addMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:42:37)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async MealService.findMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:13:24)
+    at async getMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\meal-controller.ts:9:24)
+
+[2022-7-15 18:0:31] GET:/api/meal/%EB%9D%BC
+Error: 라을 조회할 수 없습니다.
+    at MealService.findMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:17:15)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async getMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\meal-controller.ts:9:24)
+
+[2022-7-15 18:0:31] GET:/api/meal/%EB%9D%BC
+TypeError: Cannot read properties of undefined (reading 'row')
+    at MealService.addMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:42:37)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async MealService.findMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:13:24)
+    at async getMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\meal-controller.ts:9:24)
+
+[2022-7-15 18:0:32] GET:/api/meal/%EB%9D%BC
+TypeError: Cannot read properties of undefined (reading 'row')
+    at MealService.addMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:42:37)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async MealService.findMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:13:24)
+    at async getMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\meal-controller.ts:9:24)
+
+[2022-7-15 18:0:32] GET:/api/meal/%EB%9E%8C
+TypeError: Cannot read properties of undefined (reading 'row')
+    at MealService.addMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:42:37)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async MealService.findMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:13:24)
+    at async getMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\meal-controller.ts:9:24)
+
+[2022-7-15 18:0:32] GET:/api/meal/%EB%9D%BC%EB%A9%B0
+TypeError: Cannot read properties of undefined (reading 'row')
+    at MealService.addMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:42:37)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async MealService.findMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:13:24)
+    at async getMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\meal-controller.ts:9:24)
+
+[2022-7-15 18:0:34] GET:/api/meal/%E3%84%B9
+TypeError: Cannot read properties of undefined (reading 'length')
+    at MealService.addMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:44:38)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async MealService.findMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:13:24)
+    at async getMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\meal-controller.ts:9:24)
+
+[2022-7-15 18:0:39] GET:/api/meal/%EB%9D%BC
+Error: 라을 조회할 수 없습니다.
+    at MealService.findMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:17:15)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async getMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\meal-controller.ts:9:24)
+
+[2022-7-15 18:0:48] GET:/api/meal/%EB%9D%BC
+Error: 라을 조회할 수 없습니다.
+    at MealService.findMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:17:15)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async getMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\meal-controller.ts:9:24)
+
+[2022-7-15 18:7:37] GET:/api/favorites/62d057e7f3262756f4b24d02
+Error: 해당 식단에 관련한 즐겨찾기 정보가 없습니다.
+    at favorite (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\favorite-controller.ts:82:13)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+
+[2022-7-15 18:7:37] GET:/api/favorites/62d057e7f3262756f4b24d16
+Error: 해당 식단에 관련한 즐겨찾기 정보가 없습니다.
+    at favorite (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\favorite-controller.ts:82:13)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+
+[2022-7-15 18:11:18] GET:/api/meal/%ED%94%BC%EC%9E%90
+Error: 피자을 조회할 수 없습니다.
+    at MealService.findMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:17:15)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async getMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\meal-controller.ts:9:24)
+
+[2022-7-15 18:11:22] GET:/api/meal/%ED%94%BC%EC%9E%90
+Error: 피자을 조회할 수 없습니다.
+    at MealService.findMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:17:15)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async getMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\meal-controller.ts:9:24)
+
+[2022-7-15 18:56:31] GET:/api/favorites/62d015f10496613e9cfe7e7f
+Error: 해당 식단에 관련한 즐겨찾기 정보가 없습니다.
+    at favorite (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\favorite-controller.ts:82:13)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+
+[2022-7-15 18:56:37] GET:/api/favorites/62d015dbd5875f76f8dea842
+Error: 해당 식단에 관련한 즐겨찾기 정보가 없습니다.
+    at favorite (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\favorite-controller.ts:82:13)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+
+[2022-7-15 18:56:44] GET:/api/favorites/62d015f10496613e9cfe7e7f
+Error: 해당 식단에 관련한 즐겨찾기 정보가 없습니다.
+    at favorite (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\favorite-controller.ts:82:13)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+

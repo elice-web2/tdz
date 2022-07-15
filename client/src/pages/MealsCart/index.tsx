@@ -10,6 +10,7 @@ import MealsCartList from '../../components/MealsCart/MealsCartList';
 import { useAppSelector } from '../../hooks';
 import * as api from '../../api';
 import Container from '../../components/styles/Container';
+import { MealData } from '../../customType/meal.type';
 import EmptyCart from '../../../src/components/MealsCart/EmptyCart';
 
 interface TestType {

@@ -21,9 +21,22 @@ function MealsSearch() {
     }
   }, [inputValue]);
 
+  function inputSubmitHandler() {
+    if (inputRef.current) {
+      setInputValue(inputRef.current.value);
+      api.get(`/api/meal/${inputValue}`).then((res: any) => {
+        setSearchedResult(res.data);
+      });
+    }
+  }
+
   return (
     <Container>
-      <S.SearchContainer>
+      <S.SearchForm
+        onSubmit={(e) => {
+          e.preventDefault();
+        }}
+      >
         <S.SearchBox>
           <span className="searchIcon">
             <FontAwesomeIcon icon={faMagnifyingGlass} />
@@ -49,21 +62,16 @@ function MealsSearch() {
             onFocus={() => {
               setIsSearch(true);
             }}
+            onKeyPress={(e) => {
+              e.preventDefault();
+              if (e.key === 'Enter') {
+                inputSubmitHandler();
+              }
+            }}
           ></S.SearchInput>
         </S.SearchBox>
-        <S.SearchBtn
-          onClick={() => {
-            if (inputRef.current) {
-              setInputValue(inputRef.current.value);
-              api.get(`/api/meal/${inputValue}`).then((res: any) => {
-                setSearchedResult(res.data);
-              });
-            }
-          }}
-        >
-          검색
-        </S.SearchBtn>
-      </S.SearchContainer>
+        <S.SearchBtn onClick={() => inputSubmitHandler()}>검색</S.SearchBtn>
+      </S.SearchForm>
       <S.ButtonContainer>
         <S.SearchTabBtn
           isSearch={isSearch}

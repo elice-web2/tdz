@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-export const SearchContainer = styled.div`
+export const SearchForm = styled.form`
   display: flex;
   align-items: center;
   width: 420px;

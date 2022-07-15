@@ -5,6 +5,7 @@ import MealsCart from './pages/MealsCart';
 import MealsDetail from './pages/MealsDetail';
 import MealsList from './pages/MealsList';
 import MealsSearch from './pages/MealsSearch';
+import MealsEnroll from './pages/MealsEnroll';
 import GoalCalories from './pages/Mygoal/GoalCalories';
 import GoalNutrient from './pages/Mygoal/GoalNutrient';
 import GoalUserInfo from './pages/Mygoal/GoalUserInfo';
@@ -30,6 +31,10 @@ export const ROUTES = {
   MealsSearch: {
     path: '/meals/search',
     element: <MealsSearch />,
+  },
+  MealsEnroll: {
+    path: '/meals/enroll',
+    element: <MealsEnroll />,
   },
   MealsCart: {
     path: '/meals/cart',
@@ -90,6 +95,10 @@ export const ROUTES_NOT_LOGIN = {
   },
   MealsSearch: {
     path: '/meals/search',
+    element: loginPage,
+  },
+  MealsEnroll: {
+    path: '/meals/enroll',
     element: loginPage,
   },
   MealsCart: {
