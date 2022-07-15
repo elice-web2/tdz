@@ -1,5 +1,14 @@
 import styled, { css } from 'styled-components';
 
+export const ErrorMessage = styled.div<{ page?: string }>`
+  margin-left: ${(props) => {
+    if (props.page === 'step2') return '0';
+    else if (props.page === 'step3') return '200px';
+    else return '60px';
+  }};
+  font-size: 12px;
+  color: red;
+`;
 export const MyGoalWrapper = styled.div`
   position: relative;
 
@@ -11,6 +20,7 @@ export const MyGoalWrapper = styled.div`
 export const Button = styled.input`
   width: 220px;
   height: 30px;
+  margin-top: 5px;
 
   background-color: black;
   border-radius: 8px;
@@ -37,6 +47,11 @@ export const Mode = styled.div`
 
   & + & {
     margin-left: 20px;
+  }
+
+  &.acitveMode {
+    background-color: #8c9eff;
+    color: white;
   }
 `;
 
@@ -88,10 +103,17 @@ export const Activity = styled.div`
 
     width: 50px;
     height: 50px;
-    margin: 7px auto;
+    margin: 10px auto;
 
     background-color: lightgray;
     border-radius: 50%;
+  }
+  &.activeSelect {
+    font-size: 14px;
+    font-weight: 600;
+    .emoji {
+      background-color: black;
+    }
   }
 `;
 
@@ -109,6 +131,9 @@ export const Title = styled.div<{ align?: string }>`
   &.subCalorie {
     font-weight: 400;
     text-align: center;
+  }
+  &.marginTop {
+    margin-top: 80px;
   }
   &.subCalorie:last-of-type {
     margin-bottom: 100px;
@@ -133,7 +158,7 @@ export const InputTag = styled.input<{ widthSize: string }>`
       return css`
         width: 100%;
         height: 45px;
-        margin: 0 0 80px 0;
+        margin: 0 0 10px 0;
 
         font-size: 20px;
       `;
@@ -151,10 +176,14 @@ export const InputTag = styled.input<{ widthSize: string }>`
         width: 60%;
         height: 25px;
 
-        font-size: 12px;
+        font-size: 14px;
       `;
     }
   }}
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
   padding: 4px 8px;
 
   box-sizing: border-box;
