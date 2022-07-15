@@ -1019,3 +1019,9 @@ Error: 도토리을 조회할 수 없습니다.
     at processTicksAndRejections (node:internal/process/task_queues:96:5)
     at async getMeal (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\src\controllers\meal-controller.ts:9:24)
 
+[2022-7-15 15:20:7] DELETE:/api/favorites/:meal_id
+CastError: Cast to ObjectId failed for value ":meal_id" (type string) at path "meal_id" for model "favorites"
+    at model.Query.exec (/Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/mongoose/lib/query.js:4498:21)
+    at model.Query.Query.then (/Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/mongoose/lib/query.js:4592:15)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+

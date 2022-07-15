@@ -66,26 +66,45 @@ const favoriteList = async (
   }
 };
 
+//즐겨찾기 개별조회
 const favorite = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const favorite_id: string = req.params.favorite_id;
+    const meal_id: string = req.params.meal_id;
 
-    const oneFavorite = await favoriteService.getFavorite(favorite_id);
+    const favoriteInfo: FavoriteInfo = {
+      meal_id,
+      user_id: req.currentUserId!,
+    };
+
+    const oneFavorite = await favoriteService.findMealInFavorites(favoriteInfo);
+
+    if (!oneFavorite) {
+      throw new Error('해당 식단에 관련한 즐겨찾기 정보가 없습니다.');
+    }
+
     res.status(200).json(oneFavorite);
   } catch (error) {
     next(error);
   }
 };
 
+//즐겨찾기 개별 삭제
 const deleteFavorite = async (
   req: Request,
   res: Response,
   next: NextFunction,
 ) => {
   try {
-    const favorite_id: string = req.params.favorite_id;
+    const meal_id: string = req.params.meal_id;
 
-    const deleteFavorite = await favoriteService.deleteOneFavorite(favorite_id);
+    const favoriteInfo: FavoriteInfo = {
+      meal_id,
+      user_id: req.currentUserId!,
+    };
+
+    const deleteFavorite = await favoriteService.deleteOneFavorite(
+      favoriteInfo,
+    );
 
     if (!deleteFavorite.deletedCount) {
       throw new Error('즐겨찾기 개별 삭제가 실패했습니다.');
@@ -97,6 +116,7 @@ const deleteFavorite = async (
   }
 };
 
+//즐겨찾기 유저별 전체 삭제
 const deleteAllFavorites = async (
   req: Request,
   res: Response,

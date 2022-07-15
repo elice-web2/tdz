@@ -31,14 +31,21 @@ export class FavoriteModel {
         { user_id: favoriteInfo.user_id },
         { meal_id: favoriteInfo.meal_id },
       ],
-    });
+    })
+      .populate('meal_id')
+      .lean();
   }
 
   //즐겨찾기 하나 삭제
   async deleteOneFavorite(
-    favoriteId: string,
+    favoriteInfo: FavoriteInfo,
   ): Promise<{ deletedCount?: number }> {
-    return await Favorite.deleteOne({ _id: favoriteId });
+    return await Favorite.deleteOne({
+      $and: [
+        { user_id: favoriteInfo.user_id },
+        { meal_id: favoriteInfo.meal_id },
+      ],
+    });
   }
 
   //즐겨찾기 전체 삭제

@@ -8,9 +8,9 @@ const favoriteRouter: Router = Router();
 favoriteRouter.post('/', loginRequired, favoriteController.add);
 favoriteRouter.get('/list', adminRequired, favoriteController.allFavoriteList);
 favoriteRouter.get('/', loginRequired, favoriteController.favoriteList);
-favoriteRouter.get('/:favorite_id', loginRequired, favoriteController.favorite);
+favoriteRouter.get('/:meal_id', loginRequired, favoriteController.favorite);
 favoriteRouter.delete(
-  '/:favorite_id',
+  '/:meal_id',
   loginRequired,
   favoriteController.deleteFavorite,
 );
