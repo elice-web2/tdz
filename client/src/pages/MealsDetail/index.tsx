@@ -8,28 +8,13 @@ import { useNavigate, useParams } from 'react-router-dom';
 import * as api from '../../api';
 import { addMeals } from '../../slices/mealsSlice';
 import { useAppDispatch } from '../../hooks';
-
-interface GetMealDataObj {
-  code: string;
-  name: string;
-  kcal: number;
-  carb: number;
-  protein: number;
-  fat: number;
-  natruim: number;
-  cholesterol: number;
-  transfat: number;
-  saturatedfatty: number;
-  servingSize: number;
-  quantity: number;
-  totalGram: number;
-}
+import { MealData, MealInfo } from '../../customType/meal.type';
 
 function MealsDetail() {
   const [count, setCount] = useState(1);
   const [selected, setSelected] = useState('quantity');
-  const [foodInfo, setFoodInfo] = useState<GetMealDataObj>();
-  const [firstInfo, setFirstInfo] = useState<GetMealDataObj>();
+  const [foodInfo, setFoodInfo] = useState<MealData>();
+  const [firstInfo, setFirstInfo] = useState<MealData>();
 
   const navigate = useNavigate();
   const params = useParams();
@@ -39,42 +24,13 @@ function MealsDetail() {
   //DB에서 음식 정보 받아오기
   useEffect(() => {
     api.get(`/api/meal/${params.name}`).then((res: any) => {
-      const {
-        code,
-        name,
-        kcal,
-        carb,
-        protein,
-        fat,
-        natruim,
-        cholesterol,
-        transfat,
-        saturatedfatty,
-        servingSize,
-      } = res.data[0];
-
-      const nutrient = {
-        code,
-        name,
-        kcal,
-        carb,
-        protein,
-        fat,
-        natruim,
-        cholesterol,
-        transfat,
-        saturatedfatty,
-        servingSize,
-        quantity: 1,
-        totalGram: servingSize,
-      };
-      console.log(nutrient);
-      setFoodInfo(nutrient);
-      setFirstInfo(nutrient);
+      console.log(res.data[0]);
+      setFoodInfo(res.data[0]);
+      setFirstInfo(res.data[0]);
     });
   }, []);
 
-  function calcInfo(info: GetMealDataObj) {
+  function calcInfo(info: MealInfo) {
     if (firstInfo) {
       info.kcal = Number((firstInfo?.kcal * count).toFixed(2));
       info.carb = Number((firstInfo?.carb * count).toFixed(2));
@@ -92,7 +48,7 @@ function MealsDetail() {
     return info;
   }
 
-  function calcInfoByGram(info: GetMealDataObj) {
+  function calcInfoByGram(info: MealInfo) {
     if (firstInfo) {
       const nutrientInfoPerGram = { ...firstInfo };
       nutrientInfoPerGram.kcal = Number(
@@ -132,12 +88,12 @@ function MealsDetail() {
 
   useEffect(() => {
     if (selected === 'quantity') {
-      setFoodInfo((cur: any) => {
+      setFoodInfo((cur: any): any => {
         const newObj = { ...cur };
         return calcInfo(newObj);
       });
     } else {
-      setFoodInfo((cur: any) => {
+      setFoodInfo((cur: any): any => {
         const newObj = { ...cur };
         return calcInfoByGram(newObj);
       });

@@ -1,28 +1,13 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import * as api from '../api';
+import { MealData } from '../customType/meal.type';
 
 export interface MealsState {
-  value: MealInfoState[];
-}
-
-interface MealInfoState {
-  code: string;
-  kcal: number;
-  name: string;
-  carb: number;
-  protein: number;
-  fat: number;
-  natruim: number;
-  cholesterol: number;
-  transfat: number;
-  saturatedfatty: number;
-  servingSize: number;
-  quantity: number;
-  totalGram: number;
+  value: MealData[];
 }
 
 interface PostMealsDataParam {
-  meals: MealInfoState[];
+  meals: MealData[];
   category: string;
   date: string;
 }
@@ -37,13 +22,16 @@ async function postMealsData({ meals, category, date }: PostMealsDataParam) {
     category,
     date,
   };
-  await api.post('/mealhistory', mealsData);
+  const data = await api.post('/api/mealhistory', mealsData);
+  console.log('잘보냈어', data);
+  return data.data;
 }
 
 export const postMealsDataAsync = createAsyncThunk(
   'meals/postMealsData',
   async ({ meals, category, date }: PostMealsDataParam) => {
-    await postMealsData({ meals, category, date });
+    const data = await postMealsData({ meals, category, date });
+    return data;
   },
 );
 
@@ -51,7 +39,7 @@ export const mealsSlice = createSlice({
   name: 'meals',
   initialState,
   reducers: {
-    addMeals: (state, action: PayloadAction<MealInfoState>) => {
+    addMeals: (state, action: PayloadAction<MealData>) => {
       state.value.push(action.payload);
     },
     deleteMeals: (state, action: PayloadAction<string>) => {
@@ -59,16 +47,9 @@ export const mealsSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder
-      .addCase(postMealsDataAsync.pending, (state) => {
-        return;
-      })
-      .addCase(postMealsDataAsync.fulfilled, (state) => {
-        state.value = [];
-      })
-      .addCase(postMealsDataAsync.rejected, (state) => {
-        return;
-      });
+    builder.addCase(postMealsDataAsync.fulfilled, (state) => {
+      state.value = [];
+    });
   },
 });
 

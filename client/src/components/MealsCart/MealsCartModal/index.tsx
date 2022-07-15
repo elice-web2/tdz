@@ -1,24 +1,42 @@
 import * as S from './style';
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { postMealsDataAsync } from '../../../slices/mealsSlice';
+import { useAppDispatch, useAppSelector } from '../../../hooks';
+import { MealData } from '../../../customType/meal.type';
+import dayjs from 'dayjs';
 
 interface MealsCartModalProps {
   setOpenModal: (value: boolean) => void;
 }
 
+type selectedType = '아침' | '점심' | '저녁' | '간식' | '';
+
+interface postDataType {
+  date: string;
+  category: string;
+  meals: MealData[];
+}
+
 function MealsCartModal({ setOpenModal }: MealsCartModalProps) {
-  const morningRef = useRef<HTMLButtonElement>(null);
-  const lunchRef = useRef<HTMLButtonElement>(null);
-  const dinnerRef = useRef<HTMLButtonElement>(null);
-  const snacksRef = useRef<HTMLButtonElement>(null);
-  const [isMorning, setIsMorning] = useState(false);
-  const [isLunch, setIsLunch] = useState(false);
-  const [isDinner, setIsDinner] = useState(false);
-  const [isSnacks, setIsSnacks] = useState(false);
+  const [selected, setSelected] = useState<selectedType>('');
+  const [postData, setPostData] = useState<postDataType>();
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const meals = useAppSelector(({ meal }) => meal.value);
+  const postResultObj = {
+    date: dayjs().format('YYYY-MM-DD'),
+    meals,
+    category: selected,
+  };
+  console.log('보낼내용', postResultObj);
 
   function modalCloseHandler() {
     setOpenModal(false);
+  }
+
+  function clickSelectHandler(time: selectedType) {
+    setSelected(time);
   }
 
   return (
@@ -33,45 +51,44 @@ function MealsCartModal({ setOpenModal }: MealsCartModalProps) {
           X
         </S.XBtn>
         <S.Title>식사 종류</S.Title>
-        <S.BtnContainer
-          morning={isMorning}
-          lunch={isLunch}
-          dinner={isDinner}
-          snacks={isSnacks}
-        >
+        <S.BtnContainer>
           <button
-            className="morning"
-            ref={morningRef}
-            onClick={() => {
-              setIsMorning((cur) => !cur);
-            }}
+            style={
+              selected === '아침'
+                ? { background: '#8C9EFF' }
+                : { background: '#C0CFFF' }
+            }
+            onClick={() => clickSelectHandler('아침')}
           >
             아침
           </button>
           <button
-            className="lunch"
-            ref={lunchRef}
-            onClick={() => {
-              setIsLunch((cur) => !cur);
-            }}
+            style={
+              selected === '점심'
+                ? { background: '#8C9EFF' }
+                : { background: '#C0CFFF' }
+            }
+            onClick={() => clickSelectHandler('점심')}
           >
             점심
           </button>
           <button
-            className="dinner"
-            ref={dinnerRef}
-            onClick={() => {
-              setIsDinner((cur) => !cur);
-            }}
+            style={
+              selected === '저녁'
+                ? { background: '#8C9EFF' }
+                : { background: '#C0CFFF' }
+            }
+            onClick={() => clickSelectHandler('저녁')}
           >
             저녁
           </button>
           <button
-            className="snacks"
-            ref={snacksRef}
-            onClick={() => {
-              setIsSnacks((cur) => !cur);
-            }}
+            style={
+              selected === '간식'
+                ? { background: '#8C9EFF' }
+                : { background: '#C0CFFF' }
+            }
+            onClick={() => clickSelectHandler('간식')}
           >
             간식
           </button>
@@ -79,6 +96,7 @@ function MealsCartModal({ setOpenModal }: MealsCartModalProps) {
 
         <S.CompleteBtn
           onClick={() => {
+            dispatch(postMealsDataAsync(postResultObj));
             navigate('/meals');
           }}
         >

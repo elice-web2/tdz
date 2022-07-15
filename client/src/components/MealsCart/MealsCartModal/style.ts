@@ -46,13 +46,7 @@ export const Title = styled.h1`
   text-align: center;
 `;
 
-interface ButtonProps {
-  morning: boolean;
-  lunch: boolean;
-  dinner: boolean;
-  snacks: boolean;
-}
-export const BtnContainer = styled.div<ButtonProps>`
+export const BtnContainer = styled.div`
   display: flex;
   justify-content: center;
   gap: 15px;
@@ -67,34 +61,6 @@ export const BtnContainer = styled.div<ButtonProps>`
     border: none;
     font-size: 16px;
     cursor: pointer;
-  }
-  .morning {
-    background-color: ${(props) =>
-      props.morning
-        ? props.theme.mainColor.normal
-        : props.theme.mainColor.lighter};
-    color: ${(props) => (props.morning ? 'white' : 'black')};
-  }
-  .lunch {
-    background-color: ${(props) =>
-      props.lunch
-        ? props.theme.mainColor.normal
-        : props.theme.mainColor.lighter};
-    color: ${(props) => (props.lunch ? 'white' : 'black')};
-  }
-  .dinner {
-    background-color: ${(props) =>
-      props.dinner
-        ? props.theme.mainColor.normal
-        : props.theme.mainColor.lighter};
-    color: ${(props) => (props.dinner ? 'white' : 'black')};
-  }
-  .snacks {
-    background-color: ${(props) =>
-      props.snacks
-        ? props.theme.mainColor.normal
-        : props.theme.mainColor.lighter};
-    color: ${(props) => (props.snacks ? 'white' : 'black')};
   }
 `;
 export const CompleteBtn = styled.button`
