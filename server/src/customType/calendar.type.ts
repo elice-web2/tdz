@@ -1,5 +1,3 @@
-import { NumberList } from 'aws-sdk/clients/iot';
-
 export interface CalendarInfo {
   userId: string;
   date: Date;
@@ -43,7 +41,7 @@ export interface ToUpdate {
 }
 
 export interface CalendarToUpdate {
-  date?: Date;
+  isSuccess?: boolean;
   current_kcal?: Number;
   goal_kcal?: Number;
   mode?: string;

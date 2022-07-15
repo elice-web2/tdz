@@ -1,5 +1,10 @@
 import { CalendarModel, calendarModel } from '../db';
-import { CalendarInfo, CalendarData } from '../customType/calendar.type';
+import {
+  CalendarInfo,
+  CalendarData,
+  ToUpdate,
+  CalendarToUpdate,
+} from '../customType/calendar.type';
 
 class CalendarService {
   constructor(private calendarModel: CalendarModel) {}
@@ -23,6 +28,18 @@ class CalendarService {
     return stamp;
   }
 
+  async getCalendarStampByDate(
+    userId: string,
+    date: Date,
+  ): Promise<CalendarData[]> {
+    const stamp = await this.calendarModel.findByDate(userId, date);
+
+    if (!stamp) {
+      throw new Error('해당 도장이 존재하지 않습니다.');
+    }
+    return stamp;
+  }
+
   async addCalendarStamp(calendarInfo: CalendarInfo): Promise<CalendarData> {
     const createdStamp = await this.calendarModel.create(calendarInfo);
     return createdStamp;
@@ -30,7 +47,7 @@ class CalendarService {
 
   async setCalendarStamp(
     calendarId: string,
-    toUpdate: Partial<CalendarInfo>,
+    toUpdate: CalendarToUpdate,
   ): Promise<CalendarData> {
     const stamp = await this.calendarModel.findById(calendarId);
     if (!stamp) {

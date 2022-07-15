@@ -1025,3 +1025,66 @@ CastError: Cast to ObjectId failed for value ":meal_id" (type string) at path "m
     at model.Query.Query.then (/Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/mongoose/lib/query.js:4592:15)
     at processTicksAndRejections (node:internal/process/task_queues:96:5)
 
+[2022-7-15 19:5:40] POST:/api/calendar
+ValidationError: calendars validation failed: mode: Path `mode` is required., todayWeight: Path `todayWeight` is required.
+    at model.Document.invalidate (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\mongoose\lib\document.js:2782:32)
+    at C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\mongoose\lib\document.js:2574:17
+    at C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\mongoose\lib\schematype.js:1273:9
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+
+[2022-7-15 19:22:6] POST:/api/calendar
+ValidationError: calendars validation failed: date: Path `date` is required.
+    at model.Document.invalidate (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\mongoose\lib\document.js:2782:32)
+    at C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\mongoose\lib\document.js:2574:17
+    at C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\mongoose\lib\schematype.js:1273:9
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+
+[2022-7-15 19:45:51] POST:/api/calendar
+ValidationError: calendars validation failed: mode: Path `mode` is required., todayWeight: Path `todayWeight` is required.
+    at model.Document.invalidate (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\mongoose\lib\document.js:2782:32)
+    at C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\mongoose\lib\document.js:2574:17
+    at C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\mongoose\lib\schematype.js:1273:9
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+
+[2022-7-15 19:46:12] POST:/api/calendar
+SyntaxError: Unexpected token } in JSON at position 430
+    at JSON.parse (<anonymous>)
+    at parse (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\body-parser\lib\types\json.js:89:19)
+    at C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\body-parser\lib\read.js:128:18
+    at AsyncResource.runInAsyncScope (node:async_hooks:199:9)
+    at invokeCallback (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\raw-body\index.js:231:16)
+    at done (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\raw-body\index.js:220:7)
+    at IncomingMessage.onEnd (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\raw-body\index.js:280:7)
+    at IncomingMessage.emit (node:events:402:35)
+    at IncomingMessage.emit (node:domain:475:12)
+    at endReadableNT (node:internal/streams/readable:1343:12)
+    at processTicksAndRejections (node:internal/process/task_queues:83:21)
+
+[2022-7-15 19:53:16] PATCH:/api/calendar/62d1457abc924a12885752d3
+SyntaxError: Unexpected token } in JSON at position 205
+    at JSON.parse (<anonymous>)
+    at parse (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\body-parser\lib\types\json.js:89:19)
+    at C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\body-parser\lib\read.js:128:18
+    at AsyncResource.runInAsyncScope (node:async_hooks:199:9)
+    at invokeCallback (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\raw-body\index.js:231:16)
+    at done (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\raw-body\index.js:220:7)
+    at IncomingMessage.onEnd (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\raw-body\index.js:280:7)
+    at IncomingMessage.emit (node:events:402:35)
+    at IncomingMessage.emit (node:domain:475:12)
+    at endReadableNT (node:internal/streams/readable:1343:12)
+    at processTicksAndRejections (node:internal/process/task_queues:83:21)
+
+[2022-7-15 19:54:28] PATCH:/api/calendar/62d1457abc924a12885752d3
+SyntaxError: Unexpected string in JSON at position 54
+    at JSON.parse (<anonymous>)
+    at parse (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\body-parser\lib\types\json.js:89:19)
+    at C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\body-parser\lib\read.js:128:18
+    at AsyncResource.runInAsyncScope (node:async_hooks:199:9)
+    at invokeCallback (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\raw-body\index.js:231:16)
+    at done (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\raw-body\index.js:220:7)
+    at IncomingMessage.onEnd (C:\Users\user\Desktop\엘리스sw\mini-project\TDZ\TDZ\server\node_modules\raw-body\index.js:280:7)
+    at IncomingMessage.emit (node:events:402:35)
+    at IncomingMessage.emit (node:domain:475:12)
+    at endReadableNT (node:internal/streams/readable:1343:12)
+    at processTicksAndRejections (node:internal/process/task_queues:83:21)
+

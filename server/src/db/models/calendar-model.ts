@@ -14,6 +14,11 @@ export class CalendarModel {
     return await Calendar.find({ userId }).lean();
   }
 
+  // 날짜별 도장 조회
+  async findByDate(userId: string, date: Date): Promise<CalendarData[] | null> {
+    return await Calendar.find({ userId, date }).lean();
+  }
+
   // 도장 상세 조회
   async findByCalendarId(calendarId: string): Promise<CalendarData | null> {
     return await Calendar.find({ _id: calendarId }).lean();
