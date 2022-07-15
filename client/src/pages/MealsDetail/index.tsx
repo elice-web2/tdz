@@ -9,7 +9,7 @@ import * as api from '../../api';
 import { addMeals } from '../../slices/mealsSlice';
 import { useAppDispatch } from '../../hooks';
 import { MealData, MealInfo } from '../../customType/meal.type';
-
+import { calNutrient } from '../../../src/utils/calcultateNutrient';
 function MealsDetail() {
   const [count, setCount] = useState(1);
   const [selected, setSelected] = useState('quantity');
@@ -32,16 +32,14 @@ function MealsDetail() {
 
   function calcInfo(info: MealInfo) {
     if (firstInfo) {
-      info.kcal = Number((firstInfo?.kcal * count).toFixed(2));
-      info.carb = Number((firstInfo?.carb * count).toFixed(2));
-      info.protein = Number((firstInfo?.protein * count).toFixed(2));
-      info.fat = Number((firstInfo?.fat * count).toFixed(2));
-      info.natruim = Number((firstInfo?.natruim * count).toFixed(2));
-      info.cholesterol = Number((firstInfo?.cholesterol * count).toFixed(2));
-      info.transfat = Number((firstInfo?.transfat * count).toFixed(2));
-      info.saturatedfatty = Number(
-        (firstInfo?.saturatedfatty * count).toFixed(2),
-      );
+      info.kcal = calNutrient(firstInfo?.kcal, count);
+      info.carb = calNutrient(firstInfo?.carb, count);
+      info.protein = calNutrient(firstInfo?.protein, count);
+      info.fat = calNutrient(firstInfo?.fat, count);
+      info.natruim = calNutrient(firstInfo?.natruim, count);
+      info.cholesterol = calNutrient(firstInfo?.cholesterol, count);
+      info.transfat = calNutrient(firstInfo?.transfat, count);
+      info.saturatedfatty = calNutrient(firstInfo?.saturatedfatty, count);
       info.quantity = count;
       info.totalGram = Math.floor(firstInfo?.servingSize * count);
     }
@@ -50,37 +48,26 @@ function MealsDetail() {
 
   function calcInfoByGram(info: MealInfo) {
     if (firstInfo) {
-      const nutrientInfoPerGram = { ...firstInfo };
-      nutrientInfoPerGram.kcal = Number(
-        firstInfo?.kcal / firstInfo?.servingSize,
-      );
-      nutrientInfoPerGram.carb = Number(
-        firstInfo?.carb / firstInfo?.servingSize,
-      );
-      nutrientInfoPerGram.protein = Number(
-        firstInfo?.protein / firstInfo?.servingSize,
-      );
-      nutrientInfoPerGram.fat = Number(firstInfo?.fat / firstInfo?.servingSize);
-      nutrientInfoPerGram.natruim = Number(
-        firstInfo?.natruim / firstInfo?.servingSize,
-      );
-      nutrientInfoPerGram.transfat = Number(
-        firstInfo?.transfat / firstInfo?.servingSize,
-      );
-      nutrientInfoPerGram.saturatedfatty = Number(
-        firstInfo?.saturatedfatty / firstInfo?.servingSize,
-      );
+      const oneSize = firstInfo?.servingSize;
+      const perGram = {
+        ...firstInfo,
+        kcal: firstInfo?.kcal / oneSize,
+        carb: firstInfo?.carb / oneSize,
+        protein: firstInfo?.protein / oneSize,
+        fat: firstInfo?.fat / oneSize,
+        natruim: firstInfo?.natruim / oneSize,
+        transfat: firstInfo?.transfat / oneSize,
+        saturatedfatty: firstInfo?.saturatedfatty / oneSize,
+      };
 
-      info.kcal = Number((nutrientInfoPerGram.kcal * count).toFixed(2));
-      info.carb = Number((nutrientInfoPerGram.carb * count).toFixed(2));
-      info.protein = Number((nutrientInfoPerGram.protein * count).toFixed(2));
-      info.fat = Number((nutrientInfoPerGram.fat * count).toFixed(2));
-      info.natruim = Number((nutrientInfoPerGram.natruim * count).toFixed(2));
-      info.transfat = Number((nutrientInfoPerGram.transfat * count).toFixed(2));
-      info.saturatedfatty = Number(
-        (nutrientInfoPerGram.saturatedfatty * count).toFixed(2),
-      );
-      info.quantity = Number((count / firstInfo?.servingSize).toFixed(1));
+      info.kcal = calNutrient(perGram.kcal, count);
+      info.carb = calNutrient(perGram.carb, count);
+      info.protein = calNutrient(perGram.protein, count);
+      info.fat = calNutrient(perGram.fat, count);
+      info.natruim = calNutrient(perGram.natruim, count);
+      info.transfat = calNutrient(perGram.transfat, count);
+      info.saturatedfatty = calNutrient(perGram.saturatedfatty, count);
+      info.quantity = Number((count / oneSize).toFixed(1));
       info.totalGram = count;
       return info;
     }
