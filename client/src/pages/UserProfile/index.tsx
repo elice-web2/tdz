@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { patchUserInfoAsync } from '../../slices/usersInfoSlice';
+import { patchActivityAsync } from '../../slices/usersInfoSlice';
 import Container from '../../components/styles/Container';
 import Logo from '../../components/common/Logo';
 import Navbar from '../../components/common/Navbar';
@@ -11,22 +11,20 @@ function UserInfo() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  const usersInfoEmail = useAppSelector((state) => state.usersInfo.value.email);
+  const usersInfoNickname = useAppSelector(
+    (state) => state.usersInfo.value.nickname,
+  );
+  const usersInfoComment = useAppSelector(
+    (state) => state.usersInfo.value.comment,
+  );
 
-  const [email, setEmail] = useState<string>(usersInfoEmail);
-  const [confPassword, setConfPassword] = useState<string>('');
-  const [newPassword, setNewPassword] = useState<string>('');
+  const [nickname, setNickname] = useState<string>(usersInfoNickname);
+  const [comment, setComment] = useState<string>(usersInfoComment);
 
   const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
-      dispatch(
-        patchUserInfoAsync({
-          email: email,
-          currentPassword: confPassword,
-          password: newPassword,
-        }),
-      );
+      dispatch(patchActivityAsync({ nickname: nickname, comment: comment }));
       navigate('/mypage');
     } catch (error) {
       console.error(error);
@@ -38,23 +36,17 @@ function UserInfo() {
       <Logo />
       <S.MypageContainer>
         <S.UserInfoContainer>
-          <S.UserInfoHeader>유저 정보 변경</S.UserInfoHeader>
+          <S.UserInfoHeader>프로필 변경</S.UserInfoHeader>
           <form method="post" onSubmit={submitHandler}>
             <S.UserProfileImage src="https://images.freeimages.com/images/large-previews/4f3/salad-1-1323575.jpg" />
-            <S.UserInfoInputLabel>아이디</S.UserInfoInputLabel>
+            <S.UserInfoInputLabel>닉네임</S.UserInfoInputLabel>
             <S.UserInfoNameInputBox
-              type="email"
-              onChange={(e) => setEmail(e.target.value)}
+              type="text"
+              onChange={(e) => setNickname(e.target.value)}
             />
-            <S.UserInfoInputLabel>현재 비밀번호</S.UserInfoInputLabel>
-            <S.UserInfoNameInputBox
-              type="password"
-              onChange={(e) => setConfPassword(e.target.value)}
-            />
-            <S.UserInfoInputLabel>변경할 비밀번호</S.UserInfoInputLabel>
-            <S.UserInfoNameInputBox
-              type="password"
-              onChange={(e) => setNewPassword(e.target.value)}
+            <S.UserInfoInputLabel>나의 각오</S.UserInfoInputLabel>
+            <S.UserInfoCommentInputBox
+              onChange={(e) => setComment(e.target.value)}
             />
             <S.UserInfoButton type="submit">수정하기</S.UserInfoButton>
           </form>

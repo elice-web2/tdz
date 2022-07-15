@@ -10,6 +10,7 @@ import GoalCalories from './pages/Mygoal/GoalCalories';
 import GoalNutrient from './pages/Mygoal/GoalNutrient';
 import GoalUserInfo from './pages/Mygoal/GoalUserInfo';
 import Mypage from './pages/Mypage';
+import UserProfile from './pages/UserProfile';
 import UserInfo from './pages/UserInfo';
 import Signin from './pages/Signin';
 import Signup from './pages/Signup';
@@ -18,7 +19,7 @@ import { Navigate } from 'react-router-dom';
 export const ROUTES = {
   Main: {
     path: '/',
-    element: <Main />,
+    element: <Home />,
   },
   Home: {
     path: '/home',
@@ -46,11 +47,11 @@ export const ROUTES = {
   },
   Signin: {
     path: '/signin',
-    element: <Signin />,
+    element: <Home />,
   },
   Signup: {
     path: '/signup',
-    element: <Signup />,
+    element: <Home />,
   },
   ChartPage: {
     path: '/chart',
@@ -59,6 +60,10 @@ export const ROUTES = {
   Mypage: {
     path: '/mypage',
     element: <Mypage />,
+  },
+  UserProfile: {
+    path: '/mypage/user_profile',
+    element: <UserProfile />,
   },
   UserInfo: {
     path: '/mypage/user_info',
@@ -125,6 +130,10 @@ export const ROUTES_NOT_LOGIN = {
     path: '/mypage',
     element: loginPage,
   },
+  UserProfile: {
+    path: '/mypage/user_profile',
+    element: loginPage,
+  },
   UserInfo: {
     path: '/mypage/user_info',
     element: loginPage,
@@ -140,5 +149,66 @@ export const ROUTES_NOT_LOGIN = {
   MypageGoalStep_3: {
     path: '/mypage/goal_step3',
     element: loginPage,
+  },
+};
+
+const goalStepPage = <Navigate replace to="/mypage/goal_step1" />;
+
+export const ROUTES_NOT_USER_GOAL = {
+  Main: {
+    path: '/',
+    element: goalStepPage,
+  },
+  Home: {
+    path: '/home',
+    element: goalStepPage,
+  },
+  Meals: {
+    path: '/meals',
+    element: goalStepPage,
+  },
+  MealsSearch: {
+    path: '/meals/search',
+    element: goalStepPage,
+  },
+  MealsEnroll: {
+    path: '/meals/enroll',
+    element: goalStepPage,
+  },
+  MealsCart: {
+    path: '/meals/cart',
+    element: goalStepPage,
+  },
+  MealsDetail: {
+    path: '/meals/detail/:name',
+    element: goalStepPage,
+  },
+  ChartPage: {
+    path: '/chart',
+    element: goalStepPage,
+  },
+  Mypage: {
+    path: '/mypage',
+    element: <Mypage />,
+  },
+  UserProfile: {
+    path: '/mypage/user_profile',
+    element: <UserProfile />,
+  },
+  UserInfo: {
+    path: '/mypage/user_info',
+    element: <UserInfo />,
+  },
+  MypageGoalStep_1: {
+    path: '/mypage/goal_step1',
+    element: <GoalUserInfo />,
+  },
+  MypageGoalStep_2: {
+    path: '/mypage/goal_step2',
+    element: <GoalCalories />,
+  },
+  MypageGoalStep_3: {
+    path: '/mypage/goal_step3',
+    element: <GoalNutrient />,
   },
 };
