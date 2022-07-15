@@ -1,4 +1,3 @@
-// import * as S from './style';
 import styled from 'styled-components';
 
 function NoSearched() {

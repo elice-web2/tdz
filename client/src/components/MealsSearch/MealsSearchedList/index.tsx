@@ -6,25 +6,10 @@ import NoSearched from '../NoSearched';
 import { useNavigate } from 'react-router-dom';
 import { addMeals } from '../../../slices/mealsSlice';
 import { addBookMark } from '../../../slices/bookMarkSlice';
-
-interface GetMealDataObj {
-  name: string;
-  code: string;
-  kcal: number;
-  carb: number;
-  protein: number;
-  fat: number;
-  natruim: number;
-  cholesterol: number;
-  transfat: number;
-  saturatedfatty: number;
-  servingSize: number;
-  quantity: number;
-  totalGram: number;
-}
+import { MealData } from '../../../customType/meal.type';
 
 interface MealsSearchedListProps {
-  result: GetMealDataObj[];
+  result: MealData[];
   inputValue: string;
 }
 
@@ -37,7 +22,7 @@ function MealsSearchedList({ inputValue, result }: MealsSearchedListProps) {
       {result.length === 0 || !inputValue ? (
         <NoSearched></NoSearched>
       ) : (
-        result.map((food: GetMealDataObj) => {
+        result.map((food: MealData) => {
           return (
             <S.List key={food.code}>
               <S.NamedInfo>
