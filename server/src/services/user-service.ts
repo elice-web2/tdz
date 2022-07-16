@@ -4,7 +4,7 @@ import {
   LoginInfo,
   UserInfoRequired,
   InfoToUpdate,
-} from '../customType/user.type';
+} from '../types/user.type';
 import { getRandomNickname } from '../middlewares';
 
 import bcrypt from 'bcrypt';

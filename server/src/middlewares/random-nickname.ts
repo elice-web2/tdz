@@ -1,4 +1,4 @@
-import { adjectives, animals, plants } from '../customType/nicknames';
+import { adjectives, animals, plants } from '../types/nicknames';
 
 function getRandomInteger(max: number) {
   return Math.floor(Math.random() * max);
@@ -9,6 +9,7 @@ const getRandomNickname = () => {
 
   let noun;
   if (type === 1) noun = animals[getRandomInteger(animals.length)];
+  else noun = plants[getRandomInteger(plants.length)];
 
   const adjective = adjectives[getRandomInteger(adjectives.length)];
 

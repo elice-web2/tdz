@@ -1,11 +1,6 @@
 import { model } from 'mongoose';
 import { UserSchema } from '../schemas/user-schema';
-import {
-  UserData,
-  LoginInfo,
-  UserInfo,
-  ToUpdate,
-} from '../../customType/user.type';
+import { UserData, LoginInfo, UserInfo, ToUpdate } from '../../types/user.type';
 
 const User = model<UserData>('users', UserSchema);
 

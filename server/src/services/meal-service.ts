@@ -1,5 +1,5 @@
 import { mealModel, MealModel } from '../db';
-import { MealData, MealInfo } from '../customType/meal.type';
+import { MealData, MealInfo } from '../types/meal.type';
 import axios from 'axios';
 
 class MealService {

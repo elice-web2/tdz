@@ -4,7 +4,7 @@ import {
   CalendarData,
   ToUpdate,
   CalendarToUpdate,
-} from '../customType/calendar.type';
+} from '../types/calendar.type';
 
 class CalendarService {
   constructor(private calendarModel: CalendarModel) {}

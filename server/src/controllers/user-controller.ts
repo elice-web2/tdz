@@ -1,7 +1,7 @@
 import is from '@sindresorhus/is';
 import { Request, Response, NextFunction } from 'express';
 import { userService } from '../services';
-import { UserInfo, Nutrient, UserData } from '../customType/user.type';
+import { UserInfo, Nutrient, UserData } from '../types/user.type';
 
 //회원 가입을 위한 function
 const signUp = async (req: Request, res: Response, next: NextFunction) => {
