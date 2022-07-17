@@ -16,7 +16,10 @@ export class CalendarModel {
   }
 
   // 날짜별 도장 조회
-  async findByDate(userId: string, date: Date): Promise<CalendarData[] | null> {
+  async findStampByDate(
+    userId: string,
+    date: Date,
+  ): Promise<CalendarData[] | null> {
     return await Calendar.find({ userId, date }).lean();
   }
 

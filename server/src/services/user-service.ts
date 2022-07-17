@@ -41,6 +41,32 @@ class UserService {
     return await this.userModel.create(newUserInfo);
   }
 
+  // 카카오 회원가입
+  async addUserWithKakao(
+    userInfo: LoginInfo,
+    nickname: string,
+  ): Promise<UserData> {
+    // 객체 destructuring
+    const { email, password } = userInfo;
+
+    if (!email) {
+      throw new Error('회원가입을 위해 이메일이 필요합니다');
+    }
+
+    // 비밀번호 해쉬화(암호화)
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const newUserInfo = {
+      email,
+      password: hashedPassword,
+      nickname,
+      login_path: 'kakao',
+    };
+
+    // db에 저장
+    return await this.userModel.create(newUserInfo);
+  }
+
   // 로그인
   async getUserToken(loginInfo: LoginInfo): Promise<string> {
     // 객체 destructuring

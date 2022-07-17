@@ -1,7 +1,7 @@
 import is from '@sindresorhus/is';
 import { Request, Response, NextFunction } from 'express';
 import { calendarService } from '../services';
-import { CalendarData } from '../customType/calendar.type';
+import { CalendarData } from '../types/calendar.type';
 
 class CalendarController {
   async getAllStamps(req: Request, res: Response, next: NextFunction) {
