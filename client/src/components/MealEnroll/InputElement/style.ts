@@ -24,11 +24,7 @@ export const InfoTitle = styled.p`
   font-size: 14px;
 `;
 
-interface InputValueProps {
-  isValue: boolean;
-}
-
-export const InputBox = styled.div<InputValueProps>`
+export const InputBox = styled.div<{ isValue: boolean }>`
   position: absolute;
   right: 30px;
 

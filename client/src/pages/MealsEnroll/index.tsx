@@ -19,12 +19,15 @@ function MealsEnroll() {
         <h1>음식 등록하기</h1>
       </S.Header>
       <S.InfoBox>
-        <InputElement name={'음식명'}></InputElement>
-        <InputElement name={'내용량(g)'}></InputElement>
+        <S.NameInputElement>
+          <p>음식명</p>
+          <input type="text"></input>
+        </S.NameInputElement>
       </S.InfoBox>
       <S.BorderLine></S.BorderLine>
       <S.InfoBox>
         <h2>영양정보</h2>
+        <InputElement name={'내용량(g)'}></InputElement>
         <InputElement name={'열량'}></InputElement>
         <InputElement name={'탄수화물'}></InputElement>
         <InputElement name={'단백질'}></InputElement>

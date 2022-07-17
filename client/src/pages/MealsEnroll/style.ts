@@ -33,6 +33,26 @@ export const InfoBox = styled.div`
   }
 `;
 
+export const NameInputElement = styled.div`
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin: 40px 0;
+  p {
+    position: absolute;
+    left: 30px;
+    font-size: 14px;
+  }
+  input {
+    position: absolute;
+    right: 30px;
+    width: 180px;
+    height: 30px;
+    padding-left: 10px;
+    font-size: 16px;
+  }
+`;
+
 export const BtnContainer = styled.div`
   display: flex;
   justify-content: center;
