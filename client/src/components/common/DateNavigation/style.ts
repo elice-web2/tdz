@@ -9,6 +9,7 @@ export const Wrapper = styled.div`
 
   border-top: 1px solid rgba(0, 0, 0, 0.1);
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  color: ${({ theme }) => theme.mainColor.darker};
 
   svg {
     padding: 0 10px;
@@ -23,12 +24,10 @@ export const Wrapper = styled.div`
 export const DateContainer = styled.div`
   display: flex;
   align-items: center;
-
   cursor: pointer;
+  color: black;
 
   svg {
-    padding: 0;
-    width: 12px;
-    height: 12px;
+    padding: 4px;
   }
 `;

@@ -18,7 +18,9 @@ function Main() {
         ></S.Video>
       </S.VideoContainer>
 
-      <S.LogoText>TDZ</S.LogoText>
+      <S.LogoText>
+        <img src={require('../../assets/logoBlack.png')} />
+      </S.LogoText>
       <S.IntroText>오늘 하루, 무엇을 드셨나요?</S.IntroText>
       <S.IntroText>매일의 식단을 기록해보세요!</S.IntroText>
       <S.IntroText>당신의 건강이 달라집니다!</S.IntroText>

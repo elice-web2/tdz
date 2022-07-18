@@ -12,7 +12,10 @@ function Logo() {
             navigate('/home');
           }}
         >
-          TDZ
+          <S.LogoImg
+            src={require('../../../assets/logoWhite.png')}
+            alt="logo"
+          />
         </S.LogoText>
       </S.LogoContainer>
     </Container>
