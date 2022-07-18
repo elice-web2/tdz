@@ -33,7 +33,7 @@ export interface UserInfo {
   profile_image: string;
   nickname: string;
   comment: string;
-  is_login_first: string;
+  is_login_first: boolean;
 }
 export interface UserData {
   _id: string;
@@ -53,7 +53,7 @@ export interface UserData {
   profile_image: string;
   nickname: string;
   comment: string;
-  is_login_first: string;
+  is_login_first: boolean;
 }
 
 //service에서 사용자 update시 필요한 정보
@@ -74,7 +74,7 @@ export interface InfoToUpdate {
   profile_image?: string;
   nickname?: string;
   comment?: string;
-  is_login_first?: string;
+  is_login_first?: boolean;
 }
 
 export interface ToUpdate {

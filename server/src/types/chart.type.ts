@@ -15,6 +15,7 @@ export interface ChartData {
   kcalAvg: Number[];
   carbAvg: Number[];
   proteinAvg: Number[];
+  fatAvg: Number[];
   kcalSum: Number;
   carbSum: Number;
   proteinSum: Number;
