@@ -43,7 +43,7 @@ export const mealsSlice = createSlice({
       state.value.push(action.payload);
     },
     deleteMeals: (state, action: PayloadAction<string>) => {
-      state.value = state.value.filter((meal) => meal.code !== action.payload);
+      state.value = state.value.filter((meal) => meal._id !== action.payload);
     },
   },
   extraReducers: (builder) => {
