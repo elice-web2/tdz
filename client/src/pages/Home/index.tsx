@@ -12,6 +12,7 @@ import dayjs from 'dayjs';
 import { useNavigate } from 'react-router-dom';
 import { calculatePercentage } from '../../utils';
 import ManageWeight from '../../components/home/ManageWeight';
+import { ScrollContainer } from '../../components/styles/ScrollContainer';
 
 interface mealsData {
   kcal: number;
@@ -76,6 +77,7 @@ function Home() {
     <Container>
       <Logo />
       <DateNavigation />
+      <ScrollContainer minusHeight={180}>
       <S.DonutContainer>
         {/* 목표 칼로리 / 현재 칼로리 * 100 백분율 계산해서 기입 필요 */}
         <DonutProgressbar
@@ -116,6 +118,7 @@ function Home() {
           <button>식단 추가하기</button>
         </S.ButtonContainer>
       </S.ResponsiveContainer>
+      </ScrollContainer>
 
       <Navbar />
     </Container>
