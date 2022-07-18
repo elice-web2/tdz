@@ -12,13 +12,13 @@ import {
 } from '../../../customType/meal.type';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { render } from '@testing-library/react';
 
 function MealsSearchedList({ inputValue, result }: MealsSearchedListProps) {
-  const [isBookMarked, setIsBookMarked] = useState(false);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const mealStore = useAppSelector(({ meal }) => meal.value);
-  const [list, setList] = useState([]);
+  const [list, setList] = useState<MealData[]>([]);
 
   async function convertArr() {
     const newArr: any = [];
@@ -62,16 +62,23 @@ function MealsSearchedList({ inputValue, result }: MealsSearchedListProps) {
     }
   }
 
-  function bookmarkHandler(id: string) {
-    // if (isBookMarked) {
-    //   api.delete(`/api/favorites/${id}`).then(() => {
-    //     setIsBookMarked(false);
-    //   });
-    // } else {
-    //   api.post('/api/favorites', { meal_id: id }).then(() => {
-    //     setIsBookMarked(true);
-    //   });
-    // }
+  async function bookmarkHandler(id: string) {
+    const item = list.find((el) => el._id === id);
+    if (!item) return;
+    if (item.isBookMarked) {
+      await api.delete(`/api/favorites/${id}`);
+    } else {
+      await api.post('/api/favorites', { meal_id: id });
+    }
+    //리랜더링
+    setList((lists) =>
+      lists.map((list) => {
+        if (list._id === id) {
+          return { ...list, isBookMarked: !item.isBookMarked };
+        }
+        return list;
+      }),
+    );
   }
 
   return (
