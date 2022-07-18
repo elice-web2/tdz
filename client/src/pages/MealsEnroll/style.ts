@@ -23,10 +23,6 @@ export const Header = styled.div`
   }
 `;
 
-export const InfoForm = styled.form`
-  width: 100%;
-`;
-
 export const NameInputElement = styled.div`
   display: flex;
   align-items: center;
