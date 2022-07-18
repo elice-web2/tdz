@@ -188,8 +188,7 @@ class ChartService {
           checked++;
         }
 
-        if (day === 6) {
-          console.log(weight);
+        if (day === 6 || count >= data.length) {
           weeklyData.weight[week] = weight === 0 ? 0 : weight / checked;
           weight = 0;
           weeklyData.kcalAvg[week] = kcal === 0 ? 0 : kcal / checked;
@@ -237,11 +236,11 @@ class ChartService {
     //인터페이스 초기화
     const monthlyData: ChartData = {
       userId: fromToInfo.user_id,
-      weight: [],
-      kcalAvg: [],
-      carbAvg: [],
-      proteinAvg: [],
-      fatAvg: [],
+      weight: [0, 0, 0],
+      kcalAvg: [0, 0, 0],
+      carbAvg: [0, 0, 0],
+      proteinAvg: [0, 0, 0],
+      fatAvg: [0, 0, 0],
       kcalSum: 0,
       carbSum: 0,
       proteinSum: 0,
@@ -274,6 +273,7 @@ class ChartService {
     let kcal = 0;
     let carb = 0;
     let protein = 0;
+    let fat = 0;
     //28주의 날짜를 각각 비교
     for (let month = 1; month < totalDays.length; month++) {
       for (let day = 0; day < totalDays[month] - totalDays[month - 1]; day++) {
@@ -281,12 +281,11 @@ class ChartService {
           chartSlotList[totalDays[month - 1] + day] ===
           data[count].date.toISOString().slice(0, 10)
         ) {
-          console.log(chartSlotList[totalDays[month - 1] + day]);
-          console.log(data[count].date.toISOString().slice(0, 10));
           weight = Number(weight) + Number(data[count].todayWeight);
           kcal = Number(kcal) + Number(data[count].currentKcal);
           carb = Number(carb) + Number(data[count].carbSum);
           protein = Number(protein) + Number(data[count].proteinSum);
+          fat = Number(fat) + Number(data[count].fatSum);
 
           monthlyData.kcalSum =
             Number(data[count].currentKcal) + Number(monthlyData.kcalSum);
@@ -312,24 +311,27 @@ class ChartService {
           checked++;
         }
 
-        if (day === 6) {
-          console.log(weight);
-          monthlyData.weight.push(weight === 0 ? 0 : weight / checked);
+        if (
+          day === totalDays[month] - totalDays[month - 1] - 1 ||
+          count >= data.length
+        ) {
+          monthlyData.weight[month - 1] = weight === 0 ? 0 : weight / checked;
           weight = 0;
-          monthlyData.kcalAvg.push(kcal === 0 ? 0 : kcal / checked);
+          monthlyData.kcalAvg[month - 1] = kcal === 0 ? 0 : kcal / checked;
           kcal = 0;
-          monthlyData.carbAvg.push(carb === 0 ? 0 : carb / checked);
+          monthlyData.carbAvg[month - 1] = carb === 0 ? 0 : carb / checked;
           carb = 0;
-          monthlyData.proteinAvg.push(protein === 0 ? 0 : protein / checked);
+          monthlyData.proteinAvg[month - 1] =
+            protein === 0 ? 0 : protein / checked;
           protein = 0;
+          monthlyData.fatAvg[month - 1] = fat === 0 ? 0 : fat / checked;
+          fat = 0;
           checked = 0;
         }
         if (count >= data.length) break;
       }
       if (count >= data.length) break;
     }
-    console.log(monthlyData);
-    console.log(count);
 
     return monthlyData;
   }
