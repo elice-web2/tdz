@@ -9,6 +9,7 @@ import {
   postWeightDataAsync,
 } from '../../../slices/usersInfoSlice';
 import { parseDateFromNow } from '../../../utils';
+import dayjs from 'dayjs';
 
 function ManageWeight() {
   const { current_weight, goal_weight, mode, nutrient } = useAppSelector(
@@ -40,7 +41,10 @@ function ManageWeight() {
     };
     // 오늘의 몸무게를 저장 후 유저의 현재 체중도 수정
     dispatch(postWeightDataAsync(data));
-    dispatch(patchActivityAsync({ current_weight: Number(weightValue) }));
+    setWeightByDate(Number(weightValue));
+    if (date === dayjs().format('YYYY-MM-DD')) {
+      dispatch(patchActivityAsync({ current_weight: Number(weightValue) }));
+    }
   };
 
   const setWeightParagraph = () => {

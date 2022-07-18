@@ -27,7 +27,7 @@ function CalorieChart({ data, labels }: ChartInfo) {
           label: (context: any) => {
             let label = context.formattedValue + '' || '';
             if (label) {
-              label += ' kg';
+              label += ' kcal';
             }
 
             return label;
