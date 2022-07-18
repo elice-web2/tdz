@@ -34,34 +34,6 @@ export interface UsersInfoState {
   value: UsersInfo;
 }
 
-const initialState: UsersInfoState = {
-  value: {
-    email: '',
-    login_path: '',
-    gender: '',
-    role: '',
-    age: 0,
-    height: 0,
-    current_weight: 0,
-    goal_weight: 0,
-    bmi: 0,
-    mode: '',
-    activity: '',
-    nutrient: {
-      kcal: 0,
-      carb: 0,
-      protein: 0,
-      fat: 0,
-    },
-    profile_image: '',
-    nickname: '',
-    comment: '',
-    is_login_first: false,
-    isLogin: Boolean(localStorage.getItem('login')),
-  },
-};
-// Slice 작성 예시
-
 // 로그인 요청 데이터 타입지정
 interface postLoginSignup {
   email: string;
@@ -95,6 +67,34 @@ interface patchUserParam {
   password: string;
   currentPassword: string;
 }
+
+const initialState: UsersInfoState = {
+  value: {
+    email: '',
+    login_path: '',
+    gender: '',
+    role: '',
+    age: 0,
+    height: 0,
+    current_weight: 0,
+    goal_weight: 0,
+    bmi: 0,
+    mode: '',
+    activity: '',
+    nutrient: {
+      kcal: 0,
+      carb: 0,
+      protein: 0,
+      fat: 0,
+    },
+    profile_image: '',
+    nickname: '',
+    comment: '',
+    is_login_first: false,
+    isLogin: Boolean(localStorage.getItem('login')),
+  },
+};
+
 // 회원가입 post API 통신 함수
 async function postSignupData(usersInfo: postLoginSignup) {
   const resp = await api.post('/api/auth/signup', usersInfo);

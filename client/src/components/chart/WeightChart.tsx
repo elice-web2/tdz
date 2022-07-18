@@ -28,7 +28,7 @@ export default function WeightChart({ data, labels }: ChartInfo) {
             let label = context.formattedValue + '' || '';
 
             if (label) {
-              label += ' kcal';
+              label += ' kg';
             }
 
             return label;
