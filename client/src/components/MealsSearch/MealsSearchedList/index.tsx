@@ -1,6 +1,6 @@
 import * as S from './style';
 import * as api from '../../../api';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback, useMemo, ReactNode } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 import NoSearched from '../NoSearched';
@@ -19,19 +19,34 @@ function MealsSearchedList({ inputValue, result }: MealsSearchedListProps) {
   const dispatch = useAppDispatch();
   const mealStore = useAppSelector(({ meal }) => meal.value);
 
-  useEffect(() => {
-    (async () => {
-      result.map((meal) => {
-        api.get(`/api/favorites/${meal._id}`).then((res) => {
-          if (!res) {
-            setIsBookMarked(false);
-          } else {
-            setIsBookMarked(true);
-          }
-        });
-      });
-    })();
-  }, [result]);
+  // useEffect(() => {
+  //   result.map((meal) => {
+  //     (async () => {
+  //       const res = await api.get(`/api/favorites/${meal._id}`);
+  //       if (res === undefined) {
+  //         console.log('즐겨찾기 등록X', meal.name);
+  //         setIsBookMarked(false);
+  //         console.log('상태', isBookMarked);
+  //       } else {
+  //         console.log('즐겨찾기에 있음O', meal.name);
+  //         setIsBookMarked(true);
+  //         console.log('상태', isBookMarked);
+  //       }
+  //     })();
+  //   });
+  // }, [result]);
+
+  function getBookInfo(id: string) {
+    api.get(`/api/favorites/${id}`).then((res) => {
+      if (res) {
+        console.log('있음', res);
+        return true;
+      } else {
+        console.log('없음', res);
+        return false;
+      }
+    });
+  }
 
   //장바구니 담을땐 중복필터링
   function addToCart(food: MealData) {
@@ -73,6 +88,13 @@ function MealsSearchedList({ inputValue, result }: MealsSearchedListProps) {
         <NoSearched></NoSearched>
       ) : (
         result.map((food: MealData) => {
+          api.get(`/api/favorites/${food._id}`).then((res) => {
+            if (res) {
+              console.log('res있음');
+            } else {
+              console.log('res없음');
+            }
+          });
           return (
             <S.List key={food.code}>
               <S.NamedInfo>
@@ -106,13 +128,8 @@ function MealsSearchedList({ inputValue, result }: MealsSearchedListProps) {
                     bookmarkHandler(food._id);
                   }}
                 >
-                  <img
-                    src={
-                      isBookMarked
-                        ? require('../../../assets/YellowStar.png')
-                        : require('../../../assets/blackStar.png')
-                    }
-                  ></img>
+                  <img src={require('../../../assets/YellowStar.png')}></img>
+                  <img src={require('../../../assets/blackStar.png')}></img>
                 </span>
               </S.NamedInfo>
               <S.QuanInfo>1인분</S.QuanInfo>
