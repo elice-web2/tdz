@@ -11,8 +11,8 @@ import GoalNutrient from './pages/Mygoal/GoalNutrient';
 import GoalUserInfo from './pages/Mygoal/GoalUserInfo';
 import Mypage from './pages/Mypage';
 import UserInfo from './pages/UserInfo';
-import Signin from './pages/Signin';
-import Signup from './pages/Signup';
+import Signin from './pages/SignPage/Signin';
+import Signup from './pages/SignPage/Signup';
 import MealsEnroll from './pages/MealsEnroll';
 import UserProfile from './pages/UserProfile';
 
