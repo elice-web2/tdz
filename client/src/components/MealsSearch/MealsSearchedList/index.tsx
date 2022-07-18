@@ -18,35 +18,27 @@ function MealsSearchedList({ inputValue, result }: MealsSearchedListProps) {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const mealStore = useAppSelector(({ meal }) => meal.value);
+  const [list, setList] = useState([]);
 
-  // useEffect(() => {
-  //   result.map((meal) => {
-  //     (async () => {
-  //       const res = await api.get(`/api/favorites/${meal._id}`);
-  //       if (res === undefined) {
-  //         console.log('즐겨찾기 등록X', meal.name);
-  //         setIsBookMarked(false);
-  //         console.log('상태', isBookMarked);
-  //       } else {
-  //         console.log('즐겨찾기에 있음O', meal.name);
-  //         setIsBookMarked(true);
-  //         console.log('상태', isBookMarked);
-  //       }
-  //     })();
-  //   });
-  // }, [result]);
-
-  function getBookInfo(id: string) {
-    api.get(`/api/favorites/${id}`).then((res) => {
-      if (res) {
-        console.log('있음', res);
-        return true;
+  async function convertArr() {
+    const newArr: any = [];
+    for (let i = 0; i < result.length; i++) {
+      const res = await api.get(`/api/favorites/${result[i]._id}`);
+      if (!res) {
+        newArr.push({ ...result[i], isBookMarked: false });
       } else {
-        console.log('없음', res);
-        return false;
+        newArr.push({ ...result[i], isBookMarked: true });
       }
-    });
+    }
+    return newArr;
   }
+
+  useEffect(() => {
+    (async () => {
+      const res = await convertArr();
+      setList(res);
+    })();
+  }, [result]);
 
   //장바구니 담을땐 중복필터링
   function addToCart(food: MealData) {
@@ -71,30 +63,23 @@ function MealsSearchedList({ inputValue, result }: MealsSearchedListProps) {
   }
 
   function bookmarkHandler(id: string) {
-    if (isBookMarked) {
-      api.delete(`/api/favorites/${id}`).then(() => {
-        setIsBookMarked(false);
-      });
-    } else {
-      api.post('/api/favorites', { meal_id: id }).then(() => {
-        setIsBookMarked(true);
-      });
-    }
+    // if (isBookMarked) {
+    //   api.delete(`/api/favorites/${id}`).then(() => {
+    //     setIsBookMarked(false);
+    //   });
+    // } else {
+    //   api.post('/api/favorites', { meal_id: id }).then(() => {
+    //     setIsBookMarked(true);
+    //   });
+    // }
   }
 
   return (
     <S.SearchListContainer>
-      {result.length === 0 || !inputValue ? (
+      {list.length === 0 || !inputValue ? (
         <NoSearched></NoSearched>
       ) : (
-        result.map((food: MealData) => {
-          api.get(`/api/favorites/${food._id}`).then((res) => {
-            if (res) {
-              console.log('res있음');
-            } else {
-              console.log('res없음');
-            }
-          });
+        list.map((food: MealData) => {
           return (
             <S.List key={food._id}>
               <S.NamedInfo>
@@ -128,8 +113,11 @@ function MealsSearchedList({ inputValue, result }: MealsSearchedListProps) {
                     bookmarkHandler(food._id);
                   }}
                 >
-                  <img src={require('../../../assets/YellowStar.png')}></img>
-                  <img src={require('../../../assets/blackStar.png')}></img>
+                  {food.isBookMarked ? (
+                    <img src={require('../../../assets/YellowStar.png')}></img>
+                  ) : (
+                    <img src={require('../../../assets/blackStar.png')}></img>
+                  )}
                 </span>
               </S.NamedInfo>
               <S.QuanInfo>1인분</S.QuanInfo>
