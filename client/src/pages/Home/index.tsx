@@ -23,7 +23,9 @@ interface mealsData {
 function Home() {
   const navigate = useNavigate();
   const date = useAppSelector(({ date }) => date.value);
-  const { nutrient } = useAppSelector(({ usersInfo }) => usersInfo.value);
+  const { nutrient, isLogin, is_login_first } = useAppSelector(
+    ({ usersInfo }) => usersInfo.value,
+  );
   const [nutrientsSum, setNutrientsSum] = useState({
     kcal: 0,
     protein: 0,
@@ -57,8 +59,18 @@ function Home() {
   };
 
   useEffect(() => {
-    setNutrientsSumByDate(date);
+    if (isLogin) {
+      setNutrientsSumByDate(date);
+    }
   }, [date]);
+
+  useEffect(() => {
+    if (isLogin && is_login_first) {
+      navigate('/mypage/goal_step1');
+    } else if (!isLogin) {
+      navigate('/');
+    }
+  }, []);
 
   return (
     <Container>

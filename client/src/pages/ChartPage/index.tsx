@@ -1,7 +1,7 @@
 // dependencies
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import dayjs from 'dayjs';
 import * as S from './style';
 import {
@@ -23,6 +23,8 @@ import WeightChart from '../../components/chart/WeightChart';
 import CalorieChart from '../../components/chart/CalorieChart';
 import NutrientAverage from '../../components/chart/NutrientAverage';
 import { ScrollContainer } from '../../components/styles/ScrollContainer';
+import { useAppSelector } from '../../hooks';
+import { useNavigate } from 'react-router-dom';
 
 // ChartJS를 react 에서 쓸 수 있도록 하는 코드
 ChartJS.register(
@@ -61,11 +63,23 @@ const DUMMY_DATA_DAILY = {
 };
 
 function ChartPage() {
+  const navigate = useNavigate();
+  const { isLogin, is_login_first } = useAppSelector(
+    ({ usersInfo }) => usersInfo.value,
+  );
   const [filter, setFilter] = useState<'DAILY' | 'WEEKLY' | 'MONTHLY'>('DAILY');
 
   const onClickFilter = (filter: 'DAILY' | 'WEEKLY' | 'MONTHLY') => {
     setFilter(filter);
   };
+
+  useEffect(() => {
+    if (isLogin && is_login_first) {
+      navigate('/mypage/goal_step1');
+    } else if (!isLogin) {
+      navigate('/');
+    }
+  }, []);
 
   return (
     <Container>

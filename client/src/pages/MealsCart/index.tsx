@@ -18,6 +18,9 @@ function MealsCart() {
   const [info, setInfo] = useState<TotalInfoType>();
   const navigate = useNavigate();
   const result = useAppSelector(({ meal }) => meal.value);
+  const { isLogin, is_login_first } = useAppSelector(
+    ({ usersInfo }) => usersInfo.value,
+  );
 
   //장바구니 리스트 바뀔때마다 총 영양소 다시 계산
   useEffect(() => {
@@ -49,6 +52,14 @@ function MealsCart() {
   function popupModal() {
     setOpenModal(true);
   }
+
+  useEffect(() => {
+    if (isLogin && is_login_first) {
+      navigate('/mypage/goal_step1');
+    } else if (!isLogin) {
+      navigate('/');
+    }
+  }, []);
 
   return (
     <Container>
