@@ -8,7 +8,7 @@ function MealsListAddBox() {
 
   return (
     <S.MealsListContainer>
-      <S.AddBox onClick={() => navigate('/meals/cart')}>
+      <S.AddBox onClick={() => navigate('/meals/search')}>
         <FontAwesomeIcon icon={faCirclePlus} className="AddContainer" />
         <span className="GuideInfo">식단을 추가해주세요</span>
       </S.AddBox>
