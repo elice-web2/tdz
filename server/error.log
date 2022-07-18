@@ -1372,3 +1372,33 @@ AccessControlListNotSupported: The bucket does not allow ACLs
     at async Upload.__doMultipartUpload (/Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/@aws-sdk/lib-storage/dist-cjs/Upload.js:141:9)
     at async Upload.done (/Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/@aws-sdk/lib-storage/dist-cjs/Upload.js:37:16)
 
+[2022-7-18 16:19:37] PATCH:/api/users/activity
+Error: headers의 Content-Type을 application/json으로 설정해주세요
+    at goalUpdate (/Users/kai/Documents/Workspace/Web/TDZ/server/src/controllers/user-controller.ts:182:13)
+    at Layer.handle [as handle_request] (/Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/express/lib/router/route.js:144:13)
+    at done (/Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/multer/lib/make-middleware.js:45:7)
+    at indicateDone (/Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/multer/lib/make-middleware.js:49:68)
+    at /Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/multer/lib/make-middleware.js:155:11
+    at /Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/multer-s3/index.js:225:7
+    at processTicksAndRejections (node:internal/process/task_queues:83:21)
+
+[2022-7-18 16:21:34] PATCH:/api/users/activity
+TypeError: Cannot read properties of undefined (reading 'location')
+    at goalUpdate (/Users/kai/Documents/Workspace/Web/TDZ/server/src/controllers/user-controller.ts:192:45)
+    at Layer.handle [as handle_request] (/Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/express/lib/router/route.js:144:13)
+    at multerMiddleware (/Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/multer/lib/make-middleware.js:13:41)
+    at Layer.handle [as handle_request] (/Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/express/lib/router/route.js:144:13)
+    at loginRequired (/Users/kai/Documents/Workspace/Web/TDZ/server/src/middlewares/login-required.ts:30:5)
+    at Layer.handle [as handle_request] (/Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/express/lib/router/route.js:144:13)
+    at Route.dispatch (/Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/express/lib/router/route.js:114:3)
+    at Layer.handle [as handle_request] (/Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/express/lib/router/index.js:280:10)
+    at Function.handle (/Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/express/lib/router/index.js:47:12)
+

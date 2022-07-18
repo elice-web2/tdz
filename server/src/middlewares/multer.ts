@@ -12,8 +12,6 @@ const s3 = new S3({
 
 const bucket: string = process.env.BUCKET || 'none';
 
-type FileNameCallback = (error: Error | null, filename: string) => void;
-
 const upload = multer({
   storage: multerS3({
     s3: s3,

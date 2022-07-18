@@ -187,6 +187,12 @@ const goalUpdate = async function (
     // params로부터 id를 가져옴
     const userId: string = req.currentUserId!;
 
+    //사진 정보가 있을 경우 src를 할당
+    let profile_image;
+    if (req.file) {
+      profile_image = (req.file as Express.MulterS3.File).location;
+    }
+
     // body data 로부터 업데이트할 사용자 정보를 추출함.
     const gender: string = req.body.gender;
     const age: number = req.body.age;
@@ -197,7 +203,6 @@ const goalUpdate = async function (
     const mode: string = req.body.mode;
     const activity: string = req.body.activity;
     const nutrient: Nutrient = req.body.nutrient;
-    const profile_image: string = req.body.profile_image;
     const nickname: string = req.body.nickname;
     const comment: string = req.body.comment;
     const is_login_first: boolean = req.body.is_login_first;

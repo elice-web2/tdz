@@ -18,29 +18,12 @@ userRouter.get('/auth/logout', loginRequired, userController.logout);
 userRouter.get('/users/list', adminRequired, userController.userList);
 userRouter.get('/users', loginRequired, userController.user);
 userRouter.patch('/users', loginRequired, userController.userUpdate);
-userRouter.patch('/users/activity', loginRequired, userController.goalUpdate);
-userRouter.delete('/users', loginRequired, userController.deleteUser);
-userRouter.post(
-  '/multer',
+userRouter.patch(
+  '/users/activity',
+  loginRequired,
   upload.single('src'),
-  async (req: Request, res: Response, next: NextFunction) => {
-    try {
-      const src = (req.file as Express.MulterS3.File).location;
-      if (!src) {
-        throw new Error('등록되지 않았습니다');
-      }
-      res.status(201).json(src);
-    } catch (error) {
-      next(error);
-    }
-  },
+  userController.goalUpdate,
 );
+userRouter.delete('/users', loginRequired, userController.deleteUser);
 
-// 카카오 회원가입
-// userRouter.post('/auth/signup/kakao', userController.kakaoSignup);
-
-// 카카오 로그인
-//userRouter.post('/auth/login/kakao', userController.kakaoLogin);
-
-// userRouter.post('/auth/login/google', userController.kakaoLogin)
 export { userRouter };
