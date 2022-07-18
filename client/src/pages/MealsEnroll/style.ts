@@ -23,14 +23,8 @@ export const Header = styled.div`
   }
 `;
 
-export const InfoBox = styled.div`
+export const InfoForm = styled.form`
   width: 100%;
-
-  h2 {
-    font-size: 16px;
-    font-weight: bold;
-    margin: 20px 0 10px 20px;
-  }
 `;
 
 export const NameInputElement = styled.div`
@@ -50,6 +44,41 @@ export const NameInputElement = styled.div`
     height: 30px;
     padding-left: 10px;
     font-size: 16px;
+  }
+`;
+
+export const NutrientBox = styled.div`
+  border: 1px solid green;
+  h2 {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 20px 0 10px 20px;
+  }
+`;
+
+export const NutrientInputElement = styled.div`
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin: 40px 0;
+  height: 20px;
+  p {
+    position: absolute;
+    left: 30px;
+    font-size: 14px;
+  }
+  input {
+    position: absolute;
+    right: 30px;
+    width: 80px;
+    height: 30px;
+    padding-left: 10px;
+    font-size: 16px;
+  }
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
   }
 `;
 

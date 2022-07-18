@@ -1030,3 +1030,21 @@ Error: 해당 식단에 관련한 즐겨찾기 정보가 없습니다.
 =======
 >>>>>>> 2742fc416edd3375795bb4f36bd864a0e0ce3cdf
 
+[2022-7-18 18:15:24] GET:/api/favorites/62d5249dc1c7a42f50fa447a
+Error: 해당 식단에 관련한 즐겨찾기 정보가 없습니다.
+    at favorite (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\favorite-controller.ts:82:13)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+
+[2022-7-18 18:15:27] GET:/api/favorites/62d5249dc1c7a42f50fa447a
+Error: 해당 식단에 관련한 즐겨찾기 정보가 없습니다.
+    at favorite (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\favorite-controller.ts:82:13)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+
+[2022-7-18 18:15:27] GET:/api/favorites/62d5249dc1c7a42f50fa447a
+Error: 해당 식단에 관련한 즐겨찾기 정보가 없습니다.
+    at favorite (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\favorite-controller.ts:82:13)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+
