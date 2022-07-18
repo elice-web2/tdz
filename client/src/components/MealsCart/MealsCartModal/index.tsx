@@ -3,10 +3,19 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { postMealsDataAsync } from '../../../slices/mealsSlice';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
-import { MealsCartModalPropsType } from '../../../customType/meal.type';
+import {
+  MealsCartModalPropsType,
+  MealData,
+} from '../../../customType/meal.type';
 import dayjs from 'dayjs';
 
 type selectedType = '아침' | '점심' | '저녁' | '간식' | '';
+
+interface PostResultType {
+  date: string;
+  category: selectedType;
+  meals: MealData[];
+}
 
 function MealsCartModal({ openModal }: MealsCartModalPropsType) {
   const [selected, setSelected] = useState<selectedType>('');
@@ -26,6 +35,11 @@ function MealsCartModal({ openModal }: MealsCartModalPropsType) {
 
   function clickSelectHandler(time: selectedType) {
     setSelected(time);
+  }
+
+  function enrollHandler(postResultObj: PostResultType) {
+    dispatch(postMealsDataAsync(postResultObj));
+    navigate('/meals');
   }
 
   return (
@@ -85,8 +99,7 @@ function MealsCartModal({ openModal }: MealsCartModalPropsType) {
 
         <S.CompleteBtn
           onClick={() => {
-            dispatch(postMealsDataAsync(postResultObj));
-            navigate('/meals');
+            enrollHandler(postResultObj);
           }}
         >
           완료
