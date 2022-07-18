@@ -9,9 +9,9 @@ import * as S from './style';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 import dayjs from 'dayjs';
 import { updateDate } from '../../../slices/dateSlice';
-import { parseDateFromNow } from './parseDateFromNow';
 import { useState } from 'react';
 import CalendarStamp from '../../CalendarStamp';
+import { parseDateFromNow } from '../../../utils';
 
 function DateNavigation() {
   const dispatch = useAppDispatch();
