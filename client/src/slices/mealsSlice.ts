@@ -12,6 +12,10 @@ interface PostMealsDataParam {
   date: string;
 }
 
+interface GetMealsDataParam {
+  date: string;
+}
+
 const initialState: MealsState = {
   value: [],
 };
@@ -35,6 +39,19 @@ export const postMealsDataAsync = createAsyncThunk(
   },
 );
 
+async function getMealsData(date: string) {
+  const data = await api.get(`/api/mealhistory/${date}`);
+  return data?.data;
+}
+
+export const getMealsDataAsync = createAsyncThunk(
+  'meals/getMealsData',
+  async (date: string) => {
+    const data = await getMealsData(date);
+    return data;
+  },
+);
+
 export const mealsSlice = createSlice({
   name: 'meals',
   initialState,
@@ -47,9 +64,13 @@ export const mealsSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(postMealsDataAsync.fulfilled, (state) => {
-      state.value = [];
-    });
+    builder
+      .addCase(postMealsDataAsync.fulfilled, (state) => {
+        state.value = [];
+      })
+      .addCase(getMealsDataAsync.fulfilled, (state, action) => {
+        state.value = [{ ...state, ...action.payload }];
+      });
   },
 });
 
