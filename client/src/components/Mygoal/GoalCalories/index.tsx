@@ -32,7 +32,13 @@ function GoalCaloriesForm() {
         <S.StepCircle></S.StepCircle>
       </S.CircleContainer>
       <S.Step>STEP 2</S.Step>
-      <S.Title>하루 섭취 열량 입력하기</S.Title>
+      <S.Title>
+        하루 섭취 열량{' '}
+        {String(localStorage.getItem('is_login_first')) === 'false'
+          ? '수정'
+          : '입력'}
+        하기
+      </S.Title>
       <br />
       <form onSubmit={handleSubmit(onSubmit)}>
         <S.Title className="subTitle">목표 섭취 열량</S.Title>

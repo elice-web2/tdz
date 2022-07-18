@@ -1,5 +1,5 @@
 import * as S from './style';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faHouseChimney,
@@ -8,8 +8,12 @@ import {
   faUser,
 } from '@fortawesome/free-solid-svg-icons';
 import Container from '../../styles/Container';
+import { useState } from 'react';
 
 function Navbar() {
+  const currentURL = useLocation().pathname.split('/')[1];
+  // console.log(currentURL);
+  const [selected, setSelected] = useState(currentURL);
   const navigate = useNavigate();
   return (
     <Container>
@@ -18,43 +22,47 @@ function Navbar() {
           onClick={() => {
             navigate('/home');
           }}
+          isSelected={selected === 'home'}
         >
           <div className="icon">
-            <FontAwesomeIcon icon={faHouseChimney} />
+            <FontAwesomeIcon size="lg" icon={faHouseChimney} />
           </div>
-          <div>Home</div>
+          <S.NavText>Home</S.NavText>
         </S.MenuBox>
 
         <S.MenuBox
           onClick={() => {
             navigate('/meals');
           }}
+          isSelected={selected === 'meals'}
         >
           <div className="icon">
-            <FontAwesomeIcon icon={faUtensils} />
+            <FontAwesomeIcon size="lg" icon={faUtensils} />
           </div>
-          <div>식단</div>
+          <S.NavText>식단</S.NavText>
         </S.MenuBox>
         <S.MenuBox
           onClick={() => {
             navigate('/chart');
           }}
+          isSelected={selected === 'chart'}
         >
           <div className="icon">
-            <FontAwesomeIcon icon={faChartColumn} />
+            <FontAwesomeIcon size="lg" icon={faChartColumn} />
           </div>
-          <div>Chart</div>
+          <S.NavText>Chart</S.NavText>
         </S.MenuBox>
 
         <S.MenuBox
           onClick={() => {
             navigate('/mypage');
           }}
+          isSelected={selected === 'mypage'}
         >
           <div className="icon">
-            <FontAwesomeIcon icon={faUser} />
+            <FontAwesomeIcon size="lg" icon={faUser} />
           </div>
-          <div>MyPage</div>
+          <S.NavText>MyPage</S.NavText>
         </S.MenuBox>
       </S.NavContainer>
     </Container>

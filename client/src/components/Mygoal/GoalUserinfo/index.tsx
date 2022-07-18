@@ -1,54 +1,47 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import * as Api from '../../../api';
 import * as S from '../style';
-import { userCalories } from '../../../utils';
+import { userCalories, userBmi } from '../../../utils';
+import { useAppSelector } from '../../../hooks/useAppSelector';
+import { UsersInfo } from '../../../customType/usersInfo.type';
 
 function GoalUserInfoForm() {
+  // 유효성검사
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
   const navigate = useNavigate();
-  const [mode, setMode] = useState('DEC');
-  const [activity, setActivity] = useState('NORMAL');
-  const [gender, setGender] = useState('MALE');
 
-  const selectHandler = (e: React.MouseEvent<HTMLDivElement>, mode: string) => {
-    const activeMode = document.querySelector('.acitveMode');
-    if (mode === 'DEC') {
-      activeMode?.classList.remove('acitveMode');
-      e.currentTarget.classList.add('acitveMode');
-      setMode('DEC');
-    } else {
-      activeMode?.classList.remove('acitveMode');
-      e.currentTarget.classList.add('acitveMode');
-      setMode('INC');
-    }
+  // 입력 미완성시 이전기록 => 완성시 get요청 데이터
+  const usersInfo = localStorage.getItem('usersInfo')
+    ? JSON.parse(localStorage.getItem('usersInfo') || '{}')
+    : JSON.parse(localStorage.getItem('usersInfoStorage') || '{}');
+
+  const [mode, setMode] = useState(usersInfo?.mode ? usersInfo?.mode : 'DEC');
+  const [activity, setActivity] = useState(
+    usersInfo?.activity ? usersInfo?.activity : 'NORMAL',
+  );
+  const [gender, setGender] = useState(
+    usersInfo?.gender ? usersInfo?.gender : 'MALE',
+  );
+
+  // console.log(usersInfo);
+  const selectHandler = (mode: string) => {
+    setMode(mode);
   };
-  const activityHandler = (
-    e: React.MouseEvent<HTMLDivElement>,
-    activityMode: string,
-  ) => {
-    const activeSelect = document.querySelector('.activeSelect');
-    if (activityMode === 'MORE') {
-      activeSelect?.classList.remove('activeSelect');
-      e.currentTarget.classList.add('activeSelect');
-      setActivity('MORE');
-    } else if (activityMode === 'NORMAL') {
-      activeSelect?.classList.remove('activeSelect');
-      e.currentTarget.classList.add('activeSelect');
-      setActivity('NORMAL');
-    } else {
-      activeSelect?.classList.remove('activeSelect');
-      e.currentTarget.classList.add('activeSelect');
-      setActivity('LESS');
-    }
+  // 활동량 선택 이벤트 핸들러
+  const activityHandler = (activityMode: string) => {
+    setActivity(activityMode);
   };
+  // 성별 선택 이벤트 핸들러
   const genderHandler = (e: any) => {
-    setGender(e.target.value);
+    setGender(String(e.target.value));
   };
+  // form 태그 제출 핸들러 => 로컬스토리지에 저장
   const onSubmit = (data: any) => {
     const age = data.age;
     const height = data.height;
@@ -62,6 +55,7 @@ function GoalUserInfoForm() {
       height,
       current_weight,
       goal_weight: data.goal_weight,
+      bmi: userBmi({ height, current_weight }),
       mode,
       activity,
       nutrient: {
@@ -70,10 +64,13 @@ function GoalUserInfoForm() {
         protein: 0,
         fat: 0,
       },
+      is_login_first: 'true',
     };
     localStorage.setItem('usersInfo', JSON.stringify(usersEntry));
+
     navigate('/mypage/goal_step2');
   };
+
   return (
     <S.MyGoalWrapper>
       <S.CircleContainer>
@@ -85,26 +82,27 @@ function GoalUserInfoForm() {
       <S.Title>필수 정보 입력하기</S.Title>
       <form onSubmit={handleSubmit(onSubmit)}>
         <S.FlexContainer>
-          성별{' '}
+          성별
           <span style={{ fontSize: '16px' }}>
             <input
               type="radio"
               name="gender"
               id="M"
               value="MALE"
-              onClick={genderHandler}
-              defaultChecked
+              onChange={genderHandler}
+              defaultChecked={gender === 'MALE'}
             />
-            <label htmlFor="M">남성</label>
+            <label htmlFor="M">🙍🏻‍♂️ 남성</label>
 
             <input
               type="radio"
               name="gender"
               id="F"
               value="FEMALE"
-              onClick={genderHandler}
+              onChange={genderHandler}
+              defaultChecked={gender === 'FEMALE'}
             />
-            <label htmlFor="F">여성</label>
+            <label htmlFor="F">🙍🏻‍♀️ 여성</label>
           </span>
         </S.FlexContainer>
         <S.FlexContainer>
@@ -118,13 +116,16 @@ function GoalUserInfoForm() {
             name="age"
             widthSize="small"
             type="number"
-            placeholder="나이를 입력해주세요."
-            defaultValue={''}
+            placeholder={`${
+              (errors.age && '올바른 나이를 입력해주세요.') || ''
+            }`}
+            key={usersInfo ? 'notLoadedYet' : 'loaded'}
+            defaultValue={usersInfo?.age}
           />
         </S.FlexContainer>
-        <S.ErrorMessage>
-          {errors.age && '올바른 나이를 입력해주세요.'}
-        </S.ErrorMessage>
+        {/* <S.ErrorMessage> */}
+        {/* {errors.age && '올바른 나이를 입력해주세요.'} */}
+        {/* </S.ErrorMessage> */}
         <S.FlexContainer>
           키{' '}
           <S.InputTag
@@ -137,7 +138,7 @@ function GoalUserInfoForm() {
             name="height"
             type="number"
             placeholder="키를 입력해주세요."
-            defaultValue={''}
+            defaultValue={usersInfo?.height}
           ></S.InputTag>
         </S.FlexContainer>
         <S.ErrorMessage>
@@ -155,7 +156,7 @@ function GoalUserInfoForm() {
             name="current_weight"
             type="number"
             placeholder="현재 체중을 입력해주세요."
-            defaultValue={''}
+            defaultValue={usersInfo?.current_weight}
           ></S.InputTag>
         </S.FlexContainer>
         <S.ErrorMessage>
@@ -173,7 +174,7 @@ function GoalUserInfoForm() {
             widthSize="small"
             type="number"
             placeholder="목표 체중을 입력해주세요."
-            defaultValue={''}
+            defaultValue={usersInfo?.goal_weight}
           ></S.InputTag>
         </S.FlexContainer>
         <S.ErrorMessage>
@@ -181,17 +182,18 @@ function GoalUserInfoForm() {
         </S.ErrorMessage>
         <S.FlexContainer className="mode">
           <S.Mode
-            onClick={(e) => {
-              selectHandler(e, 'DEC');
+            onClick={() => {
+              selectHandler('DEC');
             }}
-            className="acitveMode"
+            isSelected={mode === 'DEC'}
           >
             다이어트 식단
           </S.Mode>
           <S.Mode
-            onClick={(e) => {
-              selectHandler(e, 'INC');
+            onClick={() => {
+              selectHandler('INC');
             }}
+            isSelected={mode === 'INC'}
           >
             증량 식단
           </S.Mode>
@@ -200,25 +202,27 @@ function GoalUserInfoForm() {
         <S.FlexContainer>
           활동량
           <S.Activity
-            onClick={(e) => {
-              activityHandler(e, 'LESS');
+            onClick={() => {
+              activityHandler('LESS');
             }}
+            isSelected={activity === 'LESS'}
           >
             <div className="emoji">{/* div태그 img로 바꾸기 나중에 */}</div>
             적음
           </S.Activity>
           <S.Activity
-            onClick={(e) => {
-              activityHandler(e, 'NORMAL');
+            onClick={() => {
+              activityHandler('NORMAL');
             }}
-            className="activeSelect"
+            isSelected={activity === 'NORMAL'}
           >
             <div className="emoji"></div>보통
           </S.Activity>
           <S.Activity
-            onClick={(e) => {
-              activityHandler(e, 'MORE');
+            onClick={() => {
+              activityHandler('MORE');
             }}
+            isSelected={activity === 'MORE'}
           >
             <div className="emoji"></div>많음
           </S.Activity>

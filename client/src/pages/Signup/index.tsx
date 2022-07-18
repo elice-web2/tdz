@@ -1,13 +1,16 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Container from '../../components/styles/Container';
-import { useAppDispatch } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import { postLoginAsync, postSignUpAsync } from '../../slices/usersInfoSlice';
 import * as S from './style';
 
 function Signup() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const { isLogin, is_login_first } = useAppSelector(
+    ({ usersInfo }) => usersInfo.value,
+  );
 
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
@@ -26,6 +29,14 @@ function Signup() {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    if (isLogin && is_login_first) {
+      navigate('/mypage/goal_step1');
+    } else if (isLogin) {
+      navigate('/home');
+    }
+  }, []);
 
   return (
     <Container>

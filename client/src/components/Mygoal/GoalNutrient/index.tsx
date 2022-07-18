@@ -32,6 +32,8 @@ function GoalNutrientForm() {
     existEntry.nutrient.carb = nutrient.carb;
     existEntry.nutrient.protein = nutrient.protein;
     existEntry.nutrient.fat = nutrient.fat;
+    existEntry.is_login_first = false;
+    localStorage.setItem('usersInfo', JSON.stringify(existEntry));
     dispatch(patchActivityAsync(existEntry));
     navigate('/home');
   };
@@ -57,7 +59,13 @@ function GoalNutrientForm() {
         <S.StepCircle active></S.StepCircle>
       </S.CircleContainer>
       <S.Step>STEP 3</S.Step>
-      <S.Title>탄단지 섭취량 입력하기</S.Title>
+      <S.Title>
+        탄단지 섭취량{' '}
+        {String(localStorage.getItem('is_login_first')) === 'false'
+          ? '수정'
+          : '입력'}
+        하기
+      </S.Title>
       <form onSubmit={handleSubmit(onSubmit)}>
         <S.Title align="end" className="subTitle">
           목표 섭취 열량
