@@ -6,7 +6,7 @@ export const FlexContainer = styled.div`
   height: 100vh;
 `;
 
-export const SigninContainer = styled.div`
+export const SignContainer = styled.div`
   display: flex;
   flex-direction: column;
 
@@ -20,19 +20,19 @@ export const SigninContainer = styled.div`
   background-color: #fff;
 `;
 
-export const SigninText = styled.h2`
+export const SignText = styled.h2`
   justify-content: flex-start;
   margin: 20px 0;
   font-size: 28px;
   font-weight: 400;
 `;
 
-export const SigninInputLabel = styled.h4`
+export const SignInputLabel = styled.h4`
   font-size: 12px;
   margin: 10px 0;
 `;
 
-export const SigninInputBox = styled.input.attrs((props) => ({
+export const SignInputBox = styled.input.attrs((props) => ({
   type: props.type,
 }))`
   width: 95%;
@@ -44,7 +44,7 @@ export const SigninInputBox = styled.input.attrs((props) => ({
   padding: 10px;
 `;
 
-export const SignUpContainer = styled.div`
+export const LinkContainer = styled.div`
   display: flex;
 
   padding: 20px 0;
@@ -58,7 +58,7 @@ export const SignUpContainer = styled.div`
   }
 `;
 
-export const SigninButton = styled.button`
+export const SignButton = styled.button`
   width: 70%;
   height: 32px;
 
@@ -80,5 +80,4 @@ export const Errormessage = styled.div`
 
 export const FlexWrapper = styled.div`
   ${({ theme }) => theme.flexbox('column')}
-  padding-top: 50px;
 `;
