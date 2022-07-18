@@ -2,47 +2,60 @@ import { Schema } from 'mongoose';
 
 const MealSchema = new Schema(
   {
-    meal_code: {
+    code: {
+      type: String,
+      required: false,
+    },
+    name: {
       type: String,
       required: true,
     },
-    meal_name: {
-      type: String,
-      required: true,
-    },
-    meal_kcal: {
+    kcal: {
       type: Number,
       required: true,
     },
-    meal_carb: {
+    carb: {
       type: Number,
       required: true,
     },
-    meal_protein: {
+    protein: {
       type: Number,
       required: true,
     },
-    meal_fat: {
+    fat: {
       type: Number,
       required: true,
     },
-    meal_sugars: {
+    sugars: {
       type: Number,
       required: true,
     },
-    meal_natruim: {
+    natruim: {
       type: Number,
       required: true,
     },
-    meal_cholesterol: {
+    cholesterol: {
       type: Number,
       required: true,
     },
-    meal_saturatedfatty: {
+    saturatedfatty: {
       type: Number,
       required: true,
     },
-    meal_transfat: {
+    transfat: {
+      type: Number,
+      required: true,
+    },
+    servingSize: {
+      type: Number,
+      required: true,
+    },
+    quantity: {
+      type: Number,
+      default: 1,
+      required: true,
+    },
+    totalGram: {
       type: Number,
       required: true,
     },
