@@ -31,15 +31,13 @@ function MealsEnroll() {
     data.transfat = Number(data.transfat);
     data.cholesterol = Number(data.cholesterol);
     data.saturatedfatty = Number(data.saturatedfatty);
-    console.log('post데이터', data);
-    const res = await api.post('/api/meal', data);
-    if (res) {
-      if (confirm('식단에 추가하시겠습니까?')) {
-        dispatch(addMeals(data));
-        navigate('/meals/cart');
-      } else {
-        navigate('/meals/search');
-      }
+
+    if (confirm('식단에 추가하시겠습니까?')) {
+      await api.post('/api/meal', data);
+      dispatch(addMeals(data));
+      navigate('/meals/cart');
+    } else {
+      navigate('/meal/search');
     }
   }
   return (
