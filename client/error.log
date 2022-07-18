@@ -1048,3 +1048,45 @@ Error: 해당 식단에 관련한 즐겨찾기 정보가 없습니다.
     at runMicrotasks (<anonymous>)
     at processTicksAndRejections (node:internal/process/task_queues:96:5)
 
+[2022-7-18 21:55:9] GET:/api/favorites/62d55814d569660f48fc3647
+Error: 해당 식단에 관련한 즐겨찾기 정보가 없습니다.
+    at favorite (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\favorite-controller.ts:82:13)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+
+[2022-7-18 21:55:9] GET:/api/favorites/62d55823d569660f48fc3649
+Error: 해당 식단에 관련한 즐겨찾기 정보가 없습니다.
+    at favorite (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\favorite-controller.ts:82:13)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+
+[2022-7-18 21:56:9] GET:/api/meal/%EB%93%B1%EB%A1%9D%ED%95%B4%EB%B3%B4%EC%9E%90
+TypeError: Cannot read properties of undefined (reading 'length')
+    at MealService.addMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:44:38)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async MealService.findMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\services\meal-service.ts:13:24)
+    at async getMeal (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\meal-controller.ts:9:24)
+
+[2022-7-18 22:0:3] GET:/api/favorites/62d55948d569660f48fc3654
+Error: 해당 식단에 관련한 즐겨찾기 정보가 없습니다.
+    at favorite (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\favorite-controller.ts:82:13)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+
+[2022-7-18 22:0:4] GET:/api/favorites/62d55948d569660f48fc3654
+Error: 해당 식단에 관련한 즐겨찾기 정보가 없습니다.
+    at favorite (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\favorite-controller.ts:82:13)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+
+[2022-7-18 22:0:4] GET:/api/favorites/62d55948d569660f48fc3654
+Error: 해당 식단에 관련한 즐겨찾기 정보가 없습니다.
+    at favorite (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\favorite-controller.ts:82:13)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+
+[2022-7-18 22:0:22] GET:/api/favorites/62d55962d569660f48fc365b
+Error: 해당 식단에 관련한 즐겨찾기 정보가 없습니다.
+    at favorite (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\favorite-controller.ts:82:13)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+
+[2022-7-18 22:1:42] GET:/api/favorites/62d559a9d569660f48fc3660
+Error: 해당 식단에 관련한 즐겨찾기 정보가 없습니다.
+    at favorite (C:\Users\Administrator\Desktop\project\TDZ\server\src\controllers\favorite-controller.ts:82:13)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+

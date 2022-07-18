@@ -14,56 +14,34 @@ import { addMeals } from '../../slices/mealsSlice';
 function MealsEnroll() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const name = useRef<HTMLInputElement>(null);
-  const kcal = useRef<HTMLInputElement>(null);
-  const carb = useRef<HTMLInputElement>(null);
-  const protein = useRef<HTMLInputElement>(null);
-  const fat = useRef<HTMLInputElement>(null);
-  const sugars = useRef<HTMLInputElement>(null);
-  const natruim = useRef<HTMLInputElement>(null);
-  const transfat = useRef<HTMLInputElement>(null);
-  const cholesterol = useRef<HTMLInputElement>(null);
-  const servingSize = useRef<HTMLInputElement>(null);
-  const saturatedfatty = useRef<HTMLInputElement>(null);
+  const { register, handleSubmit } = useForm();
 
-  async function submitHandler(e: React.FormEvent) {
-    e.preventDefault();
-    let obj;
-    if (
-      name &&
-      servingSize &&
-      kcal &&
-      carb &&
-      protein &&
-      fat &&
-      natruim &&
-      sugars &&
-      transfat &&
-      cholesterol &&
-      saturatedfatty
-    ) {
-      obj = {
-        code: '',
-        quantity: 1,
-        name: name.current?.value,
-        servingSize: servingSize.current?.value,
-        totalGram: servingSize.current?.value,
-        kcal: kcal.current?.value,
-        carb: carb.current?.value,
-        protein: protein.current?.value,
-        fat: fat.current?.value,
-        sugars: sugars.current?.value,
-        transfat: transfat.current?.value,
-        natruim: natruim.current?.value,
-        cholesterol: cholesterol.current?.value,
-        saturatedfatty: saturatedfatty.current?.value,
-        updated_date: new Date(),
-      };
-      console.log(obj);
+  async function onSubmit(data: any) {
+    data.code = '';
+    data.quantity = 1;
+    data.updated_date = new Date();
+    data.servingSize = Number(data.servingSize);
+    data.totalGram = Number(data.servingSize);
+    data.kcal = Number(data.kcal);
+    data.carb = Number(data.carb);
+    data.protein = Number(data.protein);
+    data.fat = Number(data.fat);
+    data.natruim = Number(data.natruim);
+    data.sugars = Number(data.sugars);
+    data.transfat = Number(data.transfat);
+    data.cholesterol = Number(data.cholesterol);
+    data.saturatedfatty = Number(data.saturatedfatty);
+    console.log('post데이터', data);
+    const res = await api.post('/api/meal', data);
+    if (res) {
+      if (confirm('식단에 추가하시겠습니까?')) {
+        dispatch(addMeals(data));
+        navigate('/meals/cart');
+      } else {
+        navigate('/meals/search');
+      }
     }
-    await api.post('/api/meal', obj);
   }
-
   return (
     <Container>
       <S.Header>
@@ -76,56 +54,85 @@ function MealsEnroll() {
         </span>
         <h1>음식 등록하기</h1>
       </S.Header>
-      <form onSubmit={submitHandler}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <S.NameInputElement>
           <p>음식명</p>
-          <input ref={name} type="text" name="name"></input>
+          <input
+            type="text"
+            {...register('name', { required: true, minLength: 1 })}
+          />
         </S.NameInputElement>
 
         <S.NutrientBox>
           <h2>영양정보</h2>
           <S.NutrientInputElement>
             <p>내용량(g)</p>
-            <input ref={servingSize} type="number" name="servingSize"></input>
+            <input
+              type="number"
+              {...register('servingSize', { required: true, min: 0 })}
+            ></input>
           </S.NutrientInputElement>
           <S.NutrientInputElement>
             <p>열량</p>
-            <input ref={kcal} type="number" name="kcal"></input>
+            <input
+              type="number"
+              {...register('kcal', { required: true, min: 0 })}
+            ></input>
           </S.NutrientInputElement>
           <S.NutrientInputElement>
             <p>탄수화물</p>
-            <input ref={carb} type="number" name="carb"></input>
+            <input
+              type="number"
+              {...register('carb', { required: true, min: 0 })}
+            ></input>
           </S.NutrientInputElement>
           <S.NutrientInputElement>
             <p>단백질</p>
-            <input ref={protein} type="number" name="protein"></input>
+            <input
+              type="number"
+              {...register('protein', { required: true, min: 0 })}
+            ></input>
           </S.NutrientInputElement>
           <S.NutrientInputElement>
             <p>지방</p>
-            <input ref={fat} type="number" name="fat"></input>
+            <input
+              type="number"
+              {...register('fat', { required: true, min: 0 })}
+            ></input>
           </S.NutrientInputElement>
           <S.NutrientInputElement>
             <p>나트륨</p>
-            <input ref={natruim} type="number" name="natruim"></input>
+            <input
+              type="number"
+              {...register('natruim', { required: true, min: 0 })}
+            ></input>
           </S.NutrientInputElement>
           <S.NutrientInputElement>
             <p>당</p>
-            <input ref={sugars} type="number" name="sugars"></input>
+            <input
+              type="number"
+              {...register('sugars', { required: true, min: 0 })}
+            ></input>
           </S.NutrientInputElement>
           <S.NutrientInputElement>
             <p>콜레스테롤</p>
-            <input ref={cholesterol} type="number" name="cholesterol"></input>
+            <input
+              type="number"
+              {...register('cholesterol', { required: true, min: 0 })}
+            ></input>
           </S.NutrientInputElement>
           <S.NutrientInputElement>
             <p>트랜스지방</p>
-            <input ref={transfat} type="number" name="transfat"></input>
+            <input
+              type="number"
+              {...register('transfat', { required: true, min: 0 })}
+            ></input>
           </S.NutrientInputElement>
           <S.NutrientInputElement>
             <p>포화지방</p>
             <input
-              ref={saturatedfatty}
               type="number"
-              name="saturatedfatty"
+              {...register('saturatedfatty', { required: true, min: 0 })}
             ></input>
           </S.NutrientInputElement>
         </S.NutrientBox>

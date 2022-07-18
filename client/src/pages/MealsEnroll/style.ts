@@ -44,7 +44,7 @@ export const NameInputElement = styled.div`
 `;
 
 export const NutrientBox = styled.div`
-  border: 1px solid green;
+  border-top: 1px solid #eeeeee;
   h2 {
     font-size: 16px;
     font-weight: bold;
