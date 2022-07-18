@@ -12,6 +12,7 @@ import {
   LineElement,
   BarElement,
   Title,
+  Tooltip,
 } from 'chart.js';
 
 // components
@@ -36,6 +37,7 @@ ChartJS.register(
   Title,
   LineElement,
   BarElement,
+  Tooltip,
 );
 
 function ChartPage() {
@@ -139,12 +141,12 @@ function ChartPage() {
             </S.NextButton>
           </S.PeriodContainer>
 
-          <WeightChart data={DUMMY_DATA_WEEKLY} />
-          <CalorieChart data={DUMMY_DATA_DAILY} />
-          <NutrientAverage data={DUMMY_DATA_DAILY} />
+          <WeightChart data={chartData.data} labels={chartData.labels} />
+          <CalorieChart data={chartData.data} labels={chartData.labels} />
+          <NutrientAverage data={chartData.data} />
         </S.Wrapper>
 
-        <NutrientDetail data={DUMMY_DATA_DAILY} />
+        <NutrientDetail data={chartData.data} />
       </ScrollContainer>
 
       <Navbar />

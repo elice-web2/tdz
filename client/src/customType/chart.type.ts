@@ -3,19 +3,19 @@ export interface ChartData {
   kcalAvg: number[];
   carbAvg: number[];
   proteinAvg: number[];
-  fatAvg : number[];
+  fatAvg: number[];
   kcalSum: number;
-  carbSum:number;
+  carbSum: number;
   proteinSum: number;
   fatSum: number;
-  sugarsSum:number;
-  natriumSum:number;
+  sugarsSum: number;
+  natriumSum: number;
   cholesterolSum: number;
-  saturatedfattySum:number;
-  transfatSum:number;
+  saturatedfattySum: number;
+  transfatSum: number;
 }
 
 export interface ChartInfo {
-  data : ChartData
-  labels : any
+  data: ChartData;
+  labels: any;
 }

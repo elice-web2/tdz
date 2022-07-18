@@ -34,8 +34,14 @@ export const NutrientListItem = styled.ol`
 
   font-size: 14px;
 
+  div {
+    display: flex;
+    align-items: center;
+  }
+
   svg {
     font-size: 10px;
+    padding-right: 6px;
     color: rgba(0, 0, 0, 0.3);
   }
 `;
@@ -46,7 +52,13 @@ export const SubListItem = styled(NutrientListItem)`
   font-size: 12px;
   color: rgba(0, 0, 0, 0.5);
 
+  div {
+    display: flex;
+    align-items: center;
+  }
+
   svg {
     font-size: 6px;
+    padding-right: 4px;
   }
 `;
