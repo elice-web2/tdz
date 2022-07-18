@@ -68,13 +68,6 @@ interface patchUserParam {
   currentPassword: string;
 }
 
-interface postWeightDataParam {
-  date: string;
-  goalKcal: number;
-  mode: string;
-  todayWeight: number;
-}
-
 const initialState: UsersInfoState = {
   value: {
     email: '',
@@ -135,11 +128,6 @@ async function patchActivityData(activityInfo: patchActivityParam) {
   const resp = await api.patch('/api/users/activity', activityInfo);
   return resp.data;
 }
-// 몸무게 수정 post API 통신 함수
-async function postWeightData(weightData: postWeightDataParam) {
-  const resp = await api.post('/api/calendar', weightData);
-  return resp.data;
-}
 
 // 비동기로 데이터를 불러와 액션을 생성하고 싶을 경우 예시
 export const postSignUpAsync = createAsyncThunk(
@@ -188,13 +176,6 @@ export const patchActivityAsync = createAsyncThunk(
   'usersInfo/patchActivityData',
   async (activityInfo: patchActivityParam) => {
     const data = await patchActivityData(activityInfo);
-    return data;
-  },
-);
-export const postWeightDataAsync = createAsyncThunk(
-  'usersInfo/postWeightData',
-  async (weightData: postWeightDataParam) => {
-    const data = await postWeightData(weightData);
     return data;
   },
 );
@@ -247,12 +228,6 @@ export const UsersInfoSlice = createSlice({
           ...state.value,
           ...action.payload,
           is_login_first: false,
-        };
-      })
-      .addCase(postWeightDataAsync.fulfilled, (state, action) => {
-        state.value = {
-          ...state.value,
-          current_weight: action.payload.todayWeight,
         };
       });
   },

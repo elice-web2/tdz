@@ -4,10 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 import * as S from './style';
 import * as Api from '../../../api';
-import {
-  patchActivityAsync,
-  postWeightDataAsync,
-} from '../../../slices/usersInfoSlice';
+import { patchActivityAsync } from '../../../slices/usersInfoSlice';
 import { parseDateFromNow } from '../../../utils';
 import dayjs from 'dayjs';
 
@@ -40,7 +37,7 @@ function ManageWeight() {
       todayWeight: Number(weightValue) || current_weight,
     };
     // 오늘의 몸무게를 저장 후 유저의 현재 체중도 수정
-    dispatch(postWeightDataAsync(data));
+    await Api.post('/api/calendar', data);
     setWeightByDate(Number(weightValue));
     if (date === dayjs().format('YYYY-MM-DD')) {
       dispatch(patchActivityAsync({ current_weight: Number(weightValue) }));
@@ -51,10 +48,7 @@ function ManageWeight() {
     if (weightByDate === goal_weight) {
       return '목표를 달성했어요!';
     }
-    if (mode === 'INC') {
-      return `목표까지 ${goal_weight - weightByDate}kg 남았어요!`;
-    }
-    return `목표까지 ${weightByDate - goal_weight}kg 남았어요!`;
+    return `목표 체중 : ${goal_weight}kg`;
   };
 
   useEffect(() => {
@@ -84,7 +78,7 @@ function ManageWeight() {
               onChange={onChangeWeight}
               min={0}
               max={999}
-              placeholder={String(current_weight)}
+              placeholder={String(weightByDate)}
             />
             <button>
               <FontAwesomeIcon icon={faCheck} />
