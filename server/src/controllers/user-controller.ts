@@ -1,7 +1,7 @@
 import is from '@sindresorhus/is';
 import { Request, Response, NextFunction } from 'express';
-import { userService } from '../services';
-import { UserInfo, Nutrient, UserData } from '../customType/user.type';
+import { userService, socialLoginService } from '../services';
+import { UserInfo, Nutrient, UserData } from '../types/user.type';
 
 //회원 가입을 위한 function
 const signUp = async (req: Request, res: Response, next: NextFunction) => {
@@ -65,6 +65,20 @@ const logout = async function (
 ) {
   //쿠키에 있는 jwt 토큰이 들어 있는 쿠키를 비워줌
   try {
+    const cookie: string = req.headers.cookie as string;
+
+    const tokens = cookie.split('; ');
+
+    const accessToken: string = tokens[0].slice(0, 12);
+
+    // 카카오 로그아웃 (accessToken이 존재하는 경우)
+    if (accessToken === 'accessToken=') {
+      const accessTokenValue: string = tokens[0].slice(12);
+
+      await socialLoginService.kakaoLogoutService(accessTokenValue);
+      res.clearCookie('accessToken');
+    }
+
     res.clearCookie('token').json({
       success: true,
       data: '성공적으로 로그아웃 되었습니다.',
@@ -186,7 +200,7 @@ const goalUpdate = async function (
     const profile_image: string = req.body.profile_image;
     const nickname: string = req.body.nickname;
     const comment: string = req.body.comment;
-    const is_login_first: string = req.body.is_login_first;
+    const is_login_first: boolean = req.body.is_login_first;
 
     // 위 데이터가 undefined가 아니라면, 즉, 프론트에서 업데이트를 위해
     // 보내주었다면, 업데이트용 객체에 삽입함.
@@ -412,4 +426,5 @@ export {
   userUpdate,
   goalUpdate,
   deleteUser,
+  // kakaoLogin,
 };

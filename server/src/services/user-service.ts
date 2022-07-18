@@ -4,7 +4,7 @@ import {
   LoginInfo,
   UserInfoRequired,
   InfoToUpdate,
-} from '../customType/user.type';
+} from '../types/user.type';
 import { getRandomNickname } from '../middlewares';
 
 import bcrypt from 'bcrypt';
@@ -35,6 +35,32 @@ class UserService {
       email,
       password: hashedPassword,
       nickname,
+    };
+
+    // db에 저장
+    return await this.userModel.create(newUserInfo);
+  }
+
+  // 카카오 회원가입
+  async addUserWithKakao(
+    userInfo: LoginInfo,
+    nickname: string,
+  ): Promise<UserData> {
+    // 객체 destructuring
+    const { email, password } = userInfo;
+
+    if (!email) {
+      throw new Error('회원가입을 위해 이메일이 필요합니다');
+    }
+
+    // 비밀번호 해쉬화(암호화)
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const newUserInfo = {
+      email,
+      password: hashedPassword,
+      nickname,
+      login_path: 'kakao',
     };
 
     // db에 저장

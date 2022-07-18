@@ -4,7 +4,7 @@ import {
   MealHistoryInfo,
   MealHistoryData,
   ToUpdate,
-} from '../../customType/mealhistory.type';
+} from '../../types/mealhistory.type';
 const MealHistory = model<MealHistoryData>('mealhistory', MealHistorySchema);
 
 export class MealHistoryModel {

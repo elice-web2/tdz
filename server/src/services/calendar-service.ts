@@ -4,7 +4,7 @@ import {
   CalendarData,
   ToUpdate,
   CalendarToUpdate,
-} from '../customType/calendar.type';
+} from '../types/calendar.type';
 
 class CalendarService {
   constructor(private calendarModel: CalendarModel) {}
@@ -32,7 +32,7 @@ class CalendarService {
     userId: string,
     date: Date,
   ): Promise<CalendarData[]> {
-    const stamp = await this.calendarModel.findByDate(userId, date);
+    const stamp = await this.calendarModel.findStampByDate(userId, date);
 
     if (!stamp) {
       throw new Error('해당 도장이 존재하지 않습니다.');

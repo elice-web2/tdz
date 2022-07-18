@@ -1,8 +1,5 @@
 import { mealhistoryModel, MealHistoryModel } from '../db';
-import {
-  MealHistoryInfo,
-  MealHistoryData,
-} from '../customType/mealhistory.type';
+import { MealHistoryInfo, MealHistoryData } from '../types/mealhistory.type';
 import { calendarService, userService } from '../services';
 
 class MealHistoryService {

@@ -23,7 +23,11 @@ function Mypage() {
   const nickname = useAppSelector((state) => state.usersInfo.value.nickname);
   const comment = useAppSelector((state) => state.usersInfo.value.comment);
   const userProfile = useAppSelector((state) => state.usersInfo.value);
-
+  localStorage.setItem('usersInfoStorage', JSON.stringify(userProfile));
+  localStorage.setItem(
+    'is_login_first',
+    JSON.stringify(userProfile.is_login_first),
+  );
   const TDZPercent = () => {
     const carb = userProfile.nutrient.carb;
     const protein = userProfile.nutrient.protein;

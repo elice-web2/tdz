@@ -21,4 +21,11 @@ userRouter.patch('/users', loginRequired, userController.userUpdate);
 userRouter.patch('/users/activity', loginRequired, userController.goalUpdate);
 userRouter.delete('/users', loginRequired, userController.deleteUser);
 
+// 카카오 회원가입
+// userRouter.post('/auth/signup/kakao', userController.kakaoSignup);
+
+// 카카오 로그인
+//userRouter.post('/auth/login/kakao', userController.kakaoLogin);
+
+// userRouter.post('/auth/login/google', userController.kakaoLogin)
 export { userRouter };

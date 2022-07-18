@@ -1,5 +1,5 @@
 import { FavoriteModel, favoriteModel } from '../db';
-import { FavoriteInfo, FavoriteData } from '../customType/favorite.type';
+import { FavoriteInfo, FavoriteData } from '../types/favorite.type';
 import { mealService } from './meal-service';
 
 class FavoriteService {

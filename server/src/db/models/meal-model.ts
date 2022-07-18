@@ -1,19 +1,25 @@
 import { model } from 'mongoose';
 import { MealSchema } from '../schemas/meal-schema';
-import { MealData, MealInfo } from '../../customType/meal.type';
-const Meal = model<MealData>('meals', MealSchema);
+import { MealData, MealInfo } from '../../types/meal.type';
+const Meal = model('meals', MealSchema);
 
 export class MealModel {
   // 음식 이름 찾기
 
   async findByMealName(mealName: string): Promise<MealData[]> {
     const regex = new RegExp(`.*${mealName}.*`);
-    // return await Meal.find({ name: { $regex: regex } }).lean();
-    return await Meal.find({ name: mealName }).lean();
+    // return await Meal.find({ name: regex  }).lean();
+    return await Meal.find({
+      name: {
+        $regex: regex,
+      },
+    }).lean();
+    // return await Meal.find({ name: mealName }).lean();
   }
 
   async create(mealInfo: MealInfo): Promise<MealData> {
-    return await Meal.create(mealInfo);
+    const createdMealData = await Meal.create(mealInfo);
+    return createdMealData.toObject<MealData>();
   }
 
   /*
