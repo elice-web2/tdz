@@ -1,24 +1,30 @@
 import styled from 'styled-components';
 
-export const SigninContainer = styled.div`
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+export const FlexContainer = styled.div`
+  ${({ theme }) => theme.flexbox()}
 
-  width: 240px;
-  height: 320px;
+  height: 100vh;
+`;
+
+export const SigninContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  width: 340px;
+  height: 400px;
   padding: 40px 24px;
 
-  box-shadow: 2px 2px 6px 0px gray;
-  border-radius: 16px;
+  border: 0.1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 1px 3px 10px 1px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
   background-color: #fff;
 `;
 
 export const SigninText = styled.h2`
+  justify-content: flex-start;
   margin: 20px 0;
-  font-size: 24px;
-  font-weight: 600;
+  font-size: 28px;
+  font-weight: 400;
 `;
 
 export const SigninInputLabel = styled.h4`
@@ -29,30 +35,31 @@ export const SigninInputLabel = styled.h4`
 export const SigninInputBox = styled.input.attrs((props) => ({
   type: props.type,
 }))`
+  width: 95%;
+
   background-color: #d9d9d9;
   border: none;
+  border-radius: 5px;
 
-  padding: 8px 32px;
-  margin: 0 auto;
+  padding: 10px;
 `;
 
 export const SignUpContainer = styled.div`
   display: flex;
-  justify-content: space-evenly;
-  gap: 20px;
 
-  position: absolute;
-  top: 70%;
-  transform: translate(0%, -50%);
+  padding: 20px 0;
+
+  font-size: 14px;
+
+  a {
+    margin-left: 10px;
+    text-decoration: none;
+    color: #61b8ea;
+  }
 `;
 
 export const SigninButton = styled.button`
-  position: absolute;
-  left: 50%;
-  top: 90%;
-  transform: translate(-50%, -50%);
-
-  width: 200px;
+  width: 70%;
   height: 32px;
 
   border-radius: 12px;
@@ -60,4 +67,18 @@ export const SigninButton = styled.button`
 
   font-size: 12px;
   color: #ffffff;
+
+  cursor: pointer;
+`;
+
+export const Errormessage = styled.div`
+  padding-top: 5px;
+
+  font-size: 12px;
+  color: rgba(255, 0, 0, 0.6);
+`;
+
+export const FlexWrapper = styled.div`
+  ${({ theme }) => theme.flexbox('column')}
+  padding-top: 50px;
 `;

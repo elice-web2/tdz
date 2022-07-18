@@ -1,9 +1,15 @@
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { FieldValues, useForm } from 'react-hook-form';
+import { Link, useNavigate } from 'react-router-dom';
 import Container from '../../components/styles/Container';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { postLoginAsync, getUsersInfoAsync } from '../../slices/usersInfoSlice';
 import * as S from './style';
+
+interface FormData {
+  email: string;
+  password: string;
+}
 
 function Signin() {
   const navigate = useNavigate();
@@ -12,11 +18,13 @@ function Signin() {
     ({ usersInfo }) => usersInfo.value,
   );
 
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>();
 
-  const submitHandler = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const submitHandler = async ({ email, password }: FieldValues) => {
     try {
       await dispatch(postLoginAsync({ email: email, password: password }));
       await dispatch(getUsersInfoAsync());
@@ -37,32 +45,48 @@ function Signin() {
 
   return (
     <Container>
-      <S.SigninContainer>
-        <S.SigninText>로그인</S.SigninText>
-        <form method="post" onSubmit={submitHandler}>
-          <S.SigninInputLabel>아이디</S.SigninInputLabel>
-          <S.SigninInputBox
-            type="email"
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <S.SigninInputLabel>비밀번호</S.SigninInputLabel>
-          <S.SigninInputBox
-            type="password"
-            onChange={(e) => setPassword(String(e.target.value))}
-          />
-          <S.SignUpContainer>
-            <div>계정이 없으신가요?</div>
-            <div
-              onClick={() => {
-                navigate('/signup');
-              }}
-            >
-              회원가입
-            </div>
-          </S.SignUpContainer>
-          <S.SigninButton>로그인</S.SigninButton>
-        </form>
-      </S.SigninContainer>
+      <S.FlexContainer>
+        <S.SigninContainer>
+          <S.SigninText>로그인</S.SigninText>
+          <form onSubmit={handleSubmit(submitHandler)}>
+            <S.SigninInputLabel>아이디</S.SigninInputLabel>
+            <S.SigninInputBox
+              type="email"
+              {...register('email', {
+                required: '필수 항목입니다',
+                pattern: {
+                  value: /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/i,
+                  message: '이메일 형식에 맞지 않습니다.',
+                },
+              })}
+            />
+            {errors.email && (
+              <S.Errormessage>{errors.email.message}</S.Errormessage>
+            )}
+            <S.SigninInputLabel>비밀번호</S.SigninInputLabel>
+            <S.SigninInputBox
+              type="password"
+              {...register('password', {
+                required: '필수 항목입니다.',
+                minLength: {
+                  value: 4,
+                  message: '4자 이상 입력해주세요.',
+                },
+              })}
+            />
+            {errors.password && (
+              <S.Errormessage>{errors.password.message}</S.Errormessage>
+            )}
+            <S.FlexWrapper>
+              <S.SignUpContainer>
+                <div>계정이 없으신가요?</div>
+                <Link to="/signup">회원가입</Link>
+              </S.SignUpContainer>
+              <S.SigninButton>로그인</S.SigninButton>
+            </S.FlexWrapper>
+          </form>
+        </S.SigninContainer>
+      </S.FlexContainer>
     </Container>
   );
 }
