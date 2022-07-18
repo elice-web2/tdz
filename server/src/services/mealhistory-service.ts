@@ -1,8 +1,5 @@
 import { mealhistoryModel, MealHistoryModel } from '../db';
-import {
-  MealHistoryInfo,
-  MealHistoryData,
-} from '../customType/mealhistory.type';
+import { MealHistoryInfo, MealHistoryData } from '../types/mealhistory.type';
 import { calendarService, userService } from '../services';
 
 class MealHistoryService {
@@ -15,9 +12,11 @@ class MealHistoryService {
   ): Promise<MealHistoryData> {
     const createNewMeal = await this.mealhistoryModel.create(mealhistoryInfo);
 
-    // 날짜별 식단 조회 시 식단 객채가 1개일 때 캘린더 도장 생성
     const meals = await this.mealhistoryModel.findByDate(userId, date);
-    if (meals?.length === 1) {
+    const stamps = await calendarService.getCalendarStampByDate(userId, date);
+
+    // 날짜별 식단 조회 시 식단 객채가 1개일 때 캘린더 도장 생성
+    if (meals?.length === 1 && stamps?.length === 0) {
       const userInfo = await userService.getUserData(userId);
 
       if (!userInfo) {

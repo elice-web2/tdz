@@ -24,6 +24,8 @@ import CalorieChart from '../../components/chart/CalorieChart';
 import NutrientAverage from '../../components/chart/NutrientAverage';
 import { ScrollContainer } from '../../components/styles/ScrollContainer';
 import { convertDate, FilterType } from '../../utils';
+import { useAppSelector } from '../../hooks';
+import { useNavigate } from 'react-router-dom';
 
 // ChartJS를 react 에서 쓸 수 있도록 하는 코드
 ChartJS.register(
@@ -95,6 +97,10 @@ function ChartPage() {
   const [filter, setFilter] = useState<FilterType>('DAILY');
   const [baseDate, setBaseDate] = useState(dayjs());
   const [disableNext, setDisableNext] = useState(true);
+  const navigate = useNavigate();
+  const { isLogin, is_login_first } = useAppSelector(
+    ({ usersInfo }) => usersInfo.value,
+  );
 
   const onClickFilter = (filter: FilterType) => {
     setFilter(filter);
@@ -120,6 +126,13 @@ function ChartPage() {
       setDisableNext(baseDate.date() === dayjs().date());
     }
   }, [baseDate]);
+  useEffect(() => {
+    if (isLogin && is_login_first) {
+      navigate('/mypage/goal_step1');
+    } else if (!isLogin) {
+      navigate('/');
+    }
+  }, []);
 
   return (
     <Container>

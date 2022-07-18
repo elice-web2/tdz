@@ -1,16 +1,7 @@
-import styled from 'styled-components';
+import * as S from './style';
 
 function EmptyCart() {
-  return <EmptyCartContainer>추가된 식단이 없습니다.</EmptyCartContainer>;
+  return <S.EmptyCartContainer>추가된 식단이 없습니다.</S.EmptyCartContainer>;
 }
-
-const EmptyCartContainer = styled.div`
-  width: 100%;
-  box-sizing: border-box;
-  height: 100px;
-  padding: 30px;
-  margin: 100px 0;
-  text-align: center;
-`;
 
 export default EmptyCart;

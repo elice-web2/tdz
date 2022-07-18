@@ -22,7 +22,7 @@ export const Button = styled.input`
   height: 30px;
   margin-top: 5px;
 
-  background-color: black;
+  background-color: ${({ theme }) => theme.mainColor.darker};
   border-radius: 8px;
   border-style: none;
 
@@ -31,7 +31,7 @@ export const Button = styled.input`
 
   cursor: pointer;
 `;
-export const Mode = styled.div`
+export const Mode = styled.div<{ isSelected: boolean }>`
   width: 50%;
   height: 100px;
 
@@ -44,14 +44,16 @@ export const Mode = styled.div`
   line-height: 100px;
 
   cursor: pointer;
-
+  ${({ isSelected }) => {
+    if (isSelected) {
+      return css`
+        background-color: #8c9eff;
+        color: white;
+      `;
+    }
+  }}
   & + & {
     margin-left: 20px;
-  }
-
-  &.acitveMode {
-    background-color: #8c9eff;
-    color: white;
   }
 `;
 
@@ -92,7 +94,7 @@ export const StepCircle = styled.div<{ active?: boolean }>`
   background-color: ${(props) => (props.active ? 'grey' : 'lightgrey')};
   border-radius: 50%;
 `;
-export const Activity = styled.div`
+export const Activity = styled.div<{ isSelected: boolean }>`
   font-size: 12px;
   font-weight: 400;
 
@@ -108,13 +110,17 @@ export const Activity = styled.div`
     background-color: lightgray;
     border-radius: 50%;
   }
-  &.activeSelect {
-    font-size: 14px;
-    font-weight: 600;
-    .emoji {
-      background-color: black;
+  ${({ isSelected }) => {
+    if (isSelected) {
+      return css`
+        font-size: 14px;
+        font-weight: 600;
+        .emoji {
+          background-color: black;
+        }
+      `;
     }
-  }
+  }}
 `;
 
 export const Title = styled.div<{ align?: string }>`

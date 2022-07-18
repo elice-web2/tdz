@@ -4,9 +4,22 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { faCommentDots } from '@fortawesome/free-solid-svg-icons';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { useEffect } from 'react';
+import { useAppSelector } from '../../hooks';
 
 function Main() {
   const navigate = useNavigate();
+  const { isLogin, is_login_first } = useAppSelector(
+    ({ usersInfo }) => usersInfo.value,
+  );
+
+  useEffect(() => {
+    if (isLogin && is_login_first) {
+      navigate('/mypage/goal_step1');
+    } else if (isLogin) {
+      navigate('/home');
+    }
+  }, []);
   return (
     <S.Container>
       <S.VideoContainer>
@@ -18,7 +31,9 @@ function Main() {
         ></S.Video>
       </S.VideoContainer>
 
-      <S.LogoText>TDZ</S.LogoText>
+      <S.LogoText>
+        <img src={require('../../assets/logoBlack.png')} />
+      </S.LogoText>
       <S.IntroText>오늘 하루, 무엇을 드셨나요?</S.IntroText>
       <S.IntroText>매일의 식단을 기록해보세요!</S.IntroText>
       <S.IntroText>당신의 건강이 달라집니다!</S.IntroText>

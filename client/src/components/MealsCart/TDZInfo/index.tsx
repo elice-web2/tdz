@@ -1,11 +1,7 @@
 import * as S from './style';
+import { TDZInfoType } from '../../../customType/meal.type';
 
-interface TDZInfoProps {
-  nutrient: string;
-  gram: number | undefined;
-}
-
-function TDZInfo({ nutrient, gram }: TDZInfoProps) {
+function TDZInfo({ nutrient, gram }: TDZInfoType) {
   return (
     <>
       <S.NutrientInfoBox color={nutrient}>

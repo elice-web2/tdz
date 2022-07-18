@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faXmark,
@@ -17,8 +17,14 @@ import CalorieInfo from '../../components/MealsList/CalorieInfo';
 import FoodList from '../../components/MealsList/FoodList';
 import NutrientInfo from '../../components/MealsList/NutrientInfo';
 import * as S from './style';
+import { useNavigate } from 'react-router-dom';
+import { useAppSelector } from '../../hooks';
 
 function MealsList() {
+  const navigate = useNavigate();
+  const { isLogin, is_login_first } = useAppSelector(
+    ({ usersInfo }) => usersInfo.value,
+  );
   const [openModal, setOpenModal] = useState<boolean>(false);
   const clickHandler = () => {
     setOpenModal(true);
@@ -43,6 +49,14 @@ function MealsList() {
       </S.DeleteButtonBox>
     );
   };
+
+  useEffect(() => {
+    if (isLogin && is_login_first) {
+      navigate('/mypage/goal_step1');
+    } else if (!isLogin) {
+      navigate('/');
+    }
+  }, []);
 
   return (
     <Container>

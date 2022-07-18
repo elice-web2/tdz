@@ -1,7 +1,7 @@
 import is from '@sindresorhus/is';
 import { Request, Response, NextFunction } from 'express';
 import { favoriteService, mealService } from '../services';
-import { FavoriteInfo, FavoriteData } from '../customType/favorite.type';
+import { FavoriteInfo, FavoriteData } from '../types/favorite.type';
 
 //즐겨찾기 추가
 const add = async (req: Request, res: Response, next: NextFunction) => {

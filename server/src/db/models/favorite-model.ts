@@ -1,7 +1,7 @@
 import { model } from 'mongoose';
 import { FavoriteSchema } from '../schemas/favorite-schema';
 import { MealSchema } from '../schemas/meal-schema';
-import { FavoriteInfo, FavoriteData } from '../../customType/favorite.type';
+import { FavoriteInfo, FavoriteData } from '../../types/favorite.type';
 
 const Favorite = model<FavoriteData>('favorites', FavoriteSchema);
 

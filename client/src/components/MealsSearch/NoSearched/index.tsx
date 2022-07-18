@@ -1,16 +1,20 @@
-import styled from 'styled-components';
+import * as S from './style';
+import { useNavigate } from 'react-router-dom';
 
 function NoSearched() {
-  return <NoSearchedContainer>검색결과가 없습니다.</NoSearchedContainer>;
+  const navigate = useNavigate();
+  return (
+    <>
+      <S.NoSearchedContainer>검색결과가 없습니다.</S.NoSearchedContainer>
+      <S.AddButton
+        onClick={() => {
+          navigate('/meals/enroll');
+        }}
+      >
+        직접 등록
+      </S.AddButton>
+    </>
+  );
 }
-
-const NoSearchedContainer = styled.div`
-  width: 100%;
-  box-sizing: border-box;
-  height: 100px;
-  padding: 30px;
-  margin: 100px 0;
-  text-align: center;
-`;
 
 export default NoSearched;

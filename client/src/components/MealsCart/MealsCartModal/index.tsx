@@ -1,26 +1,15 @@
 import * as S from './style';
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { postMealsDataAsync } from '../../../slices/mealsSlice';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
-import { MealData } from '../../../customType/meal.type';
+import { MealsCartModalPropsType } from '../../../customType/meal.type';
 import dayjs from 'dayjs';
-
-interface MealsCartModalProps {
-  setOpenModal: (value: boolean) => void;
-}
 
 type selectedType = '아침' | '점심' | '저녁' | '간식' | '';
 
-interface postDataType {
-  date: string;
-  category: string;
-  meals: MealData[];
-}
-
-function MealsCartModal({ setOpenModal }: MealsCartModalProps) {
+function MealsCartModal({ openModal }: MealsCartModalPropsType) {
   const [selected, setSelected] = useState<selectedType>('');
-  const [postData, setPostData] = useState<postDataType>();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const meals = useAppSelector(({ meal }) => meal.value);
@@ -32,7 +21,7 @@ function MealsCartModal({ setOpenModal }: MealsCartModalProps) {
   console.log('보낼내용', postResultObj);
 
   function modalCloseHandler() {
-    setOpenModal(false);
+    openModal(false);
   }
 
   function clickSelectHandler(time: selectedType) {
@@ -45,7 +34,7 @@ function MealsCartModal({ setOpenModal }: MealsCartModalProps) {
       <S.ModalContainer>
         <S.XBtn
           onClick={() => {
-            setOpenModal(false);
+            openModal(false);
           }}
         >
           X

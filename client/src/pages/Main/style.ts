@@ -16,13 +16,11 @@ export const Video = styled.video`
   z-index: -100;
 `;
 
-export const LogoText = styled.h1`
+export const LogoText = styled.div`
   position: relative;
   margin-bottom: 80px;
   padding-top: 100px;
   color: black;
-  font-size: 60px;
-  font-weight: bold;
   text-align: center;
 `;
 

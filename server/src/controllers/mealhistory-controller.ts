@@ -1,7 +1,7 @@
 import is from '@sindresorhus/is';
 import { Request, Response, NextFunction } from 'express';
 import { mealhistoryService } from '../services';
-import { mealInfo } from '../customType/mealhistory.type';
+import { mealInfo } from '../types/mealhistory.type';
 
 class MealHistoryController {
   async getHistoryById(req: Request, res: Response, next: NextFunction) {

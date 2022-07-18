@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-export const SearchContainer = styled.div`
+
+export const SearchForm = styled.form`
   display: flex;
   align-items: center;
-  width: 420px;
   padding: 20px 5px;
   border-bottom: 1px solid lightgray;
   box-sizing: border-box;
@@ -32,7 +32,7 @@ export const SearchBox = styled.div`
 `;
 
 export const SearchInput = styled.input`
-  width: 300px;
+  width: 260px;
   height: 30px;
   padding-left: 35px;
   border-radius: 20px;

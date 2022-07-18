@@ -3,6 +3,7 @@ import {
   faAngleLeft,
   faAngleRight,
   faAngleDown,
+  faCaretDown,
 } from '@fortawesome/free-solid-svg-icons';
 import * as S from './style';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
@@ -41,7 +42,7 @@ function DateNavigation() {
 
         <S.DateContainer onClick={onClicktoggleCalendar}>
           <p>{parseDateFromNow(date)}</p>
-          <FontAwesomeIcon icon={faAngleDown} />
+          <FontAwesomeIcon size="6x" icon={faCaretDown} />
         </S.DateContainer>
         <FontAwesomeIcon
           icon={faAngleRight}

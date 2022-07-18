@@ -1,91 +1,54 @@
-import { useState, useEffect, useRef } from 'react';
 import * as S from './style';
-import Container from '../../components/styles/Container';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowLeft, faStar } from '@fortawesome/free-solid-svg-icons';
-import Navbar from '../../components/common/Navbar';
-import { useNavigate, useParams } from 'react-router-dom';
 import * as api from '../../api';
-import { addMeals } from '../../slices/mealsSlice';
-import { useAppDispatch } from '../../hooks';
+import { useState, useEffect, useRef } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { addMeals, deleteMeals } from '../../slices/mealsSlice';
+import Container from '../../components/styles/Container';
 import { MealData, MealInfo } from '../../customType/meal.type';
+import { calNutrient } from '../../../src/utils/calcultateNutrient';
+import { accNutrientCal } from '../../../src/utils/calculateAccNutrient';
+import { ScrollContainer } from '../../components/styles/ScrollContainer';
+import Navbar from '../../components/common/Navbar';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 function MealsDetail() {
   const [count, setCount] = useState(1);
   const [selected, setSelected] = useState('quantity');
   const [foodInfo, setFoodInfo] = useState<MealData>();
   const [firstInfo, setFirstInfo] = useState<MealData>();
+  const [isBookMark, setIsBookMark] = useState<boolean>();
 
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const mealStore = useAppSelector(({ meal }) => meal.value);
+  const { isLogin, is_login_first } = useAppSelector(
+    ({ usersInfo }) => usersInfo.value,
+  );
   const params = useParams();
   const selectRef = useRef<HTMLSelectElement>(null);
-  const dispatch = useAppDispatch();
+  const responseRef = useRef<MealData>();
 
-  //DB에서 음식 정보 받아오기
+  //URL의 params으로 DB에서 음식정보와 즐겨찾기정보 GET
   useEffect(() => {
-    api.get(`/api/meal/${params.name}`).then((res: any) => {
-      console.log(res.data[0]);
-      setFoodInfo(res.data[0]);
-      setFirstInfo(res.data[0]);
-    });
+    (async () => {
+      const res = await api.get(`/api/meal/${params.name}`);
+      setFoodInfo(res?.data[0]);
+      setFirstInfo(res?.data[0]);
+      responseRef.current = res?.data[0];
+      getBookMark();
+    })();
   }, []);
 
-  function calcInfo(info: MealInfo) {
-    if (firstInfo) {
-      info.kcal = Number((firstInfo?.kcal * count).toFixed(2));
-      info.carb = Number((firstInfo?.carb * count).toFixed(2));
-      info.protein = Number((firstInfo?.protein * count).toFixed(2));
-      info.fat = Number((firstInfo?.fat * count).toFixed(2));
-      info.natruim = Number((firstInfo?.natruim * count).toFixed(2));
-      info.cholesterol = Number((firstInfo?.cholesterol * count).toFixed(2));
-      info.transfat = Number((firstInfo?.transfat * count).toFixed(2));
-      info.saturatedfatty = Number(
-        (firstInfo?.saturatedfatty * count).toFixed(2),
-      );
-      info.quantity = count;
-      info.totalGram = Math.floor(firstInfo?.servingSize * count);
-    }
-    return info;
-  }
+  //즐겨찾기 여부가 바뀔때마다 즐겨찾기 정보 다시GET
+  useEffect(() => {
+    (async () => {
+      getBookMark();
+    })();
+  }, [isBookMark]);
 
-  function calcInfoByGram(info: MealInfo) {
-    if (firstInfo) {
-      const nutrientInfoPerGram = { ...firstInfo };
-      nutrientInfoPerGram.kcal = Number(
-        firstInfo?.kcal / firstInfo?.servingSize,
-      );
-      nutrientInfoPerGram.carb = Number(
-        firstInfo?.carb / firstInfo?.servingSize,
-      );
-      nutrientInfoPerGram.protein = Number(
-        firstInfo?.protein / firstInfo?.servingSize,
-      );
-      nutrientInfoPerGram.fat = Number(firstInfo?.fat / firstInfo?.servingSize);
-      nutrientInfoPerGram.natruim = Number(
-        firstInfo?.natruim / firstInfo?.servingSize,
-      );
-      nutrientInfoPerGram.transfat = Number(
-        firstInfo?.transfat / firstInfo?.servingSize,
-      );
-      nutrientInfoPerGram.saturatedfatty = Number(
-        firstInfo?.saturatedfatty / firstInfo?.servingSize,
-      );
-
-      info.kcal = Number((nutrientInfoPerGram.kcal * count).toFixed(2));
-      info.carb = Number((nutrientInfoPerGram.carb * count).toFixed(2));
-      info.protein = Number((nutrientInfoPerGram.protein * count).toFixed(2));
-      info.fat = Number((nutrientInfoPerGram.fat * count).toFixed(2));
-      info.natruim = Number((nutrientInfoPerGram.natruim * count).toFixed(2));
-      info.transfat = Number((nutrientInfoPerGram.transfat * count).toFixed(2));
-      info.saturatedfatty = Number(
-        (nutrientInfoPerGram.saturatedfatty * count).toFixed(2),
-      );
-      info.quantity = Number((count / firstInfo?.servingSize).toFixed(1));
-      info.totalGram = count;
-      return info;
-    }
-  }
-
+  //select 옵션에 따라 영양소 계산
   useEffect(() => {
     if (selected === 'quantity') {
       setFoodInfo((cur: any): any => {
@@ -100,6 +63,7 @@ function MealsDetail() {
     }
   }, [count]);
 
+  //select 옵션에 따른 기본 count 변경
   useEffect(() => {
     if (selected === 'quantity') {
       setCount(1);
@@ -109,6 +73,104 @@ function MealsDetail() {
       }
     }
   }, [selected]);
+
+  //즐겨찾기 GET 함수
+  async function getBookMark() {
+    if (responseRef.current) {
+      const bookMark = await api.get(
+        `/api/favorites/${responseRef.current._id}`,
+      );
+      if (!bookMark) {
+        setIsBookMark(false);
+        console.log('마킹상태F');
+      } else {
+        setIsBookMark(true);
+        console.log('마킹상태T');
+      }
+    }
+  }
+
+  // 인분 당 영양소 계산 함수
+  function calcInfo(info: MealInfo) {
+    if (firstInfo) {
+      info.kcal = calNutrient(firstInfo?.kcal, count);
+      info.carb = calNutrient(firstInfo?.carb, count);
+      info.protein = calNutrient(firstInfo?.protein, count);
+      info.fat = calNutrient(firstInfo?.fat, count);
+      info.natruim = calNutrient(firstInfo?.natruim, count);
+      info.cholesterol = calNutrient(firstInfo?.cholesterol, count);
+      info.transfat = calNutrient(firstInfo?.transfat, count);
+      info.saturatedfatty = calNutrient(firstInfo?.saturatedfatty, count);
+      info.quantity = count;
+      info.totalGram = Math.floor(firstInfo?.servingSize * count);
+    }
+    return info;
+  }
+
+  //그램 당 영양소 계산 함수
+  function calcInfoByGram(info: MealInfo) {
+    if (firstInfo) {
+      const oneSize = firstInfo?.servingSize;
+      const perGram = {
+        ...firstInfo,
+        kcal: firstInfo?.kcal / oneSize,
+        carb: firstInfo?.carb / oneSize,
+        protein: firstInfo?.protein / oneSize,
+        fat: firstInfo?.fat / oneSize,
+        natruim: firstInfo?.natruim / oneSize,
+        transfat: firstInfo?.transfat / oneSize,
+        saturatedfatty: firstInfo?.saturatedfatty / oneSize,
+      };
+
+      info.kcal = calNutrient(perGram.kcal, count);
+      info.carb = calNutrient(perGram.carb, count);
+      info.protein = calNutrient(perGram.protein, count);
+      info.fat = calNutrient(perGram.fat, count);
+      info.natruim = calNutrient(perGram.natruim, count);
+      info.transfat = calNutrient(perGram.transfat, count);
+      info.saturatedfatty = calNutrient(perGram.saturatedfatty, count);
+      info.quantity = Number((count / oneSize).toFixed(1));
+      info.totalGram = count;
+      return info;
+    }
+  }
+
+  //별 눌렀을때 즐겨찾기 상태 변경
+  function markingHandler(id: string) {
+    if (isBookMark) {
+      //즐겨찾기 delete요청
+      api.delete(`/api/favorites/${id}`).then(() => {
+        setIsBookMark(false);
+      });
+    } else {
+      //즐겨찾기 post 요청
+      api
+        .post('/api/favorites', { meal_id: id })
+        .then(() => setIsBookMark(true));
+    }
+  }
+
+  //장바구니 담을땐 중복필터링
+  function addToCart(food: MealData) {
+    const result = mealStore.filter((el) => el._id !== food._id);
+    const acc = mealStore.filter((el) => el._id === food._id)[0];
+    if (mealStore.length !== result.length) {
+      const answer = confirm('이미 담겨진 음식입니다. 더 추가하시겠습니까?');
+      if (answer) {
+        //영양소 누적해서 더해주기
+        const total = accNutrientCal(acc, food);
+        //원래담긴건 지워주고 새로 담자
+        dispatch(deleteMeals(acc.code));
+        dispatch(addMeals(total));
+        navigate('/meals/cart');
+      } else {
+        return;
+      }
+    } else {
+      dispatch(addMeals(food));
+      navigate('/meals/cart');
+    }
+  }
 
   function plusHandler() {
     setCount((cur) => cur + 1);
@@ -120,9 +182,17 @@ function MealsDetail() {
     }
   }
 
+  useEffect(() => {
+    if (isLogin && is_login_first) {
+      navigate('/mypage/goal_step1');
+    } else if (!isLogin) {
+      navigate('/');
+    }
+  }, []);
+
   return (
     <Container>
-      <S.MealsContainer>
+      <ScrollContainer minusHeight={60}>
         <S.MealsInfoBox>
           <S.IconBox>
             <div
@@ -134,8 +204,17 @@ function MealsDetail() {
               <FontAwesomeIcon icon={faArrowLeft} />
             </div>
 
-            <div className="star-icon">
-              <FontAwesomeIcon icon={faStar} />
+            <div
+              className="star-icon"
+              onClick={() => {
+                if (foodInfo) markingHandler(foodInfo?._id);
+              }}
+            >
+              {isBookMark ? (
+                <img src={require('../../assets/YellowStar.png')}></img>
+              ) : (
+                <img src={require('../../assets/blackStar.png')}></img>
+              )}
             </div>
           </S.IconBox>
           <S.Title>{foodInfo?.name}</S.Title>
@@ -202,14 +281,13 @@ function MealsDetail() {
           </S.SelectBox>
           <S.AddBtn
             onClick={() => {
-              foodInfo && dispatch(addMeals(foodInfo));
-              navigate('/meals/cart');
+              foodInfo && addToCart(foodInfo);
             }}
           >
             식단 추가
           </S.AddBtn>
         </S.MealsInfoBox>
-      </S.MealsContainer>
+      </ScrollContainer>
       <Navbar />
     </Container>
   );

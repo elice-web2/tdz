@@ -1,9 +1,5 @@
 import styled from 'styled-components';
 
-export const MealsContainer = styled.div`
-  min-height: 800px;
-`;
-
 export const MealsInfoBox = styled.div`
   position: relative;
   width: 100%;
@@ -24,7 +20,9 @@ export const IconBox = styled.div`
     cursor: pointer;
   }
 
-  .star-icon {
+  .star-icon img {
+    width: 25px;
+    height: 25px;
     margin-right: 5px;
     color: yellow;
     cursor: pointer;
