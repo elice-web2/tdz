@@ -18,7 +18,7 @@ const upload = multer({
   storage: multerS3({
     s3: s3,
     bucket: bucket,
-    key: function (req, file, cb) {
+    key: function (req, file: Express.MulterS3.File, cb) {
       cb(
         null,
         'images/origin/' +
