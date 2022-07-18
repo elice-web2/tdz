@@ -1,11 +1,29 @@
 {
+  "extends": "@tsconfig/node16/tsconfig.json",
+  "include": ["src/**/*", "bin/*"],
+  "exclude": ["node_modules", "**/*.spec.ts"],
   "compilerOptions": {
-    "target": "es6",
-    "module": "commonjs",
-    "esModuleInterop": true,
-    "typeRoots": ["./node_modules/@types", "./src/customType"]
+    "rootDir": ".",
+    "outDir": "dist",
+    "typeRoots": ["node_modules/@types", "src/@types"]
   },
-  "include": ["lib/**/*.ts"],
-  "exclude": ["node_modules"],
-  "files": ["./src/customType/express.d.ts"]
+  "ts-node": {
+    "files": true
+  }
 }
+// {
+//   "$schema": "https://json.schemastore.org/tsconfig",
+//   "display": "Node 16",
+
+//   "compilerOptions": {
+//     "lib": ["es2021"],
+//     "module": "commonjs",
+//     "target": "es2021",
+
+//     "strict": true,
+//     "esModuleInterop": true,
+//     "skipLibCheck": true,
+//     "forceConsistentCasingInFileNames": true,
+//     "moduleResolution": "node"
+//   }
+// }

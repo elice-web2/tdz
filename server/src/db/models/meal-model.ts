@@ -1,60 +1,43 @@
 import { model } from 'mongoose';
 import { MealSchema } from '../schemas/meal-schema';
-
-const Meal = model<MealData>('meals', MealSchema);
-
-export interface MealInfo {
-  meal_code: string;
-  meal_name: String;
-  meal_kcal: Number;
-  meal_carb: Number;
-  meal_protein: Number;
-  meal_fat: Number;
-  meal_sugars: Number;
-  meal_natruim: Number;
-  meal_cholesterol: Number;
-  meal_saturatedfatty: Number;
-  meal_transfat: Number;
-  updated_date: Date;
-}
-
-export interface MealData {
-  _id: string;
-  meal_code: string;
-  meal_name: String;
-  meal_kcal: Number;
-  meal_carb: Number;
-  meal_protein: Number;
-  meal_fat: Number;
-  meal_sugars: Number;
-  meal_natruim: Number;
-  meal_cholesterol: Number;
-  meal_saturatedfatty: Number;
-  meal_transfat: Number;
-  updated_date: Date;
-}
+import { MealData, MealInfo } from '../../types/meal.type';
+const Meal = model('meals', MealSchema);
 
 export class MealModel {
   // 음식 이름 찾기
-  async findByMealName(meal_name: string): Promise<MealData> {
-    const meal = await Meal.findOne({ meal_name });
-    return meal;
+
+  async findByMealName(mealName: string): Promise<MealData[]> {
+    const regex = new RegExp(`.*${mealName}.*`);
+    // return await Meal.find({ name: regex  }).lean();
+    return await Meal.find({
+      name: {
+        $regex: regex,
+      },
+    }).lean();
+    // return await Meal.find({ name: mealName }).lean();
   }
 
   async create(mealInfo: MealInfo): Promise<MealData> {
-    const meal = await Meal.create(mealInfo);
-    return meal;
+    const createdMealData = await Meal.create(mealInfo);
+    return createdMealData.toObject<MealData>();
   }
 
-  async update(currentMeal: MealInfo, updateMeal: MealInfo): Promise<MealData> {
-    await Meal.findOneAndUpdate({ currentMeal }, { updateMeal });
-    return;
+  /*
+  async update(
+    currentMeal: MealInfo,
+    updateMeal: MealInfo,
+  ): Promise<MealData | null> {
+    return await Meal.findOneAndUpdate({ currentMeal }, { updateMeal }).lean();
   }
+  */
 
-  async deleteByName(meal_name: string): Promise<{ deletedCount: number }> {
-    await Meal.findOneAndDelete({ meal_name });
-    return;
+  /*
+  async deleteByName(
+    meal_name: string,
+  ): Promise<{ deletedCount: number } | null> {
+    return await Meal.findOneAndDelete({ meal_name }).lean();
   }
+  */
 }
 
 const mealModel = new MealModel();
