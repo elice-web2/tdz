@@ -54,6 +54,7 @@ function MealsSearchedList({ inputValue, result }: MealsSearchedListProps) {
       navigate('/meals/cart');
     }
   }
+
   function bookmarkHandler(id: string) {
     if (isBookMarked) {
       api.delete(`/api/favorites/${id}`).then(() => {

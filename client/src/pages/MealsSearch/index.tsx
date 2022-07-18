@@ -70,6 +70,7 @@ function MealsSearch() {
         <S.SearchForm
           onSubmit={(e) => {
             e.preventDefault();
+            inputSubmitHandler();
           }}
         >
           <S.SearchBox>
@@ -88,7 +89,7 @@ function MealsSearch() {
               // onKeyPress={onKeyPressHandler}
             ></S.SearchInput>
           </S.SearchBox>
-          <S.SearchBtn onClick={() => inputSubmitHandler()}>검색</S.SearchBtn>
+          <S.SearchBtn type="submit">검색</S.SearchBtn>
         </S.SearchForm>
         <S.ButtonContainer>
           <S.SearchTabBtn isSearch={isSearch} onClick={moveSearchTab}>
