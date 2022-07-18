@@ -26,6 +26,7 @@ import { ScrollContainer } from '../../components/styles/ScrollContainer';
 import { convertDate, FilterType } from '../../utils';
 import { useAppSelector } from '../../hooks';
 import { useNavigate } from 'react-router-dom';
+import useFetchChartData from './useFetchChartData';
 
 // ChartJS를 react 에서 쓸 수 있도록 하는 코드
 ChartJS.register(
@@ -37,66 +38,11 @@ ChartJS.register(
   BarElement,
 );
 
-// api/chart/daily?from=2022-06-28&to=2022-07-04  7일
-// api/chart/weekly?from=2022-06-10&to=2022-07-07  4주
-// api/chart/monthly?from=2022-05&to=2022-07 3개월
-
-// 값이 숫자인 요소는 단위기간 영양소 총합
-// 값이 배열인 요소는 단위기간 대비 평균값 ([6.10~6.16 의 평균, 6.17~6.23의 평균] 이런식)
-// daily는 7일로 나눠서 길이가 7인 배열
-// weekly는 4주로 나눠서 길이가 4인 배열 (각각이 daily 배열의 평균)
-// monthly는 3개월로 나눠서 길이가 3인 배열 (각각이 weekly 배열의 평균)
-
-const DUMMY_DATA_DAILY = {
-  체중: [70, 70.5, 69.4, 70.2, 70.2, 70.2, 71],
-  칼로리평균: [1550, 1300, 1400, 1200, 1600, 1700, 1800],
-  탄수화물: [65, 66, 67, 68, 69, 70, 71],
-  단백질: [65, 66, 67, 68, 69, 70, 71],
-  지방: [65, 66, 67, 68, 69, 70, 71],
-  칼로리합: 12000,
-  탄수화물합: 1000,
-  단백질합: 1000,
-  지방합: 1000,
-  포화지방합: 100,
-  당류합: 100,
-  콜레스테롤합: 100,
-  나트륨합: 100,
-};
-const DUMMY_DATA_WEEKLY = {
-  체중: [70, 70.5, 69.4, 70.2],
-  칼로리평균: [1550, 1300, 1400, 1200],
-  탄수화물: [65, 66, 67, 68],
-  단백질: [65, 66, 67, 68],
-  지방: [65, 66, 67, 68],
-  칼로리합: 12000,
-  탄수화물합: 1000,
-  단백질합: 1000,
-  지방합: 1000,
-  포화지방합: 100,
-  당류합: 100,
-  콜레스테롤합: 100,
-  나트륨합: 100,
-};
-const DUMMY_DATA_MONTHLY = {
-  체중: [70, 70.5, 69.4],
-  칼로리평균: [1550, 1300, 1400],
-  탄수화물: [65, 66, 67],
-  단백질: [65, 66, 67],
-  지방: [65, 66, 67],
-  칼로리합: 12000,
-  탄수화물합: 1000,
-  단백질합: 1000,
-  지방합: 1000,
-  포화지방합: 100,
-  당류합: 100,
-  콜레스테롤합: 100,
-  나트륨합: 100,
-};
-
 function ChartPage() {
   const [filter, setFilter] = useState<FilterType>('DAILY');
   const [baseDate, setBaseDate] = useState(dayjs());
   const [disableNext, setDisableNext] = useState(true);
+  const { getChartDataByFilter, chartData, error } = useFetchChartData();
   const navigate = useNavigate();
   const { isLogin, is_login_first } = useAppSelector(
     ({ usersInfo }) => usersInfo.value,
@@ -126,6 +72,7 @@ function ChartPage() {
       setDisableNext(baseDate.date() === dayjs().date());
     }
   }, [baseDate]);
+
   useEffect(() => {
     if (isLogin && is_login_first) {
       navigate('/mypage/goal_step1');
@@ -133,6 +80,10 @@ function ChartPage() {
       navigate('/');
     }
   }, []);
+
+  useEffect(() => {
+    getChartDataByFilter(filter, baseDate);
+  }, [filter, baseDate]);
 
   return (
     <Container>
