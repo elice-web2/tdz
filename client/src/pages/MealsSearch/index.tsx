@@ -9,18 +9,18 @@ import MealsBookMarkList from '../../components/MealsSearch/MealsBookMarkList';
 import { ScrollContainer } from '../../components/styles/ScrollContainer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate } from 'react-router-dom';
+import { useAppSelector } from '../../hooks';
 
 function MealsSearch() {
+  const navigate = useNavigate();
+  const { isLogin, is_login_first } = useAppSelector(
+    ({ usersInfo }) => usersInfo.value,
+  );
   const [isSearch, setIsSearch] = useState(true);
   const [inputValue, setInputValue] = useState('');
   const [searchedResult, setSearchedResult] = useState<MealData[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    if (!inputValue) {
-      setSearchedResult([]);
-    }
-  }, [inputValue]);
 
   function deleteInputHandler() {
     setInputValue('');
@@ -63,6 +63,19 @@ function MealsSearch() {
     setIsSearch(false);
     setInputValue('');
   }
+  useEffect(() => {
+    if (!inputValue) {
+      setSearchedResult([]);
+    }
+  }, [inputValue]);
+
+  useEffect(() => {
+    if (isLogin && is_login_first) {
+      navigate('/mypage/goal_step1');
+    } else if (!isLogin) {
+      navigate('/');
+    }
+  }, []);
 
   return (
     <Container>

@@ -4,9 +4,22 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { faCommentDots } from '@fortawesome/free-solid-svg-icons';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { useEffect } from 'react';
+import { useAppSelector } from '../../hooks';
 
 function Main() {
   const navigate = useNavigate();
+  const { isLogin, is_login_first } = useAppSelector(
+    ({ usersInfo }) => usersInfo.value,
+  );
+
+  useEffect(() => {
+    if (isLogin && is_login_first) {
+      navigate('/mypage/goal_step1');
+    } else if (isLogin) {
+      navigate('/home');
+    }
+  }, []);
   return (
     <S.Container>
       <S.VideoContainer>

@@ -12,6 +12,7 @@ import dayjs from 'dayjs';
 import { useNavigate } from 'react-router-dom';
 import { calculatePercentage } from '../../utils';
 import ManageWeight from '../../components/home/ManageWeight';
+import { ScrollContainer } from '../../components/styles/ScrollContainer';
 
 interface mealsData {
   kcal: number;
@@ -23,7 +24,9 @@ interface mealsData {
 function Home() {
   const navigate = useNavigate();
   const date = useAppSelector(({ date }) => date.value);
-  const { nutrient } = useAppSelector(({ usersInfo }) => usersInfo.value);
+  const { nutrient, isLogin, is_login_first } = useAppSelector(
+    ({ usersInfo }) => usersInfo.value,
+  );
   const [nutrientsSum, setNutrientsSum] = useState({
     kcal: 0,
     protein: 0,
@@ -57,13 +60,24 @@ function Home() {
   };
 
   useEffect(() => {
-    setNutrientsSumByDate(date);
+    if (isLogin) {
+      setNutrientsSumByDate(date);
+    }
   }, [date]);
+
+  useEffect(() => {
+    if (isLogin && is_login_first) {
+      navigate('/mypage/goal_step1');
+    } else if (!isLogin) {
+      navigate('/');
+    }
+  }, []);
 
   return (
     <Container>
       <Logo />
       <DateNavigation />
+      <ScrollContainer minusHeight={180}>
       <S.DonutContainer>
         {/* 목표 칼로리 / 현재 칼로리 * 100 백분율 계산해서 기입 필요 */}
         <DonutProgressbar
@@ -104,6 +118,7 @@ function Home() {
           <button>식단 추가하기</button>
         </S.ButtonContainer>
       </S.ResponsiveContainer>
+      </ScrollContainer>
 
       <Navbar />
     </Container>

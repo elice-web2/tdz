@@ -7,7 +7,7 @@ import Logo from '../../components/common/Logo';
 import Navbar from '../../components/common/Navbar';
 import * as S from './style';
 
-function UserInfo() {
+function UserProfile() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
@@ -57,4 +57,4 @@ function UserInfo() {
   );
 }
 
-export default UserInfo;
+export default UserProfile;
