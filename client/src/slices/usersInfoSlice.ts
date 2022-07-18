@@ -34,34 +34,6 @@ export interface UsersInfoState {
   value: UsersInfo;
 }
 
-const initialState: UsersInfoState = {
-  value: {
-    email: '',
-    login_path: '',
-    gender: '',
-    role: '',
-    age: 0,
-    height: 0,
-    current_weight: 0,
-    goal_weight: 0,
-    bmi: 0,
-    mode: '',
-    activity: '',
-    nutrient: {
-      kcal: 0,
-      carb: 0,
-      protein: 0,
-      fat: 0,
-    },
-    profile_image: '',
-    nickname: '',
-    comment: '',
-    is_login_first: false,
-    isLogin: Boolean(localStorage.getItem('login')),
-  },
-};
-// Slice 작성 예시
-
 // 로그인 요청 데이터 타입지정
 interface postLoginSignup {
   email: string;
@@ -95,6 +67,41 @@ interface patchUserParam {
   password: string;
   currentPassword: string;
 }
+
+interface postWeightDataParam {
+  date: string;
+  goalKcal: number;
+  mode: string;
+  todayWeight: number;
+}
+
+const initialState: UsersInfoState = {
+  value: {
+    email: '',
+    login_path: '',
+    gender: '',
+    role: '',
+    age: 0,
+    height: 0,
+    current_weight: 0,
+    goal_weight: 0,
+    bmi: 0,
+    mode: '',
+    activity: '',
+    nutrient: {
+      kcal: 0,
+      carb: 0,
+      protein: 0,
+      fat: 0,
+    },
+    profile_image: '',
+    nickname: '',
+    comment: '',
+    is_login_first: false,
+    isLogin: Boolean(localStorage.getItem('login')),
+  },
+};
+
 // 회원가입 post API 통신 함수
 async function postSignupData(usersInfo: postLoginSignup) {
   const resp = await api.post('/api/auth/signup', usersInfo);
@@ -126,6 +133,11 @@ async function patchUserInfoData(userInfo: patchUserParam) {
 }
 async function patchActivityData(activityInfo: patchActivityParam) {
   const resp = await api.patch('/api/users/activity', activityInfo);
+  return resp.data;
+}
+// 몸무게 수정 post API 통신 함수
+async function postWeightData(weightData: postWeightDataParam) {
+  const resp = await api.post('/api/calendar', weightData);
   return resp.data;
 }
 
@@ -179,6 +191,13 @@ export const patchActivityAsync = createAsyncThunk(
     return data;
   },
 );
+export const postWeightDataAsync = createAsyncThunk(
+  'usersInfo/postWeightData',
+  async (weightData: postWeightDataParam) => {
+    const data = await postWeightData(weightData);
+    return data;
+  },
+);
 
 export const UsersInfoSlice = createSlice({
   name: 'usersInfo',
@@ -228,6 +247,12 @@ export const UsersInfoSlice = createSlice({
           ...state.value,
           ...action.payload,
           is_login_first: false,
+        };
+      })
+      .addCase(postWeightDataAsync.fulfilled, (state, action) => {
+        state.value = {
+          ...state.value,
+          current_weight: action.payload.todayWeight,
         };
       });
   },
