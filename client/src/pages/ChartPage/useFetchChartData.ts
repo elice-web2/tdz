@@ -40,17 +40,21 @@ function useFetchChartData() {
           const data = (
             await Api.get(`/api/chart/daily?date=${date.format('YYYY-MM-DD')}`)
           )?.data;
+
           const labels = createLabelDaily(date);
+
           if (!data) {
             setChartData({ data: initialData.data, labels });
             throw new Error('Request Failed');
           }
+
           setChartData({ data, labels });
         } else if (filter === 'WEEKLY') {
           const aFourWeeksAgo = date
             .add(-4, 'week')
             .add(1, 'day')
             .format('YYYY-MM-DD');
+
           const data = (
             await Api.get(
               `/api/chart/weekly?from=${aFourWeeksAgo}&to=${date.format(
@@ -58,18 +62,21 @@ function useFetchChartData() {
               )}`,
             )
           )?.data;
+
           const labels = createLabelWeekly(date);
 
           if (!data) {
             setChartData({ data: initialData.data, labels });
             throw new Error('Request Failed');
           }
+
           setChartData({ data, labels });
         } else {
           const aTwoMonthAgo = date
             .add(-2, 'month')
             .date(1)
             .format('YYYY-MM-DD');
+
           const data = (
             await Api.get(
               `/api/chart/monthly?from=${aTwoMonthAgo}&to=${date
@@ -77,6 +84,7 @@ function useFetchChartData() {
                 .format('YYYY-MM-DD')}`,
             )
           )?.data;
+
           const labels = createLabelMonthly(date);
 
           if (!data) {

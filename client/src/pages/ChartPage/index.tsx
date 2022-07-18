@@ -44,7 +44,7 @@ function ChartPage() {
   const [filter, setFilter] = useState<FilterType>('DAILY');
   const [baseDate, setBaseDate] = useState(dayjs());
   const [disableNext, setDisableNext] = useState(true);
-  const { getChartDataByFilter, chartData, error } = useFetchChartData();
+  const { getChartDataByFilter, chartData } = useFetchChartData();
   const navigate = useNavigate();
   const { isLogin, is_login_first } = useAppSelector(
     ({ usersInfo }) => usersInfo.value,
