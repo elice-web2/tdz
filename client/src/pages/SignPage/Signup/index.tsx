@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Container from '../../../components/styles/Container';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 import {
+  getUsersInfoAsync,
   postLoginAsync,
   postSignUpAsync,
 } from '../../../slices/usersInfoSlice';
@@ -32,7 +33,9 @@ function Signup() {
     try {
       await dispatch(postSignUpAsync({ email: email, password: password }));
       await dispatch(postLoginAsync({ email: email, password: password }));
+      await dispatch(getUsersInfoAsync());
       localStorage.setItem('login', 'true');
+      navigate('/home');
     } catch (error) {
       console.log(error);
     }
