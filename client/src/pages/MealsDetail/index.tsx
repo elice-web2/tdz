@@ -161,7 +161,7 @@ function MealsDetail() {
         //영양소 누적해서 더해주기
         const total = accNutrientCal(acc, food);
         //원래담긴건 지워주고 새로 담자
-        dispatch(deleteMeals(acc.code));
+        dispatch(deleteMeals(acc._id));
         dispatch(addMeals(total));
         navigate('/meals/cart');
       } else {
