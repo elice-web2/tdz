@@ -197,7 +197,7 @@ class ChartService {
           carb = 0;
           weeklyData.proteinAvg[week] = protein === 0 ? 0 : protein / checked;
           protein = 0;
-          weeklyData.fatAvg[week] = protein === 0 ? 0 : protein / checked;
+          weeklyData.fatAvg[week] = fat === 0 ? 0 : fat / checked;
           fat = 0;
           checked = 0;
         }
