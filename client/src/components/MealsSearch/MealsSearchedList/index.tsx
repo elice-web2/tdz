@@ -1,6 +1,6 @@
 import * as S from './style';
 import * as api from '../../../api';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback, useMemo, ReactNode } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 import NoSearched from '../NoSearched';
@@ -12,24 +12,31 @@ import {
 } from '../../../customType/meal.type';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { render } from '@testing-library/react';
 
 function MealsSearchedList({ inputValue, result }: MealsSearchedListProps) {
-  const [isBookMarked, setIsBookMarked] = useState(false);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const mealStore = useAppSelector(({ meal }) => meal.value);
+  const [list, setList] = useState<MealData[]>([]);
+
+  async function convertArr() {
+    const newArr: any = [];
+    for (let i = 0; i < result.length; i++) {
+      const res = await api.get(`/api/favorites/${result[i]._id}`);
+      if (!res) {
+        newArr.push({ ...result[i], isBookMarked: false });
+      } else {
+        newArr.push({ ...result[i], isBookMarked: true });
+      }
+    }
+    return newArr;
+  }
 
   useEffect(() => {
     (async () => {
-      result.map((meal) => {
-        api.get(`/api/favorites/${meal._id}`).then((res) => {
-          if (!res) {
-            setIsBookMarked(false);
-          } else {
-            setIsBookMarked(true);
-          }
-        });
-      });
+      const res = await convertArr();
+      setList(res);
     })();
   }, [result]);
 
@@ -54,24 +61,32 @@ function MealsSearchedList({ inputValue, result }: MealsSearchedListProps) {
       navigate('/meals/cart');
     }
   }
-  function bookmarkHandler(id: string) {
-    if (isBookMarked) {
-      api.delete(`/api/favorites/${id}`).then(() => {
-        setIsBookMarked(false);
-      });
+
+  async function bookmarkHandler(id: string) {
+    const item = list.find((el) => el._id === id);
+    if (!item) return;
+    if (item.isBookMarked) {
+      await api.delete(`/api/favorites/${id}`);
     } else {
-      api.post('/api/favorites', { meal_id: id }).then(() => {
-        setIsBookMarked(true);
-      });
+      await api.post('/api/favorites', { meal_id: id });
     }
+    //리랜더링
+    setList((lists) =>
+      lists.map((list) => {
+        if (list._id === id) {
+          return { ...list, isBookMarked: !item.isBookMarked };
+        }
+        return list;
+      }),
+    );
   }
 
   return (
     <S.SearchListContainer>
-      {result.length === 0 || !inputValue ? (
+      {list.length === 0 || !inputValue ? (
         <NoSearched></NoSearched>
       ) : (
-        result.map((food: MealData) => {
+        list.map((food: MealData) => {
           return (
             <S.List key={food._id}>
               <S.NamedInfo>
@@ -105,13 +120,11 @@ function MealsSearchedList({ inputValue, result }: MealsSearchedListProps) {
                     bookmarkHandler(food._id);
                   }}
                 >
-                  <img
-                    src={
-                      isBookMarked
-                        ? require('../../../assets/YellowStar.png')
-                        : require('../../../assets/blackStar.png')
-                    }
-                  ></img>
+                  {food.isBookMarked ? (
+                    <img src={require('../../../assets/YellowStar.png')}></img>
+                  ) : (
+                    <img src={require('../../../assets/blackStar.png')}></img>
+                  )}
                 </span>
               </S.NamedInfo>
               <S.QuanInfo>1인분</S.QuanInfo>

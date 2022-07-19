@@ -18,6 +18,7 @@ export interface MealInfo {
 
 export interface MealData extends MealInfo {
   _id: string;
+  isBookMarked?: boolean;
 }
 
 export interface MealsSearchedListProps {
