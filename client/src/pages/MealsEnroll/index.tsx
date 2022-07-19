@@ -14,6 +14,7 @@ import { addMeals } from '../../slices/mealsSlice';
 
 function MealsEnroll() {
   const [openModal, setOpenModal] = useState(false);
+  const [submitData, setSubmitData] = useState();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
@@ -33,14 +34,10 @@ function MealsEnroll() {
     data.transfat = Number(data.transfat);
     data.cholesterol = Number(data.cholesterol);
     data.saturatedfatty = Number(data.saturatedfatty);
-
-    if (confirm('식단에 추가하시겠습니까?')) {
-      await api.post('/api/meal', data);
-      dispatch(addMeals(data));
-      navigate('/meals/cart');
-    } else {
-      navigate('/meal/search');
-    }
+    //DB에 저장
+    await api.post('/api/meal', data);
+    setOpenModal(true);
+    setSubmitData(data);
   }
   return (
     <Container>
@@ -137,16 +134,12 @@ function MealsEnroll() {
           </S.NutrientInputElement>
         </S.NutrientBox>
         <S.BtnContainer>
-          <S.AddBtn
-            type="submit"
-            onClick={() => {
-              setOpenModal(true);
-            }}
-          >
-            음식 등록
-          </S.AddBtn>
+          <S.AddBtn type="submit">음식 등록</S.AddBtn>
         </S.BtnContainer>
       </form>
+      {openModal && (
+        <EnrollModal setOpenModal={setOpenModal} submitData={submitData} />
+      )}
     </Container>
   );
 }
