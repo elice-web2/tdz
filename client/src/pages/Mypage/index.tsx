@@ -25,6 +25,7 @@ function Mypage() {
   const userProfile = useAppSelector((state) => state.usersInfo.value);
   const nickname = userProfile.nickname;
   const comment = userProfile.comment;
+  localStorage.setItem('usersInfoStorage', JSON.stringify(userProfile));
 
   const TDZ = TDZPercent(userProfile.nutrient);
 
