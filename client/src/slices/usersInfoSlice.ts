@@ -128,6 +128,10 @@ async function patchActivityData(activityInfo: patchActivityParam) {
   const resp = await api.patch('/api/users/activity', activityInfo);
   return resp.data;
 }
+async function uploadImageFile(formData: FormData) {
+  const resp = await api.uploadFile('/api/users/profile', formData);
+  return resp.data;
+}
 
 // 비동기로 데이터를 불러와 액션을 생성하고 싶을 경우 예시
 export const postSignUpAsync = createAsyncThunk(
@@ -176,6 +180,13 @@ export const patchActivityAsync = createAsyncThunk(
   'usersInfo/patchActivityData',
   async (activityInfo: patchActivityParam) => {
     const data = await patchActivityData(activityInfo);
+    return data;
+  },
+);
+export const uploadImageFileAsync = createAsyncThunk(
+  'usersInfo/uploadImageFile',
+  async (formData: FormData) => {
+    const data = await uploadImageFile(formData);
     return data;
   },
 );
@@ -228,6 +239,12 @@ export const UsersInfoSlice = createSlice({
           ...state.value,
           ...action.payload,
           is_login_first: false,
+        };
+      })
+      .addCase(uploadImageFileAsync.fulfilled, (state, action) => {
+        state.value = {
+          ...state.value,
+          ...action.payload,
         };
       });
   },

@@ -1,6 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { patchActivityAsync } from '../../slices/usersInfoSlice';
+import {
+  patchActivityAsync,
+  uploadImageFileAsync,
+} from '../../slices/usersInfoSlice';
 import Container from '../../components/styles/Container';
 import Logo from '../../components/common/Logo';
 import Navbar from '../../components/common/Navbar';
@@ -10,7 +13,7 @@ import { faPlus, faCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useRef } from 'react';
 
-interface FormData {
+interface InputFormData {
   input_name: string;
   input_comment: string;
 }
@@ -18,18 +21,14 @@ interface FormData {
 function UserProfile() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const { register, handleSubmit } = useForm<FormData>();
+  const { register, handleSubmit } = useForm<InputFormData>();
   const fileRef = useRef<HTMLInputElement>(null);
 
   const { nickname, comment, profile_image } = useAppSelector(
     (state) => state.usersInfo.value,
   );
 
-  const submitHandler = ({ input_name, input_comment }: FormData) => {
-    if (nickname === input_name && comment === input_comment) {
-      navigate('/mypage');
-      return;
-    }
+  const submitHandler = ({ input_name, input_comment }: InputFormData) => {
     try {
       dispatch(
         patchActivityAsync({ nickname: input_name, comment: input_comment }),
@@ -44,9 +43,15 @@ function UserProfile() {
     fileRef.current?.click();
   };
 
-  const uploadImageFile = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.currentTarget.files) {
-      console.log(e.currentTarget.files[0]);
+  const uploadImageFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!e.currentTarget.files) return;
+    const file = e.currentTarget.files[0];
+    const formData = new FormData();
+    formData.append('src', file);
+    try {
+      await dispatch(uploadImageFileAsync(formData));
+    } catch (err: any) {
+      console.error(err);
     }
   };
 
