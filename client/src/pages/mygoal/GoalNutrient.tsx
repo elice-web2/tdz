@@ -20,7 +20,7 @@ function GoalNutrient() {
   return (
     <Container>
       <Logo />
-      <ScrollContainer minusHeight={120}>
+      <ScrollContainer minusHeight={90}>
         <GoalNutrientForm />
       </ScrollContainer>
     </Container>
