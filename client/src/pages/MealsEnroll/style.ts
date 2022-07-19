@@ -52,7 +52,10 @@ export const NutrientBox = styled.div`
   }
 `;
 
-export const NutrientInputElement = styled.div`
+interface CheckProps {
+  changeColor?: boolean;
+}
+export const NutrientInputElement = styled.div<CheckProps>`
   display: flex;
   align-items: center;
   position: relative;
@@ -75,6 +78,13 @@ export const NutrientInputElement = styled.div`
   input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
+  }
+
+  span {
+    position: absolute;
+    bottom: 5px;
+    right: 35px;
+    color: ${(props) => (props.changeColor ? 'black' : 'lightgray')};
   }
 `;
 
