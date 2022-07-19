@@ -19,17 +19,13 @@ async function get(apiUrl: string) {
 }
 
 async function post<T>(apiUrl: string, data: T) {
-  try {
-    const result = await axios.post(`${BASE_URL}${apiUrl}`, data, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      withCredentials: true,
-    });
-    return result;
-  } catch (error: any) {
-    throw new Error(error);
-  }
+  const result = await axios.post(`${BASE_URL}${apiUrl}`, data, {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    withCredentials: true,
+  });
+  return result;
 }
 
 async function patch<T>(apiUrl: string, data: T) {
