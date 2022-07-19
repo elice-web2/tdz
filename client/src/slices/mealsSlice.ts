@@ -66,15 +66,11 @@ export const mealsSlice = createSlice({
     },
     calTotalKcal: (state, action: PayloadAction<PostMealsDataParam[]>) => {
       const mealhistoryArr = action.payload;
-      const meals = mealhistoryArr.map((el) => el.meals); // 원소 [{kcal: 1}]
-      const result = meals.reduce((acc, cur) => {
-        return [...acc, ...cur];
-      });
+      const meals = mealhistoryArr.map((el) => el.meals).flat(); // 원소 [{kcal: 1}]
       let sum = 0;
-      for (let i = 0; i < result.length; i++) {
-        sum += result[i].kcal;
-      }
-
+      meals.forEach((meal) => {
+        sum += meal.kcal;
+      });
       state.totalKcal = sum;
     },
   },
