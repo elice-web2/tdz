@@ -137,7 +137,11 @@ async function uploadImageFile(formData: FormData) {
 export const postSignUpAsync = createAsyncThunk(
   'usersInfo/postSignupData',
   async (usersInfo: postLoginSignup) => {
-    return await postSignupData(usersInfo);
+    try {
+      return await postSignupData(usersInfo);
+    } catch (err: any) {
+      throw new Error(err.response.data.reason);
+    }
   },
 );
 //

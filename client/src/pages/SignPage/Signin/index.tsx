@@ -37,11 +37,21 @@ function Signin() {
       localStorage.setItem('login', 'true');
       navigate('/home');
     } catch (error: any) {
-      if (error.message === 'auth/wrong-password') {
-        setError('잘못된 비밀번호를 입력하였습니다.');
+      switch (error.message) {
+        case 'auth/wrong-password':
+          setError('잘못된 비밀번호를 입력하였습니다.');
+          break;
+        case 'auth/wrong-email':
+          setError('존재하지 않는 이메일입니다.');
+          break;
+        default:
+          return;
       }
-      console.log(error);
     }
+  };
+
+  const onChangeInput = () => {
+    setError('');
   };
 
   useEffect(() => {
@@ -67,6 +77,7 @@ function Signin() {
                   value: /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/i,
                   message: '이메일 형식에 맞지 않습니다.',
                 },
+                onChange: onChangeInput,
               })}
             />
             {errors.email && (
@@ -81,6 +92,7 @@ function Signin() {
                   value: 4,
                   message: '4자 이상 입력해주세요.',
                 },
+                onChange: onChangeInput,
               })}
             />
             {errors.password && (
