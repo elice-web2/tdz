@@ -78,6 +78,11 @@ export const Errormessage = styled.div`
   color: rgba(255, 0, 0, 0.6);
 `;
 
+export const LargeErrorMessage = styled(Errormessage)`
+  padding-bottom: 8px;
+  font-size: 14px;
+`;
+
 export const FlexWrapper = styled.div`
   ${({ theme }) => theme.flexbox('column')}
 `;

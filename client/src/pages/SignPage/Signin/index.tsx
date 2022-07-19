@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import Container from '../../../components/styles/Container';
@@ -17,6 +17,7 @@ interface FormData {
 function Signin() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const [error, setError] = useState('');
   const { isLogin, is_login_first } = useAppSelector(
     ({ usersInfo }) => usersInfo.value,
   );
@@ -29,12 +30,17 @@ function Signin() {
 
   const submitHandler = async ({ email, password }: FieldValues) => {
     try {
-      await dispatch(postLoginAsync({ email: email, password: password }));
+      await dispatch(
+        postLoginAsync({ email: email, password: password }),
+      ).unwrap();
       await dispatch(getUsersInfoAsync());
       localStorage.setItem('login', 'true');
       navigate('/home');
     } catch (error: any) {
-      console.log(error.message);
+      if (error.message === 'auth/wrong-password') {
+        setError('잘못된 비밀번호를 입력하였습니다.');
+      }
+      console.log(error);
     }
   };
 
@@ -85,6 +91,7 @@ function Signin() {
                 <div>계정이 없으신가요?</div>
                 <Link to="/signup">회원가입</Link>
               </S.LinkContainer>
+              {error && <S.LargeErrorMessage>{error}</S.LargeErrorMessage>}
               <S.SignButton>로그인</S.SignButton>
             </S.FlexWrapper>
           </form>

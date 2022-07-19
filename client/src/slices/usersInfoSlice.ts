@@ -144,7 +144,11 @@ export const postSignUpAsync = createAsyncThunk(
 export const postLoginAsync = createAsyncThunk(
   'usersInfo/postLoginData',
   async (loginInfo: postLoginSignup) => {
-    await postLoginData(loginInfo);
+    try {
+      await postLoginData(loginInfo);
+    } catch (err: any) {
+      throw new Error(err.response.data.reason);
+    }
   },
 );
 export const delUserAsync = createAsyncThunk(
