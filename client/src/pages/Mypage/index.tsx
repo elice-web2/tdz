@@ -14,38 +14,25 @@ import {
 import Container from '../../components/styles/Container';
 import Logo from '../../components/common/Logo';
 import Navbar from '../../components/common/Navbar';
+import { TDZPercent } from '../../utils';
 import * as S from './style';
 
 function Mypage() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  const nickname = useAppSelector((state) => state.usersInfo.value.nickname);
-  const comment = useAppSelector((state) => state.usersInfo.value.comment);
   const userProfile = useAppSelector((state) => state.usersInfo.value);
-  localStorage.setItem('usersInfoStorage', JSON.stringify(userProfile));
-  localStorage.setItem(
-    'is_login_first',
-    JSON.stringify(userProfile.is_login_first),
-  );
-  const TDZPercent = () => {
-    const carb = userProfile.nutrient.carb;
-    const protein = userProfile.nutrient.protein;
-    const fat = userProfile.nutrient.fat;
-    const total = carb + protein + fat;
+  const nickname = userProfile.nickname;
+  const comment = userProfile.comment;
 
-    return {
-      carb: Math.round((carb * 100) / total) || 0,
-      protein: Math.round((protein * 100) / total) || 0,
-      fat: Math.round((fat * 100) / total) || 0,
-    };
-  };
+  const TDZ = TDZPercent(userProfile.nutrient);
 
   const logoutHandler = (event: any) => {
     try {
       event.preventDefault();
+      localStorage.removeItem('login');
+      localStorage.removeItem('userInfo');
       dispatch(getLogOutAsync());
-      localStorage.clear();
       navigate('/');
     } catch (error) {
       console.log(error);
@@ -55,10 +42,10 @@ function Mypage() {
   const DelUserHandler = async (event: any) => {
     try {
       event.preventDefault();
+      localStorage.removeItem('login');
+      localStorage.removeItem('userInfo');
       await dispatch(delUserAsync());
       await dispatch(getLogOutAsync());
-      await dispatch(logout());
-      localStorage.clear();
       navigate('/');
     } catch (error) {
       console.log(error);
@@ -118,9 +105,9 @@ function Mypage() {
               권장 칼로리{userProfile.nutrient.kcal}
             </S.UserGoalNumberInfo>
             <S.UserGoalNumberInfo>
-              탄단지{TDZPercent().carb}
-              {TDZPercent().protein}
-              {TDZPercent().fat}
+              탄단지{TDZ.carb}
+              {TDZ.protein}
+              {TDZ.fat}
             </S.UserGoalNumberInfo>
           </S.UserGoalNumberContainer>
           <S.UserGoalNumberContainer>

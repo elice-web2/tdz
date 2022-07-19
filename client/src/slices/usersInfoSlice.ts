@@ -25,7 +25,7 @@ interface UsersInfo {
   nickname: string;
   comment: string;
   // 유저 정보를 작성한 회원 여부
-  is_login_first: string;
+  is_login_first: boolean;
   // 로그인 여부
   isLogin: boolean;
 }
@@ -33,34 +33,6 @@ interface UsersInfo {
 export interface UsersInfoState {
   value: UsersInfo;
 }
-
-const initialState: UsersInfoState = {
-  value: {
-    email: '',
-    login_path: '',
-    gender: '',
-    role: '',
-    age: 0,
-    height: 0,
-    current_weight: 0,
-    goal_weight: 0,
-    bmi: 0,
-    mode: '',
-    activity: '',
-    nutrient: {
-      kcal: 0,
-      carb: 0,
-      protein: 0,
-      fat: 0,
-    },
-    profile_image: '',
-    nickname: '',
-    comment: '',
-    is_login_first: String(localStorage.getItem('is_login_first')),
-    isLogin: Boolean(localStorage.getItem('login')),
-  },
-};
-// Slice 작성 예시
 
 // 로그인 요청 데이터 타입지정
 interface postLoginSignup {
@@ -87,7 +59,7 @@ interface patchActivityParam {
     fat: number;
   };
   nickname?: string;
-  is_login_first?: string;
+  is_login_first?: boolean;
 }
 // 수정할 유저 정보 데이터 타입지정
 interface patchUserParam {
@@ -95,6 +67,34 @@ interface patchUserParam {
   password: string;
   currentPassword: string;
 }
+
+const initialState: UsersInfoState = {
+  value: {
+    email: '',
+    login_path: '',
+    gender: '',
+    role: '',
+    age: 0,
+    height: 0,
+    current_weight: 0,
+    goal_weight: 0,
+    bmi: 0,
+    mode: '',
+    activity: '',
+    nutrient: {
+      kcal: 0,
+      carb: 0,
+      protein: 0,
+      fat: 0,
+    },
+    profile_image: '',
+    nickname: '',
+    comment: '',
+    is_login_first: false,
+    isLogin: Boolean(localStorage.getItem('login')),
+  },
+};
+
 // 회원가입 post API 통신 함수
 async function postSignupData(usersInfo: postLoginSignup) {
   const resp = await api.post('/api/auth/signup', usersInfo);
@@ -160,8 +160,10 @@ export const getLogOutAsync = createAsyncThunk(
 export const getUsersInfoAsync = createAsyncThunk(
   'usersInfo/getUsersInfoData',
   async () => {
-    const usersInfo = await getUsersInfoData();
-    return usersInfo?.data;
+    // 비밀번호 프로퍼티 제외 후 저장
+    const usersInfo = (await getUsersInfoData())?.data;
+    delete usersInfo.password;
+    return usersInfo;
   },
 );
 export const patchUserInfoAsync = createAsyncThunk(
@@ -173,7 +175,8 @@ export const patchUserInfoAsync = createAsyncThunk(
 export const patchActivityAsync = createAsyncThunk(
   'usersInfo/patchActivityData',
   async (activityInfo: patchActivityParam) => {
-    return await patchActivityData(activityInfo);
+    const data = await patchActivityData(activityInfo);
+    return data;
   },
 );
 
@@ -196,11 +199,17 @@ export const UsersInfoSlice = createSlice({
       .addCase(postLoginAsync.fulfilled, (state) => {
         state.value.isLogin = true;
       })
-      .addCase(delUserAsync.fulfilled, (state, action) => {
-        state.value.isLogin = false;
+      .addCase(delUserAsync.pending, (state) => {
+        state.value = { ...state.value, isLogin: false };
+      })
+      .addCase(delUserAsync.fulfilled, (state) => {
+        state.value = { ...initialState.value, isLogin: false };
+      })
+      .addCase(getLogOutAsync.pending, (state) => {
+        state.value = { ...state.value, isLogin: false };
       })
       .addCase(getLogOutAsync.fulfilled, (state) => {
-        state.value.isLogin = false;
+        state.value = { ...initialState.value, isLogin: false };
       })
       .addCase(getUsersInfoAsync.fulfilled, (state, action) => {
         state.value = { ...state.value, ...action.payload };
@@ -208,8 +217,18 @@ export const UsersInfoSlice = createSlice({
       .addCase(patchUserInfoAsync.fulfilled, (state, action) => {
         state.value = { ...state.value, ...action.payload };
       })
+      .addCase(patchActivityAsync.pending, (state) => {
+        state.value = {
+          ...state.value,
+          is_login_first: false,
+        };
+      })
       .addCase(patchActivityAsync.fulfilled, (state, action) => {
-        state.value = { ...state.value, ...action.payload };
+        state.value = {
+          ...state.value,
+          ...action.payload,
+          is_login_first: false,
+        };
       });
   },
 });

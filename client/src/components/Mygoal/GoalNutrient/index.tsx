@@ -33,8 +33,8 @@ function GoalNutrientForm() {
     existEntry.nutrient.protein = nutrient.protein;
     existEntry.nutrient.fat = nutrient.fat;
     existEntry.is_login_first = false;
+    localStorage.setItem('usersInfo', JSON.stringify(existEntry));
     console.log(existEntry);
-    localStorage.setItem('is_login_first', JSON.stringify(false));
     dispatch(patchActivityAsync(existEntry));
     navigate('/home');
   };

@@ -1,6 +1,20 @@
+import { ChartInfo } from '../../../customType/chart.type';
+import { calculateTDZPercent } from '../../../utils';
 import * as S from './style';
 
-function NutrientAverage({ data }: any) {
+interface NutrientAverageProps {
+  data: ChartInfo['data'];
+}
+
+function NutrientAverage({ data }: NutrientAverageProps) {
+  const { carbPercent, proteinPercent, fatPercent } = calculateTDZPercent({
+    carb: data.carbSum,
+    protein: data.proteinSum,
+    fat: data.fatSum,
+  });
+
+  const filterFalsy = (val: number) => !!val;
+
   return (
     <>
       <S.Heading>영양소 평균</S.Heading>
@@ -8,12 +22,14 @@ function NutrientAverage({ data }: any) {
         {/* 칼로리 대비 영양소 4,4,9로 백분율 계산해서 기입 필요 */}
         <S.CircleContainer>
           <S.NutirientCircle bgColor="#5386C1" color="white">
-            28%
+            {proteinPercent}%
           </S.NutirientCircle>
-          <S.NutirientCircle bgColor="#FAF461">32%</S.NutirientCircle>
+          <S.NutirientCircle bgColor="#FAF461">{fatPercent}%</S.NutirientCircle>
         </S.CircleContainer>
         <S.CircleContainer>
-          <S.ThirdNutirientCircle bgColor="#FAA0A0">40%</S.ThirdNutirientCircle>
+          <S.ThirdNutirientCircle bgColor="#FAA0A0">
+            {carbPercent}%
+          </S.ThirdNutirientCircle>
         </S.CircleContainer>
 
         <S.AverageInfoContainer>
@@ -23,21 +39,37 @@ function NutrientAverage({ data }: any) {
               <S.Circle bgColor="#FAA0A0" />
               <span>탄수화물</span>
             </div>
-            <p>{(data.탄수화물합 / 7).toFixed(1)}g</p>
+            <p>
+              {(
+                data.carbSum / data.carbAvg.filter(filterFalsy).length || 0
+              ).toFixed(0)}
+              g
+            </p>
           </S.AverageInfo>
           <S.AverageInfo>
             <div>
               <S.Circle bgColor="#5386C1" />
               <span>단백질</span>
             </div>
-            <p>{(data.단백질합 / 7).toFixed(1)}g</p>
+            <p>
+              {(
+                data.proteinSum / data.proteinAvg.filter(filterFalsy).length ||
+                0
+              ).toFixed(0)}
+              g
+            </p>
           </S.AverageInfo>
           <S.AverageInfo>
             <div>
               <S.Circle bgColor="#FAF461" />
               <span>지방</span>
             </div>
-            <p>{(data.지방합 / 7).toFixed(1)}g</p>
+            <p>
+              {(
+                data.fatSum / data.fatAvg.filter(filterFalsy).length || 0
+              ).toFixed(0)}
+              g
+            </p>
           </S.AverageInfo>
         </S.AverageInfoContainer>
       </S.AverageContainer>

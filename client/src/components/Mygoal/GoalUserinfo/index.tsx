@@ -15,21 +15,12 @@ function GoalUserInfoForm() {
     formState: { errors },
   } = useForm();
   const navigate = useNavigate();
-  // 최초
-  const userProfile = useAppSelector((state) => state.usersInfo.value);
-  localStorage.setItem(
-    'is_login_first',
-    JSON.stringify(userProfile.is_login_first),
-  );
-  // 입력 미완성시 이전기록 => 완성시 get요청 데이터
-  const isLoginFirst = String(localStorage.getItem('is_login_first'));
-  const usersInfo =
-    isLoginFirst === 'true'
-      ? JSON.parse(localStorage.getItem('usersInfo') || '{}')
-      : JSON.parse(localStorage.getItem('usersInfoStorage') || '{}');
 
-  //
-  console.log(usersInfo, 'wpqkf');
+  // 입력 미완성시 이전기록 => 완성시 get요청 데이터
+  const usersInfo = localStorage.getItem('usersInfo')
+    ? JSON.parse(localStorage.getItem('usersInfo') || '{}')
+    : JSON.parse(localStorage.getItem('usersInfoStorage') || '{}');
+
   const [mode, setMode] = useState(usersInfo?.mode ? usersInfo?.mode : 'DEC');
   const [activity, setActivity] = useState(
     usersInfo?.activity ? usersInfo?.activity : 'NORMAL',
@@ -88,10 +79,7 @@ function GoalUserInfoForm() {
         <S.StepCircle></S.StepCircle>
       </S.CircleContainer>
       <S.Step>STEP 1</S.Step>
-      <S.Title>
-        필수 정보 {isLoginFirst === 'false' ? '수정' : '입력'}
-        하기
-      </S.Title>
+      <S.Title>필수 정보 입력하기</S.Title>
       <form onSubmit={handleSubmit(onSubmit)}>
         <S.FlexContainer>
           성별

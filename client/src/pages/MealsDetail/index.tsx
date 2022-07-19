@@ -23,6 +23,9 @@ function MealsDetail() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const mealStore = useAppSelector(({ meal }) => meal.value);
+  const { isLogin, is_login_first } = useAppSelector(
+    ({ usersInfo }) => usersInfo.value,
+  );
   const params = useParams();
   const selectRef = useRef<HTMLSelectElement>(null);
   const responseRef = useRef<MealData>();
@@ -178,6 +181,14 @@ function MealsDetail() {
       setCount((cur) => cur - 1);
     }
   }
+
+  useEffect(() => {
+    if (isLogin && is_login_first) {
+      navigate('/mypage/goal_step1');
+    } else if (!isLogin) {
+      navigate('/');
+    }
+  }, []);
 
   return (
     <Container>

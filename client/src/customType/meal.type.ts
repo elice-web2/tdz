@@ -38,10 +38,10 @@ export interface TDZInfoType {
 }
 
 export interface MealsCartListType {
+  id: string;
   name: string;
   quantity: number;
   totalGram: number;
-  code: string;
 }
 
 export interface MealsCartModalPropsType {

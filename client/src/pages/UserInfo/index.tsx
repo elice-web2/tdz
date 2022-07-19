@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { patchUserInfoAsync } from '../../slices/usersInfoSlice';
@@ -11,9 +11,13 @@ function UserInfo() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  const usersInfoEmail = useAppSelector((state) => state.usersInfo.value.email);
+  const {
+    email: userEmail,
+    isLogin,
+    is_login_first,
+  } = useAppSelector((state) => state.usersInfo.value);
 
-  const [email, setEmail] = useState<string>(usersInfoEmail);
+  const [email, setEmail] = useState<string>(userEmail);
   const [confPassword, setConfPassword] = useState<string>('');
   const [newPassword, setNewPassword] = useState<string>('');
 
@@ -32,6 +36,14 @@ function UserInfo() {
       console.error(error);
     }
   };
+
+  useEffect(() => {
+    if (isLogin && is_login_first) {
+      navigate('/mypage/goal_step1');
+    } else if (!isLogin) {
+      navigate('/');
+    }
+  }, []);
 
   return (
     <Container>
