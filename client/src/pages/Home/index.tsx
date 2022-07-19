@@ -77,7 +77,7 @@ function Home() {
     <Container>
       <Logo />
       <DateNavigation />
-      <ScrollContainer minusHeight={120}>
+      <ScrollContainer minusHeight={180}>
         <S.DonutContainer>
           {/* 목표 칼로리 / 현재 칼로리 * 100 백분율 계산해서 기입 필요 */}
           <DonutProgressbar
@@ -85,7 +85,7 @@ function Home() {
           >
             <S.CalorieContainer>
               {/* 현재 칼로리 */}
-              <p>{nutrientsSum.kcal} kcal</p>
+              <p>{nutrientsSum.kcal.toFixed(0)} kcal</p>
               {/* 목표 칼로리  */}
               <p>/ {nutrient.kcal} kcal</p>
             </S.CalorieContainer>
