@@ -140,7 +140,7 @@ class UserController {
 
       // currentPassword 없을 시, 진행 불가
       if (!currentPassword) {
-        throw new Error('정보를 변경하려면, 현재의 비밀번호가 필요합니다.');
+        throw new Error('auth/need-current-password');
       }
 
       const userInfoRequired = { userId, currentPassword };
@@ -190,7 +190,7 @@ class UserController {
       const nutrient: Nutrient = req.body.nutrient;
       const nickname: string = req.body.nickname;
       const comment: string = req.body.comment;
-      const is_login_first: boolean = req.body.is_login_first;
+      const is_login_first: string = req.body.is_login_first;
 
       // 위 데이터가 undefined가 아니라면, 즉, 프론트에서 업데이트를 위해
       // 보내주었다면, 업데이트용 객체에 삽입함.
@@ -226,9 +226,6 @@ class UserController {
     try {
       // params로부터 id를 가져옴
       const userId: string = req.currentUserId!;
-
-      console.log(req.body);
-      //formdata로 읽음
 
       //사진 정보가 있을 경우 src를 할당
       let profile_image;
@@ -276,7 +273,7 @@ class UserController {
       const deletedResult = await userService.deleteUserData(userId);
 
       if (!deletedResult) {
-        throw new Error('삭제가 실패하였습니다.');
+        throw new Error('auth/unregister-fail');
       }
 
       res.clearCookie('token').status(200).json({

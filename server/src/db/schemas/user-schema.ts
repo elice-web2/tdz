@@ -3,7 +3,7 @@ import { Schema } from 'mongoose';
 const UserSchema = new Schema(
   {
     is_login_first: {
-      type: Boolean,
+      type: String,
       default: true,
     },
     email: {
