@@ -23,16 +23,12 @@ interface getMealProps {
 function MealsList() {
   const navigate = useNavigate();
   const [openModal, setOpenModal] = useState<boolean>(false);
-  const dispatch = useAppDispatch();
   const currentDate = useAppSelector((state) => state.date.value);
   const meals = useAppSelector((state) => state.meal);
   const { isLogin, is_login_first } = useAppSelector(
     ({ usersInfo }) => usersInfo.value,
   );
 
-  useEffect(() => {
-    dispatch(getMealsDataAsync(currentDate));
-  }, []);
   useEffect(() => {
     if (isLogin && is_login_first === 'true') {
       navigate('/mypage/goal_step1');

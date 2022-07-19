@@ -75,7 +75,7 @@ function MealsCart() {
             <div
               className="arrow-icon"
               onClick={() => {
-                navigate('/meals/search');
+                navigate(-1);
               }}
             >
               <FontAwesomeIcon icon={faArrowLeft} />
