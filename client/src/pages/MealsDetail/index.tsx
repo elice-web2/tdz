@@ -37,7 +37,7 @@ function MealsDetail() {
       setFoodInfo(res?.data[0]);
       setFirstInfo(res?.data[0]);
       responseRef.current = res?.data[0];
-      getBookMark();
+      await getBookMark();
     })();
   }, []);
 
@@ -80,7 +80,8 @@ function MealsDetail() {
       const bookMark = await api.get(
         `/api/favorites/${responseRef.current._id}`,
       );
-      if (!bookMark) {
+      console.log(bookMark);
+      if (!bookMark?.data) {
         setIsBookMark(false);
         console.log('마킹상태F');
       } else {

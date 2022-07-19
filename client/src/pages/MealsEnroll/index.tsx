@@ -2,6 +2,7 @@ import * as S from './style';
 import { useState, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import Container from '../../components/styles/Container';
+import EnrollModal from '../../components/MealEnroll/EnrollModal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
@@ -12,6 +13,7 @@ import { useAppDispatch } from '../../hooks';
 import { addMeals } from '../../slices/mealsSlice';
 
 function MealsEnroll() {
+  const [openModal, setOpenModal] = useState(false);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
@@ -135,7 +137,14 @@ function MealsEnroll() {
           </S.NutrientInputElement>
         </S.NutrientBox>
         <S.BtnContainer>
-          <S.AddBtn type="submit">음식 등록</S.AddBtn>
+          <S.AddBtn
+            type="submit"
+            onClick={() => {
+              setOpenModal(true);
+            }}
+          >
+            음식 등록
+          </S.AddBtn>
         </S.BtnContainer>
       </form>
     </Container>
