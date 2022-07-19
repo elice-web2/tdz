@@ -37,31 +37,20 @@ function MealsSearch() {
     setIsSearch(true);
   }
 
-  function onKeyPressHandler(e: React.KeyboardEvent<HTMLInputElement>) {
-    e.preventDefault();
-    if (e.key === 'Enter') {
-      inputSubmitHandler();
-    }
-  }
-
   function inputSubmitHandler() {
-    if (inputRef.current) {
-      setInputValue(inputRef.current.value);
-      api.get(`/api/meal/${inputValue}`).then((res: any) => {
-        setSearchedResult(res.data);
-      });
-    }
+    api.get(`/api/meal/${inputValue}`).then((res: any) => {
+      console.log(res);
+      setSearchedResult(res.data);
+    });
   }
 
   function moveSearchTab() {
     setIsSearch(true);
-    setInputValue('');
     inputRef.current && inputRef.current.focus();
   }
 
   function moveBookMarkTab() {
     setIsSearch(false);
-    setInputValue('');
   }
   useEffect(() => {
     if (!inputValue) {
@@ -90,16 +79,15 @@ function MealsSearch() {
             <span className="searchIcon">
               <FontAwesomeIcon icon={faMagnifyingGlass} />
             </span>
-            <button className="XBtn" onClick={deleteInputHandler}>
+            <span className="XBtn" onClick={deleteInputHandler}>
               X
-            </button>
+            </span>
             <S.SearchInput
               type="text"
               value={inputValue}
               ref={inputRef}
               onChange={onChangeInputHandler}
               onFocus={focusHandler}
-              // onKeyPress={onKeyPressHandler}
             ></S.SearchInput>
           </S.SearchBox>
           <S.SearchBtn type="submit">검색</S.SearchBtn>
