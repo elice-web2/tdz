@@ -28,6 +28,10 @@ export const UserInfoContainer = styled.div`
   form {
     width: 100%;
   }
+
+  .file-input {
+    display: none;
+  }
 `;
 
 export const UserInfoHeader = styled.h2`
@@ -43,6 +47,10 @@ export const ProfileImageContainer = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
+  width: fit-content;
+  margin: 0 auto;
+
+  cursor: pointer;
 
   .plus-icon {
     position: absolute;
@@ -51,8 +59,6 @@ export const ProfileImageContainer = styled.div`
 
     font-size: 24px;
     color: ${({ theme }) => theme.mainColor.normal};
-
-    cursor: pointer;
   }
 `;
 
@@ -101,6 +107,4 @@ export const UserProfileImage = styled.img`
 
   border-radius: 50%;
   border: none;
-
-  cursor: pointer;
 `;

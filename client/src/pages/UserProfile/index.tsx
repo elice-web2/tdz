@@ -8,6 +8,7 @@ import * as S from './style';
 import { useForm } from 'react-hook-form';
 import { faPlus, faCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React, { useRef } from 'react';
 
 interface FormData {
   input_name: string;
@@ -17,11 +18,8 @@ interface FormData {
 function UserProfile() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<FormData>();
+  const { register, handleSubmit } = useForm<FormData>();
+  const fileRef = useRef<HTMLInputElement>(null);
 
   const { nickname, comment, profile_image } = useAppSelector(
     (state) => state.usersInfo.value,
@@ -42,6 +40,16 @@ function UserProfile() {
     }
   };
 
+  const onClickProfileImage = () => {
+    fileRef.current?.click();
+  };
+
+  const uploadImageFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.currentTarget.files) {
+      console.log(e.currentTarget.files[0]);
+    }
+  };
+
   return (
     <Container>
       <Logo />
@@ -49,7 +57,7 @@ function UserProfile() {
         <S.UserInfoContainer>
           <S.UserInfoHeader>프로필 수정</S.UserInfoHeader>
           <form onSubmit={handleSubmit(submitHandler)}>
-            <S.ProfileImageContainer>
+            <S.ProfileImageContainer onClick={onClickProfileImage}>
               <S.UserProfileImage src={profile_image} />
               <FontAwesomeIcon
                 icon={faPlus}
@@ -57,6 +65,13 @@ function UserProfile() {
                 className="plus-icon"
               />
             </S.ProfileImageContainer>
+            <input
+              type="file"
+              ref={fileRef}
+              className="file-input"
+              accept="image/jpg, image/jpeg, image/png"
+              onChange={uploadImageFile}
+            />
             <S.UserInfoInputLabel>닉네임</S.UserInfoInputLabel>
             <S.UserInfoNameInputBox
               {...register('input_name', {
