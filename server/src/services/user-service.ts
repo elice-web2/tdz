@@ -23,9 +23,7 @@ class UserService {
     // 이메일 중복 확인
     const user = await this.userModel.findByEmail(email);
     if (user) {
-      throw new Error(
-        '이 이메일은 현재 사용중입니다. 다른 이메일을 입력해 주세요.',
-      );
+      throw new Error('auth/email-already-use');
     }
     // 우선 비밀번호 해쉬화(암호화)
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -50,7 +48,7 @@ class UserService {
     const { email, password } = userInfo;
 
     if (!email) {
-      throw new Error('회원가입을 위해 이메일이 필요합니다');
+      throw new Error('auth/email-doesnt-exist');
     }
 
     // 비밀번호 해쉬화(암호화)
@@ -75,9 +73,7 @@ class UserService {
     // 우선 해당 이메일의 사용자 정보가  db에 존재하는지 확인
     const user = await this.userModel.findByEmail(email);
     if (!user) {
-      throw new Error(
-        '해당 이메일은 가입 내역이 없습니다. 다시 한 번 확인해 주세요.',
-      );
+      throw new Error('auth/wrong-email');
     }
 
     // 이제 이메일은 문제 없는 경우이므로, 비밀번호를 확인함
@@ -92,9 +88,7 @@ class UserService {
     );
 
     if (!isPasswordCorrect) {
-      throw new Error(
-        '비밀번호가 일치하지 않습니다. 다시 한 번 확인해 주세요.',
-      );
+      throw new Error('auth/wrong-password');
     }
 
     // 로그인 성공 -> JWT 웹 토큰 생성
@@ -124,9 +118,7 @@ class UserService {
   async checkEmail(email: string) {
     const user = await this.userModel.findByEmail(email);
     if (user) {
-      throw new Error(
-        '이 이메일은 현재 사용중입니다. 다른 이메일을 입력해 주세요.',
-      );
+      throw new Error('auth/email-already-use');
     }
     return;
   }
@@ -144,7 +136,7 @@ class UserService {
 
     // db에서 찾지 못한 경우, 에러 메시지 반환
     if (!user) {
-      throw new Error('가입 내역이 없습니다. 다시 한 번 확인해 주세요.');
+      throw new Error('auth/no-user');
     }
 
     // 이제, 정보 수정을 위해 사용자가 입력한 비밀번호가 올바른 값인지 확인해야 함
@@ -157,9 +149,7 @@ class UserService {
     );
 
     if (!isPasswordCorrect) {
-      throw new Error(
-        '현재 비밀번호가 일치하지 않습니다. 다시 한 번 확인해 주세요.',
-      );
+      throw new Error('auth/wrong-password');
     }
 
     // 이제 드디어 업데이트 시작
@@ -192,7 +182,7 @@ class UserService {
 
     // db에서 찾지 못한 경우, 에러 메시지 반환
     if (!user) {
-      throw new Error('가입 내역이 없습니다. 다시 한 번 확인해 주세요.');
+      throw new Error('auth/no-user');
     }
 
     // 업데이트 진행
@@ -215,7 +205,7 @@ class UserService {
 
     // db에서 찾지 못한 경우, 에러 메시지 반환
     if (!user) {
-      throw new Error('가입 내역이 없습니다. 다시 한 번 확인해 주세요.');
+      throw new Error('auth/no-user');
     }
 
     // 유저 삭제 시작
