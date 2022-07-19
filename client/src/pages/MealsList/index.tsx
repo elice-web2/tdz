@@ -6,6 +6,7 @@ import Navbar from '../../components/common/Navbar';
 import Container from '../../components/styles/Container';
 import MealsListAddBox from '../../components/MealsList/MealsListAddBox';
 import MealsListBox from '../../components/MealsList';
+import { useNavigate } from 'react-router-dom';
 import * as S from './style';
 import * as api from '../../api';
 
@@ -20,45 +21,27 @@ interface getMealProps {
 }
 
 function MealsList() {
-  const [list, setList] = useState<any[]>([]);
+  const navigate = useNavigate();
+  const [openModal, setOpenModal] = useState<boolean>(false);
+  const dispatch = useAppDispatch();
   const currentDate = useAppSelector((state) => state.date.value);
+  const meals = useAppSelector((state) => state.meal);
+  const { isLogin, is_login_first } = useAppSelector(
+    ({ usersInfo }) => usersInfo.value,
+  );
 
   useEffect(() => {
-    async function getMealsData(date: string) {
-      const data = await api.get(`/api/mealhistory/${date}`);
-      setList(data?.data);
+    dispatch(getMealsDataAsync(currentDate));
+  }, []);
+  useEffect(() => {
+    if (isLogin && is_login_first === 'true') {
+      navigate('/mypage/goal_step1');
+    } else if (!isLogin) {
+      navigate('/');
     }
-    getMealsData(currentDate);
-  }, [currentDate]);
-
-  const sortMealList = () => {
-    const tmp = [];
-    tmp.push(
-      list.filter((e) => {
-        return e.category === '아침';
-      }),
-    );
-    tmp.push(
-      list.filter((e) => {
-        return e.category === '점심';
-      }),
-    );
-    tmp.push(
-      list.filter((e) => {
-        return e.category === '저녁';
-      }),
-    );
-    tmp.push(
-      list.filter((e) => {
-        return e.category === '간식';
-      }),
-    );
-
-    return tmp;
-  };
-
-  console.log(sortMealList());
-
+  }, []);
+  console.log(meals);
+  const mealsList = meals.value[0];
   return (
     <Container>
       <Logo />
