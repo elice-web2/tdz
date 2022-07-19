@@ -23,12 +23,11 @@ function MealsSearchedList({ inputValue, result }: MealsSearchedListProps) {
     const newArr: any = [];
     for (let i = 0; i < result.length; i++) {
       const res = await api.get(`/api/favorites/${result[i]._id}`);
-      if (res) {
-        if (!res.data._id) {
-          newArr.push({ ...result[i], isBookMarked: false });
-        } else {
-          newArr.push({ ...result[i], isBookMarked: true });
-        }
+      console.log(res);
+      if (!res?.data) {
+        newArr.push({ ...result[i], isBookMarked: false });
+      } else {
+        newArr.push({ ...result[i], isBookMarked: true });
       }
     }
     return newArr;
