@@ -6,7 +6,7 @@ interface DateState {
 }
 
 const initialState: DateState = {
-  value: dayjs().format('YYYY-MM-DD'),
+  value: dayjs(new Date()).format('YYYY-MM-DD'),
 };
 
 export const dateSlice = createSlice({
@@ -16,9 +16,12 @@ export const dateSlice = createSlice({
     updateDate: (state, action: PayloadAction<string>) => {
       state.value = action.payload;
     },
+    initDate: (state) => {
+      state.value = initialState.value;
+    },
   },
 });
 
-export const { updateDate } = dateSlice.actions;
+export const { updateDate, initDate } = dateSlice.actions;
 
 export default dateSlice.reducer;

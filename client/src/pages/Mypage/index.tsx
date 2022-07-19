@@ -16,6 +16,7 @@ import Logo from '../../components/common/Logo';
 import Navbar from '../../components/common/Navbar';
 import { TDZPercent } from '../../utils';
 import * as S from './style';
+import { initDate } from '../../slices/dateSlice';
 
 function Mypage() {
   const navigate = useNavigate();
@@ -24,14 +25,17 @@ function Mypage() {
   const userProfile = useAppSelector((state) => state.usersInfo.value);
   const nickname = userProfile.nickname;
   const comment = userProfile.comment;
+  localStorage.setItem('usersInfoStorage', JSON.stringify(userProfile));
 
   const TDZ = TDZPercent(userProfile.nutrient);
 
   const logoutHandler = (event: any) => {
     try {
+      localStorage.clear();
       event.preventDefault();
       localStorage.removeItem('login');
       localStorage.removeItem('userInfo');
+      dispatch(initDate());
       dispatch(getLogOutAsync());
       navigate('/');
     } catch (error) {
