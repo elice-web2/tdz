@@ -15,8 +15,7 @@ export const OutsideModal = styled.div`
 `;
 export const ModalContainer = styled.div`
   position: absolute;
-  top: 300px;
-  left: 320px;
+  top: 200px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -26,6 +25,7 @@ export const ModalContainer = styled.div`
   padding: 20px;
   height: 200px;
   background-color: white;
+  border: 1px solid lightgray;
   border-radius: 5px;
   z-index: 2;
 `;
