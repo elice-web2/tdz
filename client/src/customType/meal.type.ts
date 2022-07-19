@@ -18,6 +18,13 @@ export interface MealInfo {
 
 export interface MealData extends MealInfo {
   _id: string;
+  isBookMarked?: boolean;
+}
+
+export interface MealHistoryData {
+  date: string;
+  category: string;
+  meals: MealData[];
 }
 
 export interface MealsSearchedListProps {
@@ -46,4 +53,5 @@ export interface MealsCartListType {
 
 export interface MealsCartModalPropsType {
   openModal: (value: boolean) => void;
+  totalInfo: TotalInfoType;
 }
