@@ -15,6 +15,7 @@ import Container from '../../components/styles/Container';
 import Logo from '../../components/common/Logo';
 import Navbar from '../../components/common/Navbar';
 import * as S from './style';
+import { initDate } from '../../slices/dateSlice';
 
 function Mypage() {
   const navigate = useNavigate();
@@ -44,6 +45,7 @@ function Mypage() {
   const logoutHandler = (event: any) => {
     event.preventDefault();
     try {
+      dispatch(initDate());
       localStorage.clear();
       dispatch(getLogOutAsync());
       navigate('/');
