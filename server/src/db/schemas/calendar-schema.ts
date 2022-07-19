@@ -1,4 +1,3 @@
-import { boolean } from 'joi';
 import { Schema } from 'mongoose';
 
 const CalendarSchema = new Schema({
@@ -29,6 +28,38 @@ const CalendarSchema = new Schema({
     required: true,
   },
   todayWeight: {
+    type: Number,
+    required: true,
+  },
+  carbSum: {
+    type: Number,
+    required: true,
+  },
+  proteinSum: {
+    type: Number,
+    required: true,
+  },
+  fatSum: {
+    type: Number,
+    required: true,
+  },
+  sugarsSum: {
+    type: Number,
+    required: true,
+  },
+  natriumSum: {
+    type: Number,
+    required: true,
+  },
+  cholesterolSum: {
+    type: Number,
+    required: true,
+  },
+  saturatedfattySum: {
+    type: Number,
+    required: true,
+  },
+  transfatSum: {
     type: Number,
     required: true,
   },

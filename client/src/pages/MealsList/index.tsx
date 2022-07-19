@@ -1,75 +1,37 @@
-import { useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faXmark,
-  faSun,
-  faDrumstickBite,
-  faUtensils,
-  faCookieBite,
-} from '@fortawesome/free-solid-svg-icons';
-import Container from '../../components/styles/Container';
-import MealsListAddBox from '../../components/MealsList/MealsListAddBox';
-import MealsListDeleteModal from '../../components/MealsList/MealsListDeleteModal';
+import { useState, useEffect } from 'react';
+import { getMealsDataAsync } from '../../slices/mealsSlice';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import DateNavigation from '../../components/common/DateNavigation';
 import Logo from '../../components/common/Logo';
 import Navbar from '../../components/common/Navbar';
-import CalorieInfo from '../../components/MealsList/CalorieInfo';
-import FoodList from '../../components/MealsList/FoodList';
-import NutrientInfo from '../../components/MealsList/NutrientInfo';
+import Container from '../../components/styles/Container';
+import MealsListAddBox from '../../components/MealsList/MealsListAddBox';
+import MealsListDeleteModal from '../../components/MealsList/MealsListDeleteModal';
+import MealsListBox from '../../components/MealsList';
 import * as S from './style';
 
 function MealsList() {
   const [openModal, setOpenModal] = useState<boolean>(false);
-  const clickHandler = () => {
-    setOpenModal(true);
-  };
-
-  const Time = (param: string) => {
-    if (param === '아침') {
-      return faSun;
-    } else if (param === '점심') {
-      return faDrumstickBite;
-    } else if (param === '저녁') {
-      return faUtensils;
-    } else {
-      return faCookieBite;
-    }
-  };
-
-  const DeleteButton = () => {
-    return (
-      <S.DeleteButtonBox onClick={clickHandler}>
-        <FontAwesomeIcon icon={faXmark} className="Delete" />
-      </S.DeleteButtonBox>
-    );
-  };
-
+  const dispatch = useAppDispatch();
+  const currentDate = useAppSelector((state) => state.date.value);
+  const meals = useAppSelector((state) => state.meal);
+  useEffect(() => {
+    dispatch(getMealsDataAsync(currentDate));
+  }, []);
+  console.log(meals);
+  const mealsList = meals.value[0];
   return (
     <Container>
       <Logo />
       <DateNavigation />
       <S.MealsListContainerBox>
         {openModal && <MealsListDeleteModal setOpenModal={setOpenModal} />}
-        <S.MealsListBox>
-          <S.MealContainerIconBox>
-            <FontAwesomeIcon
-              icon={Time('아침')}
-              className="Breakfast"
-              color="white"
-            />
-            <p>아침</p>
-          </S.MealContainerIconBox>
-          <DeleteButton />
-          <CalorieInfo calorie={700} />
-          <FoodList foods={['신라면', '단무지', '군만두']} />
-          <S.NutrientContainer>
-            <NutrientInfo nutrient={'탄수화물'} gram={300} />
-            <S.NutrientInfoLine />
-            <NutrientInfo nutrient={'단백질'} gram={100} />
-            <S.NutrientInfoLine />
-            <NutrientInfo nutrient={'지방'} gram={200} />
-          </S.NutrientContainer>
-        </S.MealsListBox>
+        <MealsListBox
+          time={'점심'}
+          calorie={300}
+          foods={['신라면', '단무지', '군만두']}
+          nutrientGram={[300, 100, 200]}
+        />
       </S.MealsListContainerBox>
       <MealsListAddBox />
       <Navbar />

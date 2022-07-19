@@ -1,5 +1,5 @@
 import { mealModel, MealModel } from '../db';
-import { MealData, MealInfo } from '../customType/meal.type';
+import { MealData, MealInfo } from '../types/meal.type';
 import axios from 'axios';
 
 class MealService {
@@ -44,19 +44,21 @@ class MealService {
     for (let i = 0; i < mealDataList.length; i++) {
       const meal = mealDataList[i];
 
-      const code = meal.FOOD_CD;
-      const name = meal.DESC_KOR;
-      const kcal = Number(meal.NUTR_CONT1);
-      const carb = Number(meal.NUTR_CONT2);
-      const protein = Number(meal.NUTR_CONT3);
-      const fat = Number(meal.NUTR_CONT4);
-      const sugars = Number(meal.NUTR_CONT5);
-      const natruim = Number(meal.NUTR_CONT6);
-      const cholesterol = Number(meal.NUTR_CONT7);
-      const saturatedfatty = Number(meal.NUTR_CONT8);
-      const transfat = Number(meal.NUTR_CONT9);
-      const servingSize = Number(meal.SERVING_SIZE);
-      const updated_date = new Date();
+      const code: string = meal.FOOD_CD;
+      const name: string = meal.DESC_KOR;
+      const kcal: Number = Number(meal.NUTR_CONT1);
+      const carb: Number = Number(meal.NUTR_CONT2);
+      const protein: Number = Number(meal.NUTR_CONT3);
+      const fat: Number = Number(meal.NUTR_CONT4);
+      const sugars: Number = Number(meal.NUTR_CONT5);
+      const natruim: Number = Number(meal.NUTR_CONT6);
+      const cholesterol: Number = Number(meal.NUTR_CONT7);
+      const saturatedfatty: Number = Number(meal.NUTR_CONT8);
+      const transfat: Number = Number(meal.NUTR_CONT9);
+      const servingSize: Number = Number(meal.SERVING_SIZE);
+      const quantity: Number = 1;
+      const totalGram: Number = servingSize;
+      const updated_date: Date = new Date();
 
       const mealInfo = {
         code,
@@ -71,6 +73,8 @@ class MealService {
         saturatedfatty,
         transfat,
         servingSize,
+        quantity,
+        totalGram,
         updated_date,
       };
 

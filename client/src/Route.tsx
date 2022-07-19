@@ -5,14 +5,16 @@ import MealsCart from './pages/MealsCart';
 import MealsDetail from './pages/MealsDetail';
 import MealsList from './pages/MealsList';
 import MealsSearch from './pages/MealsSearch';
+
 import GoalCalories from './pages/Mygoal/GoalCalories';
 import GoalNutrient from './pages/Mygoal/GoalNutrient';
 import GoalUserInfo from './pages/Mygoal/GoalUserInfo';
 import Mypage from './pages/Mypage';
 import UserInfo from './pages/UserInfo';
-import Signin from './pages/Signin';
-import Signup from './pages/Signup';
-import { Navigate } from 'react-router-dom';
+import Signin from './pages/SignPage/Signin';
+import Signup from './pages/SignPage/Signup';
+import MealsEnroll from './pages/MealsEnroll';
+import UserProfile from './pages/UserProfile';
 
 export const ROUTES = {
   Main: {
@@ -31,12 +33,16 @@ export const ROUTES = {
     path: '/meals/search',
     element: <MealsSearch />,
   },
+  MealsEnroll: {
+    path: '/meals/enroll',
+    element: <MealsEnroll />,
+  },
   MealsCart: {
     path: '/meals/cart',
     element: <MealsCart />,
   },
   MealsDetail: {
-    path: '/meals/detail',
+    path: '/meals/detail/:name',
     element: <MealsDetail />,
   },
   Signin: {
@@ -55,6 +61,10 @@ export const ROUTES = {
     path: '/mypage',
     element: <Mypage />,
   },
+  UserProfile: {
+    path: '/mypage/user_profile',
+    element: <UserProfile />,
+  },
   UserInfo: {
     path: '/mypage/user_info',
     element: <UserInfo />,
@@ -70,66 +80,5 @@ export const ROUTES = {
   MypageGoalStep_3: {
     path: '/mypage/goal_step3',
     element: <GoalNutrient />,
-  },
-};
-
-const loginPage = <Navigate replace to="/signin" />;
-
-export const ROUTES_NOT_LOGIN = {
-  Main: {
-    path: '/',
-    element: <Main />,
-  },
-  Home: {
-    path: '/home',
-    element: loginPage,
-  },
-  Meals: {
-    path: '/meals',
-    element: loginPage,
-  },
-  MealsSearch: {
-    path: '/meals/search',
-    element: loginPage,
-  },
-  MealsCart: {
-    path: '/meals/cart',
-    element: loginPage,
-  },
-  MealsDetail: {
-    path: '/meals/detail',
-    element: loginPage,
-  },
-  Signin: {
-    path: '/signin',
-    element: <Signin />,
-  },
-  Signup: {
-    path: '/signup',
-    element: <Signup />,
-  },
-  ChartPage: {
-    path: '/chart',
-    element: loginPage,
-  },
-  Mypage: {
-    path: '/mypage',
-    element: loginPage,
-  },
-  UserInfo: {
-    path: '/mypage/user_info',
-    element: loginPage,
-  },
-  MypageGoalStep_1: {
-    path: '/mypage/goal_step1',
-    element: loginPage,
-  },
-  MypageGoalStep_2: {
-    path: '/mypage/goal_step2',
-    element: loginPage,
-  },
-  MypageGoalStep_3: {
-    path: '/mypage/goal_step3',
-    element: loginPage,
   },
 };

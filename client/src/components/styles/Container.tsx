@@ -9,6 +9,7 @@ export default function Container({ children }: ContainerProps) {
 }
 
 const Wrapper = styled.div`
+  width: 100%;
   max-width: 420px;
   margin: 0 auto;
 `;

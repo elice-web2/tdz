@@ -8,7 +8,7 @@ const calendarRouter = Router();
 calendarRouter.get('/', loginRequired, calendarController.getAllStamps);
 
 // 도장 상세 조회
-calendarRouter.get('/:calendarId', loginRequired, calendarController.getStamp);
+calendarRouter.get('/:date', loginRequired, calendarController.getStamp);
 
 // 도장 생성
 calendarRouter.post('/', loginRequired, calendarController.createStamp);

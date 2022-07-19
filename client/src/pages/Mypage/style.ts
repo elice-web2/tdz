@@ -18,10 +18,18 @@ export const MypageItemBox = styled.div`
   background-color: ${({ theme }) => theme.mainColor.lighter};
 `;
 
-export const LogoutButton = styled.button`
+export const ButtonContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
   align-self: flex-end;
+  position: relative;
 
-  margin: 10px 60px 10px 0;
+  right: 50px;
+`;
+
+export const LogoutButton = styled.button`
+  margin: 10px 10px 10px 0;
 
   border: none;
   background-color: transparent;

@@ -1,18 +1,27 @@
 import * as S from './style';
+import { deleteMeals } from '../../../slices/mealsSlice';
+import { useAppDispatch } from '../../../hooks';
+import { MealsCartListType } from '../../../customType/meal.type';
 
-interface MealsCartListProps {
-  name: string;
-  quantity: number;
-}
+function MealsCartList({ id, name, quantity, totalGram }: MealsCartListType) {
+  const dispatch = useAppDispatch();
 
-function MealsCartList({ name, quantity }: MealsCartListProps) {
   return (
-    <li>
+    <li key={id}>
       <S.MealHeaderBox>
         <S.MealTitle>{name}</S.MealTitle>
-        <S.MealDeleteBtn>X</S.MealDeleteBtn>
+        <S.MealDeleteBtn
+          onClick={() => {
+            dispatch(deleteMeals(id));
+          }}
+        >
+          X
+        </S.MealDeleteBtn>
       </S.MealHeaderBox>
-      <S.QuanText>{quantity}인분</S.QuanText>
+      <S.QuanBox>
+        <S.QuanText>{quantity}인분</S.QuanText>
+        <span>({totalGram}g)</span>
+      </S.QuanBox>
     </li>
   );
 }

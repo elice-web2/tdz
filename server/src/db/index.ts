@@ -21,8 +21,5 @@ db.on('error', (error) =>
 export * from './models/mealhistory-model';
 export * from './models/user-model';
 export * from './models/meal-model';
-<<<<<<< HEAD
 export * from './models/favorite-model';
-=======
 export * from './models/calendar-model';
->>>>>>> origin/dev

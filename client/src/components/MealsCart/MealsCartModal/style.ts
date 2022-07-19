@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  width: 100%;
+  max-width: 420px;
   height: 100%;
 `;
 export const OutsideModal = styled.div`
@@ -45,6 +45,7 @@ export const Title = styled.h1`
   font-weight: bold;
   text-align: center;
 `;
+
 export const BtnContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -58,7 +59,6 @@ export const BtnContainer = styled.div`
     height: 40px;
     border-radius: 10px;
     border: none;
-    background-color: ${({ theme }) => theme.mainColor.lighter};
     font-size: 16px;
     cursor: pointer;
   }

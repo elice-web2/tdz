@@ -28,6 +28,8 @@ class MealController {
       const saturatedfatty: number = req.body.saturatedfatty;
       const transfat: number = req.body.transfat;
       const servingSize: number = req.body.servingSize;
+      const quantity: number = req.body.quantity;
+      const totalGram: number = req.body.totalGram;
       const updated_date: Date = new Date();
 
       const mealInfo = {
@@ -43,6 +45,8 @@ class MealController {
         saturatedfatty,
         transfat,
         servingSize,
+        quantity,
+        totalGram,
         updated_date,
       };
 

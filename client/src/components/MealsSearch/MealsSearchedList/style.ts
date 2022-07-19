@@ -1,5 +1,12 @@
 import styled from 'styled-components';
 
+export const SearchListContainer = styled.ul`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 200px;
+`;
+
 export const List = styled.li`
   width: 360px;
   padding-top: 5px;
@@ -22,12 +29,6 @@ export const NamedInfo = styled.div`
     font-weight: bold;
     cursor: pointer;
   }
-  .starIcon {
-    position: absolute;
-    right: 15px;
-    font-size: 20px;
-    cursor: pointer;
-  }
 
   .plusIcon {
     position: absolute;
@@ -36,7 +37,18 @@ export const NamedInfo = styled.div`
     font-size: 20px;
     cursor: pointer;
   }
+
+  .starIcon img {
+    width: 23px;
+    height: 23px;
+    position: absolute;
+    top: 20px;
+    right: 15px;
+    font-size: 20px;
+    cursor: pointer;
+  }
 `;
+
 export const QuanInfo = styled.p`
   margin-bottom: 20px;
   padding: 3px 10px 10px 13px;

@@ -45,30 +45,7 @@ export const ButtonContainer = styled.div`
     font-size: 16px;
     font-weight: 700;
     color: white;
-  }
-`;
-
-export const WeightContainer = styled.div`
-  ${({ theme }) => theme.flexbox()}
-
-  padding: 10px 0 20px 0;
-
-  p {
-    font-size: 3rem;
-    font-weight: 700;
-  }
-
-  svg {
-    margin: 5px 0 0 10px;
-    width: 20px;
-    height: 20px;
 
     cursor: pointer;
   }
-`;
-
-export const Span = styled.span`
-  font-size: 12px;
-
-  padding-top: 20px;
 `;

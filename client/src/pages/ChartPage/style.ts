@@ -34,8 +34,16 @@ export const PeriodContainer = styled.div`
 
     cursor: pointer;
   }
+
+  span {
+    padding: 0 5px;
+  }
 `;
 
 export const Wrapper = styled.div`
   background-color: rgba(0, 0, 0, 0.05);
+`;
+
+export const NextButton = styled.div<{ isDisable: boolean }>`
+  color: ${({ isDisable }) => (isDisable ? '#bbb' : 'black')};
 `;

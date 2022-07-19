@@ -38,6 +38,7 @@ async function patch<T>(apiUrl: string, data: T) {
       headers: {
         'Content-Type': 'application/json',
       },
+      withCredentials: true,
     });
     return result;
   } catch (error: any) {
@@ -47,13 +48,13 @@ async function patch<T>(apiUrl: string, data: T) {
 
 // 삭제 요청 할 데이터를 객체 형식으로 할당
 
-async function del<T>(apiUrl: string, data: T) {
+async function del<T>(apiUrl: string) {
   try {
     const result = await axios.delete(`${BASE_URL}${apiUrl}`, {
-      data,
       headers: {
         'Content-Type': 'application/json',
       },
+      withCredentials: true,
     });
     return result;
   } catch (error: any) {
