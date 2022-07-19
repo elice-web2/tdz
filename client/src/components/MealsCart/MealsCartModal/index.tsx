@@ -9,6 +9,7 @@ import {
 } from '../../../customType/meal.type';
 import dayjs from 'dayjs';
 import * as api from '../../../api';
+import { userInfo } from 'os';
 
 type selectedType = '아침' | '점심' | '저녁' | '간식' | '';
 
@@ -24,6 +25,7 @@ function MealsCartModal({ openModal, totalInfo }: MealsCartModalPropsType) {
   const dispatch = useAppDispatch();
   const meals = useAppSelector(({ meal }) => meal.value);
   const total = useAppSelector(({ meal }) => meal.totalKcal);
+  const date = useAppSelector(({ date }) => date.value);
   const usersInfo = useAppSelector(({ usersInfo }) => usersInfo.value);
   console.log('유저인포', usersInfo);
   const postResultObj = {
@@ -43,7 +45,7 @@ function MealsCartModal({ openModal, totalInfo }: MealsCartModalPropsType) {
   }
 
   const stampResultObj = {
-    date: dayjs().format('YYYY-MM-DD'),
+    date: date,
     currentKcal: totalInfo.totalKcal,
     goalKcal: usersInfo.nutrient.kcal,
     mode: usersInfo.mode,
@@ -52,7 +54,6 @@ function MealsCartModal({ openModal, totalInfo }: MealsCartModalPropsType) {
       usersInfo.nutrient.kcal,
       usersInfo.mode,
     ),
-    todayWeight: 59,
   };
 
   console.log('스탬프', stampResultObj);
