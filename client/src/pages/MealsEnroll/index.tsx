@@ -1,23 +1,26 @@
 import * as S from './style';
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import Container from '../../components/styles/Container';
 import EnrollModal from '../../components/MealEnroll/EnrollModal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
-import { MealInfo } from '../../customType/meal.type';
-import React from 'react';
 import * as api from '../../api';
-import { useAppDispatch } from '../../hooks';
-import { addMeals } from '../../slices/mealsSlice';
 
 function MealsEnroll() {
   const [openModal, setOpenModal] = useState(false);
   const [submitData, setSubmitData] = useState();
-  const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, watch } = useForm();
+
+  function checkInput(value: string): boolean {
+    if (!watch(value)) {
+      return false;
+    } else {
+      return true;
+    }
+  }
 
   async function onSubmit(data: any) {
     data.code = '';
@@ -62,75 +65,85 @@ function MealsEnroll() {
 
         <S.NutrientBox>
           <h2>영양정보</h2>
-          <S.NutrientInputElement>
+          <S.NutrientInputElement changeColor={checkInput('servingSize')}>
             <p>내용량(g)</p>
             <input
               type="number"
               {...register('servingSize', { required: true, min: 0 })}
             ></input>
+            <span>g</span>
           </S.NutrientInputElement>
-          <S.NutrientInputElement>
+          <S.NutrientInputElement changeColor={checkInput('kcal')}>
             <p>열량</p>
             <input
               type="number"
               {...register('kcal', { required: true, min: 0 })}
             ></input>
+            <span>g</span>
           </S.NutrientInputElement>
-          <S.NutrientInputElement>
+          <S.NutrientInputElement changeColor={checkInput('carb')}>
             <p>탄수화물</p>
             <input
               type="number"
               {...register('carb', { required: true, min: 0 })}
             ></input>
+            <span>g</span>
           </S.NutrientInputElement>
-          <S.NutrientInputElement>
+          <S.NutrientInputElement changeColor={checkInput('protein')}>
             <p>단백질</p>
             <input
               type="number"
               {...register('protein', { required: true, min: 0 })}
             ></input>
+            <span>g</span>
           </S.NutrientInputElement>
-          <S.NutrientInputElement>
+          <S.NutrientInputElement changeColor={checkInput('fat')}>
             <p>지방</p>
             <input
               type="number"
               {...register('fat', { required: true, min: 0 })}
             ></input>
+            <span>g</span>
           </S.NutrientInputElement>
-          <S.NutrientInputElement>
+          <S.NutrientInputElement changeColor={checkInput('natruim')}>
             <p>나트륨</p>
             <input
               type="number"
               {...register('natruim', { required: true, min: 0 })}
             ></input>
+            <span>g</span>
           </S.NutrientInputElement>
-          <S.NutrientInputElement>
+          <S.NutrientInputElement changeColor={checkInput('sugars')}>
             <p>당</p>
             <input
               type="number"
               {...register('sugars', { required: true, min: 0 })}
             ></input>
+            <span>g</span>
           </S.NutrientInputElement>
-          <S.NutrientInputElement>
+          <S.NutrientInputElement changeColor={checkInput('cholesterol')}>
             <p>콜레스테롤</p>
             <input
               type="number"
               {...register('cholesterol', { required: true, min: 0 })}
             ></input>
+            <span>g</span>
           </S.NutrientInputElement>
-          <S.NutrientInputElement>
+          <S.NutrientInputElement changeColor={checkInput('transfat')}>
             <p>트랜스지방</p>
             <input
               type="number"
               {...register('transfat', { required: true, min: 0 })}
             ></input>
+            <span>g</span>
           </S.NutrientInputElement>
-          <S.NutrientInputElement>
+          <S.NutrientInputElement changeColor={checkInput('saturatedfatty')}>
             <p>포화지방</p>
             <input
               type="number"
               {...register('saturatedfatty', { required: true, min: 0 })}
             ></input>
+            <span>g</span>
           </S.NutrientInputElement>
         </S.NutrientBox>
         <S.BtnContainer>
