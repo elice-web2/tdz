@@ -22,7 +22,6 @@ function GoalCalories() {
       <ScrollContainer minusHeight={120}>
         <GoalCaloriesForm />
       </ScrollContainer>
-      <Navbar />
     </Container>
   );
 }

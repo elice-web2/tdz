@@ -22,7 +22,6 @@ function GoalUserInfo() {
       <ScrollContainer minusHeight={120}>
         <GoalUserInfoForm />
       </ScrollContainer>
-      <Navbar />
     </Container>
   );
 }
