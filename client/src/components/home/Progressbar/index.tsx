@@ -24,7 +24,7 @@ function Progressbar({
           progressColor={color}
         />
         <p>
-          {currentValue}g / {goalValue}g
+          {currentValue.toFixed(0)}g / {goalValue}g
         </p>
       </S.ProgressContainer>
     </S.Wrapper>
