@@ -66,7 +66,7 @@ function Home() {
   }, [date]);
 
   useEffect(() => {
-    if (isLogin && is_login_first) {
+    if (isLogin && is_login_first === 'true') {
       navigate('/mypage/goal_step1');
     } else if (!isLogin) {
       navigate('/');
@@ -119,7 +119,6 @@ function Home() {
           </S.ButtonContainer>
         </S.ResponsiveContainer>
       </ScrollContainer>
-
       <Navbar />
     </Container>
   );

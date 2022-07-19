@@ -8,15 +8,28 @@ import Container from '../../components/styles/Container';
 import MealsListAddBox from '../../components/MealsList/MealsListAddBox';
 import MealsListDeleteModal from '../../components/MealsList/MealsListDeleteModal';
 import MealsListBox from '../../components/MealsList';
+import { useNavigate } from 'react-router-dom';
 import * as S from './style';
 
 function MealsList() {
+  const navigate = useNavigate();
   const [openModal, setOpenModal] = useState<boolean>(false);
   const dispatch = useAppDispatch();
   const currentDate = useAppSelector((state) => state.date.value);
   const meals = useAppSelector((state) => state.meal);
+  const { isLogin, is_login_first } = useAppSelector(
+    ({ usersInfo }) => usersInfo.value,
+  );
+
   useEffect(() => {
     dispatch(getMealsDataAsync(currentDate));
+  }, []);
+  useEffect(() => {
+    if (isLogin && is_login_first === 'true') {
+      navigate('/mypage/goal_step1');
+    } else if (!isLogin) {
+      navigate('/');
+    }
   }, []);
   console.log(meals);
   const mealsList = meals.value[0];

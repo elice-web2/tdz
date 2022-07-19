@@ -25,7 +25,7 @@ interface UsersInfo {
   nickname: string;
   comment: string;
   // 유저 정보를 작성한 회원 여부
-  is_login_first: boolean;
+  is_login_first: string;
   // 로그인 여부
   isLogin: boolean;
 }
@@ -59,7 +59,7 @@ interface patchActivityParam {
     fat: number;
   };
   nickname?: string;
-  is_login_first?: boolean;
+  is_login_first?: string;
 }
 // 수정할 유저 정보 데이터 타입지정
 interface patchUserParam {
@@ -90,7 +90,7 @@ const initialState: UsersInfoState = {
     profile_image: '',
     nickname: '',
     comment: '',
-    is_login_first: false,
+    is_login_first: 'false',
     isLogin: Boolean(localStorage.getItem('login')),
   },
 };
@@ -231,7 +231,7 @@ export const UsersInfoSlice = createSlice({
       .addCase(patchActivityAsync.pending, (state) => {
         state.value = {
           ...state.value,
-          is_login_first: false,
+          is_login_first: 'false',
         };
       })
       .addCase(patchActivityAsync.fulfilled, (state, action) => {
