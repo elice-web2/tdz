@@ -32,7 +32,7 @@ function GoalNutrientForm() {
     existEntry.nutrient.carb = nutrient.carb;
     existEntry.nutrient.protein = nutrient.protein;
     existEntry.nutrient.fat = nutrient.fat;
-    existEntry.is_login_first = false;
+    existEntry.is_login_first = 'false';
     localStorage.setItem('usersInfo', JSON.stringify(existEntry));
     console.log(existEntry);
     dispatch(patchActivityAsync(existEntry));
