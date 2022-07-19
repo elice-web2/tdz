@@ -1,13 +1,16 @@
 import { Line } from 'react-chartjs-2';
+import { ChartInfo } from '../../customType/chart.type';
 
-export default function WeightChart({ data }: any) {
+export default function WeightChart({ data, labels }: ChartInfo) {
   const weightData = {
-    labels: ['6/30', '7/1', '7/2', '7/3', '7/4', '7/5', '7/6'],
+    labels,
     datasets: [
       {
+        base: 0,
         borderColor: 'rgb(54, 162, 235)',
         borderWidth: 2,
-        data: data.체중,
+        data: data.weight,
+        tension: 0.1,
       },
     ],
   };
@@ -16,7 +19,21 @@ export default function WeightChart({ data }: any) {
     plugins: {
       title: {
         display: true,
-        text: '체중',
+        text: '체중 평균',
+      },
+      tooltip: {
+        displayColors: false,
+        callbacks: {
+          label: (context: any) => {
+            let label = context.formattedValue + '' || '';
+
+            if (label) {
+              label += ' kg';
+            }
+
+            return label;
+          },
+        },
       },
     },
     scales: {
@@ -24,6 +41,10 @@ export default function WeightChart({ data }: any) {
         grid: {
           display: false,
         },
+      },
+      y: {
+        min: 0,
+        max: Math.max(...data.weight) + 10,
       },
     },
   };

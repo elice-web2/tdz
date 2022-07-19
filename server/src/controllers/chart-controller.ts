@@ -1,4 +1,3 @@
-import dayjs from 'dayjs';
 import { Request, Response, NextFunction } from 'express';
 import { chartService } from '../services';
 import { FromToInfo, DayInfo } from '../types/chart.type';
@@ -6,7 +5,7 @@ import { FromToInfo, DayInfo } from '../types/chart.type';
 const oneDay = async (req: Request, res: Response, next: NextFunction) => {
   try {
     //날짜 계산...
-    const todayStr: string = String(req.query.date);
+    const todayStr = String(req.query.date);
     const today: Date = new Date(todayStr);
     const tommorrow: Date = new Date(todayStr);
     tommorrow.setDate(today.getDate() + 1);
@@ -32,7 +31,7 @@ const oneDay = async (req: Request, res: Response, next: NextFunction) => {
 const daily = async (req: Request, res: Response, next: NextFunction) => {
   try {
     //날짜 계산...
-    const date: string = String(req.query.date);
+    const date = String(req.query.date);
 
     const fromToInfo: DayInfo = {
       user_id: req.currentUserId!,
@@ -50,8 +49,8 @@ const daily = async (req: Request, res: Response, next: NextFunction) => {
 const weekly = async (req: Request, res: Response, next: NextFunction) => {
   try {
     //날짜를 읽어옴
-    const from: string = String(req.query.from);
-    const to: string = String(req.query.to);
+    const from = String(req.query.from);
+    const to = String(req.query.to);
 
     // from=2022-06-18&to=2022-07-15
     //30일짜리의 데이터 가져오기
@@ -73,8 +72,8 @@ const weekly = async (req: Request, res: Response, next: NextFunction) => {
 const monthly = async (req: Request, res: Response, next: NextFunction) => {
   try {
     //날짜를 읽어옴
-    const from: string = String(req.query.from);
-    const to: string = String(req.query.to);
+    const from = String(req.query.from);
+    const to = String(req.query.to);
 
     // from=2022-06-18&to=2022-07-15
     //30일짜리의 데이터 가져오기

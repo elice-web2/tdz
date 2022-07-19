@@ -73,7 +73,7 @@ function MealsSearchedList({ inputValue, result }: MealsSearchedListProps) {
       ) : (
         result.map((food: MealData) => {
           return (
-            <S.List key={food.code}>
+            <S.List key={food._id}>
               <S.NamedInfo>
                 <div
                   className="title"

@@ -49,6 +49,10 @@ class SocialLoginController {
       next(err);
     }
   }
+
+  //  async google (:typparamse) => {
+
+  //  }
 }
 
 const socialLoginController = new SocialLoginController();
