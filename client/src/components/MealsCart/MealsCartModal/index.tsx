@@ -8,6 +8,8 @@ import {
   MealData,
 } from '../../../customType/meal.type';
 import dayjs from 'dayjs';
+import * as api from '../../../api';
+import { userInfo } from 'os';
 
 type selectedType = '아침' | '점심' | '저녁' | '간식' | '';
 
@@ -17,18 +19,44 @@ interface PostResultType {
   meals: MealData[];
 }
 
-function MealsCartModal({ openModal }: MealsCartModalPropsType) {
+function MealsCartModal({ openModal, totalInfo }: MealsCartModalPropsType) {
   const [selected, setSelected] = useState<selectedType>('');
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const meals = useAppSelector(({ meal }) => meal.value);
+  const total = useAppSelector(({ meal }) => meal.totalKcal);
+  const date = useAppSelector(({ date }) => date.value);
+  const usersInfo = useAppSelector(({ usersInfo }) => usersInfo.value);
+  console.log('유저인포', usersInfo);
   const postResultObj = {
     date: dayjs().format('YYYY-MM-DD'),
     meals,
     category: selected,
   };
   console.log('보낼내용', postResultObj);
+  console.log('토탈', total);
 
+  function isSuccessGoal(cur: number, goal: number, mode: string) {
+    if (mode === 'DEC') {
+      return cur <= goal ? true : false;
+    } else if (mode === 'INC') {
+      return cur >= goal ? true : false;
+    }
+  }
+
+  const stampResultObj = {
+    date: date,
+    currentKcal: totalInfo.totalKcal,
+    goalKcal: usersInfo.nutrient.kcal,
+    mode: usersInfo.mode,
+    isSuccess: isSuccessGoal(
+      totalInfo.totalKcal,
+      usersInfo.nutrient.kcal,
+      usersInfo.mode,
+    ),
+  };
+
+  console.log('스탬프', stampResultObj);
   function modalCloseHandler() {
     openModal(false);
   }
@@ -39,6 +67,9 @@ function MealsCartModal({ openModal }: MealsCartModalPropsType) {
 
   function enrollHandler(postResultObj: PostResultType) {
     dispatch(postMealsDataAsync(postResultObj));
+    api
+      .post('/api/calendar', stampResultObj)
+      .then((res) => console.log('잘보냈니', res));
     navigate('/meals');
   }
 

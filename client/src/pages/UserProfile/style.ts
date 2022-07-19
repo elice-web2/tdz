@@ -86,6 +86,8 @@ export const UserInfoCommentInputBox = styled.textarea`
 
   border-radius: 5px;
   border: none;
+
+  resize: none;
 `;
 
 export const UserInfoButton = styled.button`

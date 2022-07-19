@@ -43,7 +43,7 @@ class FavoriteService {
     );
 
     if (!findMealInFavorites) {
-      return {} as Promise<FavoriteData>;
+      return null;
     }
 
     return findMealInFavorites;
