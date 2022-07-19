@@ -1,9 +1,10 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import * as api from '../api';
-import { MealData } from '../customType/meal.type';
+import { MealData, MealHistoryData } from '../customType/meal.type';
 
 export interface MealsState {
   value: MealData[];
+  totalKcal: number;
 }
 
 interface PostMealsDataParam {
@@ -18,6 +19,7 @@ interface GetMealsDataParam {
 
 const initialState: MealsState = {
   value: [],
+  totalKcal: 0,
 };
 
 async function postMealsData({ meals, category, date }: PostMealsDataParam) {
@@ -61,6 +63,19 @@ export const mealsSlice = createSlice({
     },
     deleteMeals: (state, action: PayloadAction<string>) => {
       state.value = state.value.filter((meal) => meal._id !== action.payload);
+    },
+    calTotalKcal: (state, action: PayloadAction<PostMealsDataParam[]>) => {
+      const mealhistoryArr = action.payload;
+      const meals = mealhistoryArr.map((el) => el.meals); // 원소 [{kcal: 1}]
+      const result = meals.reduce((acc, cur) => {
+        return [...acc, ...cur];
+      });
+      let sum = 0;
+      for (let i = 0; i < result.length; i++) {
+        sum += result[i].kcal;
+      }
+
+      state.totalKcal = sum;
     },
   },
   extraReducers: (builder) => {

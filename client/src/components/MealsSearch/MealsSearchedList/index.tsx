@@ -12,7 +12,6 @@ import {
 } from '../../../customType/meal.type';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight, faPlus } from '@fortawesome/free-solid-svg-icons';
-import { render } from '@testing-library/react';
 
 function MealsSearchedList({ inputValue, result }: MealsSearchedListProps) {
   const navigate = useNavigate();
@@ -24,10 +23,12 @@ function MealsSearchedList({ inputValue, result }: MealsSearchedListProps) {
     const newArr: any = [];
     for (let i = 0; i < result.length; i++) {
       const res = await api.get(`/api/favorites/${result[i]._id}`);
-      if (!res) {
-        newArr.push({ ...result[i], isBookMarked: false });
-      } else {
-        newArr.push({ ...result[i], isBookMarked: true });
+      if (res) {
+        if (!res.data._id) {
+          newArr.push({ ...result[i], isBookMarked: false });
+        } else {
+          newArr.push({ ...result[i], isBookMarked: true });
+        }
       }
     }
     return newArr;

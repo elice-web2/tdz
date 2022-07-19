@@ -66,7 +66,9 @@ function MealsCart() {
   return (
     <Container>
       <ScrollContainer minusHeight={60}>
-        {openModal && <MealsCartModal openModal={setOpenModal} />}
+        {openModal && (
+          <MealsCartModal openModal={setOpenModal} totalInfo={info} />
+        )}
 
         <S.NutrientInfoContainer>
           <S.IconBox>
