@@ -4,29 +4,56 @@ export const MypageContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 
-  padding: 150px 0 150px 0;
+  width: 100%;
+  height: calc(100vh - 120px);
 `;
 
 export const UserInfoContainer = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
-  width: 240px;
+  width: 70%;
   height: 320px;
   padding: 40px 24px;
 
-  box-shadow: 2px 2px 6px 0px gray;
-  border-radius: 16px;
-  background-color: ${({ theme }) => theme.mainColor.lighter};
+  box-shadow: 1px 3px 10px 1px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  background-color: rgba(140, 158, 255, 0.2);
+
+  form {
+    width: 100%;
+  }
 `;
 
 export const UserInfoHeader = styled.h2`
   align-self: center;
   margin: 0 0 20px 0;
 
-  font-size: 24px;
+  font-size: 28px;
   font-weight: 600;
+`;
+
+export const ProfileImageContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+  .plus-icon {
+    position: absolute;
+    top: 80px;
+    right: calc(50% - 40px);
+
+    font-size: 24px;
+    color: ${({ theme }) => theme.mainColor.normal};
+
+    cursor: pointer;
+  }
 `;
 
 export const UserInfoInputLabel = styled.h4`
@@ -35,30 +62,28 @@ export const UserInfoInputLabel = styled.h4`
   font-size: 12px;
 `;
 
-export const UserInfoNameInputBox = styled.input.attrs((props) => ({
-  type: props.type,
-}))`
-  padding: 8px 20px;
-  margin: 0 auto;
-  width: 200px;
+export const UserInfoNameInputBox = styled.input`
+  padding: 8px;
+  width: 95%;
 
+  background-color: rgba(0, 0, 0, 0.1);
+
+  border-radius: 5px;
   border: none;
-  background-color: grey;
 `;
 
 export const UserInfoCommentInputBox = styled.textarea`
-  padding: 8px 20px;
-  margin: 0 auto;
-  width: 200px;
+  padding: 8px;
+  width: 95%;
 
+  background-color: rgba(0, 0, 0, 0.1);
+
+  border-radius: 5px;
   border: none;
-  background-color: grey;
 `;
 
 export const UserInfoButton = styled.button`
-  align-self: center;
-
-  width: 240px;
+  width: 100%;
   height: 32px;
   margin-top: 20px;
 
@@ -70,17 +95,12 @@ export const UserInfoButton = styled.button`
   color: #ffffff;
 `;
 
-export const UserProfileImage = styled.img.attrs((props) => ({
-  src: props.src,
-}))`
-  position: relative;
-  left: 50%;
-  top: 15%;
-  transform: translate(-50%, -50%);
-
+export const UserProfileImage = styled.img`
   width: 100px;
   height: 100px;
 
   border-radius: 50%;
   border: none;
+
+  cursor: pointer;
 `;

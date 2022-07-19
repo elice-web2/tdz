@@ -17,7 +17,7 @@ export const CalorieContainer = styled.div`
   font-size: 16px;
 
   p {
-    padding: 5px 0;
+    padding: 2px 0;
   }
 `;
 
