@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import * as api from '../api';
-import { MealData, MealHistoryData } from '../customType/meal.type';
+import { MealData } from '../customType/meal.type';
 
 export interface MealsState {
   value: MealData[];
@@ -10,10 +10,6 @@ export interface MealsState {
 interface PostMealsDataParam {
   meals: MealData[];
   category: string;
-  date: string;
-}
-
-interface GetMealsDataParam {
   date: string;
 }
 
@@ -54,6 +50,19 @@ export const getMealsDataAsync = createAsyncThunk(
   },
 );
 
+async function delMealsData(id: string) {
+  const data = await api.delete(`/api/mealhistory/${id}`);
+  return data?.data;
+}
+
+export const delMealsDataAsync = createAsyncThunk(
+  'meals/delMealsData',
+  async (id: string) => {
+    const data = await delMealsData(id);
+    return data;
+  },
+);
+
 export const mealsSlice = createSlice({
   name: 'meals',
   initialState,
@@ -81,10 +90,13 @@ export const mealsSlice = createSlice({
       })
       .addCase(getMealsDataAsync.fulfilled, (state, action) => {
         state.value = [{ ...state, ...action.payload }];
+      })
+      .addCase(delMealsDataAsync.fulfilled, (state, action) => {
+        state.value = [];
       });
   },
 });
 
-export const { addMeals, deleteMeals } = mealsSlice.actions;
+export const { addMeals, deleteMeals, calTotalKcal } = mealsSlice.actions;
 
 export default mealsSlice.reducer;

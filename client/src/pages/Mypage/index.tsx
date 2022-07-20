@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -14,46 +15,36 @@ import {
 import Container from '../../components/styles/Container';
 import Logo from '../../components/common/Logo';
 import Navbar from '../../components/common/Navbar';
-import { TDZPercent } from '../../utils';
+import LogoutModal from '../../components/Mypage/LogoutModal';
+import DelUserModal from '../../components/Mypage/DelUserModal';
+import { calculateTDZPercent } from '../../utils';
 import * as S from './style';
 import { initDate } from '../../slices/dateSlice';
-
 function Mypage() {
+  const [openLogoutModal, setOpenLogoutModal] = useState<boolean>(false);
+  const [openDelUserModal, setOpenDelUserModal] = useState<boolean>(false);
+
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   const userProfile = useAppSelector((state) => state.usersInfo.value);
+  const nutrient = userProfile.nutrient;
   const nickname = userProfile.nickname;
   const comment = userProfile.comment;
   localStorage.setItem('usersInfoStorage', JSON.stringify(userProfile));
 
-  const TDZ = TDZPercent(userProfile.nutrient);
+  const TDZ = calculateTDZPercent({
+    carb: nutrient.carb,
+    protein: nutrient.protein,
+    fat: nutrient.fat,
+  });
 
-  const logoutHandler = (event: any) => {
-    try {
-      localStorage.clear();
-      event.preventDefault();
-      localStorage.removeItem('login');
-      localStorage.removeItem('userInfo');
-      dispatch(initDate());
-      dispatch(getLogOutAsync());
-      navigate('/');
-    } catch (error) {
-      console.log(error);
-    }
+  const logoutHandler = () => {
+    setOpenLogoutModal(true);
   };
 
-  const DelUserHandler = async (event: any) => {
-    try {
-      event.preventDefault();
-      localStorage.removeItem('login');
-      localStorage.removeItem('userInfo');
-      await dispatch(delUserAsync());
-      await dispatch(getLogOutAsync());
-      navigate('/');
-    } catch (error) {
-      console.log(error);
-    }
+  const DelUserHandler = () => {
+    setOpenDelUserModal(true);
   };
 
   return (
@@ -61,6 +52,12 @@ function Mypage() {
       <Logo />
       <S.MypageContainer>
         <S.MypageItemBox>
+          {openLogoutModal && (
+            <LogoutModal setOpenLogoutModal={setOpenLogoutModal} />
+          )}
+          {openDelUserModal && (
+            <DelUserModal setOpenDelUserModal={setOpenDelUserModal} />
+          )}
           <S.SettingProfileContainer>
             <div
               onClick={() => {
@@ -109,9 +106,9 @@ function Mypage() {
               권장 칼로리{userProfile.nutrient.kcal}
             </S.UserGoalNumberInfo>
             <S.UserGoalNumberInfo>
-              탄단지{TDZ.carb}
-              {TDZ.protein}
-              {TDZ.fat}
+              탄단지{TDZ.carbPercent}
+              {TDZ.proteinPercent}
+              {TDZ.fatPercent}
             </S.UserGoalNumberInfo>
           </S.UserGoalNumberContainer>
           <S.UserGoalNumberContainer>

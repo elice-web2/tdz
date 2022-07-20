@@ -24,17 +24,16 @@ function MealsCartModal({ openModal, totalInfo }: MealsCartModalPropsType) {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const meals = useAppSelector(({ meal }) => meal.value);
-  const total = useAppSelector(({ meal }) => meal.totalKcal);
+  const totalKcal = useAppSelector(({ meal }) => meal.totalKcal);
   const date = useAppSelector(({ date }) => date.value);
   const usersInfo = useAppSelector(({ usersInfo }) => usersInfo.value);
   console.log('유저인포', usersInfo);
   const postResultObj = {
-    date: dayjs().format('YYYY-MM-DD'),
+    date,
     meals,
     category: selected,
   };
   console.log('보낼내용', postResultObj);
-  console.log('토탈', total);
 
   function isSuccessGoal(cur: number, goal: number, mode: string) {
     if (mode === 'DEC') {
@@ -46,11 +45,11 @@ function MealsCartModal({ openModal, totalInfo }: MealsCartModalPropsType) {
 
   const stampResultObj = {
     date: date,
-    currentKcal: totalInfo.totalKcal,
+    currentKcal: totalKcal,
     goalKcal: usersInfo.nutrient.kcal,
     mode: usersInfo.mode,
     isSuccess: isSuccessGoal(
-      totalInfo.totalKcal,
+      totalKcal,
       usersInfo.nutrient.kcal,
       usersInfo.mode,
     ),
