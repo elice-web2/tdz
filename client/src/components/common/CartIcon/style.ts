@@ -15,6 +15,12 @@ export const CartBox = styled.div`
   box-shadow: 1px 1px lightgray;
   z-index: 999;
 
+  margin-left: 10px;
+
+  background-color: rgba(255, 255, 255, 0.8);
+
+  cursor: pointer;
+
   span {
     display: relative;
   }

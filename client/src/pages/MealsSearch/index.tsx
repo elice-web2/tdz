@@ -11,6 +11,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import { useAppSelector } from '../../hooks';
+import CartIcon from '../../components/common/CartIcon';
 
 function MealsSearch() {
   const navigate = useNavigate();
@@ -64,7 +65,7 @@ function MealsSearch() {
     } else if (!isLogin) {
       navigate('/');
     }
-  }, []);
+  }, [is_login_first, isLogin]);
 
   return (
     <Container>
@@ -109,6 +110,7 @@ function MealsSearch() {
           <MealsBookMarkList></MealsBookMarkList>
         )}
       </ScrollContainer>
+      <CartIcon />
       <Navbar />
     </Container>
   );

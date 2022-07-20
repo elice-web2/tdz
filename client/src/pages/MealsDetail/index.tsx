@@ -7,7 +7,6 @@ import { addMeals, deleteMeals } from '../../slices/mealsSlice';
 import Container from '../../components/styles/Container';
 import { MealData, MealInfo } from '../../customType/meal.type';
 import { calNutrient } from '../../../src/utils/calcultateNutrient';
-import { accNutrientCal } from '../../../src/utils/calculateAccNutrient';
 import { ScrollContainer } from '../../components/styles/ScrollContainer';
 import Navbar from '../../components/common/Navbar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -165,17 +164,10 @@ function MealsDetail() {
     const result = mealStore.filter((el) => el._id !== food._id);
     const acc = mealStore.filter((el) => el._id === food._id)[0];
     if (mealStore.length !== result.length) {
-      const answer = confirm('이미 담겨진 음식입니다. 더 추가하시겠습니까?');
-      if (answer) {
-        //영양소 누적해서 더해주기
-        const total = accNutrientCal(acc, food);
-        //원래담긴건 지워주고 새로 담자
-        dispatch(deleteMeals(acc._id));
-        dispatch(addMeals(total));
-        navigate('/meals/cart');
-      } else {
-        return;
-      }
+      //원래담긴건 지워주고 새로 담자
+      dispatch(deleteMeals(acc._id));
+      dispatch(addMeals(food));
+      navigate('/meals/cart');
     } else {
       dispatch(addMeals(food));
       navigate('/meals/cart');
@@ -198,7 +190,7 @@ function MealsDetail() {
     } else if (!isLogin) {
       navigate('/');
     }
-  }, []);
+  }, [is_login_first, isLogin]);
 
   return (
     <Container>

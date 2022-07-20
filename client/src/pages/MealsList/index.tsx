@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router-dom';
 import { calTotalKcal } from '../../slices/mealsSlice';
 import * as S from './style';
 import * as api from '../../api';
+import CartIcon from '../../components/common/CartIcon';
 interface getMealProps {
   category: string;
   kcal: number;
@@ -35,30 +36,30 @@ function MealsList() {
     } else if (!isLogin) {
       navigate('/');
     }
-  }, [currentDate]);
+  }, [is_login_first, isLogin]);
 
   useEffect(() => {
     async function getMealsData(date: string) {
       const data = await api.get(`/api/mealhistory/${date}`);
-      setList(data?.data);
+      setList(createMealList(data?.data));
       dispatch(calTotalKcal(data?.data));
     }
     getMealsData(currentDate);
   }, [currentDate]);
 
-  const createMealList = () => {
+  const createMealList = (data: any) => {
     const component: any = [];
     const tmp: any = [];
-    list.forEach((e) => {
+    data.forEach((e: any) => {
       if (e.category === '아침') tmp.push(e);
     });
-    list.forEach((e) => {
+    data.forEach((e: any) => {
       if (e.category === '점심') tmp.push(e);
     });
-    list.forEach((e) => {
+    data.forEach((e: any) => {
       if (e.category === '저녁') tmp.push(e);
     });
-    list.forEach((e) => {
+    data.forEach((e: any) => {
       if (e.category === '간식') tmp.push(e);
     });
     tmp.forEach((e: any) => {
@@ -90,10 +91,11 @@ function MealsList() {
       <Logo />
       <DateNavigation />
       <S.MealsListContainerBox>
-        {createMealList()?.map((e: any, idx: number) => {
+        {list.map((e: any) => {
           return (
             <MealsListBox
-              key={idx}
+              setList={setList}
+              key={e._id}
               _id={e._id}
               time={e.category}
               calorie={e.kcal}
@@ -104,6 +106,7 @@ function MealsList() {
         })}
       </S.MealsListContainerBox>
       <MealsListAddBox />
+      <CartIcon />
       <Navbar />
     </Container>
   );

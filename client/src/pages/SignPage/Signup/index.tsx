@@ -56,7 +56,7 @@ function Signup() {
     } else if (isLogin) {
       navigate('/home');
     }
-  }, []);
+  }, [is_login_first, isLogin]);
 
   return (
     <Container>

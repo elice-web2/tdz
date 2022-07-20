@@ -16,7 +16,7 @@ function ManageWeight() {
   const dispatch = useAppDispatch();
   const [weightValue, setweightValue] = useState('');
   const [isEditingWeight, setIsEditingWeight] = useState(false);
-  const [weightByDate, setWeightByDate] = useState(0);
+  const [weightByDate, setWeightByDate] = useState(current_weight);
 
   const onClickEditWeightButton = () => {
     setIsEditingWeight(true);

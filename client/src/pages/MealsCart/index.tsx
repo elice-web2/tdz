@@ -61,7 +61,7 @@ function MealsCart() {
     } else if (!isLogin) {
       navigate('/');
     }
-  }, []);
+  }, [is_login_first, isLogin]);
 
   return (
     <Container>
@@ -121,7 +121,6 @@ function MealsCart() {
 
           <S.RecordBtn onClick={popupModal}>기록 하기</S.RecordBtn>
         </S.BtnContainer>
-        <CartIcon></CartIcon>
       </ScrollContainer>
       <Navbar />
     </Container>

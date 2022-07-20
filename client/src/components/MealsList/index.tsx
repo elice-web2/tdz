@@ -19,6 +19,7 @@ interface MealsListProps {
   foods: string[];
   nutrientGram: number[];
   _id: string;
+  setList: React.Dispatch<React.SetStateAction<any[]>>;
 }
 
 function MealsListBox({
@@ -27,6 +28,7 @@ function MealsListBox({
   foods,
   nutrientGram,
   _id,
+  setList,
 }: MealsListProps) {
   const [openModal, setOpenModal] = useState<boolean>(false);
 
@@ -57,6 +59,7 @@ function MealsListBox({
     <>
       {openModal && (
         <MealsListDeleteModal
+          setList={setList}
           _id={_id}
           setOpenModal={setOpenModal}
           calorie={calorie}

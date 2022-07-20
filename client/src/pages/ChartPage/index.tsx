@@ -81,7 +81,7 @@ function ChartPage() {
     } else if (!isLogin) {
       navigate('/');
     }
-  }, []);
+  }, [is_login_first, isLogin]);
 
   useEffect(() => {
     getChartDataByFilter(filter, baseDate);

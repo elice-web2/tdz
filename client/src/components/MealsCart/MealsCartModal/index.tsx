@@ -9,7 +9,7 @@ import {
 } from '../../../customType/meal.type';
 import * as api from '../../../api';
 
-type selectedType = '아침' | '점심' | '저녁' | '간식' | '';
+type selectedType = '아침' | '점심' | '저녁' | '간식';
 
 interface PostResultType {
   date: string;
@@ -19,7 +19,7 @@ interface PostResultType {
 
 function MealsCartModal({ openModal, totalInfo }: MealsCartModalPropsType) {
   const [stampResultObj, setStampResultObj] = useState<any>();
-  const [selected, setSelected] = useState<selectedType>('');
+  const [selected, setSelected] = useState<selectedType>('아침');
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const meals = useAppSelector(({ meal }) => meal.value);

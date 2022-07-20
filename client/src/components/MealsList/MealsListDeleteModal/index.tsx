@@ -5,11 +5,17 @@ import * as api from '../../../api';
 
 interface MealsModalProps {
   setOpenModal: (value: boolean) => void;
+  setList: React.Dispatch<React.SetStateAction<any[]>>;
   _id: string;
   calorie: number;
 }
 
-function MealsListDeleteModal({ setOpenModal, _id, calorie }: MealsModalProps) {
+function MealsListDeleteModal({
+  setOpenModal,
+  _id,
+  calorie,
+  setList,
+}: MealsModalProps) {
   const date = useAppSelector(({ date }) => date.value);
   const totalKcal = useAppSelector(({ meal }) => meal.totalKcal);
   const usersInfo = useAppSelector(({ usersInfo }) => usersInfo.value);
@@ -41,8 +47,8 @@ function MealsListDeleteModal({ setOpenModal, _id, calorie }: MealsModalProps) {
       api
         .post('/api/calendar', stampResult)
         .then((res) => console.log('스탬프res', res));
+      setList((lists: any) => lists.filter((list: any) => list._id !== _id));
       setOpenModal(false);
-      // location.reload();
     } catch (error) {
       console.log(error);
     }

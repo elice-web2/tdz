@@ -8,11 +8,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import * as api from '../../api';
+import dayjs from 'dayjs';
+import { useAppSelector } from '../../hooks';
 
 function MealsEnroll() {
   const [openModal, setOpenModal] = useState(false);
   const [submitData, setSubmitData] = useState();
   const navigate = useNavigate();
+  const date = useAppSelector(({ date }) => date.value);
   const { register, handleSubmit, watch } = useForm();
 
   function checkInput(value: string): boolean {
@@ -26,7 +29,7 @@ function MealsEnroll() {
   async function onSubmit(data: any) {
     data.code = '';
     data.quantity = 1;
-    data.updated_date = new Date();
+    data.updated_date = date;
     data.servingSize = Number(data.servingSize);
     data.totalGram = Number(data.servingSize);
     data.kcal = Number(data.kcal);

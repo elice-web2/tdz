@@ -20,7 +20,7 @@ function Main() {
     } else if (isLogin) {
       navigate('/home');
     }
-  }, []);
+  }, [is_login_first, isLogin]);
   return (
     <Container>
       <S.VideoContainer>

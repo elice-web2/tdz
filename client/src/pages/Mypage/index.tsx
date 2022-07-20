@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -32,7 +32,6 @@ function Mypage() {
   const nutrient = userProfile.nutrient;
   const nickname = userProfile.nickname;
   const comment = userProfile.comment;
-  localStorage.setItem('usersInfoStorage', JSON.stringify(userProfile));
 
   const TDZ = calculateTDZPercent({
     carb: nutrient.carb,
@@ -47,6 +46,10 @@ function Mypage() {
   const DelUserHandler = () => {
     setOpenDelUserModal(true);
   };
+
+  useEffect(() => {
+    localStorage.setItem('usersInfoStorage', JSON.stringify(userProfile));
+  }, []);
 
   return (
     <Container>
