@@ -1,14 +1,9 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
-  position: relative;
-  max-width: 420px;
-  margin: 0 auto;
-`;
-
 export const VideoContainer = styled.div`
   position: absolute;
   top: 0;
+  max-width: 420px;
 `;
 
 export const Video = styled.video`
