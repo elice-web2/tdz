@@ -35,13 +35,15 @@ function MealsList() {
     } else if (!isLogin) {
       navigate('/');
     }
+  }, [currentDate]);
+
+  useEffect(() => {
     async function getMealsData(date: string) {
       const data = await api.get(`/api/mealhistory/${date}`);
       setList(data?.data);
     }
     getMealsData(currentDate);
   }, [currentDate]);
-  dispatch(calTotalKcal(list));
 
   const createMealList = () => {
     const component: any = [];
