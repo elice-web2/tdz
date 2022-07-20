@@ -1,6 +1,4 @@
-import { useState, useEffect } from 'react';
-import { getMealsDataAsync } from '../../slices/mealsSlice';
-import { useAppDispatch, useAppSelector } from '../../hooks';
+import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faXmark,
@@ -9,6 +7,7 @@ import {
   faUtensils,
   faCookieBite,
 } from '@fortawesome/free-solid-svg-icons';
+import MealsListDeleteModal from './MealsListDeleteModal';
 import CalorieInfo from './CalorieInfo';
 import FoodList from './FoodList';
 import NutrientInfo from './NutrientInfo';
@@ -19,9 +18,16 @@ interface MealsListProps {
   calorie: number;
   foods: string[];
   nutrientGram: number[];
+  _id: string;
 }
 
-function MealsListBox({ time, calorie, foods, nutrientGram }: MealsListProps) {
+function MealsListBox({
+  time,
+  calorie,
+  foods,
+  nutrientGram,
+  _id,
+}: MealsListProps) {
   const [openModal, setOpenModal] = useState<boolean>(false);
 
   const clickHandler = () => {
@@ -48,26 +54,31 @@ function MealsListBox({ time, calorie, foods, nutrientGram }: MealsListProps) {
     );
   };
   return (
-    <S.MealsListBox>
-      <S.MealContainerIconBox>
-        <FontAwesomeIcon
-          icon={Time(time)}
-          className="Breakfast"
-          color="white"
-        />
-        <p>{time}</p>
-      </S.MealContainerIconBox>
-      <DeleteButton />
-      <CalorieInfo calorie={calorie} />
-      <FoodList foods={foods} />
-      <S.NutrientContainer>
-        <NutrientInfo nutrient={'탄수화물'} gram={nutrientGram[0]} />
-        <S.NutrientInfoLine />
-        <NutrientInfo nutrient={'단백질'} gram={nutrientGram[1]} />
-        <S.NutrientInfoLine />
-        <NutrientInfo nutrient={'지방'} gram={nutrientGram[2]} />
-      </S.NutrientContainer>
-    </S.MealsListBox>
+    <>
+      {openModal && (
+        <MealsListDeleteModal _id={_id} setOpenModal={setOpenModal} />
+      )}
+      <S.MealsListBox>
+        <S.MealContainerIconBox>
+          <FontAwesomeIcon
+            icon={Time(time)}
+            className="Breakfast"
+            color="white"
+          />
+          <p>{time}</p>
+        </S.MealContainerIconBox>
+        <DeleteButton />
+        <CalorieInfo calorie={calorie} />
+        <FoodList foods={foods} />
+        <S.NutrientContainer>
+          <NutrientInfo nutrient={'탄수화물'} gram={nutrientGram[0]} />
+          <S.NutrientInfoLine />
+          <NutrientInfo nutrient={'단백질'} gram={nutrientGram[1]} />
+          <S.NutrientInfoLine />
+          <NutrientInfo nutrient={'지방'} gram={nutrientGram[2]} />
+        </S.NutrientContainer>
+      </S.MealsListBox>
+    </>
   );
 }
 
