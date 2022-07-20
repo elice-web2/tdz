@@ -6,7 +6,7 @@ export interface mealInfo {
   protein: Number;
   fat: Number;
   sugars: Number;
-  natruim: Number;
+  natrium: Number;
   cholesterol: Number;
   saturatedfatty: Number;
   transfat: Number;

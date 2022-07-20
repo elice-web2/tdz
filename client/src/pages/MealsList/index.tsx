@@ -7,19 +7,11 @@ import Container from '../../components/styles/Container';
 import MealsListAddBox from '../../components/MealsList/MealsListAddBox';
 import MealsListBox from '../../components/MealsList';
 import { useNavigate } from 'react-router-dom';
-import { calTotalKcal } from '../../slices/mealsSlice';
+import { calTotalNutrient } from '../../slices/mealsSlice';
 import * as S from './style';
 import * as api from '../../api';
 import CartIcon from '../../components/common/CartIcon';
-interface getMealProps {
-  category: string;
-  kcal: number;
-  carb: number;
-  protein: number;
-  fat: number;
-  name: string[];
-  _id: string;
-}
+import { MealListItem } from '../../customType/meal.type';
 
 function MealsList() {
   const [list, setList] = useState<any[]>([]);
@@ -42,7 +34,7 @@ function MealsList() {
     async function getMealsData(date: string) {
       const data = await api.get(`/api/mealhistory/${date}`);
       setList(createMealList(data?.data));
-      dispatch(calTotalKcal(data?.data));
+      dispatch(calTotalNutrient(data?.data));
     }
     getMealsData(currentDate);
   }, [currentDate]);
@@ -63,23 +55,33 @@ function MealsList() {
       if (e.category === '간식') tmp.push(e);
     });
     tmp.forEach((e: any) => {
-      const mealData: getMealProps = {
+      const mealData: MealListItem = {
         category: '',
         kcal: 0,
         carb: 0,
         protein: 0,
         fat: 0,
+        sugars: 0,
+        natrium: 0,
+        cholesterol: 0,
+        saturatedfatty: 0,
+        transfat: 0,
         name: [],
         _id: '',
       };
       mealData.category = e.category;
       mealData._id = e._id;
       e.meals.forEach((el: any) => {
-        mealData.kcal += Math.round(el.kcal);
-        mealData.carb += Math.round(el.carb);
-        mealData.protein += Math.round(el.protein);
-        mealData.fat += Math.round(el.fat);
+        mealData.kcal += el.kcal;
+        mealData.carb += el.carb;
+        mealData.protein += el.protein;
+        mealData.fat += el.fat;
         mealData.name.push(el.name);
+        mealData.sugars += el.sugars;
+        mealData.natrium += el.natrium;
+        mealData.cholesterol += el.cholesterol;
+        mealData.saturatedfatty += el.saturatedfatty;
+        mealData.transfat += el.transfat;
       });
       component.push(mealData);
     });
@@ -91,18 +93,8 @@ function MealsList() {
       <Logo />
       <DateNavigation />
       <S.MealsListContainerBox>
-        {list.map((e: any) => {
-          return (
-            <MealsListBox
-              setList={setList}
-              key={e._id}
-              _id={e._id}
-              time={e.category}
-              calorie={e.kcal}
-              foods={e.name}
-              nutrientGram={[e.carb, e.protein, e.fat]}
-            />
-          );
+        {list.map((meal: any) => {
+          return <MealsListBox setList={setList} key={meal._id} meal={meal} />;
         })}
       </S.MealsListContainerBox>
       <MealsListAddBox />

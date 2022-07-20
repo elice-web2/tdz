@@ -29,6 +29,10 @@ export const WeightContainer = styled.div`
       all: unset;
     }
   }
+
+  .null-weight {
+    font-size: 22px;
+  }
 `;
 
 export const InputTag = styled.input`

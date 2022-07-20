@@ -4,7 +4,17 @@ import { MealData } from '../customType/meal.type';
 
 export interface MealsState {
   value: MealData[];
-  totalKcal: number;
+  totalNutrient: {
+    kcal: number;
+    carb: number;
+    protein: number;
+    fat: number;
+    sugars: number;
+    natrium: number;
+    cholesterol: number;
+    saturatedfatty: number;
+    transfat: number;
+  };
 }
 
 interface PostMealsDataParam {
@@ -15,7 +25,17 @@ interface PostMealsDataParam {
 
 const initialState: MealsState = {
   value: [],
-  totalKcal: 0,
+  totalNutrient: {
+    kcal: 0,
+    carb: 0,
+    protein: 0,
+    fat: 0,
+    sugars: 0,
+    natrium: 0,
+    cholesterol: 0,
+    saturatedfatty: 0,
+    transfat: 0,
+  },
 };
 
 async function postMealsData({ meals, category, date }: PostMealsDataParam) {
@@ -73,14 +93,22 @@ export const mealsSlice = createSlice({
     deleteMeals: (state, action: PayloadAction<string>) => {
       state.value = state.value.filter((meal) => meal._id !== action.payload);
     },
-    calTotalKcal: (state, action: PayloadAction<PostMealsDataParam[]>) => {
-      const mealhistoryArr = action.payload;
-      const meals = mealhistoryArr.map((el) => el.meals).flat(); // 원소 [{kcal: 1}]
-      let sum = 0;
-      meals.forEach((meal) => {
-        sum += meal.kcal;
-      });
-      state.totalKcal = sum;
+    calTotalNutrient: (state, action: PayloadAction<PostMealsDataParam[]>) => {
+      const meals = action.payload.map((el) => el.meals).flat(); // 원소 [{kcal: 1}]
+      const totalNutrient = meals.reduce((acc, meal) => {
+        return {
+          kcal: acc.kcal + meal.kcal,
+          carb: acc.carb + meal.carb,
+          cholesterol: acc.cholesterol + meal.cholesterol,
+          fat: acc.fat + meal.fat,
+          natrium: acc.natrium + meal.natrium,
+          protein: acc.protein + meal.protein,
+          saturatedfatty: acc.saturatedfatty + meal.saturatedfatty,
+          sugars: acc.sugars + meal.sugars,
+          transfat: acc.transfat + meal.transfat,
+        };
+      }, initialState.totalNutrient);
+      state.totalNutrient = totalNutrient;
     },
   },
   extraReducers: (builder) => {
@@ -97,6 +125,6 @@ export const mealsSlice = createSlice({
   },
 });
 
-export const { addMeals, deleteMeals, calTotalKcal } = mealsSlice.actions;
+export const { addMeals, deleteMeals, calTotalNutrient } = mealsSlice.actions;
 
 export default mealsSlice.reducer;

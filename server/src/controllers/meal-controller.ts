@@ -23,7 +23,7 @@ class MealController {
       const protein: number = req.body.protein;
       const fat: number = req.body.fat;
       const sugars: number = req.body.sugars;
-      const natruim: number = req.body.natruim;
+      const natrium: number = req.body.natrium;
       const cholesterol: number = req.body.cholesterol;
       const saturatedfatty: number = req.body.saturatedfatty;
       const transfat: number = req.body.transfat;
@@ -40,7 +40,7 @@ class MealController {
         protein,
         fat,
         sugars,
-        natruim,
+        natrium,
         cholesterol,
         saturatedfatty,
         transfat,

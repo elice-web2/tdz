@@ -106,7 +106,7 @@ function MealsDetail() {
       info.carb = calNutrient(firstInfo?.carb, count);
       info.protein = calNutrient(firstInfo?.protein, count);
       info.fat = calNutrient(firstInfo?.fat, count);
-      info.natruim = calNutrient(firstInfo?.natruim, count);
+      info.natrium = calNutrient(firstInfo?.natrium, count);
       info.cholesterol = calNutrient(firstInfo?.cholesterol, count);
       info.transfat = calNutrient(firstInfo?.transfat, count);
       info.saturatedfatty = calNutrient(firstInfo?.saturatedfatty, count);
@@ -126,7 +126,7 @@ function MealsDetail() {
         carb: firstInfo?.carb / oneSize,
         protein: firstInfo?.protein / oneSize,
         fat: firstInfo?.fat / oneSize,
-        natruim: firstInfo?.natruim / oneSize,
+        natrium: firstInfo?.natrium / oneSize,
         transfat: firstInfo?.transfat / oneSize,
         saturatedfatty: firstInfo?.saturatedfatty / oneSize,
       };
@@ -135,7 +135,7 @@ function MealsDetail() {
       info.carb = calNutrient(perGram.carb, count);
       info.protein = calNutrient(perGram.protein, count);
       info.fat = calNutrient(perGram.fat, count);
-      info.natruim = calNutrient(perGram.natruim, count);
+      info.natrium = calNutrient(perGram.natrium, count);
       info.transfat = calNutrient(perGram.transfat, count);
       info.saturatedfatty = calNutrient(perGram.saturatedfatty, count);
       info.quantity = Number((count / oneSize).toFixed(1));
@@ -241,7 +241,7 @@ function MealsDetail() {
           <S.SubNutrientBox>
             <div className="sub-content">
               <p>나트륨</p>
-              <p>{foodInfo?.natruim}mg</p>
+              <p>{foodInfo?.natrium}mg</p>
             </div>
             <div className="sub-content">
               <p>콜레스테롤</p>
