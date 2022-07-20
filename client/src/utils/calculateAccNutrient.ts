@@ -6,7 +6,7 @@ export function accNutrientCal(acc: MealData, cur: MealData): MealData {
   const protein = acc.protein + cur.protein;
   const fat = acc.fat + cur.fat;
   const sugars = acc.sugars + cur.sugars;
-  const natruim = acc.natruim + cur.natruim;
+  const natrium = acc.natrium + cur.natrium;
   const transfat = acc.transfat + cur.transfat;
   const cholesterol = acc.cholesterol + cur.cholesterol;
   const saturatedfatty = acc.saturatedfatty + cur.saturatedfatty;
@@ -24,7 +24,7 @@ export function accNutrientCal(acc: MealData, cur: MealData): MealData {
     protein,
     fat,
     sugars,
-    natruim,
+    natrium,
     transfat,
     cholesterol,
     saturatedfatty,

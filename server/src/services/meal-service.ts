@@ -28,10 +28,12 @@ class MealService {
   async addMeal(mealName: string): Promise<MealData[]> {
     // api 요청
     const { data, statusText } = await axios.get(
-      `http://openapi.foodsafetykorea.go.kr/api/${
-        process.env.APIKEY
-      }/I2790/json/1/20/DESC_KOR=${encodeURI(mealName)}`,
+      `http://openapi.foodsafetykorea.go.kr/api/8eef77f2c1c242958e9c/I2790/json/1/20/DESC_KOR=${encodeURI(
+        mealName,
+      )}`,
     );
+
+    console.log(data);
 
     if (statusText !== 'OK') {
       throw new Error(
@@ -51,7 +53,7 @@ class MealService {
       const protein: Number = Number(meal.NUTR_CONT3);
       const fat: Number = Number(meal.NUTR_CONT4);
       const sugars: Number = Number(meal.NUTR_CONT5);
-      const natruim: Number = Number(meal.NUTR_CONT6);
+      const natrium: Number = Number(meal.NUTR_CONT6);
       const cholesterol: Number = Number(meal.NUTR_CONT7);
       const saturatedfatty: Number = Number(meal.NUTR_CONT8);
       const transfat: Number = Number(meal.NUTR_CONT9);
@@ -68,7 +70,7 @@ class MealService {
         protein,
         fat,
         sugars,
-        natruim,
+        natrium,
         cholesterol,
         saturatedfatty,
         transfat,
