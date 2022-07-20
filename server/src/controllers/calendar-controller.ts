@@ -84,7 +84,7 @@ class CalendarController {
           ...(currentKcal && { currentKcal }),
           ...(goalKcal && { goalKcal }),
           ...(mode && { mode }),
-          ...(isSuccess && { isSuccess }),
+          isSuccess: isSuccess || false,
           ...(todayWeight && { todayWeight }),
           ...(carbSum && { carbSum }),
           ...(proteinSum && { proteinSum }),
