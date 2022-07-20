@@ -25,4 +25,6 @@ export const AddBox = styled.div`
   .GuideInfo {
     font-size: 16px;
   }
+
+  cursor: pointer;
 `;

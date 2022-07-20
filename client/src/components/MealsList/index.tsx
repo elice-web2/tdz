@@ -66,7 +66,7 @@ function MealsListBox({
         />
       )}
       <S.MealsListBox>
-        <S.MealContainerIconBox>
+        <S.MealContainerIconBox color={time}>
           <FontAwesomeIcon
             icon={Time(time)}
             className="Breakfast"
