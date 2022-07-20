@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../../hooks';
+import { initDate } from '../../../slices/dateSlice';
 import { getLogOutAsync } from '../../../slices/usersInfoSlice';
 import * as S from './style';
 
@@ -16,6 +17,7 @@ function LogoutModal({ setOpenLogoutModal }: LogoutModalProps) {
       event.preventDefault();
       localStorage.removeItem('login');
       localStorage.removeItem('userInfo');
+      dispatch(initDate());
       dispatch(getLogOutAsync());
       setOpenLogoutModal(false);
       navigate('/');
