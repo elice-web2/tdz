@@ -13,9 +13,14 @@ import Navbar from '../../components/common/Navbar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
+const SELECTED = {
+  quantity: 'quantity',
+  gram: 'gram',
+};
+
 function MealsDetail() {
   const [count, setCount] = useState(1);
-  const [selected, setSelected] = useState('quantity');
+  const [selected, setSelected] = useState(SELECTED.quantity);
   const [foodInfo, setFoodInfo] = useState<MealData>();
   const [firstInfo, setFirstInfo] = useState<MealData>();
   const [isBookMark, setIsBookMark] = useState<boolean>();
@@ -33,11 +38,15 @@ function MealsDetail() {
   //URL의 params으로 DB에서 음식정보와 즐겨찾기정보 GET
   useEffect(() => {
     (async () => {
-      const res = await api.get(`/api/meal/${params.name}`);
-      setFoodInfo(res?.data[0]);
-      setFirstInfo(res?.data[0]);
-      responseRef.current = res?.data[0];
-      await getBookMark();
+      try {
+        const res = await api.get(`/api/meal/${params.name}`);
+        setFoodInfo(res?.data[0]);
+        setFirstInfo(res?.data[0]);
+        responseRef.current = res?.data[0];
+        await getBookMark();
+      } catch (error) {
+        console.log('배열 못받아옴');
+      }
     })();
   }, []);
 
@@ -50,7 +59,7 @@ function MealsDetail() {
 
   //select 옵션에 따라 영양소 계산
   useEffect(() => {
-    if (selected === 'quantity') {
+    if (selected === SELECTED.quantity) {
       setFoodInfo((cur: any): any => {
         const newObj = { ...cur };
         return calcInfo(newObj);
@@ -65,7 +74,7 @@ function MealsDetail() {
 
   //select 옵션에 따른 기본 count 변경
   useEffect(() => {
-    if (selected === 'quantity') {
+    if (selected === SELECTED.quantity) {
       setCount(1);
     } else {
       if (firstInfo) {
@@ -161,7 +170,7 @@ function MealsDetail() {
         //영양소 누적해서 더해주기
         const total = accNutrientCal(acc, food);
         //원래담긴건 지워주고 새로 담자
-        dispatch(deleteMeals(acc.code));
+        dispatch(deleteMeals(acc._id));
         dispatch(addMeals(total));
         navigate('/meals/cart');
       } else {

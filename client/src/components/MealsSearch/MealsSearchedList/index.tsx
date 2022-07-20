@@ -1,6 +1,6 @@
 import * as S from './style';
 import * as api from '../../../api';
-import { useEffect, useState, useCallback, useMemo, ReactNode } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 import NoSearched from '../NoSearched';
@@ -50,7 +50,7 @@ function MealsSearchedList({ inputValue, result }: MealsSearchedListProps) {
         //영양소 누적해서 더해주기
         const total = accNutrientCal(acc, food);
         //원래담긴건 지워주고 새로 담자
-        dispatch(deleteMeals(acc.code));
+        dispatch(deleteMeals(acc._id));
         dispatch(addMeals(total));
         navigate('/meals/cart');
       } else {
