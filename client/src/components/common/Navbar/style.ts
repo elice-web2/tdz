@@ -33,3 +33,13 @@ export const MenuBox = styled.div<{ isSelected: boolean }>`
 export const NavText = styled.div`
   font-size: 13px;
 `;
+
+export const NavBackground = styled.div`
+  position: absolute;
+  bottom: 0;
+  height: 60px;
+  width: 100%;
+  max-width: 420px;
+  background-color: white;
+  z-index: -100;
+`;
