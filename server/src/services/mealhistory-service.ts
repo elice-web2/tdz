@@ -153,16 +153,16 @@ class MealHistoryService {
   async deleteMealHistoryByUserId(userId: string): Promise<{ result: string }> {
     const mealhistory = await this.mealhistoryModel.findById(userId);
 
-    if (!mealhistory) {
-      throw new Error('삭제할 식단은 존재하지 않습니다.');
-    }
+    // if (!mealhistory) {
+    //   throw new Error('삭제할 식단은 존재하지 않습니다.');
+    // }
 
     const { deletedCount } = await this.mealhistoryModel.deleteByUserId(userId);
 
     // 삭제에 실패한 경우, 에러 메시지 반환
-    if (deletedCount === 0) {
-      throw new Error(`식단 삭제에 실패하였습니다`);
-    }
+    // if (deletedCount === 0) {
+    //   throw new Error(`식단 삭제에 실패하였습니다`);
+    // }
 
     return { result: 'success' };
   }

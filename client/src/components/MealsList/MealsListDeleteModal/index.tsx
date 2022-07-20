@@ -1,10 +1,25 @@
+import { useAppDispatch } from '../../../hooks';
+import { delMealsDataAsync } from '../../../slices/mealsSlice';
 import * as S from './style';
 
 interface MealsModalProps {
   setOpenModal: (value: boolean) => void;
+  _id: string;
 }
 
-function MealsListDeleteModal({ setOpenModal }: MealsModalProps) {
+function MealsListDeleteModal({ setOpenModal, _id }: MealsModalProps) {
+  const dispatch = useAppDispatch();
+  const deleteMeal = (event: any) => {
+    try {
+      event.preventDefault();
+      dispatch(delMealsDataAsync(_id));
+      setOpenModal(false);
+      location.reload();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       <S.OutsideModal
@@ -23,7 +38,9 @@ function MealsListDeleteModal({ setOpenModal }: MealsModalProps) {
           >
             취소
           </S.CancelButton>
-          <S.DeleteButton className="Delete">삭제</S.DeleteButton>
+          <S.DeleteButton onClick={deleteMeal} className="Delete">
+            삭제
+          </S.DeleteButton>
         </S.ButtonContainer>
       </S.ModalContainer>
     </>
