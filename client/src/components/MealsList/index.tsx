@@ -56,7 +56,11 @@ function MealsListBox({
   return (
     <>
       {openModal && (
-        <MealsListDeleteModal _id={_id} setOpenModal={setOpenModal} />
+        <MealsListDeleteModal
+          _id={_id}
+          setOpenModal={setOpenModal}
+          calorie={calorie}
+        />
       )}
       <S.MealsListBox>
         <S.MealContainerIconBox>

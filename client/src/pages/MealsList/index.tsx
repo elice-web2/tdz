@@ -41,6 +41,7 @@ function MealsList() {
     async function getMealsData(date: string) {
       const data = await api.get(`/api/mealhistory/${date}`);
       setList(data?.data);
+      dispatch(calTotalKcal(data?.data));
     }
     getMealsData(currentDate);
   }, [currentDate]);

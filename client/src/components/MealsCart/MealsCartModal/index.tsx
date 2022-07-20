@@ -1,5 +1,5 @@
 import * as S from './style';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { postMealsDataAsync } from '../../../slices/mealsSlice';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
@@ -7,9 +7,7 @@ import {
   MealsCartModalPropsType,
   MealData,
 } from '../../../customType/meal.type';
-import dayjs from 'dayjs';
 import * as api from '../../../api';
-import { userInfo } from 'os';
 
 type selectedType = '아침' | '점심' | '저녁' | '간식' | '';
 
@@ -20,6 +18,7 @@ interface PostResultType {
 }
 
 function MealsCartModal({ openModal, totalInfo }: MealsCartModalPropsType) {
+  const [stampResultObj, setStampResultObj] = useState<any>();
   const [selected, setSelected] = useState<selectedType>('');
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -33,29 +32,30 @@ function MealsCartModal({ openModal, totalInfo }: MealsCartModalPropsType) {
     meals,
     category: selected,
   };
-  console.log('보낼내용', postResultObj);
 
   function isSuccessGoal(cur: number, goal: number, mode: string) {
     if (mode === 'DEC') {
-      return cur <= goal ? true : false;
+      return cur > 0 && cur <= goal ? true : false;
     } else if (mode === 'INC') {
       return cur >= goal ? true : false;
     }
   }
 
-  const stampResultObj = {
-    date: date,
-    currentKcal: totalKcal,
-    goalKcal: usersInfo.nutrient.kcal,
-    mode: usersInfo.mode,
-    isSuccess: isSuccessGoal(
-      totalKcal,
-      usersInfo.nutrient.kcal,
-      usersInfo.mode,
-    ),
-  };
+  useEffect(() => {
+    const stampResult = {
+      date: date,
+      currentKcal: totalKcal + totalInfo.totalKcal,
+      goalKcal: usersInfo.nutrient.kcal,
+      mode: usersInfo.mode,
+      isSuccess: isSuccessGoal(
+        totalKcal + totalInfo.totalKcal,
+        usersInfo.nutrient.kcal,
+        usersInfo.mode,
+      ),
+    };
+    setStampResultObj(stampResult);
+  }, [date, totalKcal, usersInfo.mode]);
 
-  console.log('스탬프', stampResultObj);
   function modalCloseHandler() {
     openModal(false);
   }
@@ -68,7 +68,7 @@ function MealsCartModal({ openModal, totalInfo }: MealsCartModalPropsType) {
     dispatch(postMealsDataAsync(postResultObj));
     api
       .post('/api/calendar', stampResultObj)
-      .then((res) => console.log('잘보냈니', res));
+      .then((res) => console.log('스탬프res', res));
     navigate('/meals');
   }
 

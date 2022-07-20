@@ -26,7 +26,7 @@ function CalendarStamp({ closeCalendar }: CalendarStampProps) {
     const resp = await api.get('/api/calendar');
     const data = resp?.data;
     const mark = data.map((ele: any) => {
-      return dayjs(ele.date).format('YYYY-MM-DD');
+      if (ele.isSuccess) return dayjs(ele.date).format('YYYY-MM-DD');
     });
     setSuccess(mark);
   };
