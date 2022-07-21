@@ -106,12 +106,8 @@ function MealsDetail() {
       info.carb = calNutrient(firstInfo?.carb, count);
       info.protein = calNutrient(firstInfo?.protein, count);
       info.fat = calNutrient(firstInfo?.fat, count);
-<<<<<<< HEAD
-      info.natruim = calNutrient(firstInfo?.natruim, count);
       info.sugars = calNutrient(firstInfo?.sugars, count);
-=======
       info.natrium = calNutrient(firstInfo?.natrium, count);
->>>>>>> fbdba74db00c7b122a623f5180fd960d9bda68d3
       info.cholesterol = calNutrient(firstInfo?.cholesterol, count);
       info.transfat = calNutrient(firstInfo?.transfat, count);
       info.saturatedfatty = calNutrient(firstInfo?.saturatedfatty, count);
@@ -131,12 +127,8 @@ function MealsDetail() {
         carb: firstInfo?.carb / oneSize,
         protein: firstInfo?.protein / oneSize,
         fat: firstInfo?.fat / oneSize,
-<<<<<<< HEAD
-        natruim: firstInfo?.natruim / oneSize,
         sugars: firstInfo?.sugars / oneSize,
-=======
         natrium: firstInfo?.natrium / oneSize,
->>>>>>> fbdba74db00c7b122a623f5180fd960d9bda68d3
         transfat: firstInfo?.transfat / oneSize,
         saturatedfatty: firstInfo?.saturatedfatty / oneSize,
       };
@@ -145,12 +137,8 @@ function MealsDetail() {
       info.carb = calNutrient(perGram.carb, count);
       info.protein = calNutrient(perGram.protein, count);
       info.fat = calNutrient(perGram.fat, count);
-<<<<<<< HEAD
-      info.natruim = calNutrient(perGram.natruim, count);
       info.sugars = calNutrient(perGram.sugars, count);
-=======
       info.natrium = calNutrient(perGram.natrium, count);
->>>>>>> fbdba74db00c7b122a623f5180fd960d9bda68d3
       info.transfat = calNutrient(perGram.transfat, count);
       info.saturatedfatty = calNutrient(perGram.saturatedfatty, count);
       info.quantity = Number((count / oneSize).toFixed(1));
