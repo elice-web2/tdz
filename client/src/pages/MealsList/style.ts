@@ -1,10 +1,6 @@
 import styled from 'styled-components';
 
-interface ContainerProps {
-  children: JSX.Element[] | JSX.Element;
-}
-
-export const MealsListContainerBox = styled.div<any>`
+export const MealsListContainerBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -17,13 +17,13 @@ export const OutsideModal = styled.div`
 
 export const ModalContainer = styled.div`
   position: absolute;
-  top: 220px;
+  top: 300px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  height: 160px;
   width: 300px;
-  margin-left: 60px;
   padding-bottom: 30px;
   background-color: white;
   border-radius: 15px;
@@ -32,10 +32,11 @@ export const ModalContainer = styled.div`
 
 export const Title = styled.h1`
   margin-bottom: 15px;
-  padding: 30px 10px 10px 10px;
-  font-size: 25px;
+  padding: 30px 40px 10px 40px;
+  font-size: 24px;
   font-weight: bold;
   text-align: center;
+  line-height: 30px;
 `;
 
 export const CancelButton = styled.button`
