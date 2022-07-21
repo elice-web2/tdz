@@ -6,7 +6,7 @@ interface FoodsProps {
 
 const FoodList = ({ foods }: FoodsProps) => {
   const foodArray = ({ foods }: FoodsProps) => {
-    if (foods.length <= 3) {
+    if (foods.length <= 2) {
       return foods.map((food) => {
         return food;
       });
@@ -14,7 +14,7 @@ const FoodList = ({ foods }: FoodsProps) => {
       const res = [];
       res.push(
         foods.filter((food, idx) => {
-          return idx < 3;
+          return idx < 2;
         }),
       );
       return res.join(', ');
@@ -25,8 +25,8 @@ const FoodList = ({ foods }: FoodsProps) => {
     <S.FoodListContainer>
       <span className="FoodList">
         {foodArray({ foods })}
-        {foods.length > 3
-          ? ' 그 외 ' + (foods.length - 3) + '개'
+        {foods.length > 2
+          ? ' 그 외 ' + (foods.length - 2) + '개'
           : ' ' + foods.length + '개'}
       </span>
     </S.FoodListContainer>
