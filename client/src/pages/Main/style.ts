@@ -6,16 +6,31 @@ export const LogoText = styled.div`
   padding-top: 100px;
   color: black;
   text-align: center;
+  margin-top: 100px;
 `;
 
 export const IntroText = styled.p`
   position: relative;
   margin: 10px 0;
-  font-size: 21px;
+  font-size: 18px;
   font-weight: 500;
   text-align: center;
+  color: white;
 `;
-
+export const ImgContainer = styled.div`
+  position: absolute;
+  top: 0;
+  background-color: #92a58d;
+  max-width: 420px;
+  width: 100%;
+  overflow: hidden;
+`;
+export const ImgBox = styled.img`
+  width: 100%;
+  object-fit: cover;
+  z-index: -100;
+  height: 100vh;
+`;
 export const LoginContainer = styled.div`
   display: flex;
   flex-direction: column;

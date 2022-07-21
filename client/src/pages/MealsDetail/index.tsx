@@ -288,13 +288,15 @@ function MealsDetail() {
               <button onClick={plusHandler}>+</button>
             </div>
           </S.SelectBox>
-          <S.AddBtn
-            onClick={() => {
-              foodInfo && addToCart(foodInfo);
-            }}
-          >
-            식단 추가
-          </S.AddBtn>
+          <S.AddBtnContainer>
+            <S.AddBtn
+              onClick={() => {
+                foodInfo && addToCart(foodInfo);
+              }}
+            >
+              식단 추가
+            </S.AddBtn>
+          </S.AddBtnContainer>
         </S.MealsInfoBox>
       </ScrollContainer>
       <Navbar />

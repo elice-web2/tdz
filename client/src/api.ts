@@ -1,12 +1,13 @@
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:5000';
-
 async function get(apiUrl: string) {
   try {
-    const result = await axios.get(`${BASE_URL}${apiUrl}`, {
-      withCredentials: true,
-    });
+    const result = await axios.get(
+      `${process.env.REACT_APP_BASE_URL}${apiUrl}`,
+      {
+        withCredentials: true,
+      },
+    );
 
     if (!result) {
       throw new Error('ERROR');
@@ -19,23 +20,31 @@ async function get(apiUrl: string) {
 }
 
 async function post<T>(apiUrl: string, data: T) {
-  const result = await axios.post(`${BASE_URL}${apiUrl}`, data, {
-    headers: {
-      'Content-Type': 'application/json',
+  const result = await axios.post(
+    `${process.env.REACT_APP_BASE_URL}${apiUrl}`,
+    data,
+    {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      withCredentials: true,
     },
-    withCredentials: true,
-  });
+  );
   return result;
 }
 
 async function patch<T>(apiUrl: string, data: T) {
   try {
-    const result = await axios.patch(`${BASE_URL}${apiUrl}`, data, {
-      headers: {
-        'Content-Type': 'application/json',
+    const result = await axios.patch(
+      `${process.env.REACT_APP_BASE_URL}${apiUrl}`,
+      data,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        withCredentials: true,
       },
-      withCredentials: true,
-    });
+    );
     return result;
   } catch (error: any) {
     throw new Error(error);
@@ -46,12 +55,15 @@ async function patch<T>(apiUrl: string, data: T) {
 
 async function del(apiUrl: string) {
   try {
-    const result = await axios.delete(`${BASE_URL}${apiUrl}`, {
-      headers: {
-        'Content-Type': 'application/json',
+    const result = await axios.delete(
+      `${process.env.REACT_APP_BASE_URL}${apiUrl}`,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        withCredentials: true,
       },
-      withCredentials: true,
-    });
+    );
     return result;
   } catch (error: any) {
     throw new Error(error);
@@ -59,12 +71,16 @@ async function del(apiUrl: string) {
 }
 async function uploadFile<T>(apiUrl: string, data: T) {
   try {
-    const result = await axios.patch(`${BASE_URL}${apiUrl}`, data, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
+    const result = await axios.patch(
+      `${process.env.REACT_APP_BASE_URL}${apiUrl}`,
+      data,
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+        withCredentials: true,
       },
-      withCredentials: true,
-    });
+    );
     return result;
   } catch (error: any) {
     throw new Error(error);

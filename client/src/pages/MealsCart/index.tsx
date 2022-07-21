@@ -33,15 +33,15 @@ function MealsCart() {
   function calcTotalInfo(result: MealData[]) {
     return result.reduce(
       (acc, meal) => ({
-        kcal: acc.kcal + meal.kcal,
-        carb: acc.carb + meal.carb,
-        cholesterol: acc.cholesterol + meal.cholesterol,
-        fat: acc.fat + meal.fat,
-        natrium: acc.natrium + meal.natrium,
-        protein: acc.protein + meal.protein,
-        saturatedfatty: acc.saturatedfatty + meal.saturatedfatty,
-        sugars: acc.sugars + meal.sugars,
-        transfat: acc.transfat + meal.transfat,
+        kcal: Math.floor(acc.kcal + meal.kcal),
+        carb: Math.floor(acc.carb + meal.carb),
+        cholesterol: Math.floor(acc.cholesterol + meal.cholesterol),
+        fat: Math.floor(acc.fat + meal.fat),
+        natrium: Math.floor(acc.natrium + meal.natrium),
+        protein: Math.floor(acc.protein + meal.protein),
+        saturatedfatty: Math.floor(acc.saturatedfatty + meal.saturatedfatty),
+        sugars: Math.floor(acc.sugars + meal.sugars),
+        transfat: Math.floor(acc.transfat + meal.transfat),
       }),
       {
         carb: 0,

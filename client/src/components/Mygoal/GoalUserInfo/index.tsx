@@ -115,16 +115,13 @@ function GoalUserInfoForm() {
             name="age"
             widthSize="small"
             type="number"
-            placeholder={`${
-              (errors.age && '올바른 나이를 입력해주세요.') || ''
-            }`}
-            key={usersInfo ? 'notLoadedYet' : 'loaded'}
+            placeholder="나이를 입력해주세요."
             defaultValue={usersInfo?.age}
           />
         </S.FlexContainer>
-        {/* <S.ErrorMessage> */}
-        {/* {errors.age && '올바른 나이를 입력해주세요.'} */}
-        {/* </S.ErrorMessage> */}
+        <S.ErrorMessage>
+          {errors.age && '올바른 나이를 입력해주세요.'}
+        </S.ErrorMessage>
         <S.FlexContainer>
           키{' '}
           <S.InputTag
@@ -206,7 +203,7 @@ function GoalUserInfoForm() {
             }}
             isSelected={activity === 'LESS'}
           >
-            <div className="emoji">{/* div태그 img로 바꾸기 나중에 */}</div>
+            <div className="emoji">😅</div>
             적음
           </S.Activity>
           <S.Activity
@@ -215,7 +212,8 @@ function GoalUserInfoForm() {
             }}
             isSelected={activity === 'NORMAL'}
           >
-            <div className="emoji"></div>보통
+            <div className="emoji">🙂</div>
+            보통
           </S.Activity>
           <S.Activity
             onClick={() => {
@@ -223,7 +221,7 @@ function GoalUserInfoForm() {
             }}
             isSelected={activity === 'MORE'}
           >
-            <div className="emoji"></div>많음
+            <div className="emoji">🥰</div>많음
           </S.Activity>
         </S.FlexContainer>
         <S.Button type="submit" value="다음"></S.Button>

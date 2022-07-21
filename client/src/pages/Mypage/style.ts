@@ -5,11 +5,11 @@ export const MypageContainer = styled.div`
   flex-direction: column;
   align-items: center;
   z-index: 1;
-  padding: 100px 0 150px 0;
+  padding: 50px 0 30px 0;
 `;
 
 export const MypageItemBox = styled.div`
-  width: 300px;
+  width: 75%;
   height: 180px;
   padding: 20px 24px;
   margin-bottom: 50px;
@@ -128,18 +128,22 @@ export const UserGoalNumberContainer = styled.div`
 
 export const UserGoalNumberInfo = styled.div`
   font-weight: bold;
+  width: 35%;
+  & p:first-of-type {
+    font-weight: 500;
+    font-size: 14px;
+  }
 `;
 
 export const DropDownMenu = styled.div`
   position: absolute;
-  right: 20px;
-  top: 20px;
+  right: 0%;
+  top: 150%;
   width: 160px;
   border-radius: 12px;
-  height: 150px;
   box-shadow: 0px 0px 10px 3px rgba(190, 190, 190, 0.6);
   z-index: 99;
-  background-color: white;
+  background-color: rgba(255, 255, 225, 0.95);
   div {
     cursor: pointer;
     text-align: center;
@@ -148,9 +152,19 @@ export const DropDownMenu = styled.div`
     color: red;
     font-weight: bold;
     padding: 12px;
+    width: 75%;
+    margin: 4% auto;
     &:not(:last-of-type) {
       color: black;
-      border-bottom: 1px solid blue;
+      /* border-bottom: 0.5px solid gray; */
+    }
+  }
+  div:hover {
+    border-radius: 25px;
+    background-color: ${({ theme }) => theme.mainColor.normal};
+    color: white;
+    &:last-of-type {
+      background-color: #faa0a0;
     }
   }
 `;

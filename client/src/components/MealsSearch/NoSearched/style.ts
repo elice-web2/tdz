@@ -15,6 +15,7 @@ export const AddButton = styled.button`
   height: 40px;
   border: none;
   border-radius: 5px;
-  background-color: ${({ theme }) => theme.mainColor.normal};
+  background-color: ${({ theme }) => theme.mainColor.darker};
+  color: white;
   cursor: pointer;
 `;

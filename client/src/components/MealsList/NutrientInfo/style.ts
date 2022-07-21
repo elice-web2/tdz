@@ -35,4 +35,15 @@ export const NutrientInfoBox = styled.div`
     font-size: 24px;
     font-weight: bold;
   }
+
+  @media (max-width: 400px) {
+    .nutrient {
+      width: 70px;
+      font-size: 12px;
+    }
+
+    .gram {
+      font-size: 16px;
+    }
+  }
 `;
