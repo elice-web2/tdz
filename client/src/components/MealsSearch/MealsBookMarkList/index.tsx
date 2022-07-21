@@ -47,8 +47,8 @@ function MealsBookMarkList() {
     }
   }
 
-  function deleteBookMark(id: string) {
-    api.delete(`/api/favorites/${id}`).then((res) => console.log(res));
+  async function deleteBookMark(id: string) {
+    await api.delete(`/api/favorites/${id}`);
     setResult((results) => results.filter((result) => result._id !== id));
   }
 

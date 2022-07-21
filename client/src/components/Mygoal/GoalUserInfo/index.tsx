@@ -29,7 +29,6 @@ function GoalUserInfoForm() {
     usersInfo?.gender ? usersInfo?.gender : 'MALE',
   );
 
-  // console.log(usersInfo);
   const selectHandler = (mode: string) => {
     setMode(mode);
   };

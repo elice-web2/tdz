@@ -51,7 +51,7 @@ function MealsDetail() {
         responseRef.current = res?.data[0];
         await getBookMark();
       } catch (error) {
-        console.log('배열 못받아옴');
+        console.error(error);
       }
     })();
   }, []);
@@ -95,13 +95,10 @@ function MealsDetail() {
       const bookMark = await api.get(
         `/api/favorites/${responseRef.current._id}`,
       );
-      console.log(bookMark);
       if (!bookMark?.data) {
         setIsBookMark(false);
-        console.log('마킹상태F');
       } else {
         setIsBookMark(true);
-        console.log('마킹상태T');
       }
     }
   }

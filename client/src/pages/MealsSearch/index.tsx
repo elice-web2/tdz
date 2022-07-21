@@ -48,7 +48,6 @@ function MealsSearch() {
 
   function inputSubmitHandler() {
     api.get(`/api/meal/${inputValue}`).then((res: any) => {
-      console.log(res);
       setSearchedResult(res.data);
     });
   }

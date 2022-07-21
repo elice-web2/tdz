@@ -25,7 +25,6 @@ function EnrollModal({ setOpenModal, submitData }: ModalType) {
       <S.ModalContainer>
         <S.EnrollBtn
           onClick={() => {
-            console.log('submitData', submitData);
             dispatch(addMeals(submitData));
             navigate('/meals/cart');
           }}

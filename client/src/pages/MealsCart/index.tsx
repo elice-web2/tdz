@@ -26,7 +26,6 @@ function MealsCart() {
     ({ usersInfo }) => usersInfo.value,
   );
 
-  console.log('result', result);
   //장바구니 리스트 바뀔때마다 총 영양소 다시 계산
   const totalInfo: TotalInfoType = calcTotalInfo(result);
 

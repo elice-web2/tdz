@@ -11,7 +11,6 @@ interface NutrientDetailProps {
 }
 
 function NutrientDetail({ data }: NutrientDetailProps) {
-  console.log(data);
   return (
     <S.NutrientContainer>
       <S.NutrientHeader>

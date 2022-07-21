@@ -27,7 +27,7 @@ function DelUserModal({ setOpenDelUserModal }: DelUserModalProps) {
       localStorage.clear();
       navigate('/');
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 

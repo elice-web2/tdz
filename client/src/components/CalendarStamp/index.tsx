@@ -22,7 +22,7 @@ function CalendarStamp({ closeCalendar }: CalendarStampProps) {
 
   const [value, onChange] = useState(new Date(date));
   const [success, setSuccess] = useState<string[]>([]);
-  console.log(value);
+
   useEffect(() => {
     getData();
   }, []);

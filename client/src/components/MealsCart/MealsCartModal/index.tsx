@@ -29,7 +29,6 @@ function MealsCartModal({ openModal, totalInfo }: MealsCartModalPropsType) {
   const totalNutrient = useAppSelector(({ meal }) => meal.totalNutrient);
   const date = useAppSelector(({ date }) => date.value);
   const usersInfo = useAppSelector(({ usersInfo }) => usersInfo.value);
-  console.log('유저인포', usersInfo);
   const postResultObj = {
     date,
     meals,
@@ -76,11 +75,9 @@ function MealsCartModal({ openModal, totalInfo }: MealsCartModalPropsType) {
     setSelected(time);
   }
 
-  function enrollHandler(postResultObj: PostResultType) {
+  async function enrollHandler(postResultObj: PostResultType) {
     dispatch(postMealsDataAsync(postResultObj));
-    api
-      .post('/api/calendar', stampResultObj)
-      .then((res) => console.log('스탬프res', res));
+    await api.post('/api/calendar', stampResultObj);
     navigate('/meals');
   }
 

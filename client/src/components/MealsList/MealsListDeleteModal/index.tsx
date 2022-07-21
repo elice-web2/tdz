@@ -53,7 +53,6 @@ function MealsListDeleteModal({
       saturatedfattySum: totalNutrient.saturatedfatty - meal.saturatedfatty,
       transfatSum: totalNutrient.transfat - meal.transfat,
     };
-    console.log(stampResult);
     try {
       event.preventDefault();
       await dispatch(delMealsDataAsync(meal._id));
@@ -63,7 +62,7 @@ function MealsListDeleteModal({
       );
       setOpenModal(false);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 

@@ -45,7 +45,6 @@ async function postMealsData({ meals, category, date }: PostMealsDataParam) {
     date,
   };
   const data = await api.post('/api/mealhistory', mealsData);
-  console.log('잘보냈어', data);
   return data.data;
 }
 
