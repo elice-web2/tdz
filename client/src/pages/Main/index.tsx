@@ -21,7 +21,6 @@ function Main() {
   );
 
   useEffect(() => {
-    console.log(is_login_first, isLogin);
     if (isLogin && is_login_first === 'true') {
       navigate('/mypage/goal_step1');
     } else if (isLogin) {
@@ -35,7 +34,6 @@ function Main() {
         window.location.hash &&
         window.location.hash.slice(1).includes('social=true')
       ) {
-        console.log(window.location.hash);
         localStorage.setItem('login', 'true');
         await dispatch(getUsersInfoAsync());
       }
@@ -44,7 +42,6 @@ function Main() {
   }, []);
   return (
     <Container>
-      {/* <ScrollContainer minusHeight={0}> */}
       <div style={{ margin: 'auto' }}>
         <S.ImgContainer>
           <S.ImgBox src={require('../../assets/main1.png')} />
@@ -56,7 +53,7 @@ function Main() {
         <S.IntroText>매일의 식단을 기록해보세요!</S.IntroText>
         <S.IntroText>당신의 건강이 달라집니다!</S.IntroText>
         <S.LoginContainer>
-          <a
+          <S.Link
             href={`https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=77524d6f60c947c98230e8d0d6c54eb4&redirect_uri=${process.env.REACT_APP_BASE_URL}/api/auth/kakao/callback`}
           >
             <S.LoginBox brand={'카카오'}>
@@ -65,7 +62,7 @@ function Main() {
               </span>
               <p>카카오로 시작하기</p>
             </S.LoginBox>
-          </a>
+          </S.Link>
           <S.LoginBox
             brand="TDZ"
             onClick={() => {
@@ -78,7 +75,6 @@ function Main() {
             <p>TDZ로 시작하기</p>
           </S.LoginBox>
         </S.LoginContainer>
-        {/* </ScrollContainer> */}
       </div>
     </Container>
   );
