@@ -1,8 +1,13 @@
-import { useAppDispatch, useAppSelector } from '../../../hooks';
-import { delMealsDataAsync } from '../../../slices/mealsSlice';
+// stores
+import { delMealsDataAsync } from 'slices/mealsSlice';
+// types
+import { MealListItem } from 'customType/meal.type';
+// hooks
+import { useAppDispatch, useAppSelector } from 'hooks';
+// styles
 import * as S from './style';
-import * as api from '../../../api';
-import { MealListItem } from '../../../customType/meal.type';
+// etc
+import * as api from 'api';
 
 interface MealsModalProps {
   setOpenModal: (value: boolean) => void;

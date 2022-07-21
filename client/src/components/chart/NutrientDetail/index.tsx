@@ -1,6 +1,9 @@
+// dependencies
 import { faCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { ChartInfo } from '../../../customType/chart.type';
+// types
+import { ChartInfo } from 'customType/chart.type';
+// styles
 import * as S from './style';
 
 interface NutrientDetailProps {

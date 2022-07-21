@@ -1,10 +1,15 @@
+// dependencies
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch } from '../../../hooks';
 import { useForm } from 'react-hook-form';
-import { patchActivityAsync } from '../../../slices/usersInfoSlice';
-import * as S from '../style';
 import { useEffect, useState } from 'react';
-import { calculateTDZPercent } from '../../../utils';
+// stores
+import { patchActivityAsync } from 'slices/usersInfoSlice';
+// hooks
+import { useAppDispatch } from 'hooks';
+// styles
+import * as S from '../style';
+// etc
+import { calculateTDZPercent } from 'utils';
 
 function GoalNutrientForm() {
   const navigate = useNavigate();

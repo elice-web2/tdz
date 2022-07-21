@@ -1,8 +1,11 @@
+// dependencies
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+// styles
 import * as S from '../style';
-import { calculateTDZgram } from '../../../utils';
+// etc
+import { calculateTDZgram } from 'utils';
 
 function GoalCaloriesForm() {
   const navigate = useNavigate();

@@ -1,8 +1,11 @@
-import * as S from './style';
+// dependencies
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
-import { useAppSelector } from '../../../hooks/useAppSelector';
 import { useNavigate } from 'react-router-dom';
+// hooks
+import { useAppSelector } from 'hooks';
+// styles
+import * as S from './style';
 
 function CartIcon() {
   const navigate = useNavigate();

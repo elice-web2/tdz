@@ -1,4 +1,4 @@
-import * as S from './style';
+// dependencies
 import { useNavigate, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -7,7 +7,10 @@ import {
   faChartColumn,
   faUser,
 } from '@fortawesome/free-solid-svg-icons';
-import Container from '../../styles/Container';
+// components
+import Container from 'components/styles/Container';
+// styles
+import * as S from './style';
 
 function Navbar() {
   const currentURL = useLocation().pathname.split('/')[1];

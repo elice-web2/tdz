@@ -1,11 +1,16 @@
+// dependencies
 import { useEffect, useState } from 'react';
 import Calendar from 'react-calendar';
-import '../../assets/CalendarStamp.css';
-import * as S from './style';
-import * as api from '../../api';
 import dayjs from 'dayjs';
-import { useAppDispatch, useAppSelector } from '../../hooks';
-import { updateDate } from '../../slices/dateSlice';
+// stores
+import { updateDate } from 'slices/dateSlice';
+// hooks
+import { useAppDispatch, useAppSelector } from 'hooks';
+// styles
+import 'assets/CalendarStamp.css';
+import * as S from './style';
+// etc
+import * as api from 'api';
 
 interface CalendarStampProps {
   closeCalendar: () => void;

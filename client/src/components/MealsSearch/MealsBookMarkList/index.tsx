@@ -1,12 +1,18 @@
-import * as S from './style';
-import * as api from '../../../api';
+// dependencies
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../../hooks';
-import { addMeals, deleteMeals } from '../../../slices/mealsSlice';
-import { MealData } from '../../../customType/meal.type';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight, faPlus } from '@fortawesome/free-solid-svg-icons';
+// stores
+import { addMeals, deleteMeals } from 'slices/mealsSlice';
+// types
+import { MealData } from 'customType/meal.type';
+// hooks
+import { useAppDispatch, useAppSelector } from 'hooks';
+// styles
+import * as S from './style';
+// etc
+import * as api from 'api';
 
 function MealsBookMarkList() {
   const [result, setResult] = useState<MealData[]>([]);

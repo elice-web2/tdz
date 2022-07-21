@@ -1,13 +1,16 @@
-import * as S from './style';
+// dependencies
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { postMealsDataAsync } from '../../../slices/mealsSlice';
-import { useAppDispatch, useAppSelector } from '../../../hooks';
-import {
-  MealsCartModalPropsType,
-  MealData,
-} from '../../../customType/meal.type';
-import * as api from '../../../api';
+// stores
+import { postMealsDataAsync } from 'slices/mealsSlice';
+// types
+import { MealsCartModalPropsType, MealData } from 'customType/meal.type';
+// hooks
+import { useAppDispatch, useAppSelector } from 'hooks';
+// styles
+import * as S from './style';
+// etc
+import * as api from 'api';
 
 type selectedType = '아침' | '점심' | '저녁' | '간식';
 

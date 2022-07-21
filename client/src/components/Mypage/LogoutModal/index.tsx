@@ -1,7 +1,11 @@
+// dependencies
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch } from '../../../hooks';
-import { initDate } from '../../../slices/dateSlice';
-import { getLogOutAsync } from '../../../slices/usersInfoSlice';
+// stores
+import { initDate } from 'slices/dateSlice';
+import { getLogOutAsync } from 'slices/usersInfoSlice';
+// hooks
+import { useAppDispatch } from 'hooks';
+// styles
 import * as S from './style';
 
 interface LogoutModalProps {

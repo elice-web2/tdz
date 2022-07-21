@@ -1,27 +1,29 @@
+// dependencies
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faGear,
-  faHammer,
-  faAngleRight,
-} from '@fortawesome/free-solid-svg-icons';
-import { useAppDispatch, useAppSelector } from '../../hooks';
-import Container from '../../components/styles/Container';
-import Logo from '../../components/common/Logo';
-import Navbar from '../../components/common/Navbar';
-import LogoutModal from '../../components/Mypage/LogoutModal';
-import DelUserModal from '../../components/Mypage/DelUserModal';
-import { calculateTDZPercent } from '../../utils';
+import { faGear, faAngleRight } from '@fortawesome/free-solid-svg-icons';
+// components
+import Container from 'components/styles/Container';
+import Logo from 'components/common/Logo';
+import Navbar from 'components/common/Navbar';
+import LogoutModal from 'components/Mypage/LogoutModal';
+import DelUserModal from 'components/Mypage/DelUserModal';
+import { ScrollContainer } from 'components/styles/ScrollContainer';
+// hooks
+import { useAppSelector } from 'hooks';
+// styles
 import * as S from './style';
-import { ScrollContainer } from '../../components/styles/ScrollContainer';
+// etc
+
+import { calculateTDZPercent } from 'utils';
+
 function Mypage() {
   const [openLogoutModal, setOpenLogoutModal] = useState<boolean>(false);
   const [openDelUserModal, setOpenDelUserModal] = useState<boolean>(false);
   const [openDropDown, setOpenDropDown] = useState<boolean>(false);
 
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
 
   const userProfile = useAppSelector((state) => state.usersInfo.value);
   const nutrient = userProfile.nutrient;

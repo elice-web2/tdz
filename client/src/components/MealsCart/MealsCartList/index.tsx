@@ -1,8 +1,13 @@
-import * as S from './style';
-import { deleteMeals } from '../../../slices/mealsSlice';
-import { useAppDispatch } from '../../../hooks';
-import { MealsCartListType } from '../../../customType/meal.type';
+// dependencies
 import { useNavigate } from 'react-router-dom';
+// stores
+import { deleteMeals } from 'slices/mealsSlice';
+// types
+import { MealsCartListType } from 'customType/meal.type';
+// hooks
+import { useAppDispatch } from 'hooks';
+// styles
+import * as S from './style';
 
 function MealsCartList({ id, name, quantity, totalGram }: MealsCartListType) {
   const dispatch = useAppDispatch();

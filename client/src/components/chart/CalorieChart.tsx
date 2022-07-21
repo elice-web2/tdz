@@ -1,5 +1,7 @@
+// dependencies
 import { Bar } from 'react-chartjs-2';
-import { ChartInfo } from '../../customType/chart.type';
+// types
+import { ChartInfo } from 'customType/chart.type';
 
 function CalorieChart({ data, labels }: ChartInfo) {
   const rounded = data.kcalAvg.map((val) => Math.round(val));
