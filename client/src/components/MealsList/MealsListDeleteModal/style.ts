@@ -16,54 +16,47 @@ export const OutsideModal = styled.div`
 `;
 
 export const ModalContainer = styled.div`
-  position: absolute;
-  top: 300px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 160px;
-  width: 300px;
-  padding-bottom: 30px;
+  height: 140px;
+  width: 60%;
   background-color: white;
   border-radius: 15px;
   z-index: 2;
 `;
 
+export const CancelButton = styled.span`
+  align-self: flex-end;
+  margin-top: 10px;
+  margin-right: 15px;
+  margin-bottom: 5px;
+  color: lightgray;
+  font-size: 14px;
+  cursor: pointer;
+`;
+
 export const Title = styled.h1`
-  margin-bottom: 15px;
-  padding: 30px 40px 10px 40px;
-  font-size: 24px;
-  font-weight: bold;
+  font-size: 14px;
+  font-weight: 400;
   text-align: center;
-  line-height: 30px;
-`;
-
-export const CancelButton = styled.button`
-  width: 80px;
-  height: 40px;
-  background-color: ${({ theme }) => theme.mainColor.lighter};
-  border-radius: 12px;
-  border: none;
-  font-size: 18px;
-  color: white;
-  cursor: pointer;
-`;
-
-export const DeleteButton = styled.button`
-  width: 80px;
-  height: 40px;
-  background-color: ${({ theme }) => theme.mainColor.darker};
-  border-radius: 12px;
-  border: none;
-  font-size: 18px;
-  color: white;
-  cursor: pointer;
+  padding: 10px 0;
 `;
 
 export const ButtonContainer = styled.div`
   display: flex;
-  justify-content: space-between;
-  width: 200px;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
+`;
+
+export const DeleteButton = styled.button`
+  width: 100px;
+  height: 30px;
+  background-color: ${({ theme }) => theme.mainColor.darker};
+  border-radius: 5px;
+  border: none;
+  font-size: 12px;
+  font-weight: 600;
   color: white;
+  cursor: pointer;
 `;

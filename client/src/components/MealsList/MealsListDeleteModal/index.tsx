@@ -74,18 +74,18 @@ function MealsListDeleteModal({
         }}
       />
       <S.ModalContainer>
-        <S.Title>해당 식단을 정말 삭제 하시겠습니까?</S.Title>
+        <S.CancelButton
+          className="Cancel"
+          onClick={() => {
+            setOpenModal(false);
+          }}
+        >
+          X
+        </S.CancelButton>
+        <S.Title>식단을 삭제하시겠습니까?</S.Title>
         <S.ButtonContainer>
-          <S.CancelButton
-            className="Cancel"
-            onClick={() => {
-              setOpenModal(false);
-            }}
-          >
-            취소
-          </S.CancelButton>
           <S.DeleteButton onClick={deleteMeal} className="Delete">
-            삭제
+            확인
           </S.DeleteButton>
         </S.ButtonContainer>
       </S.ModalContainer>
