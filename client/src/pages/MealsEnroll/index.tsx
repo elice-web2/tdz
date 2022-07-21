@@ -14,6 +14,7 @@ import { useAppSelector } from 'hooks';
 import * as S from './style';
 // etc
 import * as api from 'api';
+import { relative } from 'path';
 
 function MealsEnroll() {
   const [openModal, setOpenModal] = useState(false);
@@ -51,8 +52,8 @@ function MealsEnroll() {
     setSubmitData(data);
   }
   return (
-    <Container>
-      <ScrollContainer minusHeight={60}>
+    <S.Container>
+      <ScrollContainer minusHeight={0}>
         {openModal && (
           <EnrollModal setOpenModal={setOpenModal} submitData={submitData} />
         )}
@@ -163,7 +164,7 @@ function MealsEnroll() {
           </S.BtnContainer>
         </form>
       </ScrollContainer>
-    </Container>
+    </S.Container>
   );
 }
 

@@ -23,6 +23,8 @@ function EnrollModal({ setOpenModal, submitData }: ModalType) {
         }}
       ></S.OutsideModal>
       <S.ModalContainer>
+        <span>X</span>
+        <h2>식품 등록이 완료되었습니다!</h2>
         <S.EnrollBtn
           onClick={() => {
             dispatch(addMeals(submitData));
