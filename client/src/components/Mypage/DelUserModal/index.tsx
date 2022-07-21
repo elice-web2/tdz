@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import * as api from '../../../api';
 import { useAppDispatch } from '../../../hooks';
 import { initDate } from '../../../slices/dateSlice';
-import { getLogOutAsync, logout } from '../../../slices/usersInfoSlice';
+import { logout } from '../../../slices/usersInfoSlice';
 import * as S from './style';
 interface DelUserModalProps {
   setOpenDelUserModal: (value: boolean) => void;
@@ -12,11 +12,10 @@ function DelUserModal({ setOpenDelUserModal }: DelUserModalProps) {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  const delUserHandler = async (event: any) => {
+  const delUserHandler = async () => {
     try {
-      event.preventDefault();
-      dispatch(initDate());
       await api.delete('/api/users');
+      dispatch(initDate());
       dispatch(logout());
       setOpenDelUserModal(false);
       localStorage.clear();
