@@ -36,7 +36,7 @@ function MealsEnroll() {
     data.carb = Number(data.carb);
     data.protein = Number(data.protein);
     data.fat = Number(data.fat);
-    data.natruim = Number(data.natruim);
+    data.natrium = Number(data.natrium);
     data.sugars = Number(data.sugars);
     data.transfat = Number(data.transfat);
     data.cholesterol = Number(data.cholesterol);
@@ -113,11 +113,11 @@ function MealsEnroll() {
               ></input>
               <span>g</span>
             </S.NutrientInputElement>
-            <S.NutrientInputElement changeColor={checkInput('natruim')}>
+            <S.NutrientInputElement changeColor={checkInput('natrium')}>
               <p>나트륨</p>
               <input
                 type="number"
-                {...register('natruim', { required: true, min: 0 })}
+                {...register('natrium', { required: true, min: 0 })}
               ></input>
               <span>g</span>
             </S.NutrientInputElement>

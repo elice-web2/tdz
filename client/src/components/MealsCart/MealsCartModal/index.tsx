@@ -23,7 +23,7 @@ function MealsCartModal({ openModal, totalInfo }: MealsCartModalPropsType) {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const meals = useAppSelector(({ meal }) => meal.value);
-  const totalKcal = useAppSelector(({ meal }) => meal.totalKcal);
+  const totalNutrient = useAppSelector(({ meal }) => meal.totalNutrient);
   const date = useAppSelector(({ date }) => date.value);
   const usersInfo = useAppSelector(({ usersInfo }) => usersInfo.value);
   console.log('유저인포', usersInfo);
@@ -44,17 +44,26 @@ function MealsCartModal({ openModal, totalInfo }: MealsCartModalPropsType) {
   useEffect(() => {
     const stampResult = {
       date: date,
-      currentKcal: totalKcal + totalInfo.totalKcal,
+      currentKcal: totalNutrient.kcal + totalInfo.kcal,
       goalKcal: usersInfo.nutrient.kcal,
       mode: usersInfo.mode,
       isSuccess: isSuccessGoal(
-        totalKcal + totalInfo.totalKcal,
+        totalNutrient.kcal + totalInfo.kcal,
         usersInfo.nutrient.kcal,
         usersInfo.mode,
       ),
+      carbSum: totalNutrient.carb + totalInfo.carb,
+      proteinSum: totalNutrient.protein + totalInfo.protein,
+      fatSum: totalNutrient.fat + totalInfo.fat,
+      sugarsSum: totalNutrient.sugars + totalInfo.sugars,
+      natriumSum: totalNutrient.natrium + totalInfo.natrium,
+      cholesterolSum: totalNutrient.cholesterol + totalInfo.cholesterol,
+      saturatedfattySum:
+        totalNutrient.saturatedfatty + totalInfo.saturatedfatty,
+      transfatSum: totalNutrient.transfat + totalInfo.transfat,
     };
     setStampResultObj(stampResult);
-  }, [date, totalKcal, usersInfo.mode]);
+  }, [date, totalNutrient, usersInfo.mode]);
 
   function modalCloseHandler() {
     openModal(false);
