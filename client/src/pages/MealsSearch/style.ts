@@ -50,7 +50,7 @@ export const SearchBtn = styled.button`
 export const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
-  width: 420px;
+  width: 100%;
   margin: 20px 0 15px 0;
   box-sizing: border-box;
 `;

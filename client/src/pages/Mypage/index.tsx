@@ -122,7 +122,7 @@ function Mypage() {
               <FontAwesomeIcon icon={faAngleRight} className="SettingGoal" />
             </div>
           </S.MygoalSettingContainer>
-          <S.MypageItemBox>
+          <S.MypageItemBox myPage="second">
             <S.UserGoalNumberContainer>
               <S.UserGoalNumberInfo>
                 <p>목표 체중</p>

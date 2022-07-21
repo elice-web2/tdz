@@ -41,6 +41,11 @@ export const LoginContainer = styled.div`
   cursor: pointer;
 `;
 
+export const Link = styled.a`
+  text-decoration: none;
+  color: black;
+`;
+
 export const LoginBox = styled.div<{ brand: string }>`
   position: relative;
   display: flex;
@@ -52,8 +57,6 @@ export const LoginBox = styled.div<{ brand: string }>`
   background-color: ${(props) => {
     if (props.brand === '카카오') {
       return '#FAE100';
-    } else if (props.brand === '구글') {
-      return '#4285F4';
     } else {
       return 'white';
     }

@@ -33,8 +33,6 @@ class MealService {
       )}`,
     );
 
-    console.log(data);
-
     if (statusText !== 'OK') {
       throw new Error(
         `Could not get the meal data from the remote source: openapi.foodsafetykorea.go.kr`,
@@ -48,17 +46,17 @@ class MealService {
 
       const code: string = meal.FOOD_CD;
       const name: string = meal.DESC_KOR;
-      const kcal: number = Number(meal.NUTR_CONT1);
-      const carb: number = Number(meal.NUTR_CONT2);
-      const protein: number = Number(meal.NUTR_CONT3);
-      const fat: number = Number(meal.NUTR_CONT4);
-      const sugars: number = Number(meal.NUTR_CONT5);
-      const natrium: number = Number(meal.NUTR_CONT6);
-      const cholesterol: number = Number(meal.NUTR_CONT7);
-      const saturatedfatty: number = Number(meal.NUTR_CONT8);
-      const transfat: number = Number(meal.NUTR_CONT9);
-      const servingSize: number = Number(meal.SERVING_SIZE);
-      const quantity: number = 1;
+      const kcal: number = parseFloat(meal.NUTR_CONT1);
+      const carb: number = parseFloat(meal.NUTR_CONT2);
+      const protein: number = parseFloat(meal.NUTR_CONT3);
+      const fat: number = parseFloat(meal.NUTR_CONT4);
+      const sugars: number = parseFloat(meal.NUTR_CONT5);
+      const natrium: number = parseFloat(meal.NUTR_CONT6);
+      const cholesterol: number = parseFloat(meal.NUTR_CONT7);
+      const saturatedfatty: number = parseFloat(meal.NUTR_CONT8);
+      const transfat: number = parseFloat(meal.NUTR_CONT9);
+      const servingSize: number = parseFloat(meal.SERVING_SIZE);
+      const quantity = 1;
       const totalGram: number = servingSize;
       const updated_date: Date = new Date();
 

@@ -92,7 +92,7 @@ export class CalendarModel {
       },
       { $sort: { _id: 1 } },
     ]);
-    console.log(data);
+
     return data;
   }
 }
@@ -100,6 +100,3 @@ export class CalendarModel {
 const calendarModel = new CalendarModel();
 
 export { calendarModel };
-function ISODate(arg0: string): Date | undefined {
-  throw new Error('Function not implemented.');
-}

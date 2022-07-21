@@ -11,6 +11,8 @@
 ## 🔗 2. 서비스 주요 기능
 
 - 회원가입 후 로그인
+  - 사이트 로그인
+  - 카카오 소셜 로그인
 - 사용자별 3단계 설정
   - 1단계 : 필수정보(나이, 키, 체중, 사용 목적 등..)
   - 2단계 : 필수 정보를 바탕으로한 권장 칼로리 섭취량 설정
@@ -32,22 +34,36 @@
 
 **기술스택**
 
-- React/TypeScript
-- Redux/Redux-toolkit
-- StyledComponent
-- MongoDB/mongoose
-- NodeJS/ExpressJS
+- Main Language
+
+  <img src ="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=TypeScript&logoColor=white">
+
+- Frontend
+
+  <img src ="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=white">
+  <img src ="https://img.shields.io/badge/Redux-764ABC?style=for-the-badge&logo=Redux&logoColor=white">
+  <img src ="https://img.shields.io/badge/Redux ToolKit-764ABC?style=for-the-badge&logo=Redux&logoColor=white">
+  <img src ="https://img.shields.io/badge/styled components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white">
+
+- Backend
+
+  <img src="https://img.shields.io/badge/mongoDB-47A248?style=for-the-badge&logo=MongoDB&logoColor=white">
+  <img src="https://img.shields.io/badge/mongoose-47A248?style=for-the-badge&logo=MongoDB&logoColor=white">
+  <img src="https://img.shields.io/badge/node.js-339933?style=for-the-badge&logo=Node.js&logoColor=white">
+  <img src="https://img.shields.io/badge/express-000000?style=for-the-badge&logo=express&logoColor=white">
+  <img src="https://img.shields.io/badge/amazonaws-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white">
+  <img src="https://img.shields.io/badge/Multer-000000?&style=for-the-badge&logoColor=white">
 
 - 와이어 프레임 : [피그마 링크](https://www.figma.com/file/v8i3yts5YeGuZ5XDqUA3cb/9%ED%8C%80-%EC%8B%9D%EB%8B%A8%EA%B4%80%EB%A6%AC%EC%96%B4%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98?node-id=0%3A1)
 - 프로젝트 기록 : [노션 링크](https://www.notion.so/tdz-team/TDZ-c9aeac84ecff45688047f6608644f178)
 
 ## 🔗 4. 프로젝트 팀원 및 역할분담
 
-| 이름           | 직군       | 담당업무                               |
-| -------------- | ---------- | -------------------------------------- |
-| 박유환(팀장🙋🏻‍♂️) | 프론트엔드 | ㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄹㄴ |
-| 경지윤         | 프론트엔드 | ㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄹㄴ |
-| 김세희         | 프론트엔드 | ㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄹㄴ |
-| 신승철         | 프론트엔드 | ㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄹㄴ |
-| 이주연         | 백엔드     | ㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄹㄴ |
-| 여은지         | 백엔드     | ㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄹㄴ |
+| 이름           | 직군       | 담당업무                                                                                         |
+| -------------- | ---------- | ------------------------------------------------------------------------------------------------ |
+| 박유환(팀장🙋🏻‍♂️) | 프론트엔드 | ㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄹㄴ                                                           |
+| 경지윤         | 프론트엔드 | ㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄹㄴ                                                           |
+| 김세희         | 프론트엔드 | ㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄹㄴ                                                           |
+| 신승철         | 프론트엔드 | ㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄹㄴ                                                           |
+| 이주연         | 백엔드     | 회원 관련 API, 즐겨찾기 API, 차트 API, 카카오 소셜 로그인 API, AWS 이미지 등록, 랜덤 닉네임 생성 |
+| 여은지         | 백엔드     | ㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄹㄴ                                                           |

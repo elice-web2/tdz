@@ -123,8 +123,6 @@ const deleteAllFavorites = async (
 
     const deleteFavorite = await favoriteService.deleteAllFavorites(userId);
 
-    console.log(deleteFavorite);
-
     if (!deleteFavorite.deletedCount) {
       throw new Error('즐겨찾기 전체 삭제가 실패했습니다.');
     }

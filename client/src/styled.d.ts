@@ -5,6 +5,9 @@ declare module 'styled-components' {
       normal: string;
       lighter: string;
       darker: string;
+      carb: string;
+      protein: string;
+      fat: string;
     };
 
     flexbox: (...args) => string;
