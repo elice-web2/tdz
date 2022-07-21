@@ -39,10 +39,12 @@ function Mypage() {
   };
 
   const logoutHandler = () => {
+    setOpenDropDown(false);
     setOpenLogoutModal(true);
   };
 
   const DelUserHandler = () => {
+    setOpenDropDown(false);
     setOpenDelUserModal(true);
   };
 
@@ -55,6 +57,7 @@ function Mypage() {
       <Logo />
       <ScrollContainer minusHeight={120}>
         <S.MypageContainer>
+          {openDropDown && <S.OutsideModal onClick={DropDownHandler} />}
           <S.MypageItemBox>
             {openLogoutModal && (
               <LogoutModal setOpenLogoutModal={setOpenLogoutModal} />
@@ -63,29 +66,33 @@ function Mypage() {
               <DelUserModal setOpenDelUserModal={setOpenDelUserModal} />
             )}
             <S.SettingProfileContainer>
-              <div onClick={DropDownHandler}>
-                <FontAwesomeIcon icon={faGear} className="SettingUserProfile" />
+              <div>
+                <FontAwesomeIcon
+                  onClick={DropDownHandler}
+                  icon={faGear}
+                  className="SettingUserProfile"
+                />
+                {openDropDown && (
+                  <S.DropDownMenu>
+                    <div
+                      onClick={() => {
+                        navigate('/mypage/user_profile');
+                      }}
+                    >
+                      프로필 변경
+                    </div>
+                    <div
+                      onClick={() => {
+                        navigate('/mypage/user_info');
+                      }}
+                    >
+                      비밀번호 변경
+                    </div>
+                    <div onClick={logoutHandler}>로그아웃</div>
+                    <div onClick={DelUserHandler}>회원탈퇴</div>
+                  </S.DropDownMenu>
+                )}
               </div>
-              {openDropDown && (
-                <S.DropDownMenu>
-                  <div
-                    onClick={() => {
-                      navigate('/mypage/user_profile');
-                    }}
-                  >
-                    프로필 변경
-                  </div>
-                  <div
-                    onClick={() => {
-                      navigate('/mypage/user_info');
-                    }}
-                  >
-                    비밀번호 변경
-                  </div>
-                  <div onClick={logoutHandler}>로그아웃</div>
-                  <div onClick={DelUserHandler}>회원탈퇴</div>
-                </S.DropDownMenu>
-              )}
             </S.SettingProfileContainer>
             <S.UserProfileContainer>
               <S.UserProfileImage src={userProfile.profile_image} />
