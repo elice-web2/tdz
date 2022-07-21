@@ -1,5 +1,11 @@
 import styled from 'styled-components';
 
+export const Container = styled.div`
+  max-width: 420px;
+  margin: 0 auto;
+  position: relative;
+`;
+
 export const Header = styled.div`
   position: relative;
   display: flex;
@@ -8,18 +14,19 @@ export const Header = styled.div`
   width: 100%;
   height: 60px;
   margin-bottom: 30px;
-  background-color: ${({ theme }) => theme.mainColor.lighter};
+  background-color: ${({ theme }) => theme.mainColor.darker};
+  color: white;
 
   span {
     position: absolute;
     left: 20px;
-    font-size: 25px;
+    font-size: 20px;
     cursor: pointer;
   }
 
   h1 {
-    font-size: 20px;
-    font-weight: bold;
+    font-size: 17px;
+    font-weight: 500;
   }
 `;
 
@@ -98,7 +105,9 @@ export const AddBtn = styled.button`
   height: 40px;
   border: none;
   border-radius: 5px;
-  background-color: ${({ theme }) => theme.mainColor.normal};
-  font-weight: bold;
+  background-color: ${({ theme }) => theme.mainColor.darker};
+  color: white;
+  font-weight: 500;
   font-size: 14px;
+  cursor: pointer;
 `;
