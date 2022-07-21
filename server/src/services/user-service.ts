@@ -5,7 +5,7 @@ import {
   UserInfoRequired,
   InfoToUpdate,
 } from '../types/user.type';
-import { getRandomNickname } from '../middlewares';
+import { getRandomNickname } from '../utils/random-nickname';
 
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
