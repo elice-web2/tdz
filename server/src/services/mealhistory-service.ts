@@ -157,9 +157,13 @@ class MealHistoryService {
     //   throw new Error('삭제할 식단은 존재하지 않습니다.');
     // }
 
-    const { deletedCount } = await this.mealhistoryModel.deleteByUserId(userId);
+    // const { deletedCount } = await this.mealhistoryModel.deleteByUserId(userId);
 
+<<<<<<< HEAD
+    // // 삭제에 실패한 경우, 에러 메시지 반환
+=======
     // 삭제에 실패한 경우, 에러 메시지 반환
+>>>>>>> origin/dev
     // if (deletedCount === 0) {
     //   throw new Error(`식단 삭제에 실패하였습니다`);
     // }
