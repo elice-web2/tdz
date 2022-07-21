@@ -10,8 +10,7 @@ const oneDay = async (req: Request, res: Response, next: NextFunction) => {
     const tommorrow: Date = new Date(todayStr);
     tommorrow.setDate(today.getDate() + 1);
     const tommorowStr: string = tommorrow.toISOString().slice(0, 10);
-    console.log(todayStr);
-    console.log(tommorowStr);
+
     //2022-07-10
     const fromToInfo: FromToInfo = {
       user_id: req.currentUserId!,

@@ -56,8 +56,6 @@ class MealHistoryService {
       }
       const todayWeight = userInfo!.current_weight;
 
-      console.log(meals[0].meals[0]);
-
       await calendarService.addCalendarStamp({
         userId,
         date,
