@@ -63,7 +63,6 @@ interface patchActivityParam {
 }
 // 수정할 유저 정보 데이터 타입지정
 interface patchUserParam {
-  email: string;
   password: string;
   currentPassword: string;
 }
@@ -98,7 +97,7 @@ const initialState: UsersInfoState = {
 // 회원가입 post API 통신 함수
 async function postSignupData(usersInfo: postLoginSignup) {
   const resp = await api.post('/api/auth/signup', usersInfo);
-  return resp.data;
+  return resp?.data;
 }
 // 회원탈퇴 del API 통신 함수
 async function delUserData() {
@@ -121,16 +120,20 @@ async function getUsersInfoData() {
 }
 // 회원정보 수정 patch API 통신 함수
 async function patchUserInfoData(userInfo: patchUserParam) {
-  const resp = await api.patch('/api/users', userInfo);
-  return resp.data;
+  try {
+    const resp = await api.patch('/api/users', userInfo);
+    return resp?.data;
+  } catch (error: any) {
+    throw new Error(error.response.data.reason);
+  }
 }
 async function patchActivityData(activityInfo: patchActivityParam) {
   const resp = await api.patch('/api/users/activity', activityInfo);
-  return resp.data;
+  return resp?.data;
 }
 async function uploadImageFile(formData: FormData) {
   const resp = await api.uploadFile('/api/users/profile', formData);
-  return resp.data;
+  return resp?.data;
 }
 
 // 비동기로 데이터를 불러와 액션을 생성하고 싶을 경우 예시

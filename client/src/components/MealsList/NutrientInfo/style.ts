@@ -36,6 +36,11 @@ export const NutrientInfoBox = styled.div`
     font-weight: bold;
   }
 
+  .지방 {
+    position: relative;
+    right: 5px;
+  }
+
   @media (max-width: 400px) {
     .nutrient {
       width: 70px;
