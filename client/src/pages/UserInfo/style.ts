@@ -75,3 +75,8 @@ export const Errormessage = styled.div`
   font-size: 12px;
   color: rgba(255, 0, 0, 0.6);
 `;
+
+export const LargeErrorMessage = styled(Errormessage)`
+  padding-bottom: 8px;
+  font-size: 14px;
+`;
