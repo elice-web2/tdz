@@ -69,7 +69,7 @@ export const AddMealsBtn = styled.button`
   margin: 10px;
   border: none;
   border-radius: 10px;
-  background-color: ${({ theme }) => theme.mainColor.lighter};
+  background-color: ${({ theme }) => theme.mainColor.darker};
   font-size: 14px;
   font-weight: bold;
   cursor: pointer;

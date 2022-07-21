@@ -13,7 +13,7 @@ export const CartBox = styled.div`
   font-size: 25px;
   text-align: center;
   box-shadow: 1px 1px 5px lightgray;
-  z-index: 999;
+  z-index: 1;
 
   margin-left: 10px;
 
