@@ -1,17 +1,20 @@
-import * as S from './style';
-import * as api from '../../../api';
+// dependencies
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../../hooks';
-import NoSearched from '../NoSearched';
-import { addMeals, deleteMeals } from '../../../slices/mealsSlice';
-
-import {
-  MealData,
-  MealsSearchedListProps,
-} from '../../../customType/meal.type';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight, faPlus } from '@fortawesome/free-solid-svg-icons';
+// components
+import NoSearched from '../NoSearched';
+// stores
+import { addMeals, deleteMeals } from 'slices/mealsSlice';
+// types
+import { MealData, MealsSearchedListProps } from 'customType/meal.type';
+// hooks
+import { useAppDispatch, useAppSelector } from 'hooks';
+// styles
+import * as S from './style';
+// etc
+import * as api from 'api';
 
 function MealsSearchedList({ inputValue, result }: MealsSearchedListProps) {
   const navigate = useNavigate();
@@ -23,7 +26,6 @@ function MealsSearchedList({ inputValue, result }: MealsSearchedListProps) {
     const newArr: any = [];
     for (let i = 0; i < result.length; i++) {
       const res = await api.get(`/api/favorites/${result[i]._id}`);
-      console.log(res);
       if (!res?.data) {
         newArr.push({ ...result[i], isBookMarked: false });
       } else {

@@ -1,18 +1,25 @@
+// dependencies
 import { useState, useEffect } from 'react';
-import { useAppSelector, useAppDispatch } from '../../hooks';
-import DateNavigation from '../../components/common/DateNavigation';
-import Logo from '../../components/common/Logo';
-import Navbar from '../../components/common/Navbar';
-import Container from '../../components/styles/Container';
-import MealsListAddBox from '../../components/MealsList/MealsListAddBox';
-import MealsListBox from '../../components/MealsList';
 import { useNavigate } from 'react-router-dom';
-import { calTotalNutrient } from '../../slices/mealsSlice';
+// components
+import DateNavigation from 'components/common/DateNavigation';
+import Logo from 'components/common/Logo';
+import Navbar from 'components/common/Navbar';
+import Container from 'components/styles/Container';
+import MealsListAddBox from 'components/MealsList/MealsListAddBox';
+import MealsListBox from 'components/MealsList';
+import { ScrollContainer } from 'components/styles/ScrollContainer';
+import CartIcon from 'components/common/CartIcon';
+// stores
+import { calTotalNutrient } from 'slices/mealsSlice';
+// types
+import { MealListItem } from 'customType/meal.type';
+// hooks
+import { useAppSelector, useAppDispatch } from 'hooks';
+// styles
 import * as S from './style';
-import * as api from '../../api';
-import CartIcon from '../../components/common/CartIcon';
-import { MealListItem } from '../../customType/meal.type';
-import { ScrollContainer } from '../../components/styles/ScrollContainer';
+// etc
+import * as api from 'api';
 
 function MealsList() {
   const [list, setList] = useState<any[]>([]);

@@ -1,17 +1,23 @@
+// dependencies
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../hooks';
-import {
-  patchActivityAsync,
-  uploadImageFileAsync,
-} from '../../slices/usersInfoSlice';
-import Container from '../../components/styles/Container';
-import Logo from '../../components/common/Logo';
-import Navbar from '../../components/common/Navbar';
-import * as S from './style';
 import { useForm } from 'react-hook-form';
 import { faPlus, faCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useRef } from 'react';
+// components
+import Container from 'components/styles/Container';
+import Logo from 'components/common/Logo';
+import Navbar from 'components/common/Navbar';
+// stores
+import {
+  patchActivityAsync,
+  uploadImageFileAsync,
+} from 'slices/usersInfoSlice';
+
+// hooks
+import { useAppDispatch, useAppSelector } from 'hooks';
+// styles
+import * as S from './style';
 
 interface InputFormData {
   input_name: string;
@@ -63,7 +69,14 @@ function UserProfile() {
           <S.UserInfoHeader>프로필 수정</S.UserInfoHeader>
           <form onSubmit={handleSubmit(submitHandler)}>
             <S.ProfileImageContainer onClick={onClickProfileImage}>
-              <S.UserProfileImage src={profile_image} />
+              <S.UserProfileImage
+                src={
+                  profile_image ===
+                  'http://assets.stickpng.com/images/585e4bf3cb11b227491c339a.png'
+                    ? require('../../assets/default_image.png')
+                    : profile_image
+                }
+              />
               <FontAwesomeIcon
                 icon={faPlus}
                 mask={faCircle}

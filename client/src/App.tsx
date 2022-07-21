@@ -1,8 +1,13 @@
+// dependencies
 import { useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from './hooks';
-import { ROUTES } from './Route';
-import { loggedIn, getUsersInfoAsync } from './slices/usersInfoSlice';
+
+// stores
+import { useAppDispatch } from 'hooks';
+import { getUsersInfoAsync, loggedIn } from 'slices/usersInfoSlice';
+
+// etc
+import { ROUTES } from 'Route';
 
 function App() {
   const dispatch = useAppDispatch();

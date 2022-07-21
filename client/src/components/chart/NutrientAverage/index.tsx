@@ -1,6 +1,9 @@
-import { ChartInfo } from '../../../customType/chart.type';
-import { calculateTDZPercent } from '../../../utils';
+// types
+import { ChartInfo } from 'customType/chart.type';
+// styles
 import * as S from './style';
+// etc
+import { calculateTDZPercent } from 'utils';
 
 interface NutrientAverageProps {
   data: ChartInfo['data'];

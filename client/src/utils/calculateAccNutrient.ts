@@ -1,4 +1,4 @@
-import { MealData } from '../customType/meal.type';
+import { MealData } from 'customType/meal.type';
 
 export function accNutrientCal(acc: MealData, cur: MealData): MealData {
   const kcal = acc.kcal + cur.kcal;

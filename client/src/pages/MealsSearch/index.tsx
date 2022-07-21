@@ -1,17 +1,23 @@
-import * as S from './style';
-import * as api from '../../api';
+// dependencies
 import React, { useState, useRef, useEffect } from 'react';
-import { MealData } from '../../customType/meal.type';
-import Container from '../../components/styles/Container';
-import Navbar from '../../components/common/Navbar';
-import MealsSearchedList from '../../components/MealsSearch/MealsSearchedList';
-import MealsBookMarkList from '../../components/MealsSearch/MealsBookMarkList';
-import { ScrollContainer } from '../../components/styles/ScrollContainer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
-import { useAppSelector } from '../../hooks';
-import CartIcon from '../../components/common/CartIcon';
+// components
+import Container from 'components/styles/Container';
+import Navbar from 'components/common/Navbar';
+import MealsSearchedList from 'components/MealsSearch/MealsSearchedList';
+import MealsBookMarkList from 'components/MealsSearch/MealsBookMarkList';
+import { ScrollContainer } from 'components/styles/ScrollContainer';
+import CartIcon from 'components/common/CartIcon';
+// types
+import { MealData } from 'customType/meal.type';
+// hooks
+import { useAppSelector } from 'hooks';
+// styles
+import * as S from './style';
+// etc
+import * as api from 'api';
 
 enum TAB_NM {
   SEARCH = 'SEARCH',
@@ -42,7 +48,6 @@ function MealsSearch() {
 
   function inputSubmitHandler() {
     api.get(`/api/meal/${inputValue}`).then((res: any) => {
-      console.log(res);
       setSearchedResult(res.data);
     });
   }

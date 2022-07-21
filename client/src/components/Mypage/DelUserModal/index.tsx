@@ -1,9 +1,15 @@
+// dependencies
 import { useNavigate } from 'react-router-dom';
-import * as api from '../../../api';
-import { useAppDispatch } from '../../../hooks';
-import { initDate } from '../../../slices/dateSlice';
-import { logout } from '../../../slices/usersInfoSlice';
+// stores
+import { initDate } from 'slices/dateSlice';
+import { logout } from 'slices/usersInfoSlice';
+// hooks
+import { useAppDispatch } from 'hooks';
+// styles
 import * as S from './style';
+// etc
+import * as api from 'api';
+
 interface DelUserModalProps {
   setOpenDelUserModal: (value: boolean) => void;
 }
@@ -21,7 +27,7 @@ function DelUserModal({ setOpenDelUserModal }: DelUserModalProps) {
       localStorage.clear();
       navigate('/');
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 

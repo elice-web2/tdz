@@ -4,10 +4,8 @@ import {
   buildStyles,
   CircularProgressbarWithChildren,
 } from 'react-circular-progressbar';
-
 // components
 import ProgressProvider from '../ProgressProvider';
-
 // styles
 import * as S from './style';
 

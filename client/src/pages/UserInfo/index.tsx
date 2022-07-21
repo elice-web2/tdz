@@ -1,10 +1,16 @@
+// dependencies
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../hooks';
-import { patchUserInfoAsync } from '../../slices/usersInfoSlice';
-import Container from '../../components/styles/Container';
-import Logo from '../../components/common/Logo';
-import Navbar from '../../components/common/Navbar';
+// components
+import Container from 'components/styles/Container';
+import Logo from 'components/common/Logo';
+import Navbar from 'components/common/Navbar';
+// stores
+import { patchUserInfoAsync } from 'slices/usersInfoSlice';
+
+// hooks
+import { useAppDispatch, useAppSelector } from 'hooks';
+// styles
 import * as S from './style';
 
 function UserInfo() {

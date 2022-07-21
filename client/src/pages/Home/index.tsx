@@ -1,18 +1,23 @@
-import Container from '../../components/styles/Container';
-import DateNavigation from '../../components/common/DateNavigation';
-import Logo from '../../components/common/Logo';
-import Navbar from '../../components/common/Navbar';
-import Progressbar from '../../components/home/Progressbar';
-import DonutProgressbar from '../../components/home/DonutProgressbar';
-import * as S from './style';
-import * as Api from '../../api';
-import { useAppSelector } from '../../hooks';
-import { useEffect, useState } from 'react';
+// dependencies
 import dayjs from 'dayjs';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { calculatePercentage } from '../../utils';
-import ManageWeight from '../../components/home/ManageWeight';
-import { ScrollContainer } from '../../components/styles/ScrollContainer';
+// components
+import Container from 'components/styles/Container';
+import Logo from 'components/common/Logo';
+import DateNavigation from 'components/common/DateNavigation';
+import { ScrollContainer } from 'components/styles/ScrollContainer';
+import DonutProgressbar from 'components/home/DonutProgressbar';
+import Progressbar from 'components/home/Progressbar';
+import ManageWeight from 'components/home/ManageWeight';
+import Navbar from 'components/common/Navbar';
+// hooks
+import { useAppSelector } from 'hooks';
+// styles
+import * as S from './style';
+// etc
+import * as Api from 'api';
+import { calculatePercentage } from 'utils';
 
 interface mealsData {
   kcal: number;

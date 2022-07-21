@@ -1,12 +1,14 @@
+// dependencies
 import { useEffect, useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
-import Container from '../../../components/styles/Container';
-import { useAppDispatch, useAppSelector } from '../../../hooks';
-import {
-  postLoginAsync,
-  getUsersInfoAsync,
-} from '../../../slices/usersInfoSlice';
+// components
+import Container from 'components/styles/Container';
+// stores
+import { getUsersInfoAsync, postLoginAsync } from 'slices/usersInfoSlice';
+// hooks
+import { useAppDispatch, useAppSelector } from 'hooks';
+// styles
 import * as S from '../style';
 
 interface FormData {

@@ -1,5 +1,7 @@
+// dependencies
 import { Line } from 'react-chartjs-2';
-import { ChartInfo } from '../../customType/chart.type';
+// types
+import { ChartInfo } from 'customType/chart.type';
 
 export default function WeightChart({ data, labels }: ChartInfo) {
   const weightData = {

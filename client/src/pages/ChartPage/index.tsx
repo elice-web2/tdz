@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 import { useEffect, useState } from 'react';
 import dayjs from 'dayjs';
-import * as S from './style';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -14,19 +13,21 @@ import {
   Title,
   Tooltip,
 } from 'chart.js';
-
-// components
-import Logo from '../../components/common/Logo';
-import Navbar from '../../components/common/Navbar';
-import Container from '../../components/styles/Container';
-import NutrientDetail from '../../components/chart/NutrientDetail';
-import WeightChart from '../../components/chart/WeightChart';
-import CalorieChart from '../../components/chart/CalorieChart';
-import NutrientAverage from '../../components/chart/NutrientAverage';
-import { ScrollContainer } from '../../components/styles/ScrollContainer';
-import { convertDate, FilterType } from '../../utils';
-import { useAppSelector } from '../../hooks';
 import { useNavigate } from 'react-router-dom';
+// components
+import Logo from 'components/common/Logo';
+import WeightChart from 'components/chart/WeightChart';
+import CalorieChart from 'components/chart/CalorieChart';
+import NutrientAverage from 'components/chart/NutrientAverage';
+import NutrientDetail from 'components/chart/NutrientDetail';
+import Navbar from 'components/common/Navbar';
+// hooks
+import { useAppSelector } from 'hooks';
+import { convertDate, FilterType } from 'utils';
+// styles
+import * as S from './style';
+import { ScrollContainer } from 'components/styles/ScrollContainer';
+import Container from 'components/styles/Container';
 import useFetchChartData from './useFetchChartData';
 
 // ChartJS를 react 에서 쓸 수 있도록 하는 코드

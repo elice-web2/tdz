@@ -1,13 +1,16 @@
+// dependencies
 import dayjs from 'dayjs';
-import * as Api from '../../api';
 import { useCallback, useState } from 'react';
-import { FilterType } from '../../utils';
+// types
+import { ChartInfo } from 'customType/chart.type';
+import { FilterType } from 'utils';
+// etc
+import * as Api from 'api';
 import {
   createLabelDaily,
   createLabelMonthly,
   createLabelWeekly,
 } from './createLabel';
-import { ChartInfo } from '../../customType/chart.type';
 
 const initialData = {
   data: {

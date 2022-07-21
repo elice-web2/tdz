@@ -1,6 +1,8 @@
+// dependencies
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCirclePlus } from '@fortawesome/free-solid-svg-icons';
+// styles
 import * as S from './style';
 
 function MealsListAddBox() {

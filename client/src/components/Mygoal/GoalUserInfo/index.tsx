@@ -1,11 +1,11 @@
-import { useEffect, useRef, useState } from 'react';
+// dependencies
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import * as Api from '../../../api';
+// styles
 import * as S from '../style';
-import { userCalories, userBmi } from '../../../utils';
-import { useAppSelector } from '../../../hooks/useAppSelector';
-import { UsersInfo } from '../../../customType/usersInfo.type';
+// etc
+import { userCalories, userBmi } from 'utils';
 
 function GoalUserInfoForm() {
   // 유효성검사
@@ -29,7 +29,6 @@ function GoalUserInfoForm() {
     usersInfo?.gender ? usersInfo?.gender : 'MALE',
   );
 
-  // console.log(usersInfo);
   const selectHandler = (mode: string) => {
     setMode(mode);
   };

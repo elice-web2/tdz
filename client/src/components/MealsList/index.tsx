@@ -1,3 +1,4 @@
+// dependencies
 import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -7,12 +8,15 @@ import {
   faUtensils,
   faCookieBite,
 } from '@fortawesome/free-solid-svg-icons';
+// components
 import MealsListDeleteModal from './MealsListDeleteModal';
 import CalorieInfo from './CalorieInfo';
 import FoodList from './FoodList';
 import NutrientInfo from './NutrientInfo';
+// types
+import { MealListItem } from 'customType/meal.type';
+// styles
 import * as S from './style';
-import { MealListItem } from '../../customType/meal.type';
 
 interface MealsListProps {
   meal: MealListItem;

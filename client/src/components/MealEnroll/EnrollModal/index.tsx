@@ -1,7 +1,12 @@
-import * as S from './style';
+// dependencies
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch } from '../../../hooks';
-import { addMeals } from '../../../slices/mealsSlice';
+// stores
+import { addMeals } from 'slices/mealsSlice';
+// hooks
+import { useAppDispatch } from 'hooks';
+// styles
+import * as S from './style';
+
 interface ModalType {
   setOpenModal: (value: boolean) => void;
   submitData: any;
@@ -18,9 +23,10 @@ function EnrollModal({ setOpenModal, submitData }: ModalType) {
         }}
       ></S.OutsideModal>
       <S.ModalContainer>
+        <span>X</span>
+        <h2>식품 등록이 완료되었습니다!</h2>
         <S.EnrollBtn
           onClick={() => {
-            console.log('submitData', submitData);
             dispatch(addMeals(submitData));
             navigate('/meals/cart');
           }}

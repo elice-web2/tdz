@@ -1,5 +1,11 @@
 import styled from 'styled-components';
 
+export const Container = styled.div`
+  max-width: 420px;
+  margin: 0 auto;
+  position: relative;
+`;
+
 export const Header = styled.div`
   position: relative;
   display: flex;
@@ -97,11 +103,11 @@ export const BtnContainer = styled.div`
 export const AddBtn = styled.button`
   width: 120px;
   height: 40px;
-
   border: none;
   border-radius: 5px;
-
   background-color: ${({ theme }) => theme.mainColor.darker};
   color: white;
+  font-weight: 500;
   font-size: 14px;
+  cursor: pointer;
 `;

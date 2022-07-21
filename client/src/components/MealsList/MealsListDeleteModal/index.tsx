@@ -1,8 +1,13 @@
-import { useAppDispatch, useAppSelector } from '../../../hooks';
-import { delMealsDataAsync } from '../../../slices/mealsSlice';
+// stores
+import { delMealsDataAsync } from 'slices/mealsSlice';
+// types
+import { MealListItem } from 'customType/meal.type';
+// hooks
+import { useAppDispatch, useAppSelector } from 'hooks';
+// styles
 import * as S from './style';
-import * as api from '../../../api';
-import { MealListItem } from '../../../customType/meal.type';
+// etc
+import * as api from 'api';
 
 interface MealsModalProps {
   setOpenModal: (value: boolean) => void;
@@ -48,7 +53,6 @@ function MealsListDeleteModal({
       saturatedfattySum: totalNutrient.saturatedfatty - meal.saturatedfatty,
       transfatSum: totalNutrient.transfat - meal.transfat,
     };
-    console.log(stampResult);
     try {
       event.preventDefault();
       await dispatch(delMealsDataAsync(meal._id));
@@ -58,7 +62,7 @@ function MealsListDeleteModal({
       );
       setOpenModal(false);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 

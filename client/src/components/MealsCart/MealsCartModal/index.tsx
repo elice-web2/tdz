@@ -1,13 +1,16 @@
-import * as S from './style';
+// dependencies
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { postMealsDataAsync } from '../../../slices/mealsSlice';
-import { useAppDispatch, useAppSelector } from '../../../hooks';
-import {
-  MealsCartModalPropsType,
-  MealData,
-} from '../../../customType/meal.type';
-import * as api from '../../../api';
+// stores
+import { postMealsDataAsync } from 'slices/mealsSlice';
+// types
+import { MealsCartModalPropsType, MealData } from 'customType/meal.type';
+// hooks
+import { useAppDispatch, useAppSelector } from 'hooks';
+// styles
+import * as S from './style';
+// etc
+import * as api from 'api';
 
 type selectedType = '아침' | '점심' | '저녁' | '간식';
 
@@ -26,7 +29,6 @@ function MealsCartModal({ openModal, totalInfo }: MealsCartModalPropsType) {
   const totalNutrient = useAppSelector(({ meal }) => meal.totalNutrient);
   const date = useAppSelector(({ date }) => date.value);
   const usersInfo = useAppSelector(({ usersInfo }) => usersInfo.value);
-  console.log('유저인포', usersInfo);
   const postResultObj = {
     date,
     meals,
@@ -73,11 +75,9 @@ function MealsCartModal({ openModal, totalInfo }: MealsCartModalPropsType) {
     setSelected(time);
   }
 
-  function enrollHandler(postResultObj: PostResultType) {
+  async function enrollHandler(postResultObj: PostResultType) {
     dispatch(postMealsDataAsync(postResultObj));
-    api
-      .post('/api/calendar', stampResultObj)
-      .then((res) => console.log('스탬프res', res));
+    await api.post('/api/calendar', stampResultObj);
     navigate('/meals');
   }
 

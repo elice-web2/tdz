@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import * as api from '../api';
-import { MealData } from '../customType/meal.type';
+import * as api from 'api';
+import { MealData } from 'customType/meal.type';
 
 export interface MealsState {
   value: MealData[];
@@ -45,7 +45,6 @@ async function postMealsData({ meals, category, date }: PostMealsDataParam) {
     date,
   };
   const data = await api.post('/api/mealhistory', mealsData);
-  console.log('잘보냈어', data);
   return data.data;
 }
 
@@ -119,7 +118,7 @@ export const mealsSlice = createSlice({
       .addCase(getMealsDataAsync.fulfilled, (state, action) => {
         state.value = [{ ...state, ...action.payload }];
       })
-      .addCase(delMealsDataAsync.fulfilled, (state, action) => {
+      .addCase(delMealsDataAsync.fulfilled, (state) => {
         state.value = [];
       });
   },

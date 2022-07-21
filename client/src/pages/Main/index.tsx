@@ -1,12 +1,16 @@
+// dependencies
 import { useNavigate } from 'react-router-dom';
-import * as S from './style';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCommentDots } from '@fortawesome/free-solid-svg-icons';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { useEffect } from 'react';
-import { useAppSelector } from '../../hooks';
-import Container from '../../components/styles/Container';
-import { ScrollContainer } from '../../components/styles/ScrollContainer';
+// components
+import Container from 'components/styles/Container';
+import { ScrollContainer } from 'components/styles/ScrollContainer';
+// hooks
+import { useAppSelector } from 'hooks';
+// styles
+import * as S from './style';
 
 function Main() {
   const navigate = useNavigate();

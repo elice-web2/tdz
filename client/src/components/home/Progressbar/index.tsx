@@ -1,4 +1,4 @@
-import { calculatePercentage } from '../../../utils';
+import { calculatePercentage } from 'utils';
 import * as S from './style';
 
 interface ProgressbarProps {

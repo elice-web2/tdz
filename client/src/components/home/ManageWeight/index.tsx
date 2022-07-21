@@ -1,12 +1,17 @@
+// dependencies
 import { faCheck, faPen } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useState } from 'react';
-import { useAppDispatch, useAppSelector } from '../../../hooks';
-import * as S from './style';
-import * as Api from '../../../api';
-import { patchActivityAsync } from '../../../slices/usersInfoSlice';
-import { parseDateFromNow } from '../../../utils';
 import dayjs from 'dayjs';
+// stores
+import { patchActivityAsync } from 'slices/usersInfoSlice';
+// hooks
+import { useAppDispatch, useAppSelector } from 'hooks';
+// styles
+import * as S from './style';
+// etc
+import * as Api from 'api';
+import { parseDateFromNow } from 'utils';
 
 function ManageWeight() {
   const { current_weight, goal_weight, mode, nutrient } = useAppSelector(
