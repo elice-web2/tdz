@@ -11,22 +11,19 @@ export const SearchForm = styled.form`
 export const SearchBox = styled.div`
   position: relative;
   margin: 0 10px;
-
+  font-size: 16px;
+  color: gray;
   .searchIcon {
     position: absolute;
-    top: 8px;
+    top: 6px;
     left: 10px;
-    font-size: 18px;
   }
 
   .XBtn {
     position: absolute;
-    top: 9px;
+    top: 7px;
     right: 13px;
-    background-color: white;
     border: none;
-    font-size: 16px;
-    color: gray;
     cursor: pointer;
   }
 `;
@@ -36,6 +33,8 @@ export const SearchInput = styled.input`
   height: 30px;
   padding-left: 35px;
   border-radius: 20px;
+  border: none;
+  background-color: #e8e8e8;
   font-size: 16px;
 `;
 

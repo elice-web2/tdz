@@ -6,14 +6,14 @@ export const MealsListBox = styled.div`
   justify-content: space-around;
   position: relative;
   width: 70%;
-  height: 150px;
+  height: 135px;
   padding: 10px 30px 10px 80px;
   margin: 20px;
 
-  box-shadow: 2px 2px 6px 0px gray;
-  border-radius: 16px;
-
-  background-color: ${({ theme }) => theme.mainColor.lighter};
+  background: rgba(217, 217, 217, 0.15);
+  border: 0.1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 1px 3px 10px 1px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
 `;
 
 export const MealContainerIconBox = styled.div`

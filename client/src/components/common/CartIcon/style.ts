@@ -12,13 +12,13 @@ export const CartBox = styled.div`
   border: 1px solid lightgray;
   font-size: 25px;
   text-align: center;
-  box-shadow: 1px 1px lightgray;
+  box-shadow: 1px 1px 5px lightgray;
   z-index: 999;
 
   margin-left: 10px;
 
   background-color: rgba(255, 255, 255, 0.8);
-
+  color: #404040;
   cursor: pointer;
 
   span {
@@ -32,9 +32,12 @@ export const Badge = styled.div`
   top: 12px;
   width: 15px;
   height: 15px;
-  background-color: skyblue;
+
   border-radius: 50%;
-  font-size: 10px;
+  background-color: ${({ theme }) => theme.mainColor.normal};
+  color: white;
+
   font-weight: bold;
+  font-size: 10px;
   line-height: 15px;
 `;

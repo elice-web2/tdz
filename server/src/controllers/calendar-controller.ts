@@ -44,7 +44,7 @@ class CalendarController {
       const goalKcal: number = req.body.goalKcal || 0;
       const mode: string = req.body.mode;
       const isSuccess: boolean = req.body.isSuccess || false;
-      const todayWeight: number = req.body.todayWeight;
+      const todayWeight: number = req.body.todayWeight || 0;
       const carbSum: number = req.body.carbSum || 0;
       const proteinSum: number = req.body.proteinSum || 0;
       const fatSum: number = req.body.fatSum || 0;

@@ -69,7 +69,14 @@ function UserProfile() {
           <S.UserInfoHeader>프로필 수정</S.UserInfoHeader>
           <form onSubmit={handleSubmit(submitHandler)}>
             <S.ProfileImageContainer onClick={onClickProfileImage}>
-              <S.UserProfileImage src={profile_image} />
+              <S.UserProfileImage
+                src={
+                  profile_image ===
+                  'http://assets.stickpng.com/images/585e4bf3cb11b227491c339a.png'
+                    ? require('../../assets/default_image.png')
+                    : profile_image
+                }
+              />
               <FontAwesomeIcon
                 icon={faPlus}
                 mask={faCircle}

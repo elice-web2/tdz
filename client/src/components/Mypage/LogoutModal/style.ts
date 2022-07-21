@@ -32,8 +32,8 @@ export const ModalContainer = styled.div`
 export const Title = styled.h1`
   margin-bottom: 15px;
   padding: 30px 10px 10px 10px;
-  font-size: 20px;
-  font-weight: bold;
+  font-size: 15px;
+  font-weight: 500;
   text-align: center;
 `;
 

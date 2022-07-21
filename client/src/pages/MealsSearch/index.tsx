@@ -1,7 +1,7 @@
 // dependencies
 import React, { useState, useRef, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { faMagnifyingGlass, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 // components
 import Container from 'components/styles/Container';
@@ -89,7 +89,7 @@ function MealsSearch() {
               <FontAwesomeIcon icon={faMagnifyingGlass} />
             </span>
             <span className="XBtn" onClick={deleteInputHandler}>
-              X
+              <FontAwesomeIcon icon={faXmark} />
             </span>
             <S.SearchInput
               type="text"
