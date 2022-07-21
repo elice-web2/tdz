@@ -110,12 +110,17 @@ export const SelectBox = styled.div`
   }
 `;
 
+export const AddBtnContainer = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
 export const AddBtn = styled.button<any>`
   position: absolute;
-  bottom: 30px;
-  left: 150px;
+  bottom: 10px;
   width: 120px;
   height: 40px;
+  margin-bottom: 50px;
   background-color: white;
   border: none;
   border-radius: 10px;
