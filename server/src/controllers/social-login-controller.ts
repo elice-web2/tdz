@@ -6,6 +6,7 @@ class SocialLoginController {
   async kakaoLogin(req: Request, res: Response, next: NextFunction) {
     try {
       const kakaoAuthUrl = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${process.env.KAKAO_REST_API_KEY}&redirect_uri=${process.env.KAKAO_REDIRECT_URI}`;
+
       res.redirect(kakaoAuthUrl);
     } catch (err) {
       next(err);
@@ -17,7 +18,8 @@ class SocialLoginController {
       const code: string = req.query.code as string;
       const userData = await socialLoginService.kakaoLoginService(code);
 
-      const { isRegister, email, nickname, access_token } = userData;
+      const { isRegister, email, nickname, profile_image_url, access_token } =
+        userData;
       const password = 'kakao';
 
       // 로그인 정보가 없을 때 회원가입
@@ -28,6 +30,7 @@ class SocialLoginController {
             password,
           },
           nickname,
+          profile_image_url,
         );
       }
 
@@ -44,16 +47,11 @@ class SocialLoginController {
           httpOnly: true,
           signed: true,
         })
-        .status(200)
-        .json(userToken);
+        .redirect('http://localhost:3000/#social=true');
     } catch (err) {
       next(err);
     }
   }
-
-  //  async google (:typparamse) => {
-
-  //  }
 }
 
 const socialLoginController = new SocialLoginController();
