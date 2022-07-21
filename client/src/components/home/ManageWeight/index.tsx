@@ -56,6 +56,8 @@ function ManageWeight() {
       const res = await Api.get(`/api/calendar/${date}`);
       if (res?.data.length) {
         setWeightByDate(res?.data[0].todayWeight);
+      } else {
+        setWeightByDate(0);
       }
     };
     getWeightByDate();
