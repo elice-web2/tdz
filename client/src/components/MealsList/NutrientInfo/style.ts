@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { theme } from 'theme';
 
 export const NutrientInfoBox = styled.div`
   display: flex;
@@ -21,11 +22,11 @@ export const NutrientInfoBox = styled.div`
     margin: 2px 5px;
     background-color: ${({ color }) => {
       if (color === '탄수화물') {
-        return 'pink';
+        return theme.mainColor.carb;
       } else if (color === '단백질') {
-        return '#6ff542';
+        return theme.mainColor.protein;
       } else {
-        return 'yellow';
+        return theme.mainColor.fat;
       }
     }};
     border-radius: 50%;

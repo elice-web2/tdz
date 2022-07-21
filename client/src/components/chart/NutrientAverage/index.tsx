@@ -24,7 +24,7 @@ function NutrientAverage({ data }: NutrientAverageProps) {
       <S.AverageContainer>
         {/* 칼로리 대비 영양소 4,4,9로 백분율 계산해서 기입 필요 */}
         <S.CircleContainer>
-          <S.NutirientCircle bgColor="#5386C1" color="white">
+          <S.NutirientCircle bgColor="#00D287" color="white">
             {proteinPercent}%
           </S.NutirientCircle>
           <S.NutirientCircle bgColor="#FAF461">{fatPercent}%</S.NutirientCircle>
@@ -51,7 +51,7 @@ function NutrientAverage({ data }: NutrientAverageProps) {
           </S.AverageInfo>
           <S.AverageInfo>
             <div>
-              <S.Circle bgColor="#5386C1" />
+              <S.Circle bgColor="#00D287" />
               <span>단백질</span>
             </div>
             <p>

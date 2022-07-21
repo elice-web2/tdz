@@ -5,17 +5,19 @@ export const MypageContainer = styled.div`
   flex-direction: column;
   align-items: center;
   z-index: 1;
-  padding: 50px 0 30px 0;
+  padding: 20% 0;
 `;
 
-export const MypageItemBox = styled.div`
+export const MypageItemBox = styled.div<{ myPage?: string }>`
   width: 75%;
   height: 180px;
   padding: 20px 24px;
   margin-bottom: 50px;
-  box-shadow: 2px 2px 6px 0px gray;
-  border-radius: 16px;
-  background-color: ${({ theme }) => theme.mainColor.lighter};
+
+  background: rgba(217, 217, 217, 0.15);
+  border: 0.1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 1px 3px 8px rgb(192, 207, 255, 1);
+  border-radius: 20px;
 `;
 
 export const ButtonContainer = styled.div`
@@ -143,7 +145,7 @@ export const DropDownMenu = styled.div`
   border-radius: 12px;
   box-shadow: 0px 0px 10px 3px rgba(190, 190, 190, 0.6);
   z-index: 99;
-  background-color: rgba(255, 255, 225, 0.95);
+  background-color: rgba(255, 255, 255, 0.95);
   div {
     cursor: pointer;
     text-align: center;

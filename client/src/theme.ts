@@ -5,6 +5,9 @@ export const theme: DefaultTheme = {
     normal: '#8c9eff',
     lighter: '#c0cfff',
     darker: '#0029FF',
+    carb: '#FAA0A0',
+    protein: '#00D287',
+    fat: '#FAF461',
   },
 
   flexbox: (direction = 'row', align = 'center', justify = 'center') => `
