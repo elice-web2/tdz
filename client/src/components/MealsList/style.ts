@@ -29,6 +29,7 @@ export const MealContainerIconBox = styled.div`
   height: 30px;
 
   border-radius: 5px;
+  box-shadow: 1px 3px 10px 1px rgba(0, 0, 0, 0.25);
   background-color: ${(props) => {
     if (props.color === '아침') return '#FFCA63';
     else if (props.color === '점심') return '#60DA5D';
@@ -49,6 +50,8 @@ export const NutrientContainer = styled.div`
 `;
 
 export const NutrientInfoLine = styled.div`
+  position: relative;
+  right: 5px;
   border-right: thin solid;
   height: 50px;
 `;

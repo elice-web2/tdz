@@ -45,7 +45,7 @@ async function postMealsData({ meals, category, date }: PostMealsDataParam) {
     date,
   };
   const data = await api.post('/api/mealhistory', mealsData);
-  return data.data;
+  return data?.data;
 }
 
 export const postMealsDataAsync = createAsyncThunk(
