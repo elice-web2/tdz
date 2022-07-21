@@ -12,7 +12,7 @@ export const NavContainer = styled.div`
   /* border-top: 0.7px solid ${({ theme }) => theme.mainColor.darker}; */
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
-  box-shadow: 0 -20px 30px -15px ${({ theme }) => theme.mainColor.normal};
+  box-shadow: 0 -10px 30px -15px ${({ theme }) => theme.mainColor.normal};
 `;
 
 export const MenuBox = styled.div<{ isSelected: boolean }>`
