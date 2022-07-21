@@ -22,23 +22,26 @@ export const CalorieContainer = styled.div`
 `;
 
 export const NutrientContainer = styled.div`
-  height: 200px;
   margin: 0 20px;
+  margin-bottom: 15px;
+  padding: 10px;
 
   border-radius: 10px;
-  background-color: ${({ theme }) => theme.mainColor.lighter};
+  background-color: white;
+  box-shadow: 2px 2px 12px ${({ theme }) => theme.mainColor.lighter};
 `;
 
 export const ButtonContainer = styled.div`
   ${({ theme }) => theme.flexbox()}
 
   padding: 20px 0;
+  margin-bottom: 20px;
 
   button {
     height: 50px;
     padding: 10px 20px;
 
-    background-color: ${({ theme }) => theme.mainColor.normal};
+    background-color: ${({ theme }) => theme.mainColor.darker};
     border: none;
     border-radius: 10px;
 

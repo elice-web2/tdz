@@ -12,6 +12,7 @@ import * as S from './style';
 import * as api from '../../api';
 import CartIcon from '../../components/common/CartIcon';
 import { MealListItem } from '../../customType/meal.type';
+import { ScrollContainer } from '../../components/styles/ScrollContainer';
 
 function MealsList() {
   const [list, setList] = useState<any[]>([]);
@@ -92,12 +93,16 @@ function MealsList() {
     <Container>
       <Logo />
       <DateNavigation />
-      <S.MealsListContainerBox>
-        {list.map((meal: any) => {
-          return <MealsListBox setList={setList} key={meal._id} meal={meal} />;
-        })}
-      </S.MealsListContainerBox>
-      <MealsListAddBox />
+      <ScrollContainer minusHeight={180}>
+        <S.MealsListContainerBox>
+          {list.map((meal: any) => {
+            return (
+              <MealsListBox setList={setList} key={meal._id} meal={meal} />
+            );
+          })}
+        </S.MealsListContainerBox>
+        <MealsListAddBox />
+      </ScrollContainer>
       <CartIcon />
       <Navbar />
     </Container>

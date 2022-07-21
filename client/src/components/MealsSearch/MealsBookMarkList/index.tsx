@@ -9,24 +9,22 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight, faPlus } from '@fortawesome/free-solid-svg-icons';
 
 function MealsBookMarkList() {
-  const [result, setResult] = useState<MealData[]>();
+  const [result, setResult] = useState<MealData[]>([]);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const mealStore = useAppSelector(({ meal }) => meal.value);
 
   useEffect(() => {
-    (async () => {
-      api.get('/api/favorites').then((res: any) => {
-        setResult(res.data);
-      });
-    })();
-  }, []);
-
-  useEffect(() => {
     api.get('/api/favorites').then((res: any) => {
-      setResult(res.data);
+      const temp: MealData[] = [];
+      res.data.forEach((data: any) => {
+        if (data.meal_id) {
+          temp.push(data.meal_id);
+        }
+      });
+      setResult(temp);
     });
-  }, [result]);
+  }, []);
 
   //장바구니 담을땐 중복필터링
   function addToCart(food: MealData) {
@@ -45,27 +43,28 @@ function MealsBookMarkList() {
 
   function deleteBookMark(id: string) {
     api.delete(`/api/favorites/${id}`).then((res) => console.log(res));
+    setResult((results) => results.filter((result) => result._id !== id));
   }
 
   return (
     <S.SearchListContainer>
       {result &&
-        result.map((food: any) => {
+        result.map((food: MealData) => {
           return (
-            <S.List key={food.meal_id._id}>
+            <S.List key={food._id}>
               <S.NamedInfo>
                 <div
                   className="title"
                   onClick={() => {
-                    navigate(`/meals/detail/${food.meal_id.name}`);
+                    navigate(`/meals/detail/${food.name}`);
                   }}
                 >
-                  {food.meal_id.name}
+                  {food.name}
                 </div>
                 <span
                   className="arrowIcon"
                   onClick={() => {
-                    navigate(`/meals/detail/${food.meal_id.name}`);
+                    navigate(`/meals/detail/${food.name}`);
                   }}
                 >
                   <FontAwesomeIcon icon={faArrowRight} />
@@ -73,14 +72,14 @@ function MealsBookMarkList() {
                 <span
                   className="plusIcon"
                   onClick={() => {
-                    addToCart(food.meal_id);
+                    addToCart(food);
                   }}
                 >
                   <FontAwesomeIcon icon={faPlus} />
                 </span>
                 <span
                   className="starIcon"
-                  onClick={() => deleteBookMark(food.meal_id._id)}
+                  onClick={() => deleteBookMark(food._id)}
                 >
                   <img src={require('../../../assets/YellowStar.png')}></img>
                 </span>

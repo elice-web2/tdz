@@ -1,16 +1,5 @@
 import styled from 'styled-components';
 
-export const VideoContainer = styled.div`
-  position: absolute;
-  top: 0;
-  max-width: 420px;
-`;
-
-export const Video = styled.video`
-  width: 100%;
-  z-index: -100;
-`;
-
 export const LogoText = styled.div`
   position: relative;
   margin-bottom: 80px;
