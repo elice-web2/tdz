@@ -20,7 +20,8 @@ function LogoutModal({ setOpenLogoutModal }: LogoutModalProps) {
     try {
       event.preventDefault();
       localStorage.removeItem('login');
-      localStorage.removeItem('userInfo');
+      localStorage.removeItem('usersInfo');
+      localStorage.removeItem('usersInfoStorage');
       dispatch(initDate());
       dispatch(getLogOutAsync());
       setOpenLogoutModal(false);
