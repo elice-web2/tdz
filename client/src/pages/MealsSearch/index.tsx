@@ -13,15 +13,21 @@ import { useNavigate } from 'react-router-dom';
 import { useAppSelector } from '../../hooks';
 import CartIcon from '../../components/common/CartIcon';
 
+enum TAB_NM {
+  SEARCH = 'SEARCH',
+  MY_FAVORITE = 'MY_FAVORITE',
+}
+
 function MealsSearch() {
   const navigate = useNavigate();
   const { isLogin, is_login_first } = useAppSelector(
     ({ usersInfo }) => usersInfo.value,
   );
-  const [isSearch, setIsSearch] = useState(true);
   const [inputValue, setInputValue] = useState('');
   const [searchedResult, setSearchedResult] = useState<MealData[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
+  const queryStrings = new URLSearchParams(window.location.search);
+  const qsTabNm = queryStrings.get('tabNm');
 
   function deleteInputHandler() {
     setInputValue('');
@@ -34,10 +40,6 @@ function MealsSearch() {
     setInputValue(e.target.value);
   }
 
-  function focusHandler() {
-    setIsSearch(true);
-  }
-
   function inputSubmitHandler() {
     api.get(`/api/meal/${inputValue}`).then((res: any) => {
       console.log(res);
@@ -46,13 +48,14 @@ function MealsSearch() {
   }
 
   function moveSearchTab() {
-    setIsSearch(true);
+    navigate(`/meals/search?tabNm=${TAB_NM.SEARCH}`);
     inputRef.current && inputRef.current.focus();
   }
 
   function moveBookMarkTab() {
-    setIsSearch(false);
+    navigate(`/meals/search?tabNm=${TAB_NM.MY_FAVORITE}`);
   }
+
   useEffect(() => {
     if (!inputValue) {
       setSearchedResult([]);
@@ -88,26 +91,34 @@ function MealsSearch() {
               value={inputValue}
               ref={inputRef}
               onChange={onChangeInputHandler}
-              onFocus={focusHandler}
+              onFocus={() => {
+                navigate(`/meals/search?tabNm=${TAB_NM.SEARCH}`);
+              }}
             ></S.SearchInput>
           </S.SearchBox>
           <S.SearchBtn type="submit">검색</S.SearchBtn>
         </S.SearchForm>
         <S.ButtonContainer>
-          <S.SearchTabBtn isSearch={isSearch} onClick={moveSearchTab}>
+          <S.SearchTabBtn
+            isSearch={qsTabNm === TAB_NM.MY_FAVORITE}
+            onClick={moveSearchTab}
+          >
             검색
           </S.SearchTabBtn>
-          <S.BookMarkTabBtn isSearch={isSearch} onClick={moveBookMarkTab}>
+          <S.BookMarkTabBtn
+            isSearch={qsTabNm === TAB_NM.MY_FAVORITE}
+            onClick={moveBookMarkTab}
+          >
             즐겨찾기
           </S.BookMarkTabBtn>
         </S.ButtonContainer>
-        {isSearch ? (
+        {qsTabNm === TAB_NM.MY_FAVORITE ? (
+          <MealsBookMarkList></MealsBookMarkList>
+        ) : (
           <MealsSearchedList
             inputValue={inputValue}
             result={searchedResult}
           ></MealsSearchedList>
-        ) : (
-          <MealsBookMarkList></MealsBookMarkList>
         )}
       </ScrollContainer>
       <CartIcon />
