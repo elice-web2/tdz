@@ -38,21 +38,20 @@ function UserInfo() {
   };
 
   useEffect(() => {
-    if (isLogin && is_login_first) {
+    if (isLogin && is_login_first === 'true') {
       navigate('/mypage/goal_step1');
     } else if (!isLogin) {
       navigate('/');
     }
-  }, []);
+  }, [is_login_first, isLogin]);
 
   return (
     <Container>
       <Logo />
       <S.MypageContainer>
         <S.UserInfoContainer>
-          <S.UserInfoHeader>유저 정보 변경</S.UserInfoHeader>
-          <form method="post" onSubmit={submitHandler}>
-            <S.UserProfileImage src="https://images.freeimages.com/images/large-previews/4f3/salad-1-1323575.jpg" />
+          <S.UserInfoHeader>유저 정보 수정</S.UserInfoHeader>
+          <form onSubmit={submitHandler}>
             <S.UserInfoInputLabel>아이디</S.UserInfoInputLabel>
             <S.UserInfoNameInputBox
               type="email"

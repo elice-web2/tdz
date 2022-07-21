@@ -81,19 +81,19 @@ class CalendarController {
         // 도장 수정
         const calendarId: string = stamp[0]._id;
         const toUpdate = {
-          ...(currentKcal && { currentKcal }),
+          currentKcal: currentKcal || 0,
           ...(goalKcal && { goalKcal }),
           ...(mode && { mode }),
-          ...(isSuccess && { isSuccess }),
+          isSuccess: isSuccess || false,
           ...(todayWeight && { todayWeight }),
-          ...(carbSum && { carbSum }),
-          ...(proteinSum && { proteinSum }),
-          ...(fatSum && { fatSum }),
-          ...(sugarsSum && { sugarsSum }),
-          ...(natriumSum && { natriumSum }),
-          ...(cholesterolSum && { cholesterolSum }),
-          ...(saturatedfattySum && { saturatedfattySum }),
-          ...(transfatSum && { transfatSum }),
+          carbSum: carbSum || 0,
+          proteinSum: proteinSum || 0,
+          fatSum: fatSum || 0,
+          sugarsSum: sugarsSum || 0,
+          natriumSum: natriumSum || 0,
+          cholesterolSum: cholesterolSum || 0,
+          saturatedfattySum: saturatedfattySum || 0,
+          transfatSum: transfatSum || 0,
         };
 
         const updatedStamp: CalendarData =

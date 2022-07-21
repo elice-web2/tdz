@@ -1,5 +1,5 @@
 import * as S from './style';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { postMealsDataAsync } from '../../../slices/mealsSlice';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
@@ -7,9 +7,9 @@ import {
   MealsCartModalPropsType,
   MealData,
 } from '../../../customType/meal.type';
-import dayjs from 'dayjs';
+import * as api from '../../../api';
 
-type selectedType = '아침' | '점심' | '저녁' | '간식' | '';
+type selectedType = '아침' | '점심' | '저녁' | '간식';
 
 interface PostResultType {
   date: string;
@@ -17,17 +17,53 @@ interface PostResultType {
   meals: MealData[];
 }
 
-function MealsCartModal({ openModal }: MealsCartModalPropsType) {
-  const [selected, setSelected] = useState<selectedType>('');
+function MealsCartModal({ openModal, totalInfo }: MealsCartModalPropsType) {
+  const [stampResultObj, setStampResultObj] = useState<any>();
+  const [selected, setSelected] = useState<selectedType>('아침');
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const meals = useAppSelector(({ meal }) => meal.value);
+  const totalNutrient = useAppSelector(({ meal }) => meal.totalNutrient);
+  const date = useAppSelector(({ date }) => date.value);
+  const usersInfo = useAppSelector(({ usersInfo }) => usersInfo.value);
+  console.log('유저인포', usersInfo);
   const postResultObj = {
-    date: dayjs().format('YYYY-MM-DD'),
+    date,
     meals,
     category: selected,
   };
-  console.log('보낼내용', postResultObj);
+
+  function isSuccessGoal(cur: number, goal: number, mode: string) {
+    if (mode === 'DEC') {
+      return cur > 0 && cur <= goal ? true : false;
+    } else if (mode === 'INC') {
+      return cur >= goal ? true : false;
+    }
+  }
+
+  useEffect(() => {
+    const stampResult = {
+      date: date,
+      currentKcal: totalNutrient.kcal + totalInfo.kcal,
+      goalKcal: usersInfo.nutrient.kcal,
+      mode: usersInfo.mode,
+      isSuccess: isSuccessGoal(
+        totalNutrient.kcal + totalInfo.kcal,
+        usersInfo.nutrient.kcal,
+        usersInfo.mode,
+      ),
+      carbSum: totalNutrient.carb + totalInfo.carb,
+      proteinSum: totalNutrient.protein + totalInfo.protein,
+      fatSum: totalNutrient.fat + totalInfo.fat,
+      sugarsSum: totalNutrient.sugars + totalInfo.sugars,
+      natriumSum: totalNutrient.natrium + totalInfo.natrium,
+      cholesterolSum: totalNutrient.cholesterol + totalInfo.cholesterol,
+      saturatedfattySum:
+        totalNutrient.saturatedfatty + totalInfo.saturatedfatty,
+      transfatSum: totalNutrient.transfat + totalInfo.transfat,
+    };
+    setStampResultObj(stampResult);
+  }, [date, totalNutrient, usersInfo.mode]);
 
   function modalCloseHandler() {
     openModal(false);
@@ -39,6 +75,9 @@ function MealsCartModal({ openModal }: MealsCartModalPropsType) {
 
   function enrollHandler(postResultObj: PostResultType) {
     dispatch(postMealsDataAsync(postResultObj));
+    api
+      .post('/api/calendar', stampResultObj)
+      .then((res) => console.log('스탬프res', res));
     navigate('/meals');
   }
 

@@ -30,7 +30,7 @@ const MealSchema = new Schema(
       type: Number,
       required: true,
     },
-    natruim: {
+    natrium: {
       type: Number,
       required: true,
     },

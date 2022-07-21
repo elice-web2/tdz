@@ -52,7 +52,10 @@ export const NutrientBox = styled.div`
   }
 `;
 
-export const NutrientInputElement = styled.div`
+interface CheckProps {
+  changeColor?: boolean;
+}
+export const NutrientInputElement = styled.div<CheckProps>`
   display: flex;
   align-items: center;
   position: relative;
@@ -76,6 +79,13 @@ export const NutrientInputElement = styled.div`
     -webkit-appearance: none;
     margin: 0;
   }
+
+  span {
+    position: absolute;
+    bottom: 5px;
+    right: 35px;
+    color: ${(props) => (props.changeColor ? 'black' : 'lightgray')};
+  }
 `;
 
 export const BtnContainer = styled.div`
@@ -91,10 +101,4 @@ export const AddBtn = styled.button`
   background-color: ${({ theme }) => theme.mainColor.normal};
   font-weight: bold;
   font-size: 14px;
-`;
-
-export const BorderLine = styled.div`
-  box-sizing: border-box;
-  width: 100%;
-  border-bottom: 5px solid #eeeeee;
 `;

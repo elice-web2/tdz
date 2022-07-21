@@ -25,7 +25,7 @@ interface UsersInfo {
   nickname: string;
   comment: string;
   // 유저 정보를 작성한 회원 여부
-  is_login_first: boolean;
+  is_login_first: string;
   // 로그인 여부
   isLogin: boolean;
 }
@@ -59,7 +59,7 @@ interface patchActivityParam {
     fat: number;
   };
   nickname?: string;
-  is_login_first?: boolean;
+  is_login_first?: string;
 }
 // 수정할 유저 정보 데이터 타입지정
 interface patchUserParam {
@@ -90,7 +90,7 @@ const initialState: UsersInfoState = {
     profile_image: '',
     nickname: '',
     comment: '',
-    is_login_first: false,
+    is_login_first: 'false',
     isLogin: Boolean(localStorage.getItem('login')),
   },
 };
@@ -128,19 +128,31 @@ async function patchActivityData(activityInfo: patchActivityParam) {
   const resp = await api.patch('/api/users/activity', activityInfo);
   return resp.data;
 }
+async function uploadImageFile(formData: FormData) {
+  const resp = await api.uploadFile('/api/users/profile', formData);
+  return resp.data;
+}
 
 // 비동기로 데이터를 불러와 액션을 생성하고 싶을 경우 예시
 export const postSignUpAsync = createAsyncThunk(
   'usersInfo/postSignupData',
   async (usersInfo: postLoginSignup) => {
-    return await postSignupData(usersInfo);
+    try {
+      return await postSignupData(usersInfo);
+    } catch (err: any) {
+      throw new Error(err.response.data.reason);
+    }
   },
 );
 //
 export const postLoginAsync = createAsyncThunk(
   'usersInfo/postLoginData',
   async (loginInfo: postLoginSignup) => {
-    await postLoginData(loginInfo);
+    try {
+      await postLoginData(loginInfo);
+    } catch (err: any) {
+      throw new Error(err.response.data.reason);
+    }
   },
 );
 export const delUserAsync = createAsyncThunk(
@@ -176,6 +188,13 @@ export const patchActivityAsync = createAsyncThunk(
   'usersInfo/patchActivityData',
   async (activityInfo: patchActivityParam) => {
     const data = await patchActivityData(activityInfo);
+    return data;
+  },
+);
+export const uploadImageFileAsync = createAsyncThunk(
+  'usersInfo/uploadImageFile',
+  async (formData: FormData) => {
+    const data = await uploadImageFile(formData);
     return data;
   },
 );
@@ -220,7 +239,7 @@ export const UsersInfoSlice = createSlice({
       .addCase(patchActivityAsync.pending, (state) => {
         state.value = {
           ...state.value,
-          is_login_first: false,
+          is_login_first: 'false',
         };
       })
       .addCase(patchActivityAsync.fulfilled, (state, action) => {
@@ -228,6 +247,12 @@ export const UsersInfoSlice = createSlice({
           ...state.value,
           ...action.payload,
           is_login_first: false,
+        };
+      })
+      .addCase(uploadImageFileAsync.fulfilled, (state, action) => {
+        state.value = {
+          ...state.value,
+          ...action.payload,
         };
       });
   },

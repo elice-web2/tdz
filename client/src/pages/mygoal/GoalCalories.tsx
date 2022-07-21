@@ -19,10 +19,9 @@ function GoalCalories() {
   return (
     <Container>
       <Logo />
-      <ScrollContainer minusHeight={120}>
+      <ScrollContainer minusHeight={60}>
         <GoalCaloriesForm />
       </ScrollContainer>
-      <Navbar />
     </Container>
   );
 }
