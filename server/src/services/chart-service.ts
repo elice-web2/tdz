@@ -67,25 +67,17 @@ class ChartService {
         dailyData.carbAvg[day] = data[count].carbSum;
         dailyData.proteinAvg[day] = data[count].proteinSum;
         dailyData.fatAvg[day] = data[count].fatSum;
-        dailyData.kcalSum =
-          Number(data[count].currentKcal) + Number(dailyData.kcalSum);
-        dailyData.carbSum =
-          Number(data[count].carbSum) + Number(dailyData.carbSum);
-        dailyData.proteinSum =
-          Number(data[count].proteinSum) + Number(dailyData.proteinSum);
-        dailyData.fatSum =
-          Number(data[count].fatSum) + Number(dailyData.fatSum);
-        dailyData.sugarsSum =
-          Number(data[count].sugarsSum) + Number(dailyData.sugarsSum);
-        dailyData.natriumSum =
-          Number(data[count].natriumSum) + Number(dailyData.natriumSum);
+        dailyData.kcalSum = data[count].currentKcal + dailyData.kcalSum;
+        dailyData.carbSum = data[count].carbSum + dailyData.carbSum;
+        dailyData.proteinSum = data[count].proteinSum + dailyData.proteinSum;
+        dailyData.fatSum = data[count].fatSum + dailyData.fatSum;
+        dailyData.sugarsSum = data[count].sugarsSum + dailyData.sugarsSum;
+        dailyData.natriumSum = data[count].natriumSum + dailyData.natriumSum;
         dailyData.cholesterolSum =
-          Number(data[count].cholesterolSum) + Number(dailyData.cholesterolSum);
+          data[count].cholesterolSum + dailyData.cholesterolSum;
         dailyData.saturatedfattySum =
-          Number(data[count].saturatedfattySum) +
-          Number(dailyData.saturatedfattySum);
-        dailyData.transfatSum =
-          Number(data[count].transfatSum) + Number(dailyData.transfatSum);
+          data[count].saturatedfattySum + dailyData.saturatedfattySum;
+        dailyData.transfatSum = data[count].transfatSum + dailyData.transfatSum;
         count++;
       }
       if (count >= data.length) break;
@@ -158,32 +150,26 @@ class ChartService {
           chartSlotList[week * 7 + day] ===
           data[count].date.toISOString().slice(0, 10)
         ) {
-          weight = Number(weight) + Number(data[count].todayWeight);
-          kcal = Number(kcal) + Number(data[count].currentKcal);
-          carb = Number(carb) + Number(data[count].carbSum);
-          protein = Number(protein) + Number(data[count].proteinSum);
-          fat = Number(fat) + Number(data[count].fatSum);
+          weight = weight + data[count].todayWeight;
+          kcal = kcal + data[count].currentKcal;
+          carb = carb + data[count].carbSum;
+          protein = protein + data[count].proteinSum;
+          fat = fat + data[count].fatSum;
 
-          weeklyData.kcalSum =
-            Number(data[count].currentKcal) + Number(weeklyData.kcalSum);
-          weeklyData.carbSum =
-            Number(data[count].carbSum) + Number(weeklyData.carbSum);
+          weeklyData.kcalSum = data[count].currentKcal + weeklyData.kcalSum;
+          weeklyData.carbSum = data[count].carbSum + weeklyData.carbSum;
           weeklyData.proteinSum =
-            Number(data[count].proteinSum) + Number(weeklyData.proteinSum);
-          weeklyData.fatSum =
-            Number(data[count].fatSum) + Number(weeklyData.fatSum);
-          weeklyData.sugarsSum =
-            Number(data[count].sugarsSum) + Number(weeklyData.sugarsSum);
+            data[count].proteinSum + weeklyData.proteinSum;
+          weeklyData.fatSum = data[count].fatSum + weeklyData.fatSum;
+          weeklyData.sugarsSum = data[count].sugarsSum + weeklyData.sugarsSum;
           weeklyData.natriumSum =
-            Number(data[count].natriumSum) + Number(weeklyData.natriumSum);
+            data[count].natriumSum + weeklyData.natriumSum;
           weeklyData.cholesterolSum =
-            Number(data[count].cholesterolSum) +
-            Number(weeklyData.cholesterolSum);
+            data[count].cholesterolSum + weeklyData.cholesterolSum;
           weeklyData.saturatedfattySum =
-            Number(data[count].saturatedfattySum) +
-            Number(weeklyData.saturatedfattySum);
+            data[count].saturatedfattySum + weeklyData.saturatedfattySum;
           weeklyData.transfatSum =
-            Number(data[count].transfatSum) + Number(weeklyData.transfatSum);
+            data[count].transfatSum + weeklyData.transfatSum;
           count++;
           checked++;
         }
@@ -281,32 +267,26 @@ class ChartService {
           chartSlotList[totalDays[month - 1] + day] ===
           data[count].date.toISOString().slice(0, 10)
         ) {
-          weight = Number(weight) + Number(data[count].todayWeight);
-          kcal = Number(kcal) + Number(data[count].currentKcal);
-          carb = Number(carb) + Number(data[count].carbSum);
-          protein = Number(protein) + Number(data[count].proteinSum);
-          fat = Number(fat) + Number(data[count].fatSum);
+          weight = weight + data[count].todayWeight;
+          kcal = kcal + data[count].currentKcal;
+          carb = carb + data[count].carbSum;
+          protein = protein + data[count].proteinSum;
+          fat = fat + data[count].fatSum;
 
-          monthlyData.kcalSum =
-            Number(data[count].currentKcal) + Number(monthlyData.kcalSum);
-          monthlyData.carbSum =
-            Number(data[count].carbSum) + Number(monthlyData.carbSum);
+          monthlyData.kcalSum = data[count].currentKcal + monthlyData.kcalSum;
+          monthlyData.carbSum = data[count].carbSum + monthlyData.carbSum;
           monthlyData.proteinSum =
-            Number(data[count].proteinSum) + Number(monthlyData.proteinSum);
-          monthlyData.fatSum =
-            Number(data[count].fatSum) + Number(monthlyData.fatSum);
-          monthlyData.sugarsSum =
-            Number(data[count].sugarsSum) + Number(monthlyData.sugarsSum);
+            data[count].proteinSum + monthlyData.proteinSum;
+          monthlyData.fatSum = data[count].fatSum + monthlyData.fatSum;
+          monthlyData.sugarsSum = data[count].sugarsSum + monthlyData.sugarsSum;
           monthlyData.natriumSum =
-            Number(data[count].natriumSum) + Number(monthlyData.natriumSum);
+            data[count].natriumSum + monthlyData.natriumSum;
           monthlyData.cholesterolSum =
-            Number(data[count].cholesterolSum) +
-            Number(monthlyData.cholesterolSum);
+            data[count].cholesterolSum + monthlyData.cholesterolSum;
           monthlyData.saturatedfattySum =
-            Number(data[count].saturatedfattySum) +
-            Number(monthlyData.saturatedfattySum);
+            data[count].saturatedfattySum + monthlyData.saturatedfattySum;
           monthlyData.transfatSum =
-            Number(data[count].transfatSum) + Number(monthlyData.transfatSum);
+            data[count].transfatSum + monthlyData.transfatSum;
           count++;
           checked++;
         }

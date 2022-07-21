@@ -66,11 +66,16 @@ class CalendarService {
   }
 
   async deleteAllCalendarStamp(userId: string): Promise<{ result: string }> {
+<<<<<<< HEAD
+    // const { deletedCount } = await this.calendarModel.delete(userId);
+    // 삭제에 실패한 경우, 에러 메시지 반제
+=======
     const { deletedCount } = await this.calendarModel.delete(userId);
     // 삭제에 실패한 경우, 에러 메시지 반환
     // if (deletedCount === 0) {
     //   throw new Error('삭제할 도장 데이터가 존재하지 않습니다');
     // }
+>>>>>>> origin/dev
 
     return { result: 'success' };
   }
