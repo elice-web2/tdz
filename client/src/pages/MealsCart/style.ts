@@ -8,7 +8,7 @@ export const Container = styled.div`
 `;
 
 export const NutrientInfoContainer = styled.div`
-  width: 420px;
+  width: 100%;
   height: 240px;
   margin-bottom: 30px;
   border-bottom-left-radius: 30px;
