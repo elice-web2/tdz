@@ -2,22 +2,21 @@ import { useAppDispatch, useAppSelector } from '../../../hooks';
 import { delMealsDataAsync } from '../../../slices/mealsSlice';
 import * as S from './style';
 import * as api from '../../../api';
+import { MealListItem } from '../../../customType/meal.type';
 
 interface MealsModalProps {
   setOpenModal: (value: boolean) => void;
   setList: React.Dispatch<React.SetStateAction<any[]>>;
-  _id: string;
-  calorie: number;
+  meal: MealListItem;
 }
 
 function MealsListDeleteModal({
   setOpenModal,
-  _id,
-  calorie,
   setList,
+  meal,
 }: MealsModalProps) {
   const date = useAppSelector(({ date }) => date.value);
-  const totalKcal = useAppSelector(({ meal }) => meal.totalKcal);
+  const totalNutrient = useAppSelector(({ meal }) => meal.totalNutrient);
   const usersInfo = useAppSelector(({ usersInfo }) => usersInfo.value);
 
   function isSuccessGoal(cur: number, goal: number, mode: string) {
@@ -29,25 +28,34 @@ function MealsListDeleteModal({
   }
 
   const dispatch = useAppDispatch();
-  const deleteMeal = (event: any) => {
+  const deleteMeal = async (event: any) => {
     const stampResult = {
       date: date,
-      currentKcal: totalKcal - calorie,
+      currentKcal: totalNutrient.kcal - meal.kcal,
       goalKcal: usersInfo.nutrient.kcal,
       mode: usersInfo.mode,
       isSuccess: isSuccessGoal(
-        totalKcal - calorie,
+        totalNutrient.kcal - meal.kcal,
         usersInfo.nutrient.kcal,
         usersInfo.mode,
       ),
+      carbSum: totalNutrient.carb - meal.carb,
+      proteinSum: totalNutrient.protein - meal.protein,
+      fatSum: totalNutrient.fat - meal.fat,
+      sugarsSum: totalNutrient.sugars - meal.sugars,
+      natriumSum: totalNutrient.natrium - meal.natrium,
+      cholesterolSum: totalNutrient.cholesterol - meal.cholesterol,
+      saturatedfattySum: totalNutrient.saturatedfatty - meal.saturatedfatty,
+      transfatSum: totalNutrient.transfat - meal.transfat,
     };
+    console.log(stampResult);
     try {
       event.preventDefault();
-      dispatch(delMealsDataAsync(_id));
-      api
-        .post('/api/calendar', stampResult)
-        .then((res) => console.log('스탬프res', res));
-      setList((lists: any) => lists.filter((list: any) => list._id !== _id));
+      await dispatch(delMealsDataAsync(meal._id));
+      await api.post('/api/calendar', stampResult);
+      setList((lists: any) =>
+        lists.filter((list: any) => list._id !== meal._id),
+      );
       setOpenModal(false);
     } catch (error) {
       console.log(error);

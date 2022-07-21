@@ -56,7 +56,7 @@ function Home() {
   };
 
   const onClickAddMealButton = () => {
-    navigate('/meals/search');
+    navigate('/meals');
   };
 
   useEffect(() => {

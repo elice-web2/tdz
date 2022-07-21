@@ -12,24 +12,14 @@ import CalorieInfo from './CalorieInfo';
 import FoodList from './FoodList';
 import NutrientInfo from './NutrientInfo';
 import * as S from './style';
+import { MealListItem } from '../../customType/meal.type';
 
 interface MealsListProps {
-  time: string;
-  calorie: number;
-  foods: string[];
-  nutrientGram: number[];
-  _id: string;
+  meal: MealListItem;
   setList: React.Dispatch<React.SetStateAction<any[]>>;
 }
 
-function MealsListBox({
-  time,
-  calorie,
-  foods,
-  nutrientGram,
-  _id,
-  setList,
-}: MealsListProps) {
+function MealsListBox({ meal, setList }: MealsListProps) {
   const [openModal, setOpenModal] = useState<boolean>(false);
 
   const clickHandler = () => {
@@ -60,29 +50,28 @@ function MealsListBox({
       {openModal && (
         <MealsListDeleteModal
           setList={setList}
-          _id={_id}
+          meal={meal}
           setOpenModal={setOpenModal}
-          calorie={calorie}
         />
       )}
       <S.MealsListBox>
         <S.MealContainerIconBox color={time}>
           <FontAwesomeIcon
-            icon={Time(time)}
+            icon={Time(meal.category)}
             className="Breakfast"
             color="white"
           />
-          <p>{time}</p>
+          <p>{meal.category}</p>
         </S.MealContainerIconBox>
         <DeleteButton />
-        <CalorieInfo calorie={calorie} />
-        <FoodList foods={foods} />
+        <CalorieInfo calorie={meal.kcal} />
+        <FoodList foods={meal.name} />
         <S.NutrientContainer>
-          <NutrientInfo nutrient={'탄수화물'} gram={nutrientGram[0]} />
+          <NutrientInfo nutrient={'탄수화물'} gram={Math.round(meal.carb)} />
           <S.NutrientInfoLine />
-          <NutrientInfo nutrient={'단백질'} gram={nutrientGram[1]} />
+          <NutrientInfo nutrient={'단백질'} gram={Math.round(meal.protein)} />
           <S.NutrientInfoLine />
-          <NutrientInfo nutrient={'지방'} gram={nutrientGram[2]} />
+          <NutrientInfo nutrient={'지방'} gram={Math.round(meal.fat)} />
         </S.NutrientContainer>
       </S.MealsListBox>
     </>
