@@ -63,9 +63,11 @@ export const SignButton = styled.button`
   height: 32px;
 
   border-radius: 12px;
-  background-color: #121212;
+  border: none;
+  background-color: ${({ theme }) => theme.mainColor.darker};
 
   font-size: 12px;
+  font-weight: bold;
   color: #ffffff;
 
   cursor: pointer;

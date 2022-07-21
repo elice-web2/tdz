@@ -38,7 +38,7 @@ export const ButtonContainer = styled.div`
     height: 50px;
     padding: 10px 20px;
 
-    background-color: ${({ theme }) => theme.mainColor.normal};
+    background-color: ${({ theme }) => theme.mainColor.darker};
     border: none;
     border-radius: 10px;
 
