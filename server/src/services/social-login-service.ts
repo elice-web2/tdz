@@ -37,16 +37,15 @@ class SocialLoginService {
       ...userResponse.data,
     };
 
-    console.log('authData', authData);
     const access_token = authData.access_token;
     const {
-      profile: { nickname },
+      profile: { nickname, profile_image_url },
       email,
     } = authData.kakao_account;
 
     // 가입 확인
     const isRegister = await this.userModel.findByEmail(email);
-    return { isRegister, email, nickname, access_token };
+    return { isRegister, email, nickname, profile_image_url, access_token };
   }
 
   async kakaoLogoutService(accessToken: string) {
