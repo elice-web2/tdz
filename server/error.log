@@ -1,1 +1,47 @@
 
+[2022-7-19 22:50:18] POST:/api/auth/login
+Error: auth/wrong-email
+    at UserService.getUserToken (/Users/kai/Documents/Workspace/Web/TDZ/server/src/services/user-service.ts:76:13)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async login (/Users/kai/Documents/Workspace/Web/TDZ/server/src/controllers/user-controller.ts:50:25)
+
+[2022-7-19 22:50:29] DELETE:/api/users
+Error: 삭제할 도장 데이터가 존재하지 않습니다
+    at CalendarService.deleteAllCalendarStamp (/Users/kai/Documents/Workspace/Web/TDZ/server/src/services/calendar-service.ts:72:13)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async deleteUser (/Users/kai/Documents/Workspace/Web/TDZ/server/src/controllers/user-controller.ts:269:7)
+
+[2022-7-20 17:5:51] POST:/api/auth/login
+Error: auth/wrong-email
+    at UserService.getUserToken (/Users/kai/Documents/Workspace/Web/TDZ/server/src/services/user-service.ts:76:13)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async login (/Users/kai/Documents/Workspace/Web/TDZ/server/src/controllers/user-controller.ts:50:25)
+
+[2022-7-20 17:5:58] POST:/api/auth/login
+Error: auth/wrong-email
+    at UserService.getUserToken (/Users/kai/Documents/Workspace/Web/TDZ/server/src/services/user-service.ts:76:13)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async login (/Users/kai/Documents/Workspace/Web/TDZ/server/src/controllers/user-controller.ts:50:25)
+
+[2022-7-20 17:6:30] POST:/api/auth/login
+Error: auth/wrong-email
+    at UserService.getUserToken (/Users/kai/Documents/Workspace/Web/TDZ/server/src/services/user-service.ts:76:13)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async login (/Users/kai/Documents/Workspace/Web/TDZ/server/src/controllers/user-controller.ts:50:25)
+
+[2022-7-20 17:6:54] POST:/api/mealhistory
+ValidationError: mealhistory validation failed: meals.0.totalGram: Path `totalGram` is required., meals.0.servingSize: Path `servingSize` is required., meals.1.totalGram: Path `totalGram` is required., meals.1.servingSize: Path `servingSize` is required.
+    at model.Document.invalidate (/Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/mongoose/lib/document.js:2782:32)
+    at EmbeddedDocument.invalidate (/Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/mongoose/lib/types/embedded.js:298:29)
+    at /Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/mongoose/lib/document.js:2574:17
+    at /Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/mongoose/lib/schematype.js:1273:9
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+
+[2022-7-20 17:8:40] POST:/api/mealhistory
+ValidationError: mealhistory validation failed: meals.0.totalGram: Path `totalGram` is required.
+    at model.Document.invalidate (/Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/mongoose/lib/document.js:2782:32)
+    at EmbeddedDocument.invalidate (/Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/mongoose/lib/types/embedded.js:298:29)
+    at /Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/mongoose/lib/document.js:2574:17
+    at /Users/kai/Documents/Workspace/Web/TDZ/server/node_modules/mongoose/lib/schematype.js:1273:9
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+

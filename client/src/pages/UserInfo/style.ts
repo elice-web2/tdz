@@ -65,4 +65,13 @@ export const UserInfoButton = styled.button`
 
   font-size: 12px;
   color: #ffffff;
+
+  cursor: pointer;
+`;
+
+export const Errormessage = styled.div`
+  padding-top: 5px;
+
+  font-size: 12px;
+  color: rgba(255, 0, 0, 0.6);
 `;

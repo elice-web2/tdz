@@ -24,7 +24,10 @@ const FoodList = ({ foods }: FoodsProps) => {
   return (
     <S.FoodListContainer>
       <span className="FoodList">
-        {foodArray({ foods })} 그 외 {foods.length}개
+        {foodArray({ foods })}
+        {foods.length > 3
+          ? ' 그 외 ' + (foods.length - 3) + '개'
+          : foods.length + '개'}
       </span>
     </S.FoodListContainer>
   );

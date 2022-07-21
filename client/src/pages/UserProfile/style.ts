@@ -101,6 +101,8 @@ export const UserInfoButton = styled.button`
 
   font-size: 12px;
   color: #ffffff;
+
+  cursor: pointer;
 `;
 
 export const UserProfileImage = styled.img`

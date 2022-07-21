@@ -44,9 +44,9 @@ function LogoutModal({ setOpenLogoutModal }: LogoutModalProps) {
           >
             취소
           </S.CancelButton>
-          <S.DeleteButton onClick={logoutHandler} className="Logout">
+          <S.LogoutButton onClick={logoutHandler} className="Logout">
             확인
-          </S.DeleteButton>
+          </S.LogoutButton>
         </S.ButtonContainer>
       </S.ModalContainer>
     </>

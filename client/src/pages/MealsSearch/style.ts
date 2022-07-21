@@ -56,12 +56,14 @@ export const ButtonContainer = styled.div`
   box-sizing: border-box;
 `;
 
-export const SearchTabBtn = styled.button<{ isSearch: boolean }>`
+export const SearchTabBtn = styled.button<{
+  isSearch: boolean;
+}>`
   position: relative;
   width: 180px;
   height: 40px;
   background-color: ${(props) =>
-    props.isSearch === true ? props.theme.mainColor.lighter : '#f7f7f7'};
+    props.isSearch === true ? '#F7F7F7' : props.theme.mainColor.lighter};
   border: none;
   border-radius: 5px;
   border-top-right-radius: 0;
@@ -76,5 +78,5 @@ export const BookMarkTabBtn = styled(SearchTabBtn)`
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
   background-color: ${(props) =>
-    props.isSearch === true ? '#f7f7f7' : props.theme.mainColor.lighter};
+    props.isSearch === false ? '#F7F7F7' : props.theme.mainColor.lighter};
 `;

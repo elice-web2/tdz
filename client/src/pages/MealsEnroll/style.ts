@@ -102,9 +102,3 @@ export const AddBtn = styled.button`
   font-weight: bold;
   font-size: 14px;
 `;
-
-export const BorderLine = styled.div`
-  box-sizing: border-box;
-  width: 100%;
-  border-bottom: 5px solid #eeeeee;
-`;
