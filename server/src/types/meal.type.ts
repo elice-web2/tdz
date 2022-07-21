@@ -1,12 +1,12 @@
 export interface MealInfo {
   code: string;
-  name: String;
+  name: string;
   kcal: number;
   carb: number;
   protein: number;
   fat: number;
   sugars: number;
-  natruim: number;
+  natrium: number;
   cholesterol: number;
   saturatedfatty: number;
   transfat: number;
@@ -19,13 +19,13 @@ export interface MealInfo {
 export interface MealData {
   _id: string;
   code: string;
-  name: String;
+  name: string;
   kcal: number;
   carb: number;
   protein: number;
   fat: number;
   sugars: number;
-  natruim: number;
+  natrium: number;
   cholesterol: number;
   saturatedfatty: number;
   transfat: number;

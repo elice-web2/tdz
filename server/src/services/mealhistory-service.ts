@@ -159,11 +159,8 @@ class MealHistoryService {
 
     // const { deletedCount } = await this.mealhistoryModel.deleteByUserId(userId);
 
-<<<<<<< HEAD
     // // 삭제에 실패한 경우, 에러 메시지 반환
-=======
-    // 삭제에 실패한 경우, 에러 메시지 반환
->>>>>>> origin/dev
+
     // if (deletedCount === 0) {
     //   throw new Error(`식단 삭제에 실패하였습니다`);
     // }
