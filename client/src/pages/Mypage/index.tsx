@@ -97,7 +97,14 @@ function Mypage() {
               </div>
             </S.SettingProfileContainer>
             <S.UserProfileContainer>
-              <S.UserProfileImage src={userProfile.profile_image} />
+              <S.UserProfileImage
+                src={
+                  userProfile.profile_image ===
+                  'http://assets.stickpng.com/images/585e4bf3cb11b227491c339a.png'
+                    ? require('../../assets/default_image.png')
+                    : userProfile.profile_image
+                }
+              />
               <S.UserProfileInfoContainer>
                 <S.UserNicknameText>{nickname}</S.UserNicknameText>
                 <S.UserGoal>나의 각오</S.UserGoal>
