@@ -55,7 +55,7 @@ function MealsListBox({ meal, setList }: MealsListProps) {
         />
       )}
       <S.MealsListBox>
-        <S.MealContainerIconBox color={time}>
+        <S.MealContainerIconBox color={meal.category}>
           <FontAwesomeIcon
             icon={Time(meal.category)}
             className="Breakfast"
