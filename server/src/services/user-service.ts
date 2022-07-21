@@ -43,6 +43,7 @@ class UserService {
   async addUserWithKakao(
     userInfo: LoginInfo,
     nickname: string,
+    profile_image_url: string,
   ): Promise<UserData> {
     // 객체 destructuring
     const { email, password } = userInfo;
@@ -59,6 +60,7 @@ class UserService {
       password: hashedPassword,
       nickname,
       login_path: 'kakao',
+      profile_image: profile_image_url,
     };
 
     // db에 저장
