@@ -46,18 +46,18 @@ class MealService {
 
       const code: string = meal.FOOD_CD;
       const name: string = meal.DESC_KOR;
-      const kcal: Number = Number(meal.NUTR_CONT1);
-      const carb: Number = Number(meal.NUTR_CONT2);
-      const protein: Number = Number(meal.NUTR_CONT3);
-      const fat: Number = Number(meal.NUTR_CONT4);
-      const sugars: Number = Number(meal.NUTR_CONT5);
-      const natruim: Number = Number(meal.NUTR_CONT6);
-      const cholesterol: Number = Number(meal.NUTR_CONT7);
-      const saturatedfatty: Number = Number(meal.NUTR_CONT8);
-      const transfat: Number = Number(meal.NUTR_CONT9);
-      const servingSize: Number = Number(meal.SERVING_SIZE);
-      const quantity: Number = 1;
-      const totalGram: Number = servingSize;
+      const kcal: number = meal.NUTR_CONT1;
+      const carb: number = meal.NUTR_CONT2;
+      const protein: number = meal.NUTR_CONT3;
+      const fat: number = meal.NUTR_CONT4;
+      const sugars: number = meal.NUTR_CONT5;
+      const natruim: number = meal.NUTR_CONT6;
+      const cholesterol: number = meal.NUTR_CONT7;
+      const saturatedfatty: number = meal.NUTR_CONT8;
+      const transfat: number = meal.NUTR_CONT9;
+      const servingSize: number = meal.SERVING_SIZE;
+      const quantity = 1;
+      const totalGram: number = servingSize;
       const updated_date: Date = new Date();
 
       const mealInfo = {

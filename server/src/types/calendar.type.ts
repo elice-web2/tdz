@@ -2,18 +2,18 @@ export interface CalendarInfo {
   userId: string;
   date: Date;
   isSuccess: boolean;
-  currentKcal: Number;
-  goalKcal: Number;
+  currentKcal: number;
+  goalKcal: number;
   mode: string;
-  todayWeight: Number;
-  carbSum: Number;
-  proteinSum: Number;
-  fatSum: Number;
-  sugarsSum: Number;
-  natriumSum: Number;
-  cholesterolSum: Number;
-  saturatedfattySum: Number;
-  transfatSum: Number;
+  todayWeight: number;
+  carbSum: number;
+  proteinSum: number;
+  fatSum: number;
+  sugarsSum: number;
+  natriumSum: number;
+  cholesterolSum: number;
+  saturatedfattySum: number;
+  transfatSum: number;
 }
 
 export interface CalendarData {
@@ -21,18 +21,18 @@ export interface CalendarData {
   userId: string;
   date: Date;
   isSuccess: boolean;
-  currentKcal: Number;
-  goalKcal: Number;
+  currentKcal: number;
+  goalKcal: number;
   mode: string;
-  todayWeight: Number;
-  carbSum: Number;
-  proteinSum: Number;
-  fatSum: Number;
-  sugarsSum: Number;
-  natriumSum: Number;
-  cholesterolSum: Number;
-  saturatedfattySum: Number;
-  transfatSum: Number;
+  todayWeight: number;
+  carbSum: number;
+  proteinSum: number;
+  fatSum: number;
+  sugarsSum: number;
+  natriumSum: number;
+  cholesterolSum: number;
+  saturatedfattySum: number;
+  transfatSum: number;
 }
 
 export interface ToUpdate {
@@ -42,16 +42,16 @@ export interface ToUpdate {
 
 export interface CalendarToUpdate {
   isSuccess?: boolean;
-  current_kcal?: Number;
-  goal_kcal?: Number;
+  current_kcal?: number;
+  goal_kcal?: number;
   mode?: string;
-  todayWeight?: Number;
-  carbSum?: Number;
-  proteinSum?: Number;
-  fatSum?: Number;
-  sugarsSum?: Number;
-  natriumSum?: Number;
-  cholesterolSum?: Number;
-  saturatedfattySum?: Number;
-  transfatSum?: Number;
+  todayWeight?: number;
+  carbSum?: number;
+  proteinSum?: number;
+  fatSum?: number;
+  sugarsSum?: number;
+  natriumSum?: number;
+  cholesterolSum?: number;
+  transfatSum?: number;
+  saturatedfattySum?: number;
 }
