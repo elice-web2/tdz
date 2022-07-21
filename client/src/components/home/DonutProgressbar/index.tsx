@@ -27,9 +27,9 @@ function DonutProgressbar({ children, percentage }: IDonutProgressbar) {
             value={value}
             styles={buildStyles({
               pathTransitionDuration: 1,
-              pathColor: `rgba(62, 152, 199, ${value / 100})`,
+              pathColor: `rgba(140,158,255, 1)`,
               trailColor: '#d6d6d6',
-              backgroundColor: '#3e98c7',
+              backgroundColor: '#8c9eff',
             })}
             strokeWidth={15}
           >

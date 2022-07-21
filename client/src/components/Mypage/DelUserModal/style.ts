@@ -12,7 +12,7 @@ export const OutsideModal = styled.div`
   width: 100%;
   height: 100%;
   background-color: rgb(0, 0, 0, 0.4);
-  z-index: 1;
+  z-index: 4;
 `;
 
 export const ModalContainer = styled.div`
@@ -26,7 +26,7 @@ export const ModalContainer = styled.div`
   padding-bottom: 30px;
   background-color: white;
   border-radius: 15px;
-  z-index: 2;
+  z-index: 5;
 `;
 
 export const Title = styled.h1`
