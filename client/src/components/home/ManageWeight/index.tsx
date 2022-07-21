@@ -14,9 +14,8 @@ import * as Api from 'api';
 import { parseDateFromNow } from 'utils';
 
 function ManageWeight() {
-  const { current_weight, goal_weight, mode, nutrient } = useAppSelector(
-    ({ usersInfo }) => usersInfo.value,
-  );
+  const { current_weight, goal_weight, mode, nutrient, isLogin } =
+    useAppSelector(({ usersInfo }) => usersInfo.value);
   const date = useAppSelector(({ date }) => date.value);
   const dispatch = useAppDispatch();
   const [weightValue, setweightValue] = useState('');
@@ -65,7 +64,7 @@ function ManageWeight() {
         setWeightByDate(0);
       }
     };
-    getWeightByDate();
+    if (isLogin) getWeightByDate();
   }, [date]);
 
   return (

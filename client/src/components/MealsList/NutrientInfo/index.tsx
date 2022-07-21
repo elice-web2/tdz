@@ -13,7 +13,7 @@ const NutrientInfo = ({ nutrient, gram }: NutrientTypeProps) => {
           <span className="circle"></span>
           {nutrient}
         </div>
-        <div>
+        <div className={nutrient}>
           <span className="gram">{gram}</span>g
         </div>
       </S.NutrientInfoBox>
