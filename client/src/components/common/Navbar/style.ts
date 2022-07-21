@@ -7,6 +7,7 @@ export const NavContainer = styled.div`
   max-width: 420px;
   display: flex;
   height: 60px;
+  z-index: 99;
   /* background-color: ${({ theme }) => theme.mainColor.darker}; */
   background-color: white;
   /* border-top: 0.7px solid ${({ theme }) => theme.mainColor.darker}; */

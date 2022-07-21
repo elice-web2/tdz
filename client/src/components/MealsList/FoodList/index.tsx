@@ -8,16 +8,16 @@ const FoodList = ({ foods }: FoodsProps) => {
   const foodArray = ({ foods }: FoodsProps) => {
     if (foods.length <= 3) {
       return foods.map((food) => {
-        return food + ', ';
+        return food;
       });
     } else {
       const res = [];
       res.push(
         foods.filter((food, idx) => {
           return idx < 3;
-        }) + ', ',
+        }),
       );
-      return res;
+      return res.join(', ');
     }
   };
 
@@ -27,7 +27,7 @@ const FoodList = ({ foods }: FoodsProps) => {
         {foodArray({ foods })}
         {foods.length > 3
           ? ' 그 외 ' + (foods.length - 3) + '개'
-          : foods.length + '개'}
+          : ' ' + foods.length + '개'}
       </span>
     </S.FoodListContainer>
   );

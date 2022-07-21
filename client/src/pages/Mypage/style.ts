@@ -4,7 +4,7 @@ export const MypageContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-
+  z-index: 1;
   padding: 100px 0 150px 0;
 `;
 
@@ -56,9 +56,11 @@ export const Mygoal = styled.div`
 
   font-size: 16px;
   font-weight: bold;
+  z-index: 3;
 `;
 
 export const SettingProfileContainer = styled.div`
+  position: relative;
   display: flex;
   justify-content: flex-end;
   cursor: pointer;
@@ -130,25 +132,35 @@ export const UserGoalNumberInfo = styled.div`
 
 export const DropDownMenu = styled.div`
   position: absolute;
-  margin: 15px 15px 0 0;
-
-  width: 270px;
+  right: 20px;
+  top: 20px;
+  width: 160px;
   border-radius: 12px;
-  height: 160px;
+  height: 150px;
   box-shadow: 0px 0px 10px 3px rgba(190, 190, 190, 0.6);
   z-index: 99;
-  background-color: lightgrey;
+  background-color: white;
   div {
     cursor: pointer;
     text-align: center;
     text-decoration: none;
-    font-size: 16px;
+    font-size: 12px;
     color: red;
     font-weight: bold;
-    padding: 12px 20px;
+    padding: 12px;
     &:not(:last-of-type) {
       color: black;
       border-bottom: 1px solid blue;
     }
   }
+`;
+
+export const OutsideModal = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0, 0, 0, 0);
+  z-index: 2;
 `;
