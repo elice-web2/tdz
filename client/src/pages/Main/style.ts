@@ -20,7 +20,7 @@ export const IntroText = styled.p`
 export const ImgContainer = styled.div`
   position: absolute;
   top: 0;
-  background-color: #92a58d;
+  /* background-color: #92a58d; */
   max-width: 420px;
   width: 100%;
   overflow: hidden;

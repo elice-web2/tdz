@@ -44,7 +44,7 @@ function Main() {
     <Container>
       <div style={{ margin: 'auto' }}>
         <S.ImgContainer>
-          <S.ImgBox src={require('../../assets/main1.png')} />
+          <S.ImgBox src={require('../../assets/main3.png')} />
         </S.ImgContainer>
         <S.LogoText>
           <img src={require('../../assets/logoWhite2.png')} />
