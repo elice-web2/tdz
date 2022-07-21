@@ -22,6 +22,7 @@ export const NutrientHeader = styled.div`
   }
 
   p {
+    margin-top: 10px;
     font-size: 22px;
     font-weight: bold;
   }
