@@ -40,7 +40,7 @@ class MealHistoryService {
       const proteinSum = mealData.protein;
       const fatSum = mealData.fat;
       const sugarsSum = mealData.sugars;
-      const natriumSum = mealData.natruim;
+      const natriumSum = mealData.natrium;
       const cholesterolSum = mealData.cholesterol;
       const saturatedfattySum = mealData.saturatedfatty;
       const transfatSum = mealData.transfat;

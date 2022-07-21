@@ -16,7 +16,7 @@ function ManageWeight() {
   const dispatch = useAppDispatch();
   const [weightValue, setweightValue] = useState('');
   const [isEditingWeight, setIsEditingWeight] = useState(false);
-  const [weightByDate, setWeightByDate] = useState(current_weight);
+  const [weightByDate, setWeightByDate] = useState(0);
 
   const onClickEditWeightButton = () => {
     setIsEditingWeight(true);
@@ -56,8 +56,6 @@ function ManageWeight() {
       const res = await Api.get(`/api/calendar/${date}`);
       if (res?.data.length) {
         setWeightByDate(res?.data[0].todayWeight);
-      } else {
-        setWeightByDate(current_weight);
       }
     };
     getWeightByDate();
@@ -78,7 +76,7 @@ function ManageWeight() {
               onChange={onChangeWeight}
               min={0}
               max={999}
-              placeholder={String(weightByDate)}
+              placeholder={weightByDate ? String(weightByDate) : ''}
             />
             <button>
               <FontAwesomeIcon icon={faCheck} />
@@ -86,10 +84,14 @@ function ManageWeight() {
           </form>
         ) : (
           <>
-            <p>
-              {weightByDate}
-              <span>kg</span>
-            </p>
+            {weightByDate ? (
+              <p>
+                {weightByDate}
+                <span>kg</span>
+              </p>
+            ) : (
+              <span className="null-weight">기록 없음</span>
+            )}
             <FontAwesomeIcon icon={faPen} onClick={onClickEditWeightButton} />
           </>
         )}
