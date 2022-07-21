@@ -44,7 +44,7 @@ function Main() {
     <Container>
       <div style={{ margin: 'auto' }}>
         <S.ImgContainer>
-          <S.ImgBox src={require('../../assets/main1.png')} />
+          <S.ImgBox src={require('../../assets/main3.png')} />
         </S.ImgContainer>
         <S.LogoText>
           <img src={require('../../assets/logoWhite2.png')} />
@@ -58,7 +58,10 @@ function Main() {
           >
             <S.LoginBox brand={'카카오'}>
               <span className="icon">
-                <FontAwesomeIcon icon={faCommentDots} />
+                <img
+                  className="kakaoLogo"
+                  src={require('../../assets/kakaoIcon.png')}
+                />
               </span>
               <p>카카오로 시작하기</p>
             </S.LoginBox>
@@ -70,7 +73,11 @@ function Main() {
             }}
           >
             <span className="icon">
-              <FontAwesomeIcon icon={faEnvelope} className="email" />
+              {/* <FontAwesomeIcon icon={faEnvelope} className="email" /> */}
+              <img
+                className="tdzLogo"
+                src={require('../../assets/favicon.png')}
+              />
             </span>
             <p>TDZ로 시작하기</p>
           </S.LoginBox>
