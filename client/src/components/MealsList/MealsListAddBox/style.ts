@@ -5,7 +5,8 @@ export const MealsListContainer = styled.div`
   flex-direction: column;
   align-items: center;
 
-  padding: 20px;
+  padding: 0;
+  margin-bottom: 70px;
 `;
 
 export const AddBox = styled.div`
@@ -17,10 +18,10 @@ export const AddBox = styled.div`
   height: 150px;
   padding: 10px 20px;
 
-  border: thin solid black;
-  border-radius: 16px;
-
-  background-color: ${({ theme }) => theme.mainColor.lighter};
+  background: rgba(217, 217, 217, 0.15);
+  border: 0.1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 1px 3px 10px 1px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
 
   .GuideInfo {
     font-size: 16px;

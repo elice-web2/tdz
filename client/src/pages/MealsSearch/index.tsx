@@ -8,7 +8,7 @@ import MealsSearchedList from '../../components/MealsSearch/MealsSearchedList';
 import MealsBookMarkList from '../../components/MealsSearch/MealsBookMarkList';
 import { ScrollContainer } from '../../components/styles/ScrollContainer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { faMagnifyingGlass, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import { useAppSelector } from '../../hooks';
 import CartIcon from '../../components/common/CartIcon';
@@ -84,7 +84,7 @@ function MealsSearch() {
               <FontAwesomeIcon icon={faMagnifyingGlass} />
             </span>
             <span className="XBtn" onClick={deleteInputHandler}>
-              X
+              <FontAwesomeIcon icon={faXmark} />
             </span>
             <S.SearchInput
               type="text"

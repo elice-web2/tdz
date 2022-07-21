@@ -23,9 +23,13 @@ function Main() {
   }, [is_login_first, isLogin]);
   return (
     <Container>
-      <ScrollContainer minusHeight={0}>
+      {/* <ScrollContainer minusHeight={0}> */}
+      <div style={{ margin: 'auto' }}>
+        <S.ImgContainer>
+          <S.ImgBox src={require('../../assets/main1.png')} />
+        </S.ImgContainer>
         <S.LogoText>
-          <img src={require('../../assets/logoBlack.png')} />
+          <img src={require('../../assets/logoWhite2.png')} />
         </S.LogoText>
         <S.IntroText>오늘 하루, 무엇을 드셨나요?</S.IntroText>
         <S.IntroText>매일의 식단을 기록해보세요!</S.IntroText>
@@ -49,7 +53,8 @@ function Main() {
             <p>TDZ로 시작하기</p>
           </S.LoginBox>
         </S.LoginContainer>
-      </ScrollContainer>
+        {/* </ScrollContainer> */}
+      </div>
     </Container>
   );
 }

@@ -58,7 +58,7 @@ function GoalCaloriesForm() {
           {errors.kcal && '올바른 kcal를 작성해주세요.(4자리로 입력해주세요!)'}
         </S.ErrorMessage>
         <S.Title className="subCalorie marginTop">
-          회원님의 일일 건장 섭취량은
+          회원님의 일일 권장 섭취량은
         </S.Title>
         <S.Title className="calorie">{kcal} kcal</S.Title>
         <S.Title className="subCalorie">입니다.</S.Title>
