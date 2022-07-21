@@ -47,18 +47,24 @@ export const MainNutrientBox = styled.div`
     font-size: 18px;
   }
 `;
+
+export const FlexBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
 export const SubNutrientBox = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 180px);
-  gap: 10px 30px;
-  margin: 30px 0;
-  padding: 10px 0 10px 30px;
+  gap: 10px 16px;
+  margin: 30px auto;
   font-size: 13px;
+  place-items: center;
 
   .sub-content {
     display: flex;
     justify-content: space-between;
-    width: 150px;
+    width: 80%;
 
     p {
       padding: 3px;

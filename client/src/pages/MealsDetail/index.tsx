@@ -245,25 +245,28 @@ function MealsDetail() {
               <p>{foodInfo?.fat}g</p>
             </div>
           </S.MainNutrientBox>
-          <S.SubNutrientBox>
-            <div className="sub-content">
-              <p>나트륨</p>
-              <p>{foodInfo?.natrium}mg</p>
-            </div>
-            <div className="sub-content">
-              <p>콜레스테롤</p>
-              <p>{foodInfo?.cholesterol}mg</p>
-            </div>
 
-            <div className="sub-content">
-              <p>트랜스지방</p>
-              <p>{foodInfo?.transfat}g</p>
-            </div>
-            <div className="sub-content">
-              <p>포화지방</p>
-              <p>{foodInfo?.saturatedfatty}g</p>
-            </div>
-          </S.SubNutrientBox>
+          <S.FlexBox>
+            <S.SubNutrientBox>
+              <div className="sub-content">
+                <p>나트륨</p>
+                <p>{foodInfo?.natrium}mg</p>
+              </div>
+              <div className="sub-content">
+                <p>콜레스테롤</p>
+                <p>{foodInfo?.cholesterol}mg</p>
+              </div>
+              <div className="sub-content">
+                <p>트랜스지방</p>
+                <p>{foodInfo?.transfat}g</p>
+              </div>
+              <div className="sub-content">
+                <p>포화지방</p>
+                <p>{foodInfo?.saturatedfatty}g</p>
+              </div>
+            </S.SubNutrientBox>
+          </S.FlexBox>
+
           <S.SelectBox>
             <select
               ref={selectRef}
