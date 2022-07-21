@@ -1,16 +1,23 @@
-import * as S from './style';
-import * as api from '../../api';
+// dependencies
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../hooks';
-import { addMeals, deleteMeals } from '../../slices/mealsSlice';
-import Container from '../../components/styles/Container';
-import { MealData, MealInfo } from '../../customType/meal.type';
-import { calNutrient } from '../../../src/utils/calcultateNutrient';
-import { ScrollContainer } from '../../components/styles/ScrollContainer';
-import Navbar from '../../components/common/Navbar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+// components
+import Container from 'components/styles/Container';
+import { ScrollContainer } from 'components/styles/ScrollContainer';
+import Navbar from 'components/common/Navbar';
+// stores
+import { addMeals, deleteMeals } from 'slices/mealsSlice';
+// types
+import { MealData, MealInfo } from 'customType/meal.type';
+// hooks
+import { useAppDispatch, useAppSelector } from 'hooks';
+// styles
+import * as S from './style';
+// etc
+import * as api from 'api';
+import { calNutrient } from 'utils';
 
 const SELECTED = {
   quantity: 'quantity',

@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 // import { ObjectLiteralElementLike } from 'typescript';
-import * as api from '../api';
+import * as api from 'api';
 // 받아올 유저정보
 interface UsersInfo {
   // 유저 정보

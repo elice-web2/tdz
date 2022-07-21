@@ -1,11 +1,13 @@
-import GoalCaloriesForm from '../../components/Mygoal/GoalCalories';
-import Container from '../../components/styles/Container';
-import Logo from '../../components/common/Logo';
-import Navbar from '../../components/common/Navbar';
-import { ScrollContainer } from '../../components/styles/ScrollContainer';
+// dependencies
 import { useNavigate } from 'react-router-dom';
-import { useAppSelector } from '../../hooks';
 import { useEffect } from 'react';
+// components
+import GoalCaloriesForm from 'components/Mygoal/GoalCalories';
+import Container from 'components/styles/Container';
+import Logo from 'components/common/Logo';
+import { ScrollContainer } from 'components/styles/ScrollContainer';
+// hooks
+import { useAppSelector } from 'hooks';
 
 function GoalCalories() {
   const navigate = useNavigate();

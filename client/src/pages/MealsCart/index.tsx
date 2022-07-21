@@ -1,17 +1,22 @@
-import * as S from './style';
+// dependencies
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAppSelector } from '../../hooks';
-import { MealData, TotalInfoType } from '../../customType/meal.type';
-import Container from '../../components/styles/Container';
-import Navbar from '../../components/common/Navbar';
-import TDZInfo from '../../components/MealsCart/TDZInfo';
-import MealsCartList from '../../components/MealsCart/MealsCartList';
-import MealsCartModal from '../../components/MealsCart/MealsCartModal';
-import EmptyCart from '../../../src/components/MealsCart/EmptyCart';
-import { ScrollContainer } from '../../components/styles/ScrollContainer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+// components
+import Container from 'components/styles/Container';
+import Navbar from 'components/common/Navbar';
+import TDZInfo from 'components/MealsCart/TDZInfo';
+import MealsCartList from 'components/MealsCart/MealsCartList';
+import MealsCartModal from 'components/MealsCart/MealsCartModal';
+import EmptyCart from 'components/MealsCart/EmptyCart';
+import { ScrollContainer } from 'components/styles/ScrollContainer';
+// types
+import { MealData, TotalInfoType } from 'customType/meal.type';
+// hooks
+import { useAppSelector } from 'hooks';
+// styles
+import * as S from './style';
 
 function MealsCart() {
   const [openModal, setOpenModal] = useState<boolean>(false);

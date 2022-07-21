@@ -1,14 +1,19 @@
-import * as S from './style';
+// dependencies
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import Container from '../../components/styles/Container';
-import { ScrollContainer } from '../../components/styles/ScrollContainer';
-import EnrollModal from '../../components/MealEnroll/EnrollModal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
-import * as api from '../../api';
-import { useAppSelector } from '../../hooks';
+// components
+import Container from 'components/styles/Container';
+import { ScrollContainer } from 'components/styles/ScrollContainer';
+import EnrollModal from 'components/MealEnroll/EnrollModal';
+// hooks
+import { useAppSelector } from 'hooks';
+// styles
+import * as S from './style';
+// etc
+import * as api from 'api';
 
 function MealsEnroll() {
   const [openModal, setOpenModal] = useState(false);
