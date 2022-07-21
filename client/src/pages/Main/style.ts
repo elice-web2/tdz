@@ -12,8 +12,8 @@ export const LogoText = styled.div`
 export const IntroText = styled.p`
   position: relative;
   margin: 10px 0;
-  font-size: 18px;
-  font-weight: 500;
+  font-size: 16px;
+  font-weight: 400;
   text-align: center;
   color: white;
 `;
@@ -63,16 +63,23 @@ export const LoginBox = styled.div<{ brand: string }>`
   }};
   font-size: 30px;
   box-sizing: border-box;
-
+  border-radius: 12px;
   .icon {
     position: absolute;
-    left: 15px;
+    left: 10px;
+    .tdzLogo {
+      width: 55px;
+    }
+    .kakaoLogo {
+      width: 40px;
+      margin-left: 5px;
+    }
   }
 
   p {
     position: absolute;
-    left: 60px;
-    font-size: 21px;
-    font-weight: bold;
+    left: 80px;
+    font-size: 18px;
+    font-weight: 500;
   }
 `;
