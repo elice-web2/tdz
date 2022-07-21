@@ -11,17 +11,18 @@ export interface FromToInfo {
 
 export interface ChartData {
   userId: string;
-  weight: Number[];
-  kcalAvg: Number[];
-  carbAvg: Number[];
-  proteinAvg: Number[];
-  kcalSum: Number;
-  carbSum: Number;
-  proteinSum: Number;
-  fatSum: Number;
-  sugarsSum: Number;
-  natriumSum: Number;
-  cholesterolSum: Number;
-  saturatedfattySum: Number;
-  transfatSum: Number;
+  weight: number[];
+  kcalAvg: number[];
+  carbAvg: number[];
+  proteinAvg: number[];
+  fatAvg: number[];
+  kcalSum: number;
+  carbSum: number;
+  proteinSum: number;
+  fatSum: number;
+  sugarsSum: number;
+  natriumSum: number;
+  cholesterolSum: number;
+  saturatedfattySum: number;
+  transfatSum: number;
 }

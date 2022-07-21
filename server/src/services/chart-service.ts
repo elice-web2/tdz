@@ -3,16 +3,6 @@ import { CalendarData } from '../types/calendar.type';
 import { ChartData, DayInfo, FromToInfo } from '../types/chart.type';
 import dayjs from 'dayjs';
 
-// 1. 일간 합 : 하루의 각합을 7일 전 정보까지 받아서 돌려주기
-
-// 2. 주간 합 : 7일로 총합하는 서비스 <- 이걸 4번 하면 월간
-
-// 3. 월간 합 : 월별로 합하는 서비스
-
-// 4. 주간 합을 받아서 4주 평균을 내기
-
-// 5. 월간 합을 받아서 3개월 평균을 내기
-
 class ChartService {
   constructor(private calendarModel: CalendarModel) {}
 
@@ -39,17 +29,14 @@ class ChartService {
     //전체 데이터 받음
     const data = await this.calendarModel.findByDate(updatedInfo);
 
-    if (!data) {
-      return {} as ChartData;
-    }
-
     //인터페이스 초기화
-    let dailyData: ChartData = {
-      userId: 'undefined',
-      weight: [],
-      kcalAvg: [],
-      carbAvg: [],
-      proteinAvg: [],
+    const dailyData: ChartData = {
+      userId: dayInfo.user_id,
+      weight: [0, 0, 0, 0, 0, 0, 0],
+      kcalAvg: [0, 0, 0, 0, 0, 0, 0],
+      carbAvg: [0, 0, 0, 0, 0, 0, 0],
+      proteinAvg: [0, 0, 0, 0, 0, 0, 0],
+      fatAvg: [0, 0, 0, 0, 0, 0, 0],
       kcalSum: 0,
       carbSum: 0,
       proteinSum: 0,
@@ -61,29 +48,39 @@ class ChartService {
       transfatSum: 0,
     };
 
-    dailyData.userId = data[0].userId;
+    if (!data || data.length === 0) {
+      return dailyData;
+    }
 
-    for (let i = 0; i < data.length; i++) {
-      dailyData.weight.push(data[i].todayWeight);
-      dailyData.kcalAvg.push(data[i].currentKcal);
-      dailyData.carbAvg.push(data[i].carbSum);
-      dailyData.proteinAvg.push(data[i].proteinSum);
-      dailyData.kcalSum =
-        Number(data[i].currentKcal) + Number(dailyData.kcalSum);
-      dailyData.carbSum = Number(data[i].carbSum) + Number(dailyData.carbSum);
-      dailyData.proteinSum =
-        Number(data[i].proteinSum) + Number(dailyData.proteinSum);
-      dailyData.fatSum = Number(data[i].fatSum) + Number(dailyData.fatSum);
-      dailyData.sugarsSum =
-        Number(data[i].sugarsSum) + Number(dailyData.sugarsSum);
-      dailyData.natriumSum =
-        Number(data[i].natriumSum) + Number(dailyData.natriumSum);
-      dailyData.cholesterolSum =
-        Number(data[i].cholesterolSum) + Number(dailyData.cholesterolSum);
-      dailyData.saturatedfattySum =
-        Number(data[i].saturatedfattySum) + Number(dailyData.saturatedfattySum);
-      dailyData.transfatSum =
-        Number(data[i].transfatSum) + Number(dailyData.transfatSum);
+    const chartSlotList: string[] = new Array(7);
+    for (let i = 0; i < 7; i++) {
+      chartSlotList[i] = String(
+        dayjs(fromDate).add(i, 'day').format('YYYY-MM-DD'),
+      );
+    }
+
+    let count = 0;
+    for (let day = 0; day < 7; day++) {
+      if (chartSlotList[day] === data[count].date.toISOString().slice(0, 10)) {
+        dailyData.weight[day] = data[count].todayWeight;
+        dailyData.kcalAvg[day] = data[count].currentKcal;
+        dailyData.carbAvg[day] = data[count].carbSum;
+        dailyData.proteinAvg[day] = data[count].proteinSum;
+        dailyData.fatAvg[day] = data[count].fatSum;
+        dailyData.kcalSum = data[count].currentKcal + dailyData.kcalSum;
+        dailyData.carbSum = data[count].carbSum + dailyData.carbSum;
+        dailyData.proteinSum = data[count].proteinSum + dailyData.proteinSum;
+        dailyData.fatSum = data[count].fatSum + dailyData.fatSum;
+        dailyData.sugarsSum = data[count].sugarsSum + dailyData.sugarsSum;
+        dailyData.natriumSum = data[count].natriumSum + dailyData.natriumSum;
+        dailyData.cholesterolSum =
+          data[count].cholesterolSum + dailyData.cholesterolSum;
+        dailyData.saturatedfattySum =
+          data[count].saturatedfattySum + dailyData.saturatedfattySum;
+        dailyData.transfatSum = data[count].transfatSum + dailyData.transfatSum;
+        count++;
+      }
+      if (count >= data.length) break;
     }
 
     return dailyData;
@@ -106,24 +103,14 @@ class ChartService {
 
     const data = await this.calendarModel.findByDate(updatedInfo);
 
-    if (!data) {
-      return {} as ChartData;
-    }
-
-    //날짜 기준이 될 날짜 슬롯을 생성 - 4주, 28일
-    let chartSlotList: string[] = new Array(28);
-    for (let i = 0; i < 28; i++) {
-      chartSlotList[i] = String(dayjs(from).add(i, 'day').format('YYYY-MM-DD'));
-    }
-
-    //aggregate로 바꾸기
     //인터페이스 초기화
-    let weeklyData: ChartData = {
+    const weeklyData: ChartData = {
       userId: fromToInfo.user_id,
-      weight: [],
-      kcalAvg: [],
-      carbAvg: [],
-      proteinAvg: [],
+      weight: [0, 0, 0, 0],
+      kcalAvg: [0, 0, 0, 0],
+      carbAvg: [0, 0, 0, 0],
+      proteinAvg: [0, 0, 0, 0],
+      fatAvg: [0, 0, 0, 0],
       kcalSum: 0,
       carbSum: 0,
       proteinSum: 0,
@@ -134,6 +121,19 @@ class ChartService {
       saturatedfattySum: 0,
       transfatSum: 0,
     };
+
+    if (!data || data.length === 0) {
+      return weeklyData;
+    }
+
+    //날짜 기준이 될 날짜 슬롯을 생성 - 4주, 28일
+    const chartSlotList: string[] = new Array(28);
+    for (let i = 0; i < 28; i++) {
+      chartSlotList[i] = String(dayjs(from).add(i, 'day').format('YYYY-MM-DD'));
+    }
+
+    //aggregate로 바꾸기
+
     //data index
     let count = 0;
     let checked = 0;
@@ -142,6 +142,7 @@ class ChartService {
     let kcal = 0;
     let carb = 0;
     let protein = 0;
+    let fat = 0;
     //28주의 날짜를 각각 비교
     for (let week = 0; week < 4; week++) {
       for (let day = 0; day < 7; day++) {
@@ -149,48 +150,46 @@ class ChartService {
           chartSlotList[week * 7 + day] ===
           data[count].date.toISOString().slice(0, 10)
         ) {
-          weight = Number(weight) + Number(data[count].todayWeight);
-          kcal = Number(kcal) + Number(data[count].currentKcal);
-          carb = Number(carb) + Number(data[count].carbSum);
-          protein = Number(protein) + Number(data[count].proteinSum);
+          weight = weight + data[count].todayWeight;
+          kcal = kcal + data[count].currentKcal;
+          carb = carb + data[count].carbSum;
+          protein = protein + data[count].proteinSum;
+          fat = fat + data[count].fatSum;
 
-          weeklyData.kcalSum =
-            Number(data[count].currentKcal) + Number(weeklyData.kcalSum);
-          weeklyData.carbSum =
-            Number(data[count].carbSum) + Number(weeklyData.carbSum);
+          weeklyData.kcalSum = data[count].currentKcal + weeklyData.kcalSum;
+          weeklyData.carbSum = data[count].carbSum + weeklyData.carbSum;
           weeklyData.proteinSum =
-            Number(data[count].proteinSum) + Number(weeklyData.proteinSum);
-          weeklyData.fatSum =
-            Number(data[count].fatSum) + Number(weeklyData.fatSum);
-          weeklyData.sugarsSum =
-            Number(data[count].sugarsSum) + Number(weeklyData.sugarsSum);
+            data[count].proteinSum + weeklyData.proteinSum;
+          weeklyData.fatSum = data[count].fatSum + weeklyData.fatSum;
+          weeklyData.sugarsSum = data[count].sugarsSum + weeklyData.sugarsSum;
           weeklyData.natriumSum =
-            Number(data[count].natriumSum) + Number(weeklyData.natriumSum);
+            data[count].natriumSum + weeklyData.natriumSum;
           weeklyData.cholesterolSum =
-            Number(data[count].cholesterolSum) +
-            Number(weeklyData.cholesterolSum);
+            data[count].cholesterolSum + weeklyData.cholesterolSum;
           weeklyData.saturatedfattySum =
-            Number(data[count].saturatedfattySum) +
-            Number(weeklyData.saturatedfattySum);
+            data[count].saturatedfattySum + weeklyData.saturatedfattySum;
           weeklyData.transfatSum =
-            Number(data[count].transfatSum) + Number(weeklyData.transfatSum);
+            data[count].transfatSum + weeklyData.transfatSum;
           count++;
           checked++;
         }
 
-        if (day === 6) {
-          console.log(weight);
-          weeklyData.weight.push(weight === 0 ? 0 : weight / checked);
+        if (day === 6 || count >= data.length) {
+          weeklyData.weight[week] = weight === 0 ? 0 : weight / checked;
           weight = 0;
-          weeklyData.kcalAvg.push(kcal === 0 ? 0 : kcal / checked);
+          weeklyData.kcalAvg[week] = kcal === 0 ? 0 : kcal / checked;
           kcal = 0;
-          weeklyData.carbAvg.push(carb === 0 ? 0 : carb / checked);
+          weeklyData.carbAvg[week] = carb === 0 ? 0 : carb / checked;
           carb = 0;
-          weeklyData.proteinAvg.push(protein === 0 ? 0 : protein / checked);
+          weeklyData.proteinAvg[week] = protein === 0 ? 0 : protein / checked;
           protein = 0;
+          weeklyData.fatAvg[week] = fat === 0 ? 0 : fat / checked;
+          fat = 0;
           checked = 0;
         }
+        if (count >= data.length) break;
       }
+      if (count >= data.length) break;
     }
 
     return weeklyData;
@@ -198,7 +197,7 @@ class ChartService {
 
   async getMonthlyChart(fromToInfo: FromToInfo): Promise<ChartData | null> {
     //받은 날짜로 계산 - 3개월의 총 날짜수
-    let totalDays: number[] = new Array(4);
+    const totalDays: number[] = new Array(4);
     totalDays[0] = 0; // 첫번째 값을 빈칸으로 둬 날짜 슬로팅을 편하게 함
 
     let fromDate = dayjs(fromToInfo.from);
@@ -219,25 +218,15 @@ class ChartService {
     };
 
     const data = await this.calendarModel.findByDate(updatedInfo);
-    console.log(data);
-    if (!data || data.length === 0) {
-      return {} as ChartData;
-    }
 
-    //날짜 기준이 될 날짜 슬롯을 생성 -
-    let chartSlotList: string[] = new Array(totalDays[3]);
-    for (let i = 0; i < totalDays[3]; i++) {
-      chartSlotList[i] = String(dayjs(from).add(i, 'day').format('YYYY-MM-DD'));
-    }
-
-    //aggregate로 바꾸기
     //인터페이스 초기화
-    let monthlyData: ChartData = {
+    const monthlyData: ChartData = {
       userId: fromToInfo.user_id,
-      weight: [],
-      kcalAvg: [],
-      carbAvg: [],
-      proteinAvg: [],
+      weight: [0, 0, 0],
+      kcalAvg: [0, 0, 0],
+      carbAvg: [0, 0, 0],
+      proteinAvg: [0, 0, 0],
+      fatAvg: [0, 0, 0],
       kcalSum: 0,
       carbSum: 0,
       proteinSum: 0,
@@ -248,6 +237,19 @@ class ChartService {
       saturatedfattySum: 0,
       transfatSum: 0,
     };
+
+    if (!data || data.length === 0) {
+      return monthlyData;
+    }
+
+    //날짜 기준이 될 날짜 슬롯을 생성 -
+    const chartSlotList: string[] = new Array(totalDays[3]);
+    for (let i = 0; i < totalDays[3]; i++) {
+      chartSlotList[i] = String(dayjs(from).add(i, 'day').format('YYYY-MM-DD'));
+    }
+
+    //aggregate로 바꾸기
+
     //총 데이터 개수를 체크하는 변수
     let count = 0;
     // 실제로 한달 동안 있는 값의 수를 체크하는 변수
@@ -257,6 +259,7 @@ class ChartService {
     let kcal = 0;
     let carb = 0;
     let protein = 0;
+    let fat = 0;
     //28주의 날짜를 각각 비교
     for (let month = 1; month < totalDays.length; month++) {
       for (let day = 0; day < totalDays[month] - totalDays[month - 1]; day++) {
@@ -264,55 +267,51 @@ class ChartService {
           chartSlotList[totalDays[month - 1] + day] ===
           data[count].date.toISOString().slice(0, 10)
         ) {
-          console.log(chartSlotList[totalDays[month - 1] + day]);
-          console.log(data[count].date.toISOString().slice(0, 10));
-          weight = Number(weight) + Number(data[count].todayWeight);
-          kcal = Number(kcal) + Number(data[count].currentKcal);
-          carb = Number(carb) + Number(data[count].carbSum);
-          protein = Number(protein) + Number(data[count].proteinSum);
+          weight = weight + data[count].todayWeight;
+          kcal = kcal + data[count].currentKcal;
+          carb = carb + data[count].carbSum;
+          protein = protein + data[count].proteinSum;
+          fat = fat + data[count].fatSum;
 
-          monthlyData.kcalSum =
-            Number(data[count].currentKcal) + Number(monthlyData.kcalSum);
-          monthlyData.carbSum =
-            Number(data[count].carbSum) + Number(monthlyData.carbSum);
+          monthlyData.kcalSum = data[count].currentKcal + monthlyData.kcalSum;
+          monthlyData.carbSum = data[count].carbSum + monthlyData.carbSum;
           monthlyData.proteinSum =
-            Number(data[count].proteinSum) + Number(monthlyData.proteinSum);
-          monthlyData.fatSum =
-            Number(data[count].fatSum) + Number(monthlyData.fatSum);
-          monthlyData.sugarsSum =
-            Number(data[count].sugarsSum) + Number(monthlyData.sugarsSum);
+            data[count].proteinSum + monthlyData.proteinSum;
+          monthlyData.fatSum = data[count].fatSum + monthlyData.fatSum;
+          monthlyData.sugarsSum = data[count].sugarsSum + monthlyData.sugarsSum;
           monthlyData.natriumSum =
-            Number(data[count].natriumSum) + Number(monthlyData.natriumSum);
+            data[count].natriumSum + monthlyData.natriumSum;
           monthlyData.cholesterolSum =
-            Number(data[count].cholesterolSum) +
-            Number(monthlyData.cholesterolSum);
+            data[count].cholesterolSum + monthlyData.cholesterolSum;
           monthlyData.saturatedfattySum =
-            Number(data[count].saturatedfattySum) +
-            Number(monthlyData.saturatedfattySum);
+            data[count].saturatedfattySum + monthlyData.saturatedfattySum;
           monthlyData.transfatSum =
-            Number(data[count].transfatSum) + Number(monthlyData.transfatSum);
+            data[count].transfatSum + monthlyData.transfatSum;
           count++;
           checked++;
         }
 
-        if (day === 6) {
-          console.log(weight);
-          monthlyData.weight.push(weight === 0 ? 0 : weight / checked);
+        if (
+          day === totalDays[month] - totalDays[month - 1] - 1 ||
+          count >= data.length
+        ) {
+          monthlyData.weight[month - 1] = weight === 0 ? 0 : weight / checked;
           weight = 0;
-          monthlyData.kcalAvg.push(kcal === 0 ? 0 : kcal / checked);
+          monthlyData.kcalAvg[month - 1] = kcal === 0 ? 0 : kcal / checked;
           kcal = 0;
-          monthlyData.carbAvg.push(carb === 0 ? 0 : carb / checked);
+          monthlyData.carbAvg[month - 1] = carb === 0 ? 0 : carb / checked;
           carb = 0;
-          monthlyData.proteinAvg.push(protein === 0 ? 0 : protein / checked);
+          monthlyData.proteinAvg[month - 1] =
+            protein === 0 ? 0 : protein / checked;
           protein = 0;
+          monthlyData.fatAvg[month - 1] = fat === 0 ? 0 : fat / checked;
+          fat = 0;
           checked = 0;
         }
         if (count >= data.length) break;
       }
       if (count >= data.length) break;
     }
-    console.log(monthlyData);
-    console.log(count);
 
     return monthlyData;
   }

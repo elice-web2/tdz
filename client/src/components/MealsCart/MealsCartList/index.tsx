@@ -2,17 +2,25 @@ import * as S from './style';
 import { deleteMeals } from '../../../slices/mealsSlice';
 import { useAppDispatch } from '../../../hooks';
 import { MealsCartListType } from '../../../customType/meal.type';
+import { useNavigate } from 'react-router-dom';
 
-function MealsCartList({ name, quantity, totalGram, code }: MealsCartListType) {
+function MealsCartList({ id, name, quantity, totalGram }: MealsCartListType) {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   return (
-    <li key={name}>
+    <li key={id}>
       <S.MealHeaderBox>
-        <S.MealTitle>{name}</S.MealTitle>
+        <S.MealTitle
+          onClick={() => {
+            navigate(`/meals/detail/${name}`);
+          }}
+        >
+          {name}
+        </S.MealTitle>
         <S.MealDeleteBtn
           onClick={() => {
-            dispatch(deleteMeals(code));
+            dispatch(deleteMeals(id));
           }}
         >
           X

@@ -10,6 +10,7 @@ export const MealHeaderBox = styled.div`
 export const MealTitle = styled.h2`
   font-size: 20px;
   font-weight: bold;
+  cursor: pointer;
 `;
 interface ButtonProps {
   onClick: () => void;

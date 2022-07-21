@@ -16,7 +16,7 @@ export const userCalories = ({
   if (gender === 'MALE') {
     // 기초대사량
     const basic =
-      88.5 + 13.4 * current_weight + 4.8 * height + 5.68 * age - 500;
+      88.5 + 13.4 * current_weight + 4.8 * height + 5.68 * age - 200;
     switch (activity) {
       case 'LESS':
         return Math.floor(basic * 1.2);
@@ -27,7 +27,7 @@ export const userCalories = ({
     }
   } else {
     const basic =
-      447.6 + 9.25 * current_weight + 3.1 * height + 4.33 * age - 500;
+      447.6 + 9.25 * current_weight + 3.1 * height + 4.33 * age - 200;
     switch (activity) {
       case 'LESS':
         return Math.floor(basic * 1.2);

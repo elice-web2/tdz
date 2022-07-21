@@ -7,15 +7,19 @@ import { addMeals, deleteMeals } from '../../slices/mealsSlice';
 import Container from '../../components/styles/Container';
 import { MealData, MealInfo } from '../../customType/meal.type';
 import { calNutrient } from '../../../src/utils/calcultateNutrient';
-import { accNutrientCal } from '../../../src/utils/calculateAccNutrient';
 import { ScrollContainer } from '../../components/styles/ScrollContainer';
 import Navbar from '../../components/common/Navbar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
+const SELECTED = {
+  quantity: 'quantity',
+  gram: 'gram',
+};
+
 function MealsDetail() {
   const [count, setCount] = useState(1);
-  const [selected, setSelected] = useState('quantity');
+  const [selected, setSelected] = useState(SELECTED.quantity);
   const [foodInfo, setFoodInfo] = useState<MealData>();
   const [firstInfo, setFirstInfo] = useState<MealData>();
   const [isBookMark, setIsBookMark] = useState<boolean>();
@@ -33,11 +37,15 @@ function MealsDetail() {
   //URL의 params으로 DB에서 음식정보와 즐겨찾기정보 GET
   useEffect(() => {
     (async () => {
-      const res = await api.get(`/api/meal/${params.name}`);
-      setFoodInfo(res?.data[0]);
-      setFirstInfo(res?.data[0]);
-      responseRef.current = res?.data[0];
-      getBookMark();
+      try {
+        const res = await api.get(`/api/meal/${params.name}`);
+        setFoodInfo(res?.data[0]);
+        setFirstInfo(res?.data[0]);
+        responseRef.current = res?.data[0];
+        await getBookMark();
+      } catch (error) {
+        console.log('배열 못받아옴');
+      }
     })();
   }, []);
 
@@ -50,7 +58,7 @@ function MealsDetail() {
 
   //select 옵션에 따라 영양소 계산
   useEffect(() => {
-    if (selected === 'quantity') {
+    if (selected === SELECTED.quantity) {
       setFoodInfo((cur: any): any => {
         const newObj = { ...cur };
         return calcInfo(newObj);
@@ -65,7 +73,7 @@ function MealsDetail() {
 
   //select 옵션에 따른 기본 count 변경
   useEffect(() => {
-    if (selected === 'quantity') {
+    if (selected === SELECTED.quantity) {
       setCount(1);
     } else {
       if (firstInfo) {
@@ -80,7 +88,8 @@ function MealsDetail() {
       const bookMark = await api.get(
         `/api/favorites/${responseRef.current._id}`,
       );
-      if (!bookMark) {
+      console.log(bookMark);
+      if (!bookMark?.data) {
         setIsBookMark(false);
         console.log('마킹상태F');
       } else {
@@ -97,7 +106,8 @@ function MealsDetail() {
       info.carb = calNutrient(firstInfo?.carb, count);
       info.protein = calNutrient(firstInfo?.protein, count);
       info.fat = calNutrient(firstInfo?.fat, count);
-      info.natruim = calNutrient(firstInfo?.natruim, count);
+      info.sugars = calNutrient(firstInfo?.sugars, count);
+      info.natrium = calNutrient(firstInfo?.natrium, count);
       info.cholesterol = calNutrient(firstInfo?.cholesterol, count);
       info.transfat = calNutrient(firstInfo?.transfat, count);
       info.saturatedfatty = calNutrient(firstInfo?.saturatedfatty, count);
@@ -117,7 +127,8 @@ function MealsDetail() {
         carb: firstInfo?.carb / oneSize,
         protein: firstInfo?.protein / oneSize,
         fat: firstInfo?.fat / oneSize,
-        natruim: firstInfo?.natruim / oneSize,
+        sugars: firstInfo?.sugars / oneSize,
+        natrium: firstInfo?.natrium / oneSize,
         transfat: firstInfo?.transfat / oneSize,
         saturatedfatty: firstInfo?.saturatedfatty / oneSize,
       };
@@ -126,7 +137,8 @@ function MealsDetail() {
       info.carb = calNutrient(perGram.carb, count);
       info.protein = calNutrient(perGram.protein, count);
       info.fat = calNutrient(perGram.fat, count);
-      info.natruim = calNutrient(perGram.natruim, count);
+      info.sugars = calNutrient(perGram.sugars, count);
+      info.natrium = calNutrient(perGram.natrium, count);
       info.transfat = calNutrient(perGram.transfat, count);
       info.saturatedfatty = calNutrient(perGram.saturatedfatty, count);
       info.quantity = Number((count / oneSize).toFixed(1));
@@ -155,17 +167,10 @@ function MealsDetail() {
     const result = mealStore.filter((el) => el._id !== food._id);
     const acc = mealStore.filter((el) => el._id === food._id)[0];
     if (mealStore.length !== result.length) {
-      const answer = confirm('이미 담겨진 음식입니다. 더 추가하시겠습니까?');
-      if (answer) {
-        //영양소 누적해서 더해주기
-        const total = accNutrientCal(acc, food);
-        //원래담긴건 지워주고 새로 담자
-        dispatch(deleteMeals(acc.code));
-        dispatch(addMeals(total));
-        navigate('/meals/cart');
-      } else {
-        return;
-      }
+      //원래담긴건 지워주고 새로 담자
+      dispatch(deleteMeals(acc._id));
+      dispatch(addMeals(food));
+      navigate('/meals/cart');
     } else {
       dispatch(addMeals(food));
       navigate('/meals/cart');
@@ -183,12 +188,12 @@ function MealsDetail() {
   }
 
   useEffect(() => {
-    if (isLogin && is_login_first) {
+    if (isLogin && is_login_first === 'true') {
       navigate('/mypage/goal_step1');
     } else if (!isLogin) {
       navigate('/');
     }
-  }, []);
+  }, [is_login_first, isLogin]);
 
   return (
     <Container>
@@ -239,7 +244,7 @@ function MealsDetail() {
           <S.SubNutrientBox>
             <div className="sub-content">
               <p>나트륨</p>
-              <p>{foodInfo?.natruim}mg</p>
+              <p>{foodInfo?.natrium}mg</p>
             </div>
             <div className="sub-content">
               <p>콜레스테롤</p>

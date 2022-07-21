@@ -1,4 +1,4 @@
-import GoalUserInfoForm from '../../components/Mygoal/GoalUserInfo';
+import GoalCaloriesForm from '../../components/Mygoal/GoalCalories';
 import Container from '../../components/styles/Container';
 import Logo from '../../components/common/Logo';
 import Navbar from '../../components/common/Navbar';
@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAppSelector } from '../../hooks';
 import { useEffect } from 'react';
 
-function GoalUserInfo() {
+function GoalCalories() {
   const navigate = useNavigate();
   const { isLogin } = useAppSelector(({ usersInfo }) => usersInfo.value);
 
@@ -19,12 +19,11 @@ function GoalUserInfo() {
   return (
     <Container>
       <Logo />
-      <ScrollContainer minusHeight={120}>
-        <GoalUserInfoForm />
+      <ScrollContainer minusHeight={60}>
+        <GoalCaloriesForm />
       </ScrollContainer>
-      <Navbar />
     </Container>
   );
 }
 
-export default GoalUserInfo;
+export default GoalCalories;

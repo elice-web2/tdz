@@ -6,6 +6,7 @@ import { faCommentDots } from '@fortawesome/free-solid-svg-icons';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { useEffect } from 'react';
 import { useAppSelector } from '../../hooks';
+import Container from '../../components/styles/Container';
 
 function Main() {
   const navigate = useNavigate();
@@ -14,14 +15,14 @@ function Main() {
   );
 
   useEffect(() => {
-    if (isLogin && is_login_first) {
+    if (isLogin && is_login_first === 'true') {
       navigate('/mypage/goal_step1');
     } else if (isLogin) {
       navigate('/home');
     }
-  }, []);
+  }, [is_login_first, isLogin]);
   return (
-    <S.Container>
+    <Container>
       <S.VideoContainer>
         <S.Video
           src={require('../../assets/coffee.mp4')}
@@ -62,7 +63,7 @@ function Main() {
           <p>TDZ로 시작하기</p>
         </S.LoginBox>
       </S.LoginContainer>
-    </S.Container>
+    </Container>
   );
 }
 

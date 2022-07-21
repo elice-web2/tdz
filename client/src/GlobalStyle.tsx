@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import './assets/fonts.css';
 
 const GlobalStyle = createGlobalStyle`
 html, body, div, span, applet, object, iframe,
@@ -27,7 +28,9 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 body {
+	overflow-y: hidden;
 	line-height: 1;
+	font-family: 'Noto Sans KR', sans-serif;
 }
 ol, ul {
 	list-style: none;

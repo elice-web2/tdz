@@ -16,6 +16,7 @@ class SocialLoginController {
     try {
       const code: string = req.query.code as string;
       const userData = await socialLoginService.kakaoLoginService(code);
+
       const { isRegister, email, nickname, access_token } = userData;
       const password = 'kakao';
 
@@ -49,6 +50,10 @@ class SocialLoginController {
       next(err);
     }
   }
+
+  //  async google (:typparamse) => {
+
+  //  }
 }
 
 const socialLoginController = new SocialLoginController();
