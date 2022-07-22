@@ -43,7 +43,7 @@ class CalendarController {
       const currentKcal: number = req.body.currentKcal;
       const goalKcal: number = req.body.goalKcal || 0;
       const mode: string = req.body.mode;
-      const isSuccess: boolean = req.body.isSuccess || false;
+      const isSuccess: boolean = req.body.isSuccess;
       const todayWeight: number = req.body.todayWeight || 0;
       const carbSum: number = req.body.carbSum;
       const proteinSum: number = req.body.proteinSum;
@@ -84,7 +84,7 @@ class CalendarController {
           ...((currentKcal || currentKcal === 0) && { currentKcal }),
           ...(goalKcal && { goalKcal }),
           ...(mode && { mode }),
-          isSuccess: isSuccess || false,
+          ...((isSuccess || isSuccess === false) && { isSuccess }),
           ...(todayWeight && { todayWeight }),
           ...((carbSum || carbSum === 0) && { carbSum }),
           ...((proteinSum || proteinSum === 0) && { proteinSum }),
