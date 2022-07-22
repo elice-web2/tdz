@@ -13,7 +13,6 @@ export const LogoText = styled.div`
   padding-top: 100px;
   color: black;
   text-align: center;
-  margin-top: 100px;
 `;
 
 export const IntroText = styled.p`
