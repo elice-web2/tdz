@@ -35,7 +35,7 @@ export const ButtonContainer = styled.div`
   ${({ theme }) => theme.flexbox()}
 
   padding: 20px 0;
-  margin-bottom: 20px;
+  margin-bottom: 100px;
 
   button {
     height: 50px;
