@@ -1,5 +1,12 @@
 import styled from 'styled-components';
 
+export const MainContainer = styled.div`
+  position: relative;
+  @media only all and (max-height: 600px) {
+    bottom: 120px;
+  }
+`;
+
 export const LogoText = styled.div`
   position: relative;
   margin-bottom: 80px;
