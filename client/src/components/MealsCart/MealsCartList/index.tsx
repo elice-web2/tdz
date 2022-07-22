@@ -14,28 +14,30 @@ function MealsCartList({ id, name, quantity, totalGram }: MealsCartListType) {
   const navigate = useNavigate();
 
   return (
-    <li key={id}>
-      <S.MealHeaderBox>
-        <S.MealTitle
-          onClick={() => {
-            navigate(`/meals/detail/${name}`);
-          }}
-        >
-          {name}
-        </S.MealTitle>
-        <S.MealDeleteBtn
-          onClick={() => {
-            dispatch(deleteMeals(id));
-          }}
-        >
-          X
-        </S.MealDeleteBtn>
-      </S.MealHeaderBox>
-      <S.QuanBox>
-        <S.QuanText>{quantity}인분</S.QuanText>
-        <span>({totalGram}g)</span>
-      </S.QuanBox>
-    </li>
+    <S.MealCartList key={id}>
+      <div>
+        <S.MealHeaderBox>
+          <S.MealTitle
+            onClick={() => {
+              navigate(`/meals/detail/${name}`);
+            }}
+          >
+            {name}
+          </S.MealTitle>
+          <S.MealDeleteBtn
+            onClick={() => {
+              dispatch(deleteMeals(id));
+            }}
+          >
+            X
+          </S.MealDeleteBtn>
+        </S.MealHeaderBox>
+        <S.QuanBox>
+          <S.QuanText>{quantity}인분</S.QuanText>
+          <span>({totalGram}g)</span>
+        </S.QuanBox>
+      </div>
+    </S.MealCartList>
   );
 }
 
