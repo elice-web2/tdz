@@ -90,7 +90,9 @@ function MealsSearchedList({ inputValue, result }: MealsSearchedListProps) {
                     navigate(`/meals/detail/${food.name}`);
                   }}
                 >
-                  {food.name}
+                  {food.name.length <= 14
+                    ? food.name
+                    : `${food.name.slice(0, 13)}...`}
                 </div>
                 <span
                   className="arrowIcon"
