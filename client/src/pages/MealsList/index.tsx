@@ -76,10 +76,12 @@ function MealsList() {
         transfat: 0,
         name: [],
         _id: '',
+        quantity: [],
       };
       mealData.category = e.category;
       mealData._id = e._id;
       e.meals.forEach((el: any) => {
+        mealData.quantity.push(el.quantity);
         mealData.kcal += el.kcal;
         mealData.carb += el.carb;
         mealData.protein += el.protein;

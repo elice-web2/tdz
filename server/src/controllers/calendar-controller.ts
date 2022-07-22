@@ -40,19 +40,19 @@ class CalendarController {
       // req (request) 에서 데이터 가져오기
       const userId = req.currentUserId!;
       const date: Date = req.body.date;
-      const currentKcal: number = req.body.currentKcal || 0;
+      const currentKcal: number = req.body.currentKcal;
       const goalKcal: number = req.body.goalKcal || 0;
       const mode: string = req.body.mode;
       const isSuccess: boolean = req.body.isSuccess || false;
       const todayWeight: number = req.body.todayWeight || 0;
-      const carbSum: number = req.body.carbSum || 0;
-      const proteinSum: number = req.body.proteinSum || 0;
-      const fatSum: number = req.body.fatSum || 0;
-      const sugarsSum: number = req.body.sugarsSum || 0;
-      const natriumSum: number = req.body.natriumSum || 0;
-      const cholesterolSum: number = req.body.cholesterolSum || 0;
-      const saturatedfattySum: number = req.body.saturatedfattySum || 0;
-      const transfatSum: number = req.body.transfatSum || 0;
+      const carbSum: number = req.body.carbSum;
+      const proteinSum: number = req.body.proteinSum;
+      const fatSum: number = req.body.fatSum;
+      const sugarsSum: number = req.body.sugarsSum;
+      const natriumSum: number = req.body.natriumSum;
+      const cholesterolSum: number = req.body.cholesterolSum;
+      const saturatedfattySum: number = req.body.saturatedfattySum;
+      const transfatSum: number = req.body.transfatSum;
 
       const stamp = await calendarService.getCalendarStampByDate(userId, date);
 
@@ -81,20 +81,23 @@ class CalendarController {
         // 도장 수정
         const calendarId: string = stamp[0]._id;
         const toUpdate = {
-          currentKcal: currentKcal || 0,
+          ...((currentKcal || currentKcal === 0) && { currentKcal }),
           ...(goalKcal && { goalKcal }),
           ...(mode && { mode }),
           isSuccess: isSuccess || false,
           ...(todayWeight && { todayWeight }),
-          carbSum: carbSum || 0,
-          proteinSum: proteinSum || 0,
-          fatSum: fatSum || 0,
-          sugarsSum: sugarsSum || 0,
-          natriumSum: natriumSum || 0,
-          cholesterolSum: cholesterolSum || 0,
-          saturatedfattySum: saturatedfattySum || 0,
-          transfatSum: transfatSum || 0,
+          ...((carbSum || carbSum === 0) && { carbSum }),
+          ...((proteinSum || proteinSum === 0) && { proteinSum }),
+          ...((fatSum || fatSum === 0) && { fatSum }),
+          ...((sugarsSum || sugarsSum === 0) && { sugarsSum }),
+          ...((natriumSum || natriumSum === 0) && { natriumSum }),
+          ...((cholesterolSum || cholesterolSum === 0) && { cholesterolSum }),
+          ...((saturatedfattySum || saturatedfattySum === 0) && {
+            saturatedfattySum,
+          }),
+          ...((transfatSum || transfatSum === 0) && { transfatSum }),
         };
+        console.log(toUpdate);
 
         const updatedStamp: CalendarData =
           await calendarService.setCalendarStamp(calendarId, toUpdate);
