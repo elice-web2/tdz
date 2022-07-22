@@ -72,13 +72,11 @@ export const UserProfileContainer = styled.div`
   display: flex;
 `;
 
-export const UserProfileImage = styled.img.attrs((imgUrl) => ({
-  src: imgUrl.src,
-}))`
+export const UserProfileImage = styled.img`
   position: relative;
   top: 25px;
-  width: 100px;
-  height: 100px;
+  width: 35%;
+  height: 35%;
   margin-right: 24px;
 
   border-radius: 50%;
@@ -135,6 +133,9 @@ export const UserGoalNumberInfo = styled.div`
     font-weight: 500;
     font-size: 14px;
   }
+  @media (max-width: 400px) {
+    font-size: 10px;
+  }
 `;
 
 export const DropDownMenu = styled.div`
@@ -175,8 +176,8 @@ export const OutsideModal = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   background-color: rgb(0, 0, 0, 0);
   z-index: 2;
 `;

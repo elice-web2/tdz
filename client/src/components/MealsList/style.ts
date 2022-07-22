@@ -7,7 +7,7 @@ export const MealsListBox = styled.div`
   position: relative;
   width: 70%;
   height: 135px;
-  padding: 10px 30px 10px 80px;
+  padding: 10px 10% 10px 20%;
   margin: 20px;
 
   background: rgba(217, 217, 217, 0.15);
@@ -23,9 +23,9 @@ export const MealContainerIconBox = styled.div`
   align-items: center;
 
   top: 15px;
-  left: -10px;
+  right: 85%;
 
-  width: 80px;
+  width: 20%;
   height: 30px;
 
   border-radius: 5px;
@@ -40,6 +40,13 @@ export const MealContainerIconBox = styled.div`
   p {
     font-size: 12px;
     color: white;
+  }
+
+  @media (max-width: 400px) {
+    font-size: 10px;
+    p {
+      font-size: 10px;
+    }
   }
 `;
 
