@@ -58,11 +58,11 @@ export const BtnContainer = styled.div`
   padding: 10px;
 
   button {
-    width: 70px;
+    width: 60px;
     height: 40px;
     border-radius: 10px;
     border: none;
-    font-size: 16px;
+    font-size: 14px;
     cursor: pointer;
   }
 `;
