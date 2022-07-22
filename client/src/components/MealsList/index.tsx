@@ -69,7 +69,7 @@ function MealsListBox({ meal, setList }: MealsListProps) {
         </S.MealContainerIconBox>
         <DeleteButton />
         <CalorieInfo calorie={Math.round(meal.kcal)} />
-        <FoodList foods={meal.name} />
+        <FoodList foods={meal.name} quantity={meal.quantity} />
         <S.NutrientContainer>
           <NutrientInfo nutrient={'탄수화물'} gram={Math.round(meal.carb)} />
           <S.NutrientInfoLine />

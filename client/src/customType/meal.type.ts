@@ -74,4 +74,5 @@ export interface MealListItem {
   transfat: number;
   name: string[];
   _id: string;
+  quantity: number[];
 }
