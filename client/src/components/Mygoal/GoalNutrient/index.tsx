@@ -1,10 +1,15 @@
+// dependencies
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch } from '../../../hooks';
 import { useForm } from 'react-hook-form';
-import { patchActivityAsync } from '../../../slices/usersInfoSlice';
-import * as S from '../style';
 import { useEffect, useState } from 'react';
-import { calculateTDZPercent } from '../../../utils';
+// stores
+import { patchActivityAsync } from 'slices/usersInfoSlice';
+// hooks
+import { useAppDispatch } from 'hooks';
+// styles
+import * as S from '../style';
+// etc
+import { calculateTDZPercent } from 'utils';
 
 function GoalNutrientForm() {
   const navigate = useNavigate();
@@ -32,7 +37,7 @@ function GoalNutrientForm() {
     existEntry.nutrient.carb = nutrient.carb;
     existEntry.nutrient.protein = nutrient.protein;
     existEntry.nutrient.fat = nutrient.fat;
-    existEntry.is_login_first = false;
+    existEntry.is_login_first = 'false';
     localStorage.setItem('usersInfo', JSON.stringify(existEntry));
     dispatch(patchActivityAsync(existEntry));
     navigate('/home');

@@ -1,5 +1,5 @@
 import * as S from './style';
-import { TDZInfoType } from '../../../customType/meal.type';
+import { TDZInfoType } from 'customType/meal.type';
 
 function TDZInfo({ nutrient, gram }: TDZInfoType) {
   return (

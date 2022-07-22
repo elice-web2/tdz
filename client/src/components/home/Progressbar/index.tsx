@@ -1,4 +1,4 @@
-import { calculatePercentage } from '../../../utils';
+import { calculatePercentage } from 'utils';
 import * as S from './style';
 
 interface ProgressbarProps {
@@ -24,7 +24,7 @@ function Progressbar({
           progressColor={color}
         />
         <p>
-          {currentValue}g / {goalValue}g
+          {currentValue.toFixed(0)}g / {goalValue}g
         </p>
       </S.ProgressContainer>
     </S.Wrapper>

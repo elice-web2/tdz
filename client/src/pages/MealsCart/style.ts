@@ -8,7 +8,7 @@ export const Container = styled.div`
 `;
 
 export const NutrientInfoContainer = styled.div`
-  width: 420px;
+  width: 100%;
   height: 240px;
   margin-bottom: 30px;
   border-bottom-left-radius: 30px;
@@ -69,7 +69,7 @@ export const AddMealsBtn = styled.button`
   margin: 10px;
   border: none;
   border-radius: 10px;
-  background-color: ${({ theme }) => theme.mainColor.lighter};
+  background-color: ${({ theme }) => theme.mainColor.darker};
   font-size: 14px;
   font-weight: bold;
   cursor: pointer;

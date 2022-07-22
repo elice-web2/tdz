@@ -6,7 +6,7 @@ export interface MealInfo {
   protein: number;
   fat: number;
   sugars: number;
-  natruim: number;
+  natrium: number;
   cholesterol: number;
   saturatedfatty: number;
   transfat: number;
@@ -18,6 +18,13 @@ export interface MealInfo {
 
 export interface MealData extends MealInfo {
   _id: string;
+  isBookMarked?: boolean;
+}
+
+export interface MealHistoryData {
+  date: string;
+  category: string;
+  meals: MealData[];
 }
 
 export interface MealsSearchedListProps {
@@ -26,10 +33,15 @@ export interface MealsSearchedListProps {
 }
 
 export interface TotalInfoType {
-  totalKcal: number;
-  totalCarb: number;
-  totalProtein: number;
-  totalFat: number;
+  kcal: number;
+  carb: number;
+  cholesterol: number;
+  fat: number;
+  natrium: number;
+  protein: number;
+  saturatedfatty: number;
+  sugars: number;
+  transfat: number;
 }
 
 export interface TDZInfoType {
@@ -38,12 +50,28 @@ export interface TDZInfoType {
 }
 
 export interface MealsCartListType {
+  id: string;
   name: string;
   quantity: number;
   totalGram: number;
-  code: string;
 }
 
 export interface MealsCartModalPropsType {
   openModal: (value: boolean) => void;
+  totalInfo: TotalInfoType;
+}
+
+export interface MealListItem {
+  category: string;
+  kcal: number;
+  carb: number;
+  protein: number;
+  fat: number;
+  sugars: number;
+  natrium: number;
+  cholesterol: number;
+  saturatedfatty: number;
+  transfat: number;
+  name: string[];
+  _id: string;
 }

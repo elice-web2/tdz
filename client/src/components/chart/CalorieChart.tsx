@@ -1,14 +1,19 @@
+// dependencies
 import { Bar } from 'react-chartjs-2';
+// types
+import { ChartInfo } from 'customType/chart.type';
 
-function CalorieChart({ data }: any) {
+function CalorieChart({ data, labels }: ChartInfo) {
+  const rounded = data.kcalAvg.map((val) => Math.round(val));
   const CalorieData = {
-    labels: ['6/30', '7/1', '7/2', '7/3', '7/4', '7/5', '7/6'],
+    labels,
     datasets: [
       {
         base: 0,
         backgroundColor: 'green',
-        data: data.칼로리평균,
+        data: rounded,
         maxBarThickness: 10,
+        min: 0,
       },
     ],
   };
@@ -16,7 +21,20 @@ function CalorieChart({ data }: any) {
     plugins: {
       title: {
         display: true,
-        text: '섭취 칼로리',
+        text: '섭취 칼로리 평균',
+      },
+      tooltip: {
+        displayColors: false,
+        callbacks: {
+          label: (context: any) => {
+            let label = context.formattedValue + '' || '';
+            if (label) {
+              label += ' kcal';
+            }
+
+            return label;
+          },
+        },
       },
     },
     scales: {
@@ -27,6 +45,7 @@ function CalorieChart({ data }: any) {
       },
       y: {
         beginAtZero: true,
+        max: Math.max(...data.kcalAvg) + 100,
       },
     },
   };

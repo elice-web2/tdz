@@ -1,7 +1,7 @@
 import is from '@sindresorhus/is';
 import { Request, Response, NextFunction } from 'express';
-import { favoriteService, mealService } from '../services';
-import { FavoriteInfo, FavoriteData } from '../types/favorite.type';
+import { favoriteService } from '../services';
+import { FavoriteInfo } from '../types/favorite.type';
 
 //즐겨찾기 추가
 const add = async (req: Request, res: Response, next: NextFunction) => {
@@ -78,10 +78,6 @@ const favorite = async (req: Request, res: Response, next: NextFunction) => {
 
     const oneFavorite = await favoriteService.findMealInFavorites(favoriteInfo);
 
-    if (!oneFavorite) {
-      throw new Error('해당 식단에 관련한 즐겨찾기 정보가 없습니다.');
-    }
-
     res.status(200).json(oneFavorite);
   } catch (error) {
     next(error);
@@ -126,8 +122,6 @@ const deleteAllFavorites = async (
     const userId: string = req.currentUserId!;
 
     const deleteFavorite = await favoriteService.deleteAllFavorites(userId);
-
-    console.log(deleteFavorite);
 
     if (!deleteFavorite.deletedCount) {
       throw new Error('즐겨찾기 전체 삭제가 실패했습니다.');

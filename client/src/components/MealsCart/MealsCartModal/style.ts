@@ -1,8 +1,13 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+  position: absolute;
   max-width: 420px;
+  width: 100%;
   height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 export const OutsideModal = styled.div`
   position: absolute;
@@ -15,17 +20,15 @@ export const OutsideModal = styled.div`
 `;
 export const ModalContainer = styled.div`
   position: absolute;
-  top: 220px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 300px;
-  margin-left: 60px;
+  width: 80%;
   padding-bottom: 30px;
   background-color: white;
   border-radius: 15px;
-  z-index: 2;
+  z-index: 999;
 `;
 
 export const XBtn = styled.button`

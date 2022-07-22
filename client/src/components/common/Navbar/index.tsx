@@ -1,4 +1,4 @@
-import * as S from './style';
+// dependencies
 import { useNavigate, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -7,22 +7,24 @@ import {
   faChartColumn,
   faUser,
 } from '@fortawesome/free-solid-svg-icons';
-import Container from '../../styles/Container';
-import { useState } from 'react';
+// components
+import Container from 'components/styles/Container';
+// styles
+import * as S from './style';
 
 function Navbar() {
   const currentURL = useLocation().pathname.split('/')[1];
-  // console.log(currentURL);
-  const [selected, setSelected] = useState(currentURL);
   const navigate = useNavigate();
+
   return (
     <Container>
+      <S.NavBackground />
       <S.NavContainer>
         <S.MenuBox
           onClick={() => {
             navigate('/home');
           }}
-          isSelected={selected === 'home'}
+          isSelected={currentURL === 'home'}
         >
           <div className="icon">
             <FontAwesomeIcon size="lg" icon={faHouseChimney} />
@@ -34,7 +36,7 @@ function Navbar() {
           onClick={() => {
             navigate('/meals');
           }}
-          isSelected={selected === 'meals'}
+          isSelected={currentURL === 'meals'}
         >
           <div className="icon">
             <FontAwesomeIcon size="lg" icon={faUtensils} />
@@ -45,7 +47,7 @@ function Navbar() {
           onClick={() => {
             navigate('/chart');
           }}
-          isSelected={selected === 'chart'}
+          isSelected={currentURL === 'chart'}
         >
           <div className="icon">
             <FontAwesomeIcon size="lg" icon={faChartColumn} />
@@ -57,7 +59,7 @@ function Navbar() {
           onClick={() => {
             navigate('/mypage');
           }}
-          isSelected={selected === 'mypage'}
+          isSelected={currentURL === 'mypage'}
         >
           <div className="icon">
             <FontAwesomeIcon size="lg" icon={faUser} />
