@@ -44,42 +44,44 @@ function Main() {
           <S.ImgContainer>
             <S.ImgBox src={require('../../assets/main3.png')} />
           </S.ImgContainer>
-          <S.LogoText>
-            <img src={require('../../assets/logoWhite2.png')} />
-          </S.LogoText>
-          <S.IntroText>오늘 하루, 무엇을 드셨나요?</S.IntroText>
-          <S.IntroText>매일의 식단을 기록해보세요!</S.IntroText>
-          <S.IntroText>당신의 건강이 달라집니다!</S.IntroText>
-          <S.LoginContainer>
-            <S.Link
-              href={`https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=77524d6f60c947c98230e8d0d6c54eb4&redirect_uri=${process.env.REACT_APP_BASE_URL}/api/auth/kakao/callback`}
-            >
-              <S.LoginBox brand={'카카오'}>
+          <S.MainContainer className="confirm">
+            <S.LogoText>
+              <img src={require('../../assets/logoWhite2.png')} />
+            </S.LogoText>
+            <S.IntroText>오늘 하루, 무엇을 드셨나요?</S.IntroText>
+            <S.IntroText>매일의 식단을 기록해보세요!</S.IntroText>
+            <S.IntroText>당신의 건강이 달라집니다!</S.IntroText>
+            <S.LoginContainer>
+              <S.Link
+                href={`https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=77524d6f60c947c98230e8d0d6c54eb4&redirect_uri=${process.env.REACT_APP_BASE_URL}/api/auth/kakao/callback`}
+              >
+                <S.LoginBox brand={'카카오'}>
+                  <span className="icon">
+                    <img
+                      className="kakaoLogo"
+                      src={require('../../assets/kakaoIcon.png')}
+                    />
+                  </span>
+                  <p>카카오로 시작하기</p>
+                </S.LoginBox>
+              </S.Link>
+              <S.LoginBox
+                brand="TDZ"
+                onClick={() => {
+                  navigate('/signin');
+                }}
+              >
                 <span className="icon">
+                  {/* <FontAwesomeIcon icon={faEnvelope} className="email" /> */}
                   <img
-                    className="kakaoLogo"
-                    src={require('../../assets/kakaoIcon.png')}
+                    className="tdzLogo"
+                    src={require('../../assets/favicon.png')}
                   />
                 </span>
-                <p>카카오로 시작하기</p>
+                <p>TDZ로 시작하기</p>
               </S.LoginBox>
-            </S.Link>
-            <S.LoginBox
-              brand="TDZ"
-              onClick={() => {
-                navigate('/signin');
-              }}
-            >
-              <span className="icon">
-                {/* <FontAwesomeIcon icon={faEnvelope} className="email" /> */}
-                <img
-                  className="tdzLogo"
-                  src={require('../../assets/favicon.png')}
-                />
-              </span>
-              <p>TDZ로 시작하기</p>
-            </S.LoginBox>
-          </S.LoginContainer>
+            </S.LoginContainer>
+          </S.MainContainer>
         </div>
       </ScrollContainer>
     </Container>
