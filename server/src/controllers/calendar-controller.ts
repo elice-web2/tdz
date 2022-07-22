@@ -41,7 +41,7 @@ class CalendarController {
       const userId = req.currentUserId!;
       const date: Date = req.body.date;
       const currentKcal: number = req.body.currentKcal;
-      const goalKcal: number = req.body.goalKcal || 0;
+      const goalKcal: number = req.body.goalKcal;
       const mode: string = req.body.mode;
       const isSuccess: boolean = req.body.isSuccess;
       const todayWeight: number = req.body.todayWeight || 0;
@@ -61,19 +61,19 @@ class CalendarController {
         const newStamp = await calendarService.addCalendarStamp({
           userId,
           date,
-          currentKcal,
+          currentKcal: currentKcal || 0,
           goalKcal,
           mode,
-          isSuccess,
+          isSuccess: isSuccess || false,
           todayWeight,
-          carbSum,
-          proteinSum,
-          fatSum,
-          sugarsSum,
-          natriumSum,
-          cholesterolSum,
-          saturatedfattySum,
-          transfatSum,
+          carbSum: carbSum || 0,
+          proteinSum: proteinSum || 0,
+          fatSum: fatSum || 0,
+          sugarsSum: sugarsSum || 0,
+          natriumSum: natriumSum || 0,
+          cholesterolSum: cholesterolSum || 0,
+          saturatedfattySum: saturatedfattySum || 0,
+          transfatSum: transfatSum || 0,
         });
 
         res.status(201).json(newStamp);
