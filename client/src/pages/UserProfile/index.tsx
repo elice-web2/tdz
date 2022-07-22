@@ -94,10 +94,10 @@ function UserProfile() {
             <S.UserInfoNameInputBox
               {...register('input_name', {
                 required: '필수 항목입니다.',
-                maxLength: 10,
+                maxLength: 20,
               })}
               defaultValue={nickname}
-              maxLength={10}
+              maxLength={20}
             />
             <S.UserInfoInputLabel>나의 각오 (50자 이하)</S.UserInfoInputLabel>
             <S.UserInfoCommentInputBox
