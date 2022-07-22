@@ -99,16 +99,16 @@ export const Activity = styled.div<{ isSelected: boolean }>`
   font-weight: 400;
 
   cursor: pointer;
-
   .emoji {
     display: block;
-
     width: 50px;
     height: 50px;
     margin: 10px auto;
-
     background-color: lightgray;
     border-radius: 50%;
+    font-size: 35px;
+    color: rgba(0, 0, 0, 0.5);
+    line-height: 45px;
   }
   ${({ isSelected }) => {
     if (isSelected) {
@@ -116,7 +116,8 @@ export const Activity = styled.div<{ isSelected: boolean }>`
         font-size: 14px;
         font-weight: 600;
         .emoji {
-          background-color: black;
+          background-color: ${({ theme }) => theme.mainColor.lighter};
+          color: rgba(0, 0, 0, 1);
         }
       `;
     }

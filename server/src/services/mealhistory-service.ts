@@ -40,7 +40,7 @@ class MealHistoryService {
       const proteinSum = mealData.protein;
       const fatSum = mealData.fat;
       const sugarsSum = mealData.sugars;
-      const natriumSum = mealData.natruim;
+      const natriumSum = mealData.natrium;
       const cholesterolSum = mealData.cholesterol;
       const saturatedfattySum = mealData.saturatedfatty;
       const transfatSum = mealData.transfat;
@@ -55,8 +55,6 @@ class MealHistoryService {
         else isSuccess = false;
       }
       const todayWeight = userInfo!.current_weight;
-
-      console.log(meals[0].meals[0]);
 
       await calendarService.addCalendarStamp({
         userId,
@@ -153,16 +151,17 @@ class MealHistoryService {
   async deleteMealHistoryByUserId(userId: string): Promise<{ result: string }> {
     const mealhistory = await this.mealhistoryModel.findById(userId);
 
-    if (!mealhistory) {
-      throw new Error('삭제할 식단은 존재하지 않습니다.');
-    }
+    // if (!mealhistory) {
+    //   throw new Error('삭제할 식단은 존재하지 않습니다.');
+    // }
 
-    const { deletedCount } = await this.mealhistoryModel.deleteByUserId(userId);
+    // const { deletedCount } = await this.mealhistoryModel.deleteByUserId(userId);
 
-    // 삭제에 실패한 경우, 에러 메시지 반환
-    if (deletedCount === 0) {
-      throw new Error(`식단 삭제에 실패하였습니다`);
-    }
+    // // 삭제에 실패한 경우, 에러 메시지 반환
+
+    // if (deletedCount === 0) {
+    //   throw new Error(`식단 삭제에 실패하였습니다`);
+    // }
 
     return { result: 'success' };
   }

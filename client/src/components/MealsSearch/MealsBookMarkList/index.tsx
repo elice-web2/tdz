@@ -1,79 +1,78 @@
-import * as S from './style';
-import * as api from '../../../api';
+// dependencies
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../../hooks';
-import { addMeals, deleteMeals } from '../../../slices/mealsSlice';
-import { accNutrientCal } from '../../../utils/calculateAccNutrient';
-import { MealData } from '../../../customType/meal.type';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight, faPlus } from '@fortawesome/free-solid-svg-icons';
+// stores
+import { addMeals, deleteMeals } from 'slices/mealsSlice';
+// types
+import { MealData } from 'customType/meal.type';
+// hooks
+import { useAppDispatch, useAppSelector } from 'hooks';
+// styles
+import * as S from './style';
+// etc
+import * as api from 'api';
 
 function MealsBookMarkList() {
-  const [result, setResult] = useState<MealData[]>();
+  const [result, setResult] = useState<MealData[]>([]);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const mealStore = useAppSelector(({ meal }) => meal.value);
 
   useEffect(() => {
-    (async () => {
-      api.get('/api/favorites').then((res: any) => {
-        setResult(res.data);
-      });
-    })();
-  }, []);
-
-  useEffect(() => {
     api.get('/api/favorites').then((res: any) => {
-      setResult(res.data);
+      const temp: MealData[] = [];
+      res.data.forEach((data: any) => {
+        if (data.meal_id) {
+          temp.push(data.meal_id);
+        }
+      });
+      setResult(temp);
     });
-  }, [result]);
+  }, []);
 
   //장바구니 담을땐 중복필터링
   function addToCart(food: MealData) {
     const result = mealStore.filter((el) => el._id !== food._id);
     const acc = mealStore.filter((el) => el._id === food._id)[0];
     if (mealStore.length !== result.length) {
-      const answer = confirm('이미 담겨진 음식입니다. 더 추가하시겠습니까?');
-      if (answer) {
-        //영양소 누적해서 더해주기
-        const total = accNutrientCal(acc, food);
-        //원래담긴건 지워주고 새로 담자
-        dispatch(deleteMeals(acc.code));
-        dispatch(addMeals(total));
-        navigate('/meals/cart');
-      } else {
-        return;
-      }
+      //원래담긴건 지워주고 새로 담자
+      dispatch(deleteMeals(acc._id));
+      dispatch(addMeals(food));
+      navigate('/meals/cart');
     } else {
       dispatch(addMeals(food));
       navigate('/meals/cart');
     }
   }
 
-  function deleteBookMark(id: string) {
-    api.delete(`/api/favorites/${id}`).then((res) => console.log(res));
+  async function deleteBookMark(id: string) {
+    await api.delete(`/api/favorites/${id}`);
+    setResult((results) => results.filter((result) => result._id !== id));
   }
 
   return (
     <S.SearchListContainer>
       {result &&
-        result.map((food: any) => {
+        result.map((food: MealData) => {
           return (
-            <S.List key={food.meal_id._id}>
+            <S.List key={food._id}>
               <S.NamedInfo>
                 <div
                   className="title"
                   onClick={() => {
-                    navigate(`/meals/detail/${food.meal_id.name}`);
+                    navigate(`/meals/detail/${food.name}`);
                   }}
                 >
-                  {food.meal_id.name}
+                  {food.name.length <= 14
+                    ? food.name
+                    : `${food.name.slice(0, 13)}...`}
                 </div>
                 <span
                   className="arrowIcon"
                   onClick={() => {
-                    navigate(`/meals/detail/${food.meal_id.name}`);
+                    navigate(`/meals/detail/${food.name}`);
                   }}
                 >
                   <FontAwesomeIcon icon={faArrowRight} />
@@ -81,14 +80,14 @@ function MealsBookMarkList() {
                 <span
                   className="plusIcon"
                   onClick={() => {
-                    addToCart(food.meal_id);
+                    addToCart(food);
                   }}
                 >
                   <FontAwesomeIcon icon={faPlus} />
                 </span>
                 <span
                   className="starIcon"
-                  onClick={() => deleteBookMark(food.meal_id._id)}
+                  onClick={() => deleteBookMark(food._id)}
                 >
                   <img src={require('../../../assets/YellowStar.png')}></img>
                 </span>

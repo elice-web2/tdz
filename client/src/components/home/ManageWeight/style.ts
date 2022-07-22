@@ -29,6 +29,10 @@ export const WeightContainer = styled.div`
       all: unset;
     }
   }
+
+  .null-weight {
+    font-size: 22px;
+  }
 `;
 
 export const InputTag = styled.input`
@@ -58,10 +62,10 @@ export const InputTag = styled.input`
 export const MessageContainer = styled.div`
   ${({ theme }) => theme.flexbox('column')}
 
-  margin-top: 20px;
+  margin: 20px 0 10px 0;
 
   span {
-    font-size: 12px;
+    font-size: 14px;
     padding: 5px 0;
   }
 `;

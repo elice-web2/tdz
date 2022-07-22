@@ -1,17 +1,22 @@
+// dependencies
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faAngleLeft,
   faAngleRight,
-  faAngleDown,
   faCaretDown,
 } from '@fortawesome/free-solid-svg-icons';
-import * as S from './style';
-import { useAppDispatch, useAppSelector } from '../../../hooks';
 import dayjs from 'dayjs';
-import { updateDate } from '../../../slices/dateSlice';
-import { parseDateFromNow } from './parseDateFromNow';
 import { useState } from 'react';
-import CalendarStamp from '../../CalendarStamp';
+// components
+import CalendarStamp from 'components/CalendarStamp';
+// stores
+import { updateDate } from 'slices/dateSlice';
+// hooks
+import { useAppDispatch, useAppSelector } from 'hooks';
+// styles
+import * as S from './style';
+// etc
+import { parseDateFromNow } from 'utils';
 
 function DateNavigation() {
   const dispatch = useAppDispatch();

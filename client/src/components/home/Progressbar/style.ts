@@ -10,7 +10,7 @@ export const Title = styled.h2`
 `;
 
 export const Progress = styled.progress<{ progressColor: string }>`
-  width: 60%;
+  width: 65%;
   height: 10px;
   margin: 10px;
 

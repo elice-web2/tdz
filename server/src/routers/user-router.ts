@@ -1,7 +1,7 @@
 import { Router } from 'express';
 // 폴더에서 import하면, 자동으로 폴더의 index.js에서 가져옴
-import { loginRequired, adminRequired } from '../middlewares';
-import * as userController from '../controllers';
+import { loginRequired, adminRequired, upload } from '../middlewares';
+import { userController } from '../controllers';
 import { userValidator } from '../validation/validator';
 // import { register,login,getUserlist,editUserData } from '../controller';
 
@@ -19,13 +19,12 @@ userRouter.get('/users/list', adminRequired, userController.userList);
 userRouter.get('/users', loginRequired, userController.user);
 userRouter.patch('/users', loginRequired, userController.userUpdate);
 userRouter.patch('/users/activity', loginRequired, userController.goalUpdate);
+userRouter.patch(
+  '/users/profile',
+  loginRequired,
+  upload.single('src'),
+  userController.profileUpdate,
+);
 userRouter.delete('/users', loginRequired, userController.deleteUser);
 
-// 카카오 회원가입
-// userRouter.post('/auth/signup/kakao', userController.kakaoSignup);
-
-// 카카오 로그인
-//userRouter.post('/auth/login/kakao', userController.kakaoLogin);
-
-// userRouter.post('/auth/login/google', userController.kakaoLogin)
 export { userRouter };

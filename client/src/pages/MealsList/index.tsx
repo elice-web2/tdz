@@ -1,91 +1,116 @@
-import { useEffect, useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faXmark,
-  faSun,
-  faDrumstickBite,
-  faUtensils,
-  faCookieBite,
-} from '@fortawesome/free-solid-svg-icons';
-import Container from '../../components/styles/Container';
-import MealsListAddBox from '../../components/MealsList/MealsListAddBox';
-import MealsListDeleteModal from '../../components/MealsList/MealsListDeleteModal';
-import DateNavigation from '../../components/common/DateNavigation';
-import Logo from '../../components/common/Logo';
-import Navbar from '../../components/common/Navbar';
-import CalorieInfo from '../../components/MealsList/CalorieInfo';
-import FoodList from '../../components/MealsList/FoodList';
-import NutrientInfo from '../../components/MealsList/NutrientInfo';
-import * as S from './style';
+// dependencies
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAppSelector } from '../../hooks';
+// components
+import DateNavigation from 'components/common/DateNavigation';
+import Logo from 'components/common/Logo';
+import Navbar from 'components/common/Navbar';
+import Container from 'components/styles/Container';
+import MealsListAddBox from 'components/MealsList/MealsListAddBox';
+import MealsListBox from 'components/MealsList';
+import { ScrollContainer } from 'components/styles/ScrollContainer';
+import CartIcon from 'components/common/CartIcon';
+// stores
+import { calTotalNutrient } from 'slices/mealsSlice';
+// types
+import { MealListItem } from 'customType/meal.type';
+// hooks
+import { useAppSelector, useAppDispatch } from 'hooks';
+// styles
+import * as S from './style';
+// etc
+import * as api from 'api';
 
 function MealsList() {
+  const [list, setList] = useState<any[]>([]);
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const currentDate = useAppSelector((state) => state.date.value);
   const { isLogin, is_login_first } = useAppSelector(
     ({ usersInfo }) => usersInfo.value,
   );
-  const [openModal, setOpenModal] = useState<boolean>(false);
-  const clickHandler = () => {
-    setOpenModal(true);
-  };
-
-  const Time = (param: string) => {
-    if (param === '아침') {
-      return faSun;
-    } else if (param === '점심') {
-      return faDrumstickBite;
-    } else if (param === '저녁') {
-      return faUtensils;
-    } else {
-      return faCookieBite;
-    }
-  };
-
-  const DeleteButton = () => {
-    return (
-      <S.DeleteButtonBox onClick={clickHandler}>
-        <FontAwesomeIcon icon={faXmark} className="Delete" />
-      </S.DeleteButtonBox>
-    );
-  };
 
   useEffect(() => {
-    if (isLogin && is_login_first) {
+    if (isLogin && is_login_first === 'true') {
       navigate('/mypage/goal_step1');
     } else if (!isLogin) {
       navigate('/');
     }
-  }, []);
+  }, [is_login_first, isLogin]);
+
+  useEffect(() => {
+    async function getMealsData(date: string) {
+      const data = await api.get(`/api/mealhistory/${date}`);
+      setList(createMealList(data?.data));
+      dispatch(calTotalNutrient(data?.data));
+    }
+    getMealsData(currentDate);
+  }, [currentDate]);
+
+  const createMealList = (data: any) => {
+    const component: any = [];
+    const tmp: any = [];
+    data.forEach((e: any) => {
+      if (e.category === '아침') tmp.push(e);
+    });
+    data.forEach((e: any) => {
+      if (e.category === '점심') tmp.push(e);
+    });
+    data.forEach((e: any) => {
+      if (e.category === '저녁') tmp.push(e);
+    });
+    data.forEach((e: any) => {
+      if (e.category === '간식') tmp.push(e);
+    });
+    tmp.forEach((e: any) => {
+      const mealData: MealListItem = {
+        category: '',
+        kcal: 0,
+        carb: 0,
+        protein: 0,
+        fat: 0,
+        sugars: 0,
+        natrium: 0,
+        cholesterol: 0,
+        saturatedfatty: 0,
+        transfat: 0,
+        name: [],
+        _id: '',
+      };
+      mealData.category = e.category;
+      mealData._id = e._id;
+      e.meals.forEach((el: any) => {
+        mealData.kcal += el.kcal;
+        mealData.carb += el.carb;
+        mealData.protein += el.protein;
+        mealData.fat += el.fat;
+        mealData.name.push(el.name);
+        mealData.sugars += el.sugars;
+        mealData.natrium += el.natrium;
+        mealData.cholesterol += el.cholesterol;
+        mealData.saturatedfatty += el.saturatedfatty;
+        mealData.transfat += el.transfat;
+      });
+      component.push(mealData);
+    });
+    return component;
+  };
 
   return (
     <Container>
       <Logo />
       <DateNavigation />
-      <S.MealsListContainerBox>
-        {openModal && <MealsListDeleteModal setOpenModal={setOpenModal} />}
-        <S.MealsListBox>
-          <S.MealContainerIconBox>
-            <FontAwesomeIcon
-              icon={Time('아침')}
-              className="Breakfast"
-              color="white"
-            />
-            <p>아침</p>
-          </S.MealContainerIconBox>
-          <DeleteButton />
-          <CalorieInfo calorie={700} />
-          <FoodList foods={['신라면', '단무지', '군만두']} />
-          <S.NutrientContainer>
-            <NutrientInfo nutrient={'탄수화물'} gram={300} />
-            <S.NutrientInfoLine />
-            <NutrientInfo nutrient={'단백질'} gram={100} />
-            <S.NutrientInfoLine />
-            <NutrientInfo nutrient={'지방'} gram={200} />
-          </S.NutrientContainer>
-        </S.MealsListBox>
-      </S.MealsListContainerBox>
-      <MealsListAddBox />
+      <ScrollContainer minusHeight={180}>
+        <S.MealsListContainerBox>
+          {list.map((meal: any) => {
+            return (
+              <MealsListBox setList={setList} key={meal._id} meal={meal} />
+            );
+          })}
+        </S.MealsListContainerBox>
+        <MealsListAddBox />
+      </ScrollContainer>
+      <CartIcon />
       <Navbar />
     </Container>
   );

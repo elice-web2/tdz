@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 // import { ObjectLiteralElementLike } from 'typescript';
-import * as api from '../api';
+import * as api from 'api';
 // 받아올 유저정보
 interface UsersInfo {
   // 유저 정보
@@ -25,7 +25,7 @@ interface UsersInfo {
   nickname: string;
   comment: string;
   // 유저 정보를 작성한 회원 여부
-  is_login_first: boolean;
+  is_login_first: string;
   // 로그인 여부
   isLogin: boolean;
 }
@@ -33,34 +33,6 @@ interface UsersInfo {
 export interface UsersInfoState {
   value: UsersInfo;
 }
-
-const initialState: UsersInfoState = {
-  value: {
-    email: '',
-    login_path: '',
-    gender: '',
-    role: '',
-    age: 0,
-    height: 0,
-    current_weight: 0,
-    goal_weight: 0,
-    bmi: 0,
-    mode: '',
-    activity: '',
-    nutrient: {
-      kcal: 0,
-      carb: 0,
-      protein: 0,
-      fat: 0,
-    },
-    profile_image: '',
-    nickname: '',
-    comment: '',
-    is_login_first: false,
-    isLogin: Boolean(localStorage.getItem('login')),
-  },
-};
-// Slice 작성 예시
 
 // 로그인 요청 데이터 타입지정
 interface postLoginSignup {
@@ -87,18 +59,45 @@ interface patchActivityParam {
     fat: number;
   };
   nickname?: string;
-  is_login_first?: boolean;
+  is_login_first?: string;
 }
 // 수정할 유저 정보 데이터 타입지정
 interface patchUserParam {
-  email: string;
   password: string;
   currentPassword: string;
 }
+
+const initialState: UsersInfoState = {
+  value: {
+    email: '',
+    login_path: '',
+    gender: '',
+    role: '',
+    age: 0,
+    height: 0,
+    current_weight: 0,
+    goal_weight: 0,
+    bmi: 0,
+    mode: '',
+    activity: '',
+    nutrient: {
+      kcal: 0,
+      carb: 0,
+      protein: 0,
+      fat: 0,
+    },
+    profile_image: '',
+    nickname: '',
+    comment: '',
+    is_login_first: 'false',
+    isLogin: Boolean(localStorage.getItem('login')),
+  },
+};
+
 // 회원가입 post API 통신 함수
 async function postSignupData(usersInfo: postLoginSignup) {
   const resp = await api.post('/api/auth/signup', usersInfo);
-  return resp.data;
+  return resp?.data;
 }
 // 회원탈퇴 del API 통신 함수
 async function delUserData() {
@@ -121,26 +120,42 @@ async function getUsersInfoData() {
 }
 // 회원정보 수정 patch API 통신 함수
 async function patchUserInfoData(userInfo: patchUserParam) {
-  const resp = await api.patch('/api/users', userInfo);
-  return resp.data;
+  try {
+    const resp = await api.patch('/api/users', userInfo);
+    return resp?.data;
+  } catch (error: any) {
+    throw new Error(error.response.data.reason);
+  }
 }
 async function patchActivityData(activityInfo: patchActivityParam) {
   const resp = await api.patch('/api/users/activity', activityInfo);
-  return resp.data;
+  return resp?.data;
+}
+async function uploadImageFile(formData: FormData) {
+  const resp = await api.uploadFile('/api/users/profile', formData);
+  return resp?.data;
 }
 
 // 비동기로 데이터를 불러와 액션을 생성하고 싶을 경우 예시
 export const postSignUpAsync = createAsyncThunk(
   'usersInfo/postSignupData',
   async (usersInfo: postLoginSignup) => {
-    return await postSignupData(usersInfo);
+    try {
+      return await postSignupData(usersInfo);
+    } catch (err: any) {
+      throw new Error(err.response.data.reason);
+    }
   },
 );
 //
 export const postLoginAsync = createAsyncThunk(
   'usersInfo/postLoginData',
   async (loginInfo: postLoginSignup) => {
-    await postLoginData(loginInfo);
+    try {
+      await postLoginData(loginInfo);
+    } catch (err: any) {
+      throw new Error(err.response.data.reason);
+    }
   },
 );
 export const delUserAsync = createAsyncThunk(
@@ -176,6 +191,13 @@ export const patchActivityAsync = createAsyncThunk(
   'usersInfo/patchActivityData',
   async (activityInfo: patchActivityParam) => {
     const data = await patchActivityData(activityInfo);
+    return data;
+  },
+);
+export const uploadImageFileAsync = createAsyncThunk(
+  'usersInfo/uploadImageFile',
+  async (formData: FormData) => {
+    const data = await uploadImageFile(formData);
     return data;
   },
 );
@@ -220,7 +242,7 @@ export const UsersInfoSlice = createSlice({
       .addCase(patchActivityAsync.pending, (state) => {
         state.value = {
           ...state.value,
-          is_login_first: false,
+          is_login_first: 'false',
         };
       })
       .addCase(patchActivityAsync.fulfilled, (state, action) => {
@@ -228,6 +250,12 @@ export const UsersInfoSlice = createSlice({
           ...state.value,
           ...action.payload,
           is_login_first: false,
+        };
+      })
+      .addCase(uploadImageFileAsync.fulfilled, (state, action) => {
+        state.value = {
+          ...state.value,
+          ...action.payload,
         };
       });
   },

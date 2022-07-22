@@ -5,13 +5,29 @@ interface FoodsProps {
 }
 
 const FoodList = ({ foods }: FoodsProps) => {
+  const foodArray = ({ foods }: FoodsProps) => {
+    if (foods.length <= 2) {
+      return foods.map((food) => {
+        return food;
+      });
+    } else {
+      const res = [];
+      res.push(
+        foods.filter((food, idx) => {
+          return idx < 2;
+        }),
+      );
+      return res.join(', ');
+    }
+  };
+
   return (
     <S.FoodListContainer>
       <span className="FoodList">
-        {foods.map((food) => {
-          return food + ', ';
-        })}{' '}
-        그 외 {foods.length}개
+        {foodArray({ foods })}
+        {foods.length > 2
+          ? ' 그 외 ' + (foods.length - 2) + '개'
+          : ' ' + foods.length + '개'}
       </span>
     </S.FoodListContainer>
   );

@@ -1,18 +1,18 @@
 export interface mealInfo {
   code: string;
-  name: String;
-  kcal: Number;
-  carb: Number;
-  protein: Number;
-  fat: Number;
-  sugars: Number;
-  natruim: Number;
-  cholesterol: Number;
-  saturatedfatty: Number;
-  transfat: Number;
-  servingSize: Number;
-  totalGram: Number;
-  quantity: Number;
+  name: string;
+  kcal: number;
+  carb: number;
+  protein: number;
+  fat: number;
+  sugars: number;
+  natrium: number;
+  cholesterol: number;
+  saturatedfatty: number;
+  transfat: number;
+  servingSize: number;
+  totalGram: number;
+  quantity: number;
   updated_date: Date;
 }
 

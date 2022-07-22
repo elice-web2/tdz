@@ -1,8 +1,8 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-import counterReducer from './slices/counterSlice';
-import mealsSlice from './slices/mealsSlice';
-import usersInfoReducer from './slices/usersInfoSlice';
-import dateReducer from './slices/dateSlice';
+import counterReducer from 'slices/counterSlice';
+import mealsSlice from 'slices/mealsSlice';
+import usersInfoReducer from 'slices/usersInfoSlice';
+import dateReducer from 'slices/dateSlice';
 
 export const store = configureStore({
   reducer: {

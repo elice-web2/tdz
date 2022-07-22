@@ -1,6 +1,9 @@
-import * as S from './style';
+// dependencies
 import { useNavigate } from 'react-router-dom';
-import Container from '../../styles/Container';
+// components
+import Container from 'components/styles/Container';
+// styles
+import * as S from './style';
 
 function Logo() {
   const navigate = useNavigate();
