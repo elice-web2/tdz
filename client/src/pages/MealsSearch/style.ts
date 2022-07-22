@@ -11,6 +11,7 @@ export const SearchForm = styled.form`
 export const SearchBox = styled.div`
   position: relative;
   margin: 0 10px;
+  margin-right: 5px;
   font-size: 16px;
   color: gray;
   .searchIcon {
@@ -29,7 +30,7 @@ export const SearchBox = styled.div`
 `;
 
 export const SearchInput = styled.input`
-  width: 260px;
+  width: 250px;
   height: 30px;
   padding-left: 35px;
   border-radius: 20px;
@@ -43,6 +44,7 @@ export const SearchBtn = styled.button`
   height: 30px;
   background: none;
   border: none;
+  padding: 0 3px;
   font-size: 16px;
   cursor: pointer;
 `;
@@ -59,7 +61,7 @@ export const SearchTabBtn = styled.button<{
   isSearch: boolean;
 }>`
   position: relative;
-  width: 180px;
+  width: 160px;
   height: 40px;
   background-color: ${(props) =>
     props.isSearch === true ? '#F7F7F7' : props.theme.mainColor.lighter};

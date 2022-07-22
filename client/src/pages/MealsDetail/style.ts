@@ -56,7 +56,7 @@ export const FlexBox = styled.div`
 export const SubNutrientBox = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 180px);
-  gap: 10px 16px;
+  gap: 10px 0;
   margin: 30px auto;
   font-size: 13px;
   place-items: center;

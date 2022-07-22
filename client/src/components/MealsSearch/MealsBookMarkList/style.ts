@@ -8,7 +8,7 @@ export const SearchListContainer = styled.ul`
 `;
 
 export const List = styled.li`
-  width: 360px;
+  width: 90%;
   padding-top: 5px;
   border-bottom: 1px solid gray;
 `;
