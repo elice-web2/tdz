@@ -28,7 +28,7 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 body {
-	overflow-y: hidden;
+	overflow: hidden;
 	line-height: 1;
 	font-family: 'Noto Sans KR', sans-serif;
 }
