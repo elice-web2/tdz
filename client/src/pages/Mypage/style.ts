@@ -72,9 +72,7 @@ export const UserProfileContainer = styled.div`
   display: flex;
 `;
 
-export const UserProfileImage = styled.img.attrs((imgUrl) => ({
-  src: imgUrl.src,
-}))`
+export const UserProfileImage = styled.img`
   position: relative;
   top: 25px;
   width: 35%;
@@ -178,8 +176,8 @@ export const OutsideModal = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   background-color: rgb(0, 0, 0, 0);
   z-index: 2;
 `;
