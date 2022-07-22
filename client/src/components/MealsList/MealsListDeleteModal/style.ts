@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+  position: relative;
   width: 100%;
   height: 100%;
 `;
@@ -16,10 +17,12 @@ export const OutsideModal = styled.div`
 `;
 
 export const ModalContainer = styled.div`
+  position: absolute;
+  top: 220px;
   display: flex;
   flex-direction: column;
   height: 140px;
-  width: 60%;
+  width: 200px;
   background-color: white;
   border-radius: 15px;
   z-index: 2;
