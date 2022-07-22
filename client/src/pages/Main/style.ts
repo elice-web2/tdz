@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 export const MainContainer = styled.div`
   position: relative;
-  @media only all and (max-height: 600px) {
-    bottom: 120px;
+  @media only screen and (max-height: 700px) {
+    bottom: 10px;
   }
 `;
 
