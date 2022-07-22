@@ -77,8 +77,8 @@ export const UserProfileImage = styled.img.attrs((imgUrl) => ({
 }))`
   position: relative;
   top: 25px;
-  width: 100px;
-  height: 100px;
+  width: 35%;
+  height: 35%;
   margin-right: 24px;
 
   border-radius: 50%;
@@ -134,6 +134,9 @@ export const UserGoalNumberInfo = styled.div`
   & p:first-of-type {
     font-weight: 500;
     font-size: 14px;
+  }
+  @media (max-width: 400px) {
+    font-size: 10px;
   }
 `;
 
