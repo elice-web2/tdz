@@ -19,8 +19,9 @@ export const MyGoalWrapper = styled.div`
 `;
 export const Button = styled.input`
   width: 220px;
-  height: 30px;
+  height: 40px;
   margin-top: 5px;
+  padding: 10px;
 
   background-color: ${({ theme }) => theme.mainColor.darker};
   border-radius: 8px;
@@ -28,6 +29,8 @@ export const Button = styled.input`
 
   color: white;
   font-style: none;
+  font-weight: 600;
+  font-size: 16px;
 
   cursor: pointer;
 `;
