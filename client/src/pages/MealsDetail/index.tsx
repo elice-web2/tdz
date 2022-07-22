@@ -226,7 +226,9 @@ function MealsDetail() {
               )}
             </div>
           </S.IconBox>
-          <S.Title>{foodInfo?.name}</S.Title>
+          <S.FlexBox>
+            <S.Title>{foodInfo?.name}</S.Title>
+          </S.FlexBox>
           <S.MainNutrientBox>
             <div className="info-text">
               <p>칼로리</p>

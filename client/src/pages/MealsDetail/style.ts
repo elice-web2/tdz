@@ -30,7 +30,7 @@ export const IconBox = styled.div`
 `;
 export const Title = styled.h1`
   margin-bottom: 15px;
-  padding: 20px 0 20px 30px;
+  padding: 20px 10px 20px 15px;
   font-size: 28px;
   font-weight: bold;
 `;
