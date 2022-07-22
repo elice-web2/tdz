@@ -80,29 +80,29 @@ function MealsCart() {
         <MealsCartModal openModal={setOpenModal} totalInfo={totalInfo} />
       )}
 
-      <S.NutrientInfoContainer>
-        <S.IconBox>
-          <div
-            className="arrow-icon"
-            onClick={() => {
-              navigate(-1);
-            }}
-          >
-            <FontAwesomeIcon icon={faArrowLeft} />
-          </div>
-        </S.IconBox>
-        <S.TotalKcalBox>
-          <h1>총 칼로리</h1>
-          {totalInfo.kcal}kcal
-        </S.TotalKcalBox>
-        <S.TdzBox>
-          <TDZInfo nutrient={'탄수화물'} gram={totalInfo.carb} />
-          <TDZInfo nutrient={'단백질'} gram={totalInfo.protein} />
-          <TDZInfo nutrient={'지방'} gram={totalInfo.fat} />
-        </S.TdzBox>
-      </S.NutrientInfoContainer>
-
       <ScrollContainer minusHeight={60}>
+        <S.NutrientInfoContainer>
+          <S.IconBox>
+            <div
+              className="arrow-icon"
+              onClick={() => {
+                navigate(-1);
+              }}
+            >
+              <FontAwesomeIcon icon={faArrowLeft} />
+            </div>
+          </S.IconBox>
+          <S.TotalKcalBox>
+            <h1>총 칼로리</h1>
+            {totalInfo.kcal}kcal
+          </S.TotalKcalBox>
+          <S.TdzBox>
+            <TDZInfo nutrient={'탄수화물'} gram={totalInfo.carb} />
+            <TDZInfo nutrient={'단백질'} gram={totalInfo.protein} />
+            <TDZInfo nutrient={'지방'} gram={totalInfo.fat} />
+          </S.TdzBox>
+        </S.NutrientInfoContainer>
+
         <S.MealsListContainer>
           {result.length === 0 ? (
             <EmptyCart></EmptyCart>
