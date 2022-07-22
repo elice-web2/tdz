@@ -18,11 +18,12 @@ export const OutsideModal = styled.div`
 export const ModalContainer = styled.div`
   position: absolute;
   top: 300px;
+  right: 20%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 300px;
+  width: 60%;
   padding-bottom: 30px;
   background-color: white;
   border-radius: 15px;
@@ -35,10 +36,14 @@ export const Title = styled.h1`
   font-size: 14px;
   font-weight: 500;
   text-align: center;
+
+  @media (max-width: 400px) {
+    font-size: 10px;
+  }
 `;
 
 export const CancelButton = styled.button`
-  width: 80px;
+  width: 40%;
   height: 40px;
   background-color: ${({ theme }) => theme.mainColor.lighter};
   border-radius: 12px;
@@ -46,10 +51,14 @@ export const CancelButton = styled.button`
   font-size: 18px;
   color: white;
   cursor: pointer;
+
+  @media (max-width: 400px) {
+    font-size: 12px;
+  }
 `;
 
 export const DeleteButton = styled.button`
-  width: 80px;
+  width: 40%;
   height: 40px;
   background-color: ${({ theme }) => theme.mainColor.darker};
   border-radius: 12px;
@@ -57,11 +66,15 @@ export const DeleteButton = styled.button`
   font-size: 18px;
   color: white;
   cursor: pointer;
+
+  @media (max-width: 400px) {
+    font-size: 12px;
+  }
 `;
 
 export const ButtonContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 200px;
+  width: 60%;
   color: white;
 `;
