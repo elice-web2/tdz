@@ -10,9 +10,10 @@ export const SignContainer = styled.div`
   display: flex;
   flex-direction: column;
 
-  width: 340px;
+  width: 100%;
   height: 400px;
   padding: 40px 24px;
+  margin: 0 20px;
 
   border: 0.1px solid rgba(0, 0, 0, 0.1);
   box-shadow: 1px 3px 10px 1px rgba(0, 0, 0, 0.25);
