@@ -53,7 +53,11 @@
   <img src ="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=white">
   <img src ="https://img.shields.io/badge/Redux-764ABC?style=for-the-badge&logo=Redux&logoColor=white">
   <img src ="https://img.shields.io/badge/Redux ToolKit-764ABC?style=for-the-badge&logo=Redux&logoColor=white">
-  <img src ="https://img.shields.io/badge/styled components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white">
+  <img src ="https://img.shields.io/badge/styled components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white"><br>
+
+  - 외부 라이브러리 :
+    <img src ="https://img.shields.io/badge/react--hook--form-yellow">
+    <img src ="https://img.shields.io/badge/dayjs-orange">
 
 - Backend
 
