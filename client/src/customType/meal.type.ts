@@ -29,7 +29,7 @@ export interface MealHistoryData {
 
 export interface MealsSearchedListProps {
   result: MealData[];
-  inputValue: string;
+  noSearched: boolean;
 }
 
 export interface TotalInfoType {

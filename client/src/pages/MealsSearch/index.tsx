@@ -26,46 +26,16 @@ enum TAB_NM {
 
 function MealsSearch() {
   const navigate = useNavigate();
+  const [inputValue, setInputValue] = useState('');
+  const [noSearched, setNoSearched] = useState(false);
+  const [searchedResult, setSearchedResult] = useState<MealData[]>([]);
+  const inputRef = useRef<HTMLInputElement>(null);
   const { isLogin, is_login_first } = useAppSelector(
     ({ usersInfo }) => usersInfo.value,
   );
-  const [inputValue, setInputValue] = useState('');
-  const [searchedResult, setSearchedResult] = useState<MealData[]>([]);
-  const inputRef = useRef<HTMLInputElement>(null);
+
   const queryStrings = new URLSearchParams(window.location.search);
   const qsTabNm = queryStrings.get('tabNm');
-
-  function deleteInputHandler() {
-    setInputValue('');
-    if (inputRef.current) {
-      inputRef.current.focus();
-    }
-  }
-
-  function onChangeInputHandler(e: React.ChangeEvent<HTMLInputElement>) {
-    setInputValue(e.target.value);
-  }
-
-  function inputSubmitHandler() {
-    api.get(`/api/meal/${inputValue}`).then((res: any) => {
-      setSearchedResult(res.data);
-    });
-  }
-
-  function moveSearchTab() {
-    navigate(`/meals/search?tabNm=${TAB_NM.SEARCH}`);
-    inputRef.current && inputRef.current.focus();
-  }
-
-  function moveBookMarkTab() {
-    navigate(`/meals/search?tabNm=${TAB_NM.MY_FAVORITE}`);
-  }
-
-  useEffect(() => {
-    if (!inputValue) {
-      setSearchedResult([]);
-    }
-  }, [inputValue]);
 
   useEffect(() => {
     if (isLogin && is_login_first === 'true') {
@@ -74,6 +44,48 @@ function MealsSearch() {
       navigate('/');
     }
   }, [is_login_first, isLogin]);
+
+  useEffect(() => {
+    if (!inputValue) {
+      setSearchedResult([]);
+    }
+  }, [inputValue]);
+
+  //검색창 비워주고 focus해주는 함수
+  function deleteInputHandler() {
+    setInputValue('');
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }
+
+  //검색어 입력되는거 바꿔주는 함수
+  function onChangeInputHandler(e: React.ChangeEvent<HTMLInputElement>) {
+    setInputValue(e.target.value);
+  }
+
+  //검색 submit 함수
+  async function inputSubmitHandler() {
+    try {
+      const res = await api.get(`/api/meal/${inputValue}`);
+      setSearchedResult(res.data);
+      setNoSearched(false);
+    } catch {
+      setNoSearched(true);
+      throw new Error('검색된 결과가 없습니다.');
+    }
+  }
+
+  //검색탭으로 이동시켜주는 함수
+  function moveSearchTab() {
+    navigate(`/meals/search?tabNm=${TAB_NM.SEARCH}`);
+    inputRef.current && inputRef.current.focus();
+  }
+
+  //즐겨찾기탭으로 이동시켜주는 함수
+  function moveBookMarkTab() {
+    navigate(`/meals/search?tabNm=${TAB_NM.MY_FAVORITE}`);
+  }
 
   return (
     <Container>
@@ -121,7 +133,7 @@ function MealsSearch() {
           <MealsBookMarkList></MealsBookMarkList>
         ) : (
           <MealsSearchedList
-            inputValue={inputValue}
+            noSearched={noSearched}
             result={searchedResult}
           ></MealsSearchedList>
         )}

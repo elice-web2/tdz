@@ -16,7 +16,7 @@ import * as S from './style';
 // etc
 import * as api from 'api';
 
-function MealsSearchedList({ inputValue, result }: MealsSearchedListProps) {
+function MealsSearchedList({ result, noSearched }: MealsSearchedListProps) {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const mealStore = useAppSelector(({ meal }) => meal.value);
@@ -60,9 +60,9 @@ function MealsSearchedList({ inputValue, result }: MealsSearchedListProps) {
     const item = list.find((el) => el._id === id);
     if (!item) return;
     if (item.isBookMarked) {
-      await api.delete(`/api/favorites/${id}`);
+      deleteBookmark(id);
     } else {
-      await api.post('/api/favorites', { meal_id: id });
+      postBookmark(id);
     }
     //리랜더링
     setList((lists) =>
@@ -75,59 +75,72 @@ function MealsSearchedList({ inputValue, result }: MealsSearchedListProps) {
     );
   }
 
+  async function deleteBookmark(id: string) {
+    try {
+      await api.delete(`/api/favorites/${id}`);
+    } catch {
+      throw new Error('해당 id의 즐겨찾기를 삭제할 수 없습니다.');
+    }
+  }
+
+  async function postBookmark(id: string) {
+    try {
+      await api.post('/api/favorites', { meal_id: id });
+    } catch {
+      throw new Error('해당 id의 즐겨찾기를 POST할 수 없습니다.');
+    }
+  }
+
   return (
     <S.SearchListContainer>
-      {list.length === 0 || !inputValue ? (
-        <NoSearched></NoSearched>
-      ) : (
-        list.map((food: MealData) => {
-          return (
-            <S.List key={food._id}>
-              <S.NamedInfo>
-                <div
-                  className="title"
-                  onClick={() => {
-                    navigate(`/meals/detail/${food.name}`);
-                  }}
-                >
-                  {food.name.length <= 11
-                    ? food.name
-                    : `${food.name.slice(0, 10)}...`}
-                </div>
-                <span
-                  className="arrowIcon"
-                  onClick={() => {
-                    navigate(`/meals/detail/${food.name}`);
-                  }}
-                >
-                  <FontAwesomeIcon icon={faArrowRight} />
-                </span>
-                <span
-                  className="plusIcon"
-                  onClick={() => {
-                    addToCart(food);
-                  }}
-                >
-                  <FontAwesomeIcon icon={faPlus} />
-                </span>
-                <span
-                  className="starIcon"
-                  onClick={() => {
-                    bookmarkHandler(food._id);
-                  }}
-                >
-                  {food.isBookMarked ? (
-                    <img src={require('../../../assets/YellowStar.png')}></img>
-                  ) : (
-                    <img src={require('../../../assets/blackStar.png')}></img>
-                  )}
-                </span>
-              </S.NamedInfo>
-              <S.QuanInfo>1인분</S.QuanInfo>
-            </S.List>
-          );
-        })
-      )}
+      {noSearched ? <NoSearched /> : ''}
+      {list.map((food: MealData) => {
+        return (
+          <S.List key={food._id}>
+            <S.NamedInfo>
+              <div
+                className="title"
+                onClick={() => {
+                  navigate(`/meals/detail/${food.name}`);
+                }}
+              >
+                {food.name.length <= 11
+                  ? food.name
+                  : `${food.name.slice(0, 10)}...`}
+              </div>
+              <span
+                className="arrowIcon"
+                onClick={() => {
+                  navigate(`/meals/detail/${food.name}`);
+                }}
+              >
+                <FontAwesomeIcon icon={faArrowRight} />
+              </span>
+              <span
+                className="plusIcon"
+                onClick={() => {
+                  addToCart(food);
+                }}
+              >
+                <FontAwesomeIcon icon={faPlus} />
+              </span>
+              <span
+                className="starIcon"
+                onClick={() => {
+                  bookmarkHandler(food._id);
+                }}
+              >
+                {food.isBookMarked ? (
+                  <img src={require('../../../assets/YellowStar.png')}></img>
+                ) : (
+                  <img src={require('../../../assets/blackStar.png')}></img>
+                )}
+              </span>
+            </S.NamedInfo>
+            <S.QuanInfo>1인분</S.QuanInfo>
+          </S.List>
+        );
+      })}
     </S.SearchListContainer>
   );
 }
